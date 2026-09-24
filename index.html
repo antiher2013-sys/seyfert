@@ -3,553 +3,643 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#05060b">
-  <title>Seyfert</title>
+
+  <title>Seyfert — Анкеты</title>
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html,
     body {
-      margin: 0;
       width: 100%;
       min-height: 100%;
-      background: #05060b;
-      color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #05030b;
+      color: white;
       overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
+      position: relative;
     }
 
-    /* =========================
-       ФОН
-    ========================= */
+    /* ===== КОСМИЧЕСКИЙ ФОН ===== */
 
     .space {
       position: fixed;
       inset: 0;
+      z-index: 0;
       overflow: hidden;
+      transition:
+        background 0.8s ease,
+        filter 0.8s ease;
+    }
+
+    .space::before {
+      content: "";
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+
       background:
         radial-gradient(
-          circle at 15% 10%,
-          rgba(100, 55, 255, 0.18),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at 85% 75%,
-          rgba(0, 170, 255, 0.13),
+          circle,
+          rgba(255,255,255,0.04) 0%,
           transparent 38%
         ),
-        #05060b;
-      z-index: 0;
-      pointer-events: none;
+        radial-gradient(
+          circle,
+          var(--glow),
+          transparent 68%
+        );
+
+      filter: blur(20px);
+
+      animation: galaxyMove 12s ease-in-out infinite alternate;
     }
 
-    .nebula {
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.22;
-    }
-
-    .nebula.one {
-      background: #6c35ff;
-      top: -230px;
-      left: -190px;
-      animation: nebulaOne 18s ease-in-out infinite alternate;
-    }
-
-    .nebula.two {
-      background: #009dff;
-      right: -230px;
-      bottom: -220px;
-      animation: nebulaTwo 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes nebulaOne {
-      from {
-        transform: translate(0, 0) scale(1);
-      }
-
-      to {
-        transform: translate(80px, 70px) scale(1.18);
-      }
-    }
-
-    @keyframes nebulaTwo {
-      from {
-        transform: translate(0, 0) scale(1);
-      }
-
-      to {
-        transform: translate(-70px, -50px) scale(1.2);
-      }
-    }
-
-    .stars {
+    .space::after {
+      content: "";
       position: absolute;
       inset: 0;
+
+      background-image:
+        radial-gradient(circle at 10% 20%, white 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 30%, white 0 1px, transparent 2px),
+        radial-gradient(circle at 30% 70%, white 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 80%, white 0 1px, transparent 2px),
+        radial-gradient(circle at 50% 15%, white 0 1px, transparent 2px),
+        radial-gradient(circle at 90% 70%, white 0 1px, transparent 2px);
+
+      opacity: 0.65;
+
+      animation: starsMove 18s linear infinite;
     }
 
-    .star {
-      position: absolute;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 0 6px currentColor;
-      animation-name: starFloat;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-
-    @keyframes starFloat {
+    @keyframes galaxyMove {
       from {
-        transform: translate(0, 0);
-        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(1);
       }
 
       to {
-        transform: translate(var(--move-x), var(--move-y));
-        opacity: var(--max-opacity);
+        transform: translate(-48%, -53%) scale(1.12);
       }
     }
 
-    /* =========================
-       ПРИЛОЖЕНИЕ
-    ========================= */
+    @keyframes starsMove {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-35px);
+      }
+    }
+
+    /* ===== ЦВЕТА АНКЕТ ===== */
+
+    .purple {
+      --glow: rgba(135, 70, 255, 0.55);
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(130, 70, 255, 0.30),
+          transparent 55%
+        ),
+        #08040f;
+    }
+
+    .red {
+      --glow: rgba(255, 55, 90, 0.55);
+      background:
+        radial-gradient(
+          circle at 70% 30%,
+          rgba(255, 50, 90, 0.32),
+          transparent 55%
+        ),
+        #100306;
+    }
+
+    .blue {
+      --glow: rgba(40, 170, 255, 0.55);
+      background:
+        radial-gradient(
+          circle at 30% 30%,
+          rgba(30, 170, 255, 0.32),
+          transparent 55%
+        ),
+        #020912;
+    }
+
+    .gold {
+      --glow: rgba(255, 190, 55, 0.50);
+      background:
+        radial-gradient(
+          circle at 60% 30%,
+          rgba(255, 180, 40, 0.30),
+          transparent 55%
+        ),
+        #100b02;
+    }
+
+    .cyan {
+      --glow: rgba(30, 255, 220, 0.50);
+      background:
+        radial-gradient(
+          circle at 40% 30%,
+          rgba(30, 255, 220, 0.28),
+          transparent 55%
+        ),
+        #02100e;
+    }
+
+    /* ===== ОСНОВА ===== */
 
     .app {
       position: relative;
       z-index: 2;
 
-      width: 100%;
-      max-width: 480px;
       min-height: 100vh;
 
-      margin: 0 auto;
-      padding: 24px 20px 32px;
-    }
-
-    /* =========================
-       ВЕРХ
-    ========================= */
-
-    .top {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+
+      padding:
+        calc(18px + env(safe-area-inset-top))
+        18px
+        calc(22px + env(safe-area-inset-bottom));
+    }
+
+    .header {
+      display: flex;
       justify-content: space-between;
+      align-items: center;
 
-      margin-bottom: 48px;
+      margin-bottom: 18px;
     }
 
-    .brand {
-      font-size: 28px;
+    .logo {
+      font-size: 24px;
       font-weight: 800;
-      letter-spacing: -1px;
-
-      text-shadow:
-        0 0 12px rgba(135, 90, 255, 0.8),
-        0 0 28px rgba(90, 80, 255, 0.35);
+      letter-spacing: 2px;
     }
+
+    .counter {
+      font-size: 13px;
+      opacity: 0.7;
+      padding: 8px 12px;
+      border-radius: 20px;
+
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    /* ===== КАРТОЧКА ===== */
 
     .profile {
-      width: 44px;
-      height: 44px;
+      width: 100%;
+      max-width: 500px;
+
+      margin: 0 auto;
+
+      flex: 1;
 
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
 
-      border-radius: 50%;
+      transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+    }
 
-      background: rgba(18, 20, 32, 0.75);
-      border: 1px solid rgba(150, 125, 255, 0.5);
+    .profile.changing {
+      opacity: 0;
+      transform: scale(0.97) translateY(12px);
+    }
+
+    .photo {
+      position: relative;
+
+      width: 100%;
+      height: min(62vh, 580px);
+
+      border-radius: 30px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.12),
+          rgba(255,255,255,0.02)
+        );
+
+      border: 1px solid rgba(255,255,255,0.16);
 
       box-shadow:
-        0 0 14px rgba(130, 80, 255, 0.35),
-        inset 0 0 15px rgba(130, 80, 255, 0.08);
+        0 25px 80px rgba(0,0,0,0.55),
+        0 0 50px var(--glow);
 
       backdrop-filter: blur(10px);
     }
 
-    /* =========================
-       ТЕКСТ
-    ========================= */
-
-    .hello {
-      color: #858897;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    h1 {
-      margin: 0;
-
-      font-size: 38px;
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-    }
-
-    .subtitle {
-      margin: 15px 0 32px;
-
-      color: #9799a8;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    /* =========================
-       КАРТОЧКИ
-    ========================= */
-
-    .cards {
-      display: grid;
-      gap: 18px;
-    }
-
-    .card {
-      position: relative;
-
+    .photo img {
       width: 100%;
-      min-height: 160px;
+      height: 100%;
 
-      padding: 24px;
+      object-fit: cover;
 
-      border-radius: 26px;
-      border: 1px solid;
+      display: block;
+    }
+
+    .photo::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,0.90),
+          rgba(0,0,0,0.05) 55%,
+          rgba(0,0,0,0.15)
+        );
+    }
+
+    .profile-info {
+      position: absolute;
+
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+
+      z-index: 3;
+    }
+
+    .name {
+      font-size: 29px;
+      font-weight: 800;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .age {
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    .city {
+      margin-top: 6px;
+
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    .description {
+      margin-top: 13px;
+
+      font-size: 15px;
+      line-height: 1.45;
+
+      opacity: 0.92;
+    }
+
+    /* ===== КНОПКИ ===== */
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 24px;
+
+      margin-top: 20px;
+    }
+
+    .action {
+      width: 64px;
+      height: 64px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.15);
 
       color: white;
-      text-align: left;
+
+      font-size: 25px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      backdrop-filter: blur(16px);
+
+      box-shadow:
+        0 10px 35px rgba(0,0,0,0.35);
 
       cursor: pointer;
 
-      overflow: hidden;
-
       transition:
         transform 0.2s ease,
-        filter 0.2s ease;
+        background 0.2s ease;
     }
 
-    .card:active {
-      transform: scale(0.975);
-      filter: brightness(1.2);
+    .action:active {
+      transform: scale(0.88);
     }
 
-    .dating {
-      background:
-        radial-gradient(
-          circle at 90% 10%,
-          rgba(255, 100, 220, 0.20),
-          transparent 30%
-        ),
-        rgba(90, 45, 180, 0.25);
-
-      border-color: rgba(190, 110, 255, 0.65);
+    .action.like {
+      width: 72px;
+      height: 72px;
 
       box-shadow:
-        0 0 12px rgba(155, 70, 255, 0.55),
-        0 0 35px rgba(125, 50, 255, 0.20),
-        inset 0 0 30px rgba(190, 80, 255, 0.08);
-
-      animation: purpleGlow 4s ease-in-out infinite;
+        0 0 30px var(--glow),
+        0 10px 40px rgba(0,0,0,0.35);
     }
 
-    .gaming {
+    .action:hover {
+      transform: scale(1.06);
+    }
+
+    /* ===== НИЖНЯЯ НАВИГАЦИЯ ===== */
+
+    .navigation {
+      margin: 20px auto 0;
+
+      width: 100%;
+      max-width: 500px;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      padding: 12px;
+
+      border-radius: 22px;
+
       background:
-        radial-gradient(
-          circle at 90% 10%,
-          rgba(80, 240, 255, 0.20),
-          transparent 30%
-        ),
-        rgba(0, 100, 180, 0.24);
+        rgba(255,255,255,0.06);
 
-      border-color: rgba(55, 205, 255, 0.65);
+      border: 1px solid rgba(255,255,255,0.10);
 
-      box-shadow:
-        0 0 12px rgba(0, 185, 255, 0.55),
-        0 0 35px rgba(0, 150, 255, 0.20),
-        inset 0 0 30px rgba(0, 200, 255, 0.08);
-
-      animation: blueGlow 4s ease-in-out infinite;
-      animation-delay: -1.5s;
+      backdrop-filter: blur(18px);
     }
 
-    @keyframes purpleGlow {
-      0%, 100% {
-        box-shadow:
-          0 0 10px rgba(155, 70, 255, 0.45),
-          0 0 28px rgba(125, 50, 255, 0.16),
-          inset 0 0 25px rgba(190, 80, 255, 0.07);
-      }
-
-      50% {
-        box-shadow:
-          0 0 18px rgba(180, 80, 255, 0.75),
-          0 0 45px rgba(145, 60, 255, 0.28),
-          inset 0 0 35px rgba(210, 100, 255, 0.11);
-      }
-    }
-
-    @keyframes blueGlow {
-      0%, 100% {
-        box-shadow:
-          0 0 10px rgba(0, 185, 255, 0.45),
-          0 0 28px rgba(0, 150, 255, 0.16),
-          inset 0 0 25px rgba(0, 200, 255, 0.07);
-      }
-
-      50% {
-        box-shadow:
-          0 0 18px rgba(0, 210, 255, 0.75),
-          0 0 45px rgba(0, 170, 255, 0.28),
-          inset 0 0 35px rgba(0, 220, 255, 0.11);
-      }
-    }
-
-    .card-icon {
-      font-size: 31px;
-      margin-bottom: 16px;
-
-      filter:
-        drop-shadow(0 0 8px rgba(255,255,255,0.55));
-    }
-
-    .card-title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .card-text {
-      color: rgba(255,255,255,0.68);
-      font-size: 14px;
-    }
-
-    .arrow {
-      position: absolute;
-      right: 22px;
-      bottom: 20px;
-
-      font-size: 26px;
-      opacity: 0.8;
-
-      text-shadow:
-        0 0 10px rgba(255,255,255,0.7);
-    }
-
-    /* =========================
-       АКТИВНОСТИ
-    ========================= */
-
-    .section {
-      margin-top: 34px;
-    }
-
-    .section-title {
-      margin-bottom: 13px;
-
-      font-size: 17px;
-      font-weight: 750;
-    }
-
-    .activity {
-      padding: 19px;
-
-      border-radius: 20px;
-      border: 1px solid rgba(130, 135, 170, 0.18);
-
-      background: rgba(15, 17, 27, 0.65);
-
-      color: #858897;
-      font-size: 14px;
-      line-height: 1.5;
-
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* =========================
-       НИЗ
-    ========================= */
-
-    .bottom {
-      margin-top: 35px;
-
+    .nav-item {
+      font-size: 11px;
+      opacity: 0.65;
       text-align: center;
-
-      color: #454754;
-      font-size: 12px;
     }
 
-    button {
-      font: inherit;
+    .nav-item.active {
+      opacity: 1;
     }
+
+    .nav-icon {
+      font-size: 20px;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+
+    @media (max-height: 700px) {
+      .photo {
+        height: 55vh;
+      }
+
+      .actions {
+        margin-top: 14px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <div class="space">
-
-    <div class="nebula one"></div>
-    <div class="nebula two"></div>
-
-    <div class="stars" id="stars"></div>
-
-  </div>
-
+  <!-- Космический фон -->
+  <div class="space purple" id="space"></div>
 
   <main class="app">
 
-    <header class="top">
+    <header class="header">
 
-      <div class="brand">
-        Seyfert
+      <div class="logo">
+        SEYFERT
       </div>
 
-      <div class="profile">
-        👤
+      <div class="counter" id="counter">
+        1 / 5
       </div>
 
     </header>
 
 
-    <div class="hello">
-      Добро пожаловать
-    </div>
+    <section class="profile" id="profile">
 
+      <div class="photo">
 
-    <h1>
-      Найди своих людей.
-    </h1>
+        <!-- Временная фотография -->
+        <img
+          id="photo"
+          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
+          alt="Фото профиля"
+        >
 
+        <div class="profile-info">
 
-    <p class="subtitle">
-      Знакомься, общайся и находи тиммейтов
-      в одном пространстве.
-    </p>
+          <div class="name">
+            <span id="name">Алина</span>
+            <span class="age" id="age">22</span>
+          </div>
 
+          <div class="city" id="city">
+            📍 Москва
+          </div>
 
-    <section class="cards">
+          <div class="description" id="description">
+            Люблю путешествия, музыку и долгие разговоры обо всём на свете.
+          </div>
 
-      <button class="card dating">
-
-        <div class="card-icon">
-          💜
         </div>
 
-        <div class="card-title">
-          Знакомства
-        </div>
-
-        <div class="card-text">
-          Находи людей, которые тебе интересны.
-        </div>
-
-        <div class="arrow">
-          →
-        </div>
-
-      </button>
-
-
-      <button class="card gaming">
-
-        <div class="card-icon">
-          🎮
-        </div>
-
-        <div class="card-title">
-          Игроки
-        </div>
-
-        <div class="card-text">
-          Ищи тиммейтов и собирай свою команду.
-        </div>
-
-        <div class="arrow">
-          →
-        </div>
-
-      </button>
-
-    </section>
-
-
-    <section class="section">
-
-      <div class="section-title">
-        Активности
       </div>
 
-      <div class="activity">
-        Здесь будут появляться события,
-        игровые активности и предложения
-        сообщества.
+
+      <div class="actions">
+
+        <button
+          class="action"
+          onclick="nextProfile()"
+          aria-label="Пропустить"
+        >
+          ✕
+        </button>
+
+        <button
+          class="action like"
+          onclick="nextProfile()"
+          aria-label="Нравится"
+        >
+          ♥
+        </button>
+
       </div>
 
     </section>
 
 
-    <div class="bottom">
-      Seyfert • 0.4
-    </div>
+    <nav class="navigation">
+
+      <div class="nav-item active">
+        <span class="nav-icon">⌂</span>
+        Анкеты
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">♡</span>
+        Матчи
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">◌</span>
+        Чаты
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">◉</span>
+        Профиль
+      </div>
+
+    </nav>
 
   </main>
 
 
   <script>
-    const stars = document.getElementById("stars");
 
-    const starCount = 85;
+    const profiles = [
 
-    for (let i = 0; i < starCount; i++) {
+      {
+        name: "Алина",
+        age: 22,
+        city: "Москва",
+        description:
+          "Люблю путешествия, музыку и долгие разговоры обо всём на свете.",
+        photo:
+          "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85",
+        theme: "purple"
+      },
 
-      const star = document.createElement("div");
+      {
+        name: "София",
+        age: 24,
+        city: "Санкт-Петербург",
+        description:
+          "Музыка, фотография, кофе и спонтанные поездки без плана.",
+        photo:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
+        theme: "red"
+      },
 
-      star.className = "star";
+      {
+        name: "Маша",
+        age: 21,
+        city: "Казань",
+        description:
+          "Обожаю кино, вечерние прогулки и находить новые места.",
+        photo:
+          "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=85",
+        theme: "blue"
+      },
 
-      const size = Math.random() * 2 + 0.7;
-      const left = Math.random() * 100;
-      const top = Math.random() * 100;
+      {
+        name: "Ева",
+        age: 23,
+        city: "Екатеринбург",
+        description:
+          "Немного интроверт, немного безумная. Люблю уют и красивые истории.",
+        photo:
+          "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85",
+        theme: "gold"
+      },
 
-      const duration = Math.random() * 8 + 7;
-      const delay = Math.random() * -12;
+      {
+        name: "Лера",
+        age: 25,
+        city: "Новосибирск",
+        description:
+          "IT, музыка, игры и бесконечные разговоры ночью.",
+        photo:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
+        theme: "cyan"
+      }
 
-      const moveX = (Math.random() * 30 - 15).toFixed(1);
-      const moveY = (Math.random() * 30 - 15).toFixed(1);
+    ];
 
-      const opacity = (Math.random() * 0.55 + 0.35).toFixed(2);
 
-      star.style.width = size + "px";
-      star.style.height = size + "px";
+    let current = 0;
 
-      star.style.left = left + "%";
-      star.style.top = top + "%";
 
-      star.style.color =
-        Math.random() > 0.82
-          ? "#8edcff"
-          : Math.random() > 0.82
-          ? "#c7a7ff"
-          : "#ffffff";
+    function nextProfile() {
 
-      star.style.animationDuration = duration + "s";
-      star.style.animationDelay = delay + "s";
+      const profile = document.getElementById("profile");
+      const space = document.getElementById("space");
 
-      star.style.setProperty("--move-x", moveX + "px");
-      star.style.setProperty("--move-y", moveY + "px");
-      star.style.setProperty("--max-opacity", opacity);
+      profile.classList.add("changing");
 
-      stars.appendChild(star);
+      setTimeout(() => {
+
+        current++;
+
+        if (current >= profiles.length) {
+          current = 0;
+        }
+
+        const person = profiles[current];
+
+        document.getElementById("name").textContent =
+          person.name;
+
+        document.getElementById("age").textContent =
+          person.age;
+
+        document.getElementById("city").textContent =
+          "📍 " + person.city;
+
+        document.getElementById("description").textContent =
+          person.description;
+
+        document.getElementById("photo").src =
+          person.photo;
+
+        document.getElementById("counter").textContent =
+          (current + 1) + " / " + profiles.length;
+
+
+        space.className =
+          "space " + person.theme;
+
+
+        profile.classList.remove("changing");
+
+      }, 350);
+
     }
+
   </script>
 
 </body>
