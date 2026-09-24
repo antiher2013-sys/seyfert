@@ -254,6 +254,59 @@
     .card:active {
       transform: scale(0.975);
     }
+    /* ===== ЖИВОЙ НЕОН ===== */
+
+.card {
+  animation: neonBreath 4s ease-in-out infinite;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -80%;
+  width: 45%;
+  height: 140%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.18),
+    transparent
+  );
+
+  transform: rotate(18deg);
+  animation: neonSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dating {
+  animation-delay: -1s;
+}
+
+.gaming {
+  animation-delay: -2.5s;
+}
+
+@keyframes neonBreath {
+  0%, 100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes neonSweep {
+  0% {
+    left: -80%;
+  }
+
+  45%, 100% {
+    left: 140%;
+  }
+}
 
     .card-icon {
       font-size: 31px;
