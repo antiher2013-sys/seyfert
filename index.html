@@ -3,491 +3,526 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BioLobby — Skeleton</title>
+<title>Seyfert — Моя анкета</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #111;
-    color: #fff;
-    min-height: 100vh;
-}
-
-button {
-    font: inherit;
-    color: inherit;
-}
-
-.app {
-    width: 100%;
-    max-width: 520px;
-    min-height: 100vh;
-    margin: 0 auto;
-    background: #181818;
-    position: relative;
-    overflow: hidden;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 18px;
-    border-bottom: 1px solid #292929;
-}
-
-.header-title {
-    font-size: 21px;
-    font-weight: 700;
-}
-
-.header-button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    background: #252525;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.content {
-    min-height: calc(100vh - 130px);
-    padding: 16px;
-    padding-bottom: 90px;
-}
-
-.section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-/* =========================
-   PROFILE / RECOMMENDATION
-========================= */
-
-.profile-card {
-    background: #222;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-}
-
-.profile-photo {
-    height: 520px;
-    background:
-        linear-gradient(
-            180deg,
-            transparent 55%,
-            rgba(0,0,0,.9)
-        ),
-        #333;
-    display: flex;
-    align-items: flex-end;
-    padding: 24px;
-}
-
-.profile-info {
-    width: 100%;
-}
-
-.profile-name {
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.profile-location {
-    margin-top: 4px;
-    color: #bbb;
-}
-
-.profile-status {
-    margin-top: 8px;
-    color: #71e58a;
-    font-size: 14px;
-}
-
-.profile-purpose {
-    margin-top: 14px;
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background: #353535;
-    border-radius: 999px;
-    padding: 7px 11px;
-    font-size: 13px;
-}
-
-.profile-description {
-    margin-top: 14px;
-    color: #ddd;
-    line-height: 1.45;
-}
-
-.profile-actions {
-    display: flex;
-    justify-content: space-around;
-    padding: 18px;
-}
-
-.action {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    border: 0;
-    background: #303030;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.action:hover {
-    background: #3b3b3b;
-}
-
-/* =========================
-   FULL PROFILE
-========================= */
-
-.full-profile {
-    display: none;
-    margin-top: 16px;
-    background: #222;
-    border-radius: 20px;
-    padding: 20px;
-}
-
-.full-profile.open {
-    display: block;
-}
-
-.profile-section {
-    margin-bottom: 26px;
-}
-
-.profile-section h3 {
-    margin-bottom: 12px;
-    font-size: 17px;
-}
-
-.info-list {
-    display: grid;
-    gap: 10px;
-}
-
-.info-row {
-    padding: 12px;
-    background: #2b2b2b;
-    border-radius: 12px;
-}
-
-.photo-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-}
-
-.gallery-photo {
-    aspect-ratio: 1;
-    background: #333;
-    border-radius: 12px;
-}
-
-/* =========================
-   CHATS
-========================= */
-
-.chat-tabs {
-    display: flex;
-    gap: 6px;
-    background: #222;
-    padding: 5px;
-    border-radius: 14px;
-    margin-bottom: 16px;
-}
-
-.chat-tab {
-    flex: 1;
-    border: 0;
-    padding: 11px 5px;
-    border-radius: 10px;
-    background: transparent;
-    color: #999;
-    cursor: pointer;
-}
-
-.chat-tab.active {
-    background: #333;
-    color: #fff;
-}
-
-.matches {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    padding: 5px 0 18px;
-}
-
-.match {
-    min-width: 60px;
-    text-align: center;
-}
-
-.match-avatar {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 6px;
-    border-radius: 50%;
-    background: #3a3a3a;
-}
-
-.match-name {
-    font-size: 12px;
-    color: #ccc;
-}
-
-.chat-list {
-    display: grid;
-    gap: 8px;
-}
-
-.chat {
-    padding: 16px;
-    background: #222;
-    border-radius: 16px;
-    cursor: pointer;
-}
-
-.chat-top {
-    display: flex;
-    justify-content: space-between;
-}
-
-.chat-name {
-    font-weight: 600;
-}
-
-.chat-status {
-    font-size: 12px;
-    color: #6fe28a;
-}
-
-.chat-preview {
-    margin-top: 7px;
-    color: #999;
-    font-size: 14px;
-}
-
-.chat-unread {
-    margin-top: 8px;
-    display: inline-block;
-    background: #e63946;
-    border-radius: 999px;
-    padding: 3px 8px;
-    font-size: 11px;
-}
-
-/* =========================
-   CHAT WINDOW
-========================= */
-
-.chat-window {
-    display: none;
-}
-
-.chat-window.active {
-    display: block;
-}
-
-.messages {
-    display: grid;
-    gap: 10px;
-    padding: 16px 0;
-}
-
-.message {
-    max-width: 80%;
-    padding: 11px 14px;
-    border-radius: 16px;
-    background: #2c2c2c;
-}
-
-.message.me {
-    margin-left: auto;
-    background: #444;
-}
-
-.chat-input {
-    display: flex;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.chat-input input {
-    flex: 1;
-    min-width: 0;
-    background: #252525;
-    border: 0;
-    border-radius: 14px;
-    padding: 13px;
-    color: #fff;
-    outline: none;
-}
-
-.chat-input button {
-    width: 46px;
-    border: 0;
-    border-radius: 14px;
-    background: #333;
-    cursor: pointer;
-}
-
-/* =========================
-   INTERESTS
-========================= */
-
-.interest-category {
-    margin-bottom: 24px;
-}
-
-.interest-category h3 {
-    margin-bottom: 10px;
-}
-
-.interests {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.interest {
-    border: 1px solid #3b3b3b;
-    background: #242424;
-    padding: 10px 13px;
-    border-radius: 999px;
-    cursor: pointer;
-}
-
-.interest.selected {
-    background: #fff;
-    color: #111;
-}
-
-.interest-chat {
-    margin-top: 8px;
-    padding: 16px;
-    background: #222;
-    border-radius: 15px;
-}
-
-.interest-chat-title {
-    font-weight: 600;
-}
-
-.interest-chat-info {
-    margin-top: 5px;
-    color: #999;
-    font-size: 13px;
-}
-
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 520px;
-    height: 66px;
-    background: #1c1c1c;
-    border-top: 1px solid #292929;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    z-index: 100;
-}
-
-.nav-button {
-    border: 0;
-    background: transparent;
-    color: #777;
-    cursor: pointer;
-}
-
-.nav-button.active {
-    color: #fff;
-}
-
-.nav-icon {
-    font-size: 21px;
-}
-
-.nav-label {
-    display: block;
-    margin-top: 3px;
-    font-size: 11px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    display: none;
-    align-items: flex-end;
-    justify-content: center;
-    z-index: 200;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    width: 100%;
-    max-width: 520px;
-    background: #222;
-    border-radius: 24px 24px 0 0;
-    padding: 24px;
-}
-
-.modal-content h2 {
-    margin-bottom: 18px;
-}
-
-.modal-button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 8px;
-    border: 0;
-    border-radius: 14px;
-    background: #303030;
-    cursor: pointer;
-}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #08090d;
+        color: #f4f4f7;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button {
+        font: inherit;
+        color: inherit;
+    }
+
+    .app {
+        width: 100%;
+        max-width: 520px;
+        min-height: 100vh;
+        margin: 0 auto;
+        background:
+            radial-gradient(
+                circle at 50% -10%,
+                rgba(104, 62, 180, 0.20),
+                transparent 38%
+            ),
+            #08090d;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .topbar {
+        height: 64px;
+        padding: 0 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px solid #20222c;
+    }
+
+    .topbar-title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .topbar-button {
+        width: 42px;
+        height: 42px;
+
+        border: 0;
+        border-radius: 14px;
+
+        background: #1b1d2a;
+
+        cursor: pointer;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .content {
+        padding-bottom: 100px;
+    }
+
+    /* =========================
+       PROFILE HEADER
+    ========================= */
+
+    .profile-header {
+        padding: 20px 18px 24px;
+        text-align: center;
+    }
+
+    .main-photo {
+        width: 150px;
+        height: 150px;
+
+        margin: 0 auto 18px;
+
+        border-radius: 34px;
+
+        background:
+            radial-gradient(
+                circle at 30% 25%,
+                #7352ff,
+                transparent 35%
+            ),
+            radial-gradient(
+                circle at 75% 20%,
+                #ff7650,
+                transparent 35%
+            ),
+            radial-gradient(
+                circle at 50% 90%,
+                #d89124,
+                transparent 40%
+            ),
+            #242333;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 64px;
+        font-weight: 700;
+
+        box-shadow:
+            0 10px 40px rgba(0,0,0,.35);
+    }
+
+    .profile-name {
+        font-size: 30px;
+        font-weight: 750;
+        letter-spacing: -0.5px;
+    }
+
+    .profile-location {
+        margin-top: 7px;
+
+        color: #9295a6;
+        font-size: 16px;
+    }
+
+    /* =========================
+       VIEW PROFILE
+    ========================= */
+
+    .view-profile {
+        margin-top: 20px;
+
+        width: 100%;
+        padding: 15px 18px;
+
+        border: 1px solid #45356d;
+        border-radius: 17px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(93,57,151,.25),
+                rgba(33,23,54,.55)
+            );
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        text-align: left;
+
+        cursor: pointer;
+    }
+
+    .view-profile-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .view-profile-icon {
+        font-size: 25px;
+    }
+
+    .view-profile-title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .view-profile-subtitle {
+        margin-top: 3px;
+        color: #8e91a3;
+        font-size: 13px;
+    }
+
+    .arrow {
+        color: #8d68ff;
+        font-size: 25px;
+    }
+
+    /* =========================
+       PROFILE INFO
+    ========================= */
+
+    .section {
+        padding: 22px 18px;
+
+        border-top: 1px solid #20222c;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 17px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .edit-button {
+        border: 0;
+        background: transparent;
+
+        color: #936cff;
+
+        font-weight: 650;
+        cursor: pointer;
+    }
+
+    .about-text {
+        color: #c5c7d0;
+
+        font-size: 17px;
+        line-height: 1.55;
+    }
+
+    .counter {
+        margin-top: 10px;
+
+        color: #656879;
+        font-size: 14px;
+    }
+
+    /* =========================
+       PHOTOS
+    ========================= */
+
+    .photos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .photo {
+        aspect-ratio: 1;
+
+        border-radius: 17px;
+
+        background:
+            radial-gradient(
+                circle at 30% 20%,
+                #6650e8,
+                transparent 35%
+            ),
+            radial-gradient(
+                circle at 75% 20%,
+                #ef7550,
+                transparent 35%
+            ),
+            radial-gradient(
+                circle at 50% 90%,
+                #d28c20,
+                transparent 40%
+            ),
+            #242333;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .photo.add {
+        background: #151722;
+        border: 1px dashed #393c4c;
+        color: #8d68ff;
+        font-size: 30px;
+    }
+
+    /* =========================
+       INTERESTS
+    ========================= */
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .tag {
+        padding: 10px 14px;
+
+        border-radius: 999px;
+
+        background: #171a27;
+        border: 1px solid #292d3d;
+
+        color: #d4d5df;
+
+        font-size: 14px;
+    }
+
+    /* =========================
+       INFO GRID
+    ========================= */
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .info-card {
+        padding: 15px;
+
+        border-radius: 16px;
+
+        background: #12141b;
+        border: 1px solid #20232e;
+    }
+
+    .info-label {
+        color: #6f7283;
+
+        font-size: 12px;
+        font-weight: 700;
+
+        text-transform: uppercase;
+        letter-spacing: .5px;
+    }
+
+    .info-value {
+        margin-top: 7px;
+
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    /* =========================
+       FUNCTION BUTTONS
+    ========================= */
+
+    .functions {
+        padding: 22px 18px 30px;
+
+        border-top: 1px solid #20222c;
+    }
+
+    .function-button {
+        width: 100%;
+
+        min-height: 62px;
+
+        margin-bottom: 10px;
+
+        padding: 12px 16px;
+
+        border: 1px solid #242735;
+        border-radius: 18px;
+
+        background: #11131a;
+
+        display: flex;
+        align-items: center;
+
+        cursor: pointer;
+
+        transition:
+            background .18s ease,
+            transform .18s ease;
+    }
+
+    .function-button:active {
+        transform: scale(.985);
+    }
+
+    .function-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 13px;
+
+        background: #1c1f2c;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 20px;
+
+        margin-right: 13px;
+    }
+
+    .function-text {
+        flex: 1;
+        text-align: left;
+    }
+
+    .function-title {
+        font-size: 16px;
+        font-weight: 650;
+    }
+
+    .function-description {
+        margin-top: 3px;
+
+        color: #747787;
+        font-size: 12px;
+    }
+
+    .function-arrow {
+        color: #626575;
+        font-size: 22px;
+    }
+
+    /* PREMIUM */
+
+    .premium {
+        border-color: #4b377a;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(83,50,137,.25),
+                rgba(22,18,34,.75)
+            );
+    }
+
+    .premium .function-icon {
+        background: #38265f;
+    }
+
+    /* =========================
+       BOTTOM NAV
+    ========================= */
+
+    .bottom-nav {
+        position: fixed;
+
+        left: 50%;
+        bottom: 0;
+
+        transform: translateX(-50%);
+
+        width: 100%;
+        max-width: 520px;
+
+        height: 78px;
+
+        padding: 7px 8px;
+
+        background: rgba(12,13,18,.97);
+
+        border-top: 1px solid #20222c;
+
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+
+        z-index: 20;
+    }
+
+    .nav-item {
+        border: 0;
+        background: transparent;
+
+        color: #666a7b;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 3px;
+
+        border-radius: 17px;
+
+        cursor: pointer;
+    }
+
+    .nav-item.active {
+        background: #211944;
+        color: #f0eff6;
+    }
+
+    .nav-icon {
+        font-size: 21px;
+    }
+
+    .nav-label {
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 380px) {
+
+        .main-photo {
+            width: 130px;
+            height: 130px;
+        }
+
+        .profile-name {
+            font-size: 27px;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .photos {
+            gap: 7px;
+        }
+    }
 </style>
 </head>
 
@@ -495,532 +530,407 @@ button {
 
 <div class="app">
 
-    <!-- =====================
-         ANКЕТЫ
-    ====================== -->
+    <!-- HEADER -->
 
-    <section id="profiles" class="section active">
+    <header class="topbar">
+        <div class="topbar-title">Моя анкета</div>
 
-        <div class="header">
-            <div class="header-title">Анкеты</div>
-            <button class="header-button" onclick="openFilters()">⚙️</button>
-        </div>
-
-        <div class="content">
-
-            <div class="profile-card">
-
-                <div
-                    class="profile-photo"
-                    onclick="openFullProfile()"
-                >
-                    <div class="profile-info">
-
-                        <div class="profile-name">
-                            Алина, 21
-                        </div>
-
-                        <div class="profile-location">
-                            📍 Санкт-Петербург
-                        </div>
-
-                        <div class="profile-status">
-                            ● Онлайн
-                        </div>
-
-                        <div class="profile-purpose">
-                            <span class="tag">Общение</span>
-                            <span class="tag">Отношения</span>
-                            <span class="tag">Дружба</span>
-                        </div>
-
-                        <div class="profile-description">
-                            Люблю путешествия, музыку и долгие разговоры.
-                            Ищу интересных людей...
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="profile-actions">
-
-                    <button
-                        class="action"
-                        onclick="profileAction('skip')"
-                    >
-                        ❌
-                    </button>
-
-                    <button
-                        class="action"
-                        onclick="profileAction('comment')"
-                    >
-                        💬
-                    </button>
-
-                    <button
-                        class="action"
-                        onclick="profileAction('like')"
-                    >
-                        ❤️
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div id="fullProfile" class="full-profile">
-
-                <div class="profile-section">
-
-                    <h3>Фотографии</h3>
-
-                    <div class="photo-gallery">
-                        <div class="gallery-photo"></div>
-                        <div class="gallery-photo"></div>
-                        <div class="gallery-photo"></div>
-                        <div class="gallery-photo"></div>
-                        <div class="gallery-photo"></div>
-                        <div class="gallery-photo"></div>
-                    </div>
-
-                </div>
-
-                <div class="profile-section">
-
-                    <h3>О человеке</h3>
-
-                    <div class="info-list">
-
-                        <div class="info-row">Пол — Девушка</div>
-                        <div class="info-row">Рост — 168 см</div>
-                        <div class="info-row">Языки — Русский, английский</div>
-                        <div class="info-row">Работа — Дизайн</div>
-                        <div class="info-row">Образование — Высшее</div>
-                        <div class="info-row">Знак зодиака — Лев</div>
-                        <div class="info-row">Семейное положение — Свободна</div>
-                        <div class="info-row">Дети — Нет</div>
-                        <div class="info-row">Домашние животные — Кошка</div>
-                        <div class="info-row">Вредные привычки — Нет</div>
-
-                    </div>
-
-                </div>
-
-                <div class="profile-section">
-
-                    <h3>Описание</h3>
-
-                    <p>
-                        Люблю путешествия, музыку, кино и долгие разговоры.
-                        Ценю искренность, юмор и людей, с которыми можно
-                        чувствовать себя собой.
-                    </p>
-
-                </div>
-
-                <div class="profile-section">
-
-                    <h3>Интересы</h3>
-
-                    <div class="interests">
-
-                        <span class="tag">🎮 Dota 2</span>
-                        <span class="tag">🎵 Рок</span>
-                        <span class="tag">✈️ Путешествия</span>
-                        <span class="tag">🎬 Кино</span>
-                        <span class="tag">🐕 Животные</span>
-
-                    </div>
-
-                </div>
-
-                <div class="profile-section">
-
-                    <h3>Предпочтения</h3>
-
-                    <div class="info-list">
-
-                        <div class="info-row">
-                            Ищу: парень
-                        </div>
-
-                        <div class="info-row">
-                            Возраст: 20–27
-                        </div>
-
-                        <div class="info-row">
-                            Расстояние: до 50 км
-                        </div>
-
-                        <div class="info-row">
-                            Цель: отношения, общение
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+        <button
+            class="topbar-button"
+            onclick="openSettings()"
+            aria-label="Настройки"
+        >
+            ⚙️
+        </button>
+    </header>
 
 
-    <!-- =====================
-         ЧАТЫ
-    ====================== -->
+    <main class="content">
 
-    <section id="chats" class="section">
+        <!-- PROFILE -->
 
-        <div class="header">
-
-            <div class="header-title">
-                Чаты
-            </div>
+        <section class="profile-header">
 
             <button
-                class="header-button"
-                onclick="openChatSettings()"
+                class="main-photo"
+                onclick="viewAsOthers()"
+                aria-label="Посмотреть анкету глазами других"
             >
-                ⚙️
+                S
             </button>
 
-        </div>
+            <h1 class="profile-name">
+                Seyfert, 25
+            </h1>
 
-        <div class="content">
-
-            <div class="chat-tabs">
-
-                <button
-                    class="chat-tab active"
-                    onclick="switchChatTab(this)"
-                >
-                    Чаты
-                </button>
-
-                <button
-                    class="chat-tab"
-                    onclick="switchChatTab(this)"
-                >
-                    Мои лайки
-                </button>
-
-                <button
-                    class="chat-tab"
-                    onclick="switchChatTab(this)"
-                >
-                    Кому я нравлюсь
-                </button>
-
-            </div>
-
-            <!-- МЕТЧИ -->
-
-            <div class="matches">
-
-                <div class="match">
-                    <div class="match-avatar"></div>
-                    <div class="match-name">Алина</div>
-                </div>
-
-                <div class="match">
-                    <div class="match-avatar"></div>
-                    <div class="match-name">Катя</div>
-                </div>
-
-                <div class="match">
-                    <div class="match-avatar"></div>
-                    <div class="match-name">Маша</div>
-                </div>
-
-            </div>
-
-            <!-- СПИСОК ЧАТОВ -->
-
-            <div class="chat-list">
-
-                <div
-                    class="chat"
-                    onclick="openChat('Алина')"
-                >
-
-                    <div class="chat-top">
-
-                        <div class="chat-name">
-                            Алина
-                        </div>
-
-                        <div class="chat-status">
-                            онлайн
-                        </div>
-
-                    </div>
-
-                    <div class="chat-preview">
-                        Начните общение
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="chat"
-                    onclick="openChat('Катя')"
-                >
-
-                    <div class="chat-top">
-
-                        <div class="chat-name">
-                            Катя
-                        </div>
-
-                        <div class="chat-status">
-                            была недавно
-                        </div>
-
-                    </div>
-
-                    <div class="chat-preview">
-                        Привет! Как твои дела?
-                    </div>
-
-                    <span class="chat-unread">
-                        2
-                    </span>
-
-                </div>
-
+            <div class="profile-location">
+                📍 Москва
             </div>
 
 
-            <!-- ОКНО ДИАЛОГА -->
+            <!-- VIEW FROM OUTSIDE -->
 
-            <div id="chatWindow" class="chat-window">
+            <button
+                class="view-profile"
+                onclick="viewAsOthers()"
+            >
 
-                <h2 id="chatTitle">
-                    Алина
+                <div class="view-profile-left">
+
+                    <div class="view-profile-icon">
+                        👀
+                    </div>
+
+                    <div>
+
+                        <div class="view-profile-title">
+                            Моя анкета глазами других
+                        </div>
+
+                        <div class="view-profile-subtitle">
+                            Посмотреть, как вас видят другие пользователи
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </button>
+
+        </section>
+
+
+        <!-- PHOTOS -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Мои фото
                 </h2>
 
-                <div class="chat-status">
-                    онлайн
+                <button
+                    class="edit-button"
+                    onclick="editPhotos()"
+                >
+                    Изменить
+                </button>
+
+            </div>
+
+            <div class="photos">
+
+                <div class="photo">S</div>
+                <div class="photo">S</div>
+                <div class="photo">S</div>
+                <div class="photo">S</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    О себе
+                </h2>
+
+                <button
+                    class="edit-button"
+                    onclick="editAbout()"
+                >
+                    Редактировать
+                </button>
+
+            </div>
+
+            <p class="about-text">
+                Дизайнер, ночной геймер и человек, который вечно
+                ищет хороший кофе. Ищу адекватных людей — для
+                общения и не только.
+            </p>
+
+            <div class="counter">
+                113/300
+            </div>
+
+        </section>
+
+
+        <!-- INTERESTS -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Интересы
+                </h2>
+
+                <button
+                    class="edit-button"
+                    onclick="editInterests()"
+                >
+                    Добавить
+                </button>
+
+            </div>
+
+            <div class="tags">
+
+                <div class="tag">☕ Кофе</div>
+                <div class="tag">😂 Мемы</div>
+                <div class="tag">🎬 Кино</div>
+                <div class="tag">🎵 Музыка</div>
+                <div class="tag">✈️ Путешествия</div>
+                <div class="tag">🐕 Животные</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BASIC INFO -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    О себе
+                </h2>
+
+                <button
+                    class="edit-button"
+                    onclick="editInfo()"
+                >
+                    Изменить
+                </button>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <div class="info-label">Пол</div>
+                    <div class="info-value">Парень</div>
                 </div>
 
-                <div class="messages">
+                <div class="info-card">
+                    <div class="info-label">Город</div>
+                    <div class="info-value">Москва</div>
+                </div>
 
-                    <div class="message">
-                        Привет! 👋
+                <div class="info-card">
+                    <div class="info-label">Цель</div>
+                    <div class="info-value">Общение</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Возраст</div>
+                    <div class="info-value">25</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FUNCTIONAL BUTTONS -->
+
+        <section class="functions">
+
+            <!-- EDIT -->
+
+            <button
+                class="function-button"
+                onclick="editProfile()"
+            >
+
+                <div class="function-icon">
+                    ✏️
+                </div>
+
+                <div class="function-text">
+
+                    <div class="function-title">
+                        Редактировать анкету
                     </div>
 
-                    <div class="message me">
-                        Привет :)
-                    </div>
-
-                    <div class="message">
-                        Как твой день?
+                    <div class="function-description">
+                        Изменить информацию, фото и интересы
                     </div>
 
                 </div>
 
-                <div class="chat-input">
+                <div class="function-arrow">
+                    ›
+                </div>
 
-                    <button>🎙️</button>
+            </button>
 
-                    <input
-                        id="messageInput"
-                        type="text"
-                        placeholder="Сообщение..."
-                    >
 
-                    <button onclick="sendMessage()">
-                        ➤
-                    </button>
+            <!-- SETTINGS -->
 
-                    <button>🎥</button>
+            <button
+                class="function-button"
+                onclick="openSettings()"
+            >
+
+                <div class="function-icon">
+                    ⚙️
+                </div>
+
+                <div class="function-text">
+
+                    <div class="function-title">
+                        Настройки
+                    </div>
+
+                    <div class="function-description">
+                        Приватность, уведомления и рекомендации
+                    </div>
 
                 </div>
 
-            </div>
+                <div class="function-arrow">
+                    ›
+                </div>
 
-        </div>
-
-    </section>
+            </button>
 
 
-    <!-- =====================
-         ИНТЕРЕСЫ
-    ====================== -->
+            <!-- PREMIUM -->
 
-    <section id="interests" class="section">
+            <button
+                class="function-button premium"
+                onclick="openPremium()"
+            >
 
-        <div class="header">
+                <div class="function-icon">
+                    💎
+                </div>
 
-            <div class="header-title">
-                Интересы
-            </div>
+                <div class="function-text">
 
-        </div>
+                    <div class="function-title">
+                        Premium
+                    </div>
 
-        <div class="content">
-
-            <div class="interest-category">
-
-                <h3>🎮 Игры</h3>
-
-                <div class="interests">
-
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Dota 2
-                    </button>
-
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        CS2
-                    </button>
-
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Minecraft
-                    </button>
-
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        GTA
-                    </button>
+                    <div class="function-description">
+                        Дополнительные возможности Seyfert
+                    </div>
 
                 </div>
 
-            </div>
+                <div class="function-arrow">
+                    ›
+                </div>
+
+            </button>
 
 
-            <div class="interest-category">
+            <!-- SECURITY -->
 
-                <h3>🎵 Музыка</h3>
+            <button
+                class="function-button"
+                onclick="openSecurity()"
+            >
 
-                <div class="interests">
+                <div class="function-icon">
+                    🛡️
+                </div>
 
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Рок
-                    </button>
+                <div class="function-text">
 
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Рэп
-                    </button>
+                    <div class="function-title">
+                        Безопасность
+                    </div>
 
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Электронная музыка
-                    </button>
+                    <div class="function-description">
+                        Блокировки, жалобы и защита аккаунта
+                    </div>
 
                 </div>
 
-            </div>
+                <div class="function-arrow">
+                    ›
+                </div>
+
+            </button>
 
 
-            <div class="interest-category">
+            <!-- SUPPORT -->
 
-                <h3>✈️ Путешествия</h3>
+            <button
+                class="function-button"
+                onclick="openSupport()"
+            >
 
-                <div class="interests">
+                <div class="function-icon">
+                    🆘
+                </div>
 
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Путешествия
-                    </button>
+                <div class="function-text">
 
-                    <button
-                        class="interest"
-                        onclick="toggleInterest(this)"
-                    >
-                        Автопутешествия
-                    </button>
+                    <div class="function-title">
+                        Центр поддержки
+                    </div>
+
+                    <div class="function-description">
+                        Помощь и обращение в поддержку Seyfert
+                    </div>
 
                 </div>
 
-            </div>
-
-
-            <h3 style="margin-top:30px;">
-                Мои чаты интересов
-            </h3>
-
-            <div class="interest-chat">
-
-                <div class="interest-chat-title">
-                    🎮 Dota 2
+                <div class="function-arrow">
+                    ›
                 </div>
 
-                <div class="interest-chat-info">
-                    12 482 участника
-                </div>
+            </button>
 
-            </div>
+        </section>
 
-            <div class="interest-chat">
-
-                <div class="interest-chat-title">
-                    🎵 Рок
-                </div>
-
-                <div class="interest-chat-info">
-                    8 241 участник
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+    </main>
 
 
-    <!-- =====================
-         BOTTOM NAV
-    ====================== -->
+    <!-- BOTTOM NAV -->
 
     <nav class="bottom-nav">
 
-        <button
-            class="nav-button active"
-            onclick="switchSection('profiles', this)"
-        >
-            <span class="nav-icon">❤️</span>
+        <button class="nav-item">
+            <span class="nav-icon">👥</span>
             <span class="nav-label">Анкеты</span>
         </button>
 
-        <button
-            class="nav-button"
-            onclick="switchSection('chats', this)"
-        >
+        <button class="nav-item">
             <span class="nav-icon">💬</span>
             <span class="nav-label">Чаты</span>
         </button>
 
-        <button
-            class="nav-button"
-            onclick="switchSection('interests', this)"
-        >
-            <span class="nav-icon">✨</span>
-            <span class="nav-label">Интересы</span>
+        <button class="nav-item">
+            <span class="nav-icon">🌐</span>
+            <span class="nav-label">Глобал</span>
+        </button>
+
+        <button class="nav-item">
+            <span class="nav-icon">📣</span>
+            <span class="nav-label">Активности</span>
+        </button>
+
+        <button class="nav-item active">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Профиль</span>
         </button>
 
     </nav>
@@ -1028,194 +938,46 @@ button {
 </div>
 
 
-<!-- =====================
-     MODAL
-====================== -->
-
-<div id="modal" class="modal">
-
-    <div class="modal-content">
-
-        <h2 id="modalTitle">
-            Настройки
-        </h2>
-
-        <button
-            class="modal-button"
-            onclick="closeModal()"
-        >
-            Закрыть
-        </button>
-
-    </div>
-
-</div>
-
-
 <script>
 
-/* =========================
-   NAVIGATION
-========================= */
-
-function switchSection(sectionId, button) {
-
-    document.querySelectorAll(".section")
-        .forEach(section => {
-            section.classList.remove("active");
-        });
-
-    document.getElementById(sectionId)
-        .classList.add("active");
-
-    document.querySelectorAll(".nav-button")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
+function viewAsOthers() {
+    alert("Здесь откроется просмотр анкеты глазами других пользователей.");
 }
 
-
-/* =========================
-   PROFILE
-========================= */
-
-function openFullProfile() {
-
-    const profile = document.getElementById("fullProfile");
-
-    profile.classList.toggle("open");
-
+function editPhotos() {
+    alert("Редактирование фотографий.");
 }
 
-function profileAction(action) {
-
-    if (action === "skip") {
-        alert("Анкета пропущена на 3 дня.");
-    }
-
-    if (action === "like") {
-        alert("Лайк отправлен.");
-    }
-
-    if (action === "comment") {
-        alert("Открываем добавление комментария к лайку.");
-    }
-
+function editAbout() {
+    alert("Редактирование описания.");
 }
 
-
-/* =========================
-   CHATS
-========================= */
-
-function switchChatTab(button) {
-
-    document.querySelectorAll(".chat-tab")
-        .forEach(tab => {
-            tab.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
+function editInterests() {
+    alert("Редактирование интересов.");
 }
 
-function openChat(name) {
-
-    const window = document.getElementById("chatWindow");
-
-    window.classList.add("active");
-
-    document.getElementById("chatTitle")
-        .textContent = name;
-
+function editInfo() {
+    alert("Редактирование информации о себе.");
 }
 
-function sendMessage() {
-
-    const input =
-        document.getElementById("messageInput");
-
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    const message =
-        document.createElement("div");
-
-    message.className = "message me";
-
-    message.textContent = text;
-
-    document.querySelector(".messages")
-        .appendChild(message);
-
-    input.value = "";
-
+function editProfile() {
+    alert("Раздел «Редактировать анкету».");
 }
 
-
-/* =========================
-   INTERESTS
-========================= */
-
-let selectedInterests = 0;
-
-function toggleInterest(button) {
-
-    if (button.classList.contains("selected")) {
-
-        button.classList.remove("selected");
-        selectedInterests--;
-
-        return;
-    }
-
-    if (selectedInterests >= 20) {
-
-        alert("Можно выбрать максимум 20 интересов.");
-
-        return;
-    }
-
-    button.classList.add("selected");
-    selectedInterests++;
-
+function openSettings() {
+    alert("Раздел «Настройки».");
 }
 
-
-/* =========================
-   MODALS
-========================= */
-
-function openFilters() {
-
-    document.getElementById("modalTitle")
-        .textContent = "Фильтры рекомендаций";
-
-    document.getElementById("modal")
-        .classList.add("active");
-
+function openPremium() {
+    alert("Раздел Seyfert Premium.");
 }
 
-function openChatSettings() {
-
-    document.getElementById("modalTitle")
-        .textContent =
-        "Настройки чатов";
-
-    document.getElementById("modal")
-        .classList.add("active");
-
+function openSecurity() {
+    alert("Раздел «Безопасность».");
 }
 
-function closeModal() {
-
-    document.getElementById("modal")
-        .classList.remove("active");
-
+function openSupport() {
+    alert("Центр поддержки Seyfert.");
 }
 
 </script>
