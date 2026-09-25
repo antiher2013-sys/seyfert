@@ -1,646 +1,1128 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Seyfert — Анкеты</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #05030b;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-      position: relative;
-    }
-
-    /* ===== КОСМИЧЕСКИЙ ФОН ===== */
-
-    .space {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      transition:
-        background 0.8s ease,
-        filter 0.8s ease;
-    }
-
-    .space::before {
-      content: "";
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      left: 50%;
-      top: 45%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255,255,255,0.04) 0%,
-          transparent 38%
-        ),
-        radial-gradient(
-          circle,
-          var(--glow),
-          transparent 68%
-        );
-
-      filter: blur(20px);
-
-      animation: galaxyMove 12s ease-in-out infinite alternate;
-    }
-
-    .space::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-
-      background-image:
-        radial-gradient(circle at 10% 20%, white 0 1px, transparent 2px),
-        radial-gradient(circle at 80% 30%, white 0 1px, transparent 2px),
-        radial-gradient(circle at 30% 70%, white 0 1px, transparent 2px),
-        radial-gradient(circle at 70% 80%, white 0 1px, transparent 2px),
-        radial-gradient(circle at 50% 15%, white 0 1px, transparent 2px),
-        radial-gradient(circle at 90% 70%, white 0 1px, transparent 2px);
-
-      opacity: 0.65;
-
-      animation: starsMove 18s linear infinite;
-    }
-
-    @keyframes galaxyMove {
-      from {
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      to {
-        transform: translate(-48%, -53%) scale(1.12);
-      }
-    }
-
-    @keyframes starsMove {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(-35px);
-      }
-    }
-
-    /* ===== ЦВЕТА АНКЕТ ===== */
-
-    .purple {
-      --glow: rgba(135, 70, 255, 0.55);
-      background:
-        radial-gradient(
-          circle at 50% 20%,
-          rgba(130, 70, 255, 0.30),
-          transparent 55%
-        ),
-        #08040f;
-    }
-
-    .red {
-      --glow: rgba(255, 55, 90, 0.55);
-      background:
-        radial-gradient(
-          circle at 70% 30%,
-          rgba(255, 50, 90, 0.32),
-          transparent 55%
-        ),
-        #100306;
-    }
-
-    .blue {
-      --glow: rgba(40, 170, 255, 0.55);
-      background:
-        radial-gradient(
-          circle at 30% 30%,
-          rgba(30, 170, 255, 0.32),
-          transparent 55%
-        ),
-        #020912;
-    }
-
-    .gold {
-      --glow: rgba(255, 190, 55, 0.50);
-      background:
-        radial-gradient(
-          circle at 60% 30%,
-          rgba(255, 180, 40, 0.30),
-          transparent 55%
-        ),
-        #100b02;
-    }
-
-    .cyan {
-      --glow: rgba(30, 255, 220, 0.50);
-      background:
-        radial-gradient(
-          circle at 40% 30%,
-          rgba(30, 255, 220, 0.28),
-          transparent 55%
-        ),
-        #02100e;
-    }
-
-    /* ===== ОСНОВА ===== */
-
-    .app {
-      position: relative;
-      z-index: 2;
-
-      min-height: 100vh;
-
-      display: flex;
-      flex-direction: column;
-
-      padding:
-        calc(18px + env(safe-area-inset-top))
-        18px
-        calc(22px + env(safe-area-inset-bottom));
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      margin-bottom: 18px;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .counter {
-      font-size: 13px;
-      opacity: 0.7;
-      padding: 8px 12px;
-      border-radius: 20px;
-
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-    }
-
-    /* ===== КАРТОЧКА ===== */
-
-    .profile {
-      width: 100%;
-      max-width: 500px;
-
-      margin: 0 auto;
-
-      flex: 1;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-    }
-
-    .profile.changing {
-      opacity: 0;
-      transform: scale(0.97) translateY(12px);
-    }
-
-    .photo {
-      position: relative;
-
-      width: 100%;
-      height: min(62vh, 580px);
-
-      border-radius: 30px;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,0.12),
-          rgba(255,255,255,0.02)
-        );
-
-      border: 1px solid rgba(255,255,255,0.16);
-
-      box-shadow:
-        0 25px 80px rgba(0,0,0,0.55),
-        0 0 50px var(--glow);
-
-      backdrop-filter: blur(10px);
-    }
-
-    .photo img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      display: block;
-    }
-
-    .photo::after {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,0.90),
-          rgba(0,0,0,0.05) 55%,
-          rgba(0,0,0,0.15)
-        );
-    }
-
-    .profile-info {
-      position: absolute;
-
-      left: 20px;
-      right: 20px;
-      bottom: 20px;
-
-      z-index: 3;
-    }
-
-    .name {
-      font-size: 29px;
-      font-weight: 800;
-
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .age {
-      opacity: 0.8;
-      font-weight: 500;
-    }
-
-    .city {
-      margin-top: 6px;
-
-      font-size: 14px;
-      opacity: 0.75;
-    }
-
-    .description {
-      margin-top: 13px;
-
-      font-size: 15px;
-      line-height: 1.45;
-
-      opacity: 0.92;
-    }
-
-    /* ===== КНОПКИ ===== */
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      gap: 24px;
-
-      margin-top: 20px;
-    }
-
-    .action {
-      width: 64px;
-      height: 64px;
-
-      border-radius: 50%;
-
-      border: 1px solid rgba(255,255,255,0.15);
-
-      color: white;
-
-      font-size: 25px;
-
-      background:
-        rgba(255,255,255,0.08);
-
-      backdrop-filter: blur(16px);
-
-      box-shadow:
-        0 10px 35px rgba(0,0,0,0.35);
-
-      cursor: pointer;
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .action:active {
-      transform: scale(0.88);
-    }
-
-    .action.like {
-      width: 72px;
-      height: 72px;
-
-      box-shadow:
-        0 0 30px var(--glow),
-        0 10px 40px rgba(0,0,0,0.35);
-    }
-
-    .action:hover {
-      transform: scale(1.06);
-    }
-
-    /* ===== НИЖНЯЯ НАВИГАЦИЯ ===== */
-
-    .navigation {
-      margin: 20px auto 0;
-
-      width: 100%;
-      max-width: 500px;
-
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-
-      padding: 12px;
-
-      border-radius: 22px;
-
-      background:
-        rgba(255,255,255,0.06);
-
-      border: 1px solid rgba(255,255,255,0.10);
-
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-item {
-      font-size: 11px;
-      opacity: 0.65;
-      text-align: center;
-    }
-
-    .nav-item.active {
-      opacity: 1;
-    }
-
-    .nav-icon {
-      font-size: 20px;
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
-
-    @media (max-height: 700px) {
-      .photo {
-        height: 55vh;
-      }
-
-      .actions {
-        margin-top: 14px;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seyfert</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+html,body{
+  width:100%;
+  min-height:100%;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:#fff;
+  background:#020207;
+}
+body{
+  min-height:100vh;
+  overflow:hidden;
+}
+button,
+input,
+textarea{
+  font:inherit;
+}
+/* =========================
+   КОСМОС
+========================= */
+.space{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  transition:background 1s ease;
+}
+.space::before{
+  content:"";
+  position:absolute;
+  width:750px;
+  height:750px;
+  left:50%;
+  top:45%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.04),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle,
+      var(--glow),
+      transparent 68%
+    );
+  filter:blur(24px);
+  animation:galaxy 14s ease-in-out infinite alternate;
+}
+.space::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 12% 18%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 82% 25%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 27% 70%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 73% 82%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 52% 12%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 91% 68%,white 0 1px,transparent 2px);
+  opacity:.5;
+  animation:stars 22s linear infinite;
+}
+@keyframes galaxy{
+  from{
+    transform:translate(-50%,-50%) scale(1);
+  }
+  to{
+    transform:translate(-48%,-53%) scale(1.12);
+  }
+}
+@keyframes stars{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(-30px);
+  }
+}
+/* =========================
+   ТЕМЫ
+========================= */
+.theme-purple{
+  --glow:rgba(140,75,255,.58);
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(125,65,255,.30),
+      transparent 58%
+    ),
+    #08040f;
+}
+.theme-pink{
+  --glow:rgba(255,65,175,.55);
+  background:
+    radial-gradient(
+      circle at 60% 25%,
+      rgba(255,55,165,.30),
+      transparent 58%
+    ),
+    #10030d;
+}
+.theme-yellow{
+  --glow:rgba(255,195,55,.52);
+  background:
+    radial-gradient(
+      circle at 45% 25%,
+      rgba(255,185,45,.28),
+      transparent 58%
+    ),
+    #100a02;
+}
+.theme-cold{
+  --glow:rgba(100,200,235,.42);
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(90,190,225,.16),
+      transparent 58%
+    ),
+    #04070a;
+}
+.theme-black{
+  --glow:rgba(65,145,205,.22);
+  background:#010204;
+}
+.theme-blue{
+  --glow:rgba(35,170,255,.60);
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(30,160,255,.30),
+      transparent 58%
+    ),
+    #020914;
+}
+/* =========================
+   ПРИЛОЖЕНИЕ
+========================= */
+.app{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:
+    calc(25px + env(safe-area-inset-top))
+    18px
+    calc(25px + env(safe-area-inset-bottom));
+}
+.screen{
+  width:100%;
+  max-width:520px;
+  text-align:center;
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
+}
+.screen.hidden{
+  display:none;
+}
+.screen.leaving{
+  opacity:0;
+  transform:scale(.97) translateY(10px);
+}
+/* =========================
+   ЛОГО
+========================= */
+.logo{
+  font-size:40px;
+  font-weight:900;
+  letter-spacing:7px;
+  margin-bottom:12px;
+  text-shadow:
+    0 0 35px rgba(255,255,255,.15);
+}
+.subtitle{
+  font-size:15px;
+  opacity:.65;
+  margin-bottom:35px;
+}
+/* =========================
+   ТЕКСТ
+========================= */
+.title{
+  font-size:29px;
+  font-weight:850;
+  margin-bottom:10px;
+}
+.description{
+  font-size:14px;
+  line-height:1.5;
+  opacity:.65;
+  margin-bottom:25px;
+}
+.progress{
+  font-size:12px;
+  opacity:.45;
+  margin-bottom:15px;
+}
+/* =========================
+   КНОПКИ
+========================= */
+.button{
+  width:100%;
+  padding:17px 20px;
+  margin-top:12px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.13);
+  background:
+    rgba(255,255,255,.07);
+  color:#fff;
+  font-size:16px;
+  font-weight:750;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.30);
+  backdrop-filter:blur(18px);
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+.button:active{
+  transform:scale(.96);
+}
+.button.primary{
+  box-shadow:
+    0 0 30px var(--glow),
+    0 12px 40px rgba(0,0,0,.35);
+}
+/* =========================
+   INPUT
+========================= */
+.input{
+  width:100%;
+  padding:17px 18px;
+  margin-top:12px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    rgba(255,255,255,.06);
+  color:#fff;
+  outline:none;
+  font-size:16px;
+  backdrop-filter:blur(15px);
+}
+.input::placeholder{
+  color:rgba(255,255,255,.42);
+}
+textarea.input{
+  resize:none;
+}
+/* =========================
+   ВАРИАНТЫ
+========================= */
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+.option{
+  padding:16px 10px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.11);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:14px;
+  transition:.2s ease;
+}
+.option.selected{
+  background:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.38);
+  box-shadow:
+    0 0 25px var(--glow);
+}
+/* =========================
+   ИГРЫ
+========================= */
+.game-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+.game{
+  padding:17px 10px;
+  border-radius:18px;
+  border:1px solid rgba(150,210,235,.15);
+  background:rgba(130,190,220,.06);
+  color:#fff;
+  transition:.2s ease;
+}
+.game.selected{
+  background:rgba(100,200,240,.18);
+  border-color:rgba(130,220,255,.5);
+  box-shadow:
+    0 0 28px rgba(70,190,255,.28);
+}
+/* =========================
+   ЧЁРНАЯ ДЫРА
+========================= */
+.blackhole{
+  width:220px;
+  height:220px;
+  margin:0 auto 35px;
+  position:relative;
+  border-radius:50%;
+  background:#000;
+  box-shadow:
+    0 0 35px rgba(40,180,255,.60),
+    0 0 90px rgba(40,130,255,.38),
+    0 0 150px rgba(30,90,255,.20);
+}
+.blackhole::before{
+  content:"";
+  position:absolute;
+  inset:-34px;
+  border-radius:50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent,
+      rgba(60,210,255,.9),
+      transparent,
+      rgba(100,65,255,.75),
+      transparent
+    );
+  filter:blur(10px);
+  animation:spin 5s linear infinite;
+}
+.blackhole::after{
+  content:"";
+  position:absolute;
+  inset:30px;
+  border-radius:50%;
+  background:#000;
+}
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+/* =========================
+   ФОТО
+========================= */
+.photo-box{
+  padding:25px 18px;
+  border-radius:20px;
+  border:1px dashed rgba(255,255,255,.22);
+  background:rgba(255,255,255,.04);
+  margin-top:18px;
+}
+.photo-box p{
+  font-size:14px;
+  opacity:.65;
+}
+.photo-box input{
+  width:100%;
+  margin-top:14px;
+  color:#fff;
+}
+/* =========================
+   АНКЕТЫ
+========================= */
+.profile-card{
+  width:100%;
+  overflow:hidden;
+  border-radius:30px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.55),
+    0 0 50px var(--glow);
+  backdrop-filter:blur(15px);
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+}
+.profile-photo{
+  width:100%;
+  height:55vh;
+  object-fit:cover;
+  display:block;
+}
+.profile-info{
+  padding:18px;
+  text-align:left;
+}
+.profile-name{
+  font-size:27px;
+  font-weight:850;
+}
+.profile-city{
+  margin-top:5px;
+  opacity:.62;
+  font-size:14px;
+}
+.profile-description{
+  margin-top:12px;
+  font-size:15px;
+  line-height:1.45;
+  opacity:.85;
+}
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  margin-top:18px;
+}
+.action{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-size:24px;
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35);
+}
+.action.like{
+  box-shadow:
+    0 0 30px var(--glow),
+    0 10px 40px rgba(0,0,0,.35);
+}
+/* =========================
+   НИЖНЯЯ НАВИГАЦИЯ
+========================= */
+.navigation{
+  width:100%;
+  max-width:520px;
+  display:flex;
+  justify-content:space-around;
+  margin-top:18px;
+  padding:12px;
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(18px);
+}
+.nav-item{
+  color:#fff;
+  background:none;
+  border:0;
+  opacity:.55;
+  font-size:11px;
+  text-align:center;
+}
+.nav-item.active{
+  opacity:1;
+}
+.nav-icon{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+@media(max-height:700px){
+  .profile-photo{
+    height:50vh;
+  }
+  .logo{
+    font-size:34px;
+  }
+}
+</style>
 </head>
-
 <body>
-
-  <!-- Космический фон -->
-  <div class="space purple" id="space"></div>
-
-  <main class="app">
-
-    <header class="header">
-
-      <div class="logo">
-        SEYFERT
-      </div>
-
-      <div class="counter" id="counter">
-        1 / 5
-      </div>
-
-    </header>
-
-
-    <section class="profile" id="profile">
-
-      <div class="photo">
-
-        <!-- Временная фотография -->
-        <img
-          id="photo"
-          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
-          alt="Фото профиля"
-        >
-
-        <div class="profile-info">
-
-          <div class="name">
-            <span id="name">Алина</span>
-            <span class="age" id="age">22</span>
-          </div>
-
-          <div class="city" id="city">
-            📍 Москва
-          </div>
-
-          <div class="description" id="description">
-            Люблю путешествия, музыку и долгие разговоры обо всём на свете.
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="actions">
-
-        <button
-          class="action"
-          onclick="nextProfile()"
-          aria-label="Пропустить"
-        >
-          ✕
-        </button>
-
-        <button
-          class="action like"
-          onclick="nextProfile()"
-          aria-label="Нравится"
-        >
-          ♥
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <nav class="navigation">
-
-      <div class="nav-item active">
-        <span class="nav-icon">⌂</span>
-        Анкеты
-      </div>
-
-      <div class="nav-item">
-        <span class="nav-icon">♡</span>
-        Матчи
-      </div>
-
-      <div class="nav-item">
-        <span class="nav-icon">◌</span>
-        Чаты
-      </div>
-
-      <div class="nav-item">
-        <span class="nav-icon">◉</span>
-        Профиль
-      </div>
-
-    </nav>
-
-  </main>
-
-
-  <script>
-
-    const profiles = [
-
-      {
-        name: "Алина",
-        age: 22,
-        city: "Москва",
-        description:
-          "Люблю путешествия, музыку и долгие разговоры обо всём на свете.",
-        photo:
-          "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85",
-        theme: "purple"
-      },
-
-      {
-        name: "София",
-        age: 24,
-        city: "Санкт-Петербург",
-        description:
-          "Музыка, фотография, кофе и спонтанные поездки без плана.",
-        photo:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
-        theme: "red"
-      },
-
-      {
-        name: "Маша",
-        age: 21,
-        city: "Казань",
-        description:
-          "Обожаю кино, вечерние прогулки и находить новые места.",
-        photo:
-          "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=85",
-        theme: "blue"
-      },
-
-      {
-        name: "Ева",
-        age: 23,
-        city: "Екатеринбург",
-        description:
-          "Немного интроверт, немного безумная. Люблю уют и красивые истории.",
-        photo:
-          "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85",
-        theme: "gold"
-      },
-
-      {
-        name: "Лера",
-        age: 25,
-        city: "Новосибирск",
-        description:
-          "IT, музыка, игры и бесконечные разговоры ночью.",
-        photo:
-          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
-        theme: "cyan"
-      }
-
-    ];
-
-
-    let current = 0;
-
-
-    function nextProfile() {
-
-      const profile = document.getElementById("profile");
-      const space = document.getElementById("space");
-
-      profile.classList.add("changing");
-
-      setTimeout(() => {
-
-        current++;
-
-        if (current >= profiles.length) {
-          current = 0;
-        }
-
-        const person = profiles[current];
-
-        document.getElementById("name").textContent =
-          person.name;
-
-        document.getElementById("age").textContent =
-          person.age;
-
-        document.getElementById("city").textContent =
-          "📍 " + person.city;
-
-        document.getElementById("description").textContent =
-          person.description;
-
-        document.getElementById("photo").src =
-          person.photo;
-
-        document.getElementById("counter").textContent =
-          (current + 1) + " / " + profiles.length;
-
-
-        space.className =
-          "space " + person.theme;
-
-
-        profile.classList.remove("changing");
-
-      }, 350);
-
+<div id="space" class="space theme-purple"></div>
+<main class="app">
+<!-- =========================
+     СТАРТ
+========================= -->
+<section id="start" class="screen">
+  <div class="logo">
+    SEYFERT
+  </div>
+  <div class="subtitle">
+    Найди человека в своей вселенной.
+  </div>
+  <button
+    class="button primary"
+    onclick="chooseBranch('dating')"
+  >
+    💗 Знакомства
+  </button>
+  <button
+    class="button"
+    onclick="chooseBranch('gaming')"
+  >
+    🎮 Игроки
+  </button>
+</section>
+<!-- =========================
+     ОБЩИЕ ДАННЫЕ
+========================= -->
+<section id="common" class="screen hidden">
+  <div class="progress">
+    1 / 4
+  </div>
+  <div class="title">
+    Основное
+  </div>
+  <div class="description">
+    Эти данные нужны для твоей анкеты.
+  </div>
+  <input
+    id="age"
+    class="input"
+    type="number"
+    placeholder="Возраст"
+  >
+  <div class="options">
+    <button
+      class="option"
+      onclick="chooseOption(this)"
+    >
+      Парень
+    </button>
+    <button
+      class="option"
+      onclick="chooseOption(this)"
+    >
+      Девушка
+    </button>
+  </div>
+  <input
+    id="personName"
+    class="input"
+    type="text"
+    placeholder="Имя"
+  >
+  <input
+    id="city"
+    class="input"
+    type="text"
+    placeholder="Город"
+  >
+  <button
+    class="button primary"
+    onclick="continueCommon()"
+  >
+    Продолжить
+  </button>
+</section>
+<!-- =========================
+     ЗНАКОМСТВА — ПРЕДПОЧТЕНИЯ
+========================= -->
+<section id="datingPreferences" class="screen hidden">
+  <div class="progress">
+    2 / 4
+  </div>
+  <div class="title">
+    Предпочтения
+  </div>
+  <div class="description">
+    Расскажи, что тебе нравится.
+  </div>
+  <input
+    class="input"
+    placeholder="Увлечения"
+  >
+  <input
+    class="input"
+    placeholder="Какая музыка нравится?"
+  >
+  <input
+    class="input"
+    placeholder="Какая еда нравится?"
+  >
+  <input
+    class="input"
+    placeholder="Вредные привычки"
+  >
+  <input
+    class="input"
+    placeholder="Есть ли дети? Хочешь ли детей?"
+  >
+  <button
+    class="button primary"
+    onclick="showScreen('datingPersonal','theme-yellow')"
+  >
+    Продолжить
+  </button>
+</section>
+<!-- =========================
+     ЗНАКОМСТВА — ЛИЧНОЕ
+========================= -->
+<section id="datingPersonal" class="screen hidden">
+  <div class="progress">
+    3 / 4
+  </div>
+  <div class="title">
+    Личное
+  </div>
+  <div class="description">
+    Как тебе комфортнее начинать общение?
+  </div>
+  <div class="options">
+    <button class="option">
+      Только интернет
+    </button>
+    <button class="option">
+      Немного времени
+    </button>
+    <button class="option">
+      Можно быстрее
+    </button>
+    <button class="option">
+      Можно сразу
+    </button>
+  </div>
+  <textarea
+    class="input"
+    rows="5"
+    placeholder="Кратко опиши себя..."
+  ></textarea>
+  <button
+    class="button primary"
+    onclick="showScreen('datingPhotos','theme-blue')"
+  >
+    Продолжить
+  </button>
+</section>
+<!-- =========================
+     ЗНАКОМСТВА — ЧЁРНАЯ ДЫРА
+========================= -->
+<section id="datingPhotos" class="screen hidden">
+  <div class="progress">
+    4 / 4
+  </div>
+  <div class="blackhole"></div>
+  <div class="title">
+    Путешествие начинается
+  </div>
+  <div class="description">
+    Добавь 1–2 фотографии, чтобы другие могли увидеть тебя.
+  </div>
+  <div class="photo-box">
+    <p>
+      Твои фотографии
+    </p>
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+    >
+  </div>
+  <button
+    class="button primary"
+    onclick="openProfiles('dating')"
+  >
+    Войти в Seyfert
+  </button>
+</section>
+<!-- =========================
+     ИГРОКИ — ИГРОВОЙ ПРОФИЛЬ
+========================= -->
+<section id="gamingProfile" class="screen hidden">
+  <div class="progress">
+    2 / 3
+  </div>
+  <div class="title">
+    Игровой профиль
+  </div>
+  <div class="description">
+    Выбери игру, в которой ищешь тиммейтов.
+  </div>
+  <div class="game-list">
+    <button
+      class="game"
+      onclick="selectGame(this,'Dota 2')"
+    >
+      Dota 2
+    </button>
+    <button
+      class="game"
+      onclick="selectGame(this,'CS2')"
+    >
+      CS2
+    </button>
+    <button
+      class="game"
+      onclick="selectGame(this,'Valorant')"
+    >
+      Valorant
+    </button>
+    <button
+      class="game"
+      onclick="selectGame(this,'League of Legends')"
+    >
+      League of Legends
+    </button>
+  </div>
+  <div id="gameOptions"></div>
+  <button
+    class="button primary"
+    onclick="continueGameProfile()"
+  >
+    Продолжить
+  </button>
+</section>
+<!-- =========================
+     ИГРОКИ — ВРЕМЯ
+========================= -->
+<section id="gamingTime" class="screen hidden">
+  <div class="progress">
+    3 / 3
+  </div>
+  <div class="title">
+    Время и связь
+  </div>
+  <div class="description">
+    Когда тебе удобнее играть?
+  </div>
+  <input
+    class="input"
+    placeholder="Предпочитаемое время"
+  >
+  <input
+    class="input"
+    placeholder="Дни недели"
+  >
+  <div class="options">
+    <button class="option">
+      🎙️ Микрофон — Да
+    </button>
+    <button class="option">
+      🔇 Микрофон — Нет
+    </button>
+  </div>
+  <button
+    class="button primary"
+    onclick="showScreen('gamingPhotos','theme-black')"
+  >
+    Продолжить
+  </button>
+</section>
+<!-- =========================
+     ИГРОКИ — ФОТО
+========================= -->
+<section id="gamingPhotos" class="screen hidden">
+  <div class="blackhole"></div>
+  <div class="title">
+    Последний шаг
+  </div>
+  <div class="description">
+    Добавь фотографии себя и, если хочешь,
+    фотографию игрового аккаунта.
+  </div>
+  <div class="photo-box">
+    <p>
+      1–2 фотографии себя
+    </p>
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+    >
+    <br><br>
+    <p>
+      Фотография игрового аккаунта
+    </p>
+    <input
+      type="file"
+      accept="image/*"
+    >
+  </div>
+  <button
+    class="button primary"
+    onclick="openProfiles('gaming')"
+  >
+    Найти тиммейтов
+  </button>
+</section>
+<!-- =========================
+     АНКЕТЫ
+========================= -->
+<section id="profiles" class="screen hidden">
+  <div class="header">
+    <div class="logo">
+      SEYFERT
+    </div>
+    <div class="counter" id="counter">
+      1 / 3
+    </div>
+  </div>
+  <div
+    class="profile-card"
+    id="profileCard"
+  >
+    <img
+      id="profilePhoto"
+      class="profile-photo"
+      src=""
+      alt=""
+    >
+    <div class="profile-info">
+      <div
+        class="profile-name"
+        id="profileName"
+      ></div>
+      <div
+        class="profile-city"
+        id="profileCity"
+      ></div>
+      <div
+        class="profile-description"
+        id="profileDescription"
+      ></div>
+    </div>
+  </div>
+  <div class="actions">
+    <button
+      class="action"
+      onclick="nextProfile()"
+    >
+      ✕
+    </button>
+    <button
+      class="action like"
+      onclick="nextProfile()"
+    >
+      ♥
+    </button>
+  </div>
+  <nav class="navigation">
+    <button class="nav-item active">
+      <span class="nav-icon">
+        ⌂
+      </span>
+      Анкеты
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">
+        ♡
+      </span>
+      Метчи
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">
+        ◌
+      </span>
+      Чаты
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">
+        ◉
+      </span>
+      Профиль
+    </button>
+  </nav>
+</section>
+</main>
+<script>
+/* =========================
+   СОСТОЯНИЕ
+========================= */
+let branch = "";
+let selectedGame = "";
+let currentProfile = 0;
+/* =========================
+   ТЕСТОВЫЕ АНКЕТЫ
+========================= */
+const datingProfiles = [
+  {
+    name:"Алина",
+    age:22,
+    city:"Москва",
+    description:
+      "Люблю путешествия, музыку и долгие разговоры обо всём на свете.",
+    photo:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85",
+    theme:"theme-purple"
+  },
+  {
+    name:"София",
+    age:24,
+    city:"Санкт-Петербург",
+    description:
+      "Музыка, фотография, кофе и спонтанные поездки без плана.",
+    photo:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
+    theme:"theme-pink"
+  },
+  {
+    name:"Ева",
+    age:23,
+    city:"Казань",
+    description:
+      "Люблю кино, вечерние прогулки и интересных людей.",
+    photo:
+      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85",
+    theme:"theme-yellow"
+  }
+];
+const gamingProfiles = [
+  {
+    name:"Макс",
+    age:23,
+    city:"Москва",
+    description:
+      "Dota 2 • Carry • Вечерняя игра • Микрофон есть",
+    photo:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
+    theme:"theme-blue"
+  },
+  {
+    name:"Артём",
+    age:21,
+    city:"Санкт-Петербург",
+    description:
+      "CS2 • Rifler • Играю вечером • Микрофон есть",
+    photo:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
+    theme:"theme-cold"
+  }
+];
+/* =========================
+   ПЕРЕХОД
+========================= */
+function showScreen(id,theme){
+  const current =
+    document.querySelector(".screen:not(.hidden)");
+  const next =
+    document.getElementById(id);
+  if(!next) return;
+  if(current){
+    current.classList.add("leaving");
+    setTimeout(()=>{
+      current.classList.add("hidden");
+      current.classList.remove("leaving");
+      next.classList.remove("hidden");
+      changeTheme(theme);
+    },500);
+  }else{
+    next.classList.remove("hidden");
+    changeTheme(theme);
+  }
+}
+/* =========================
+   ТЕМА
+========================= */
+function changeTheme(theme){
+  document.getElementById("space").className =
+    "space " + theme;
+}
+/* =========================
+   ВЕТКА
+========================= */
+function chooseBranch(type){
+  branch = type;
+  showScreen(
+    "common",
+    "theme-purple"
+  );
+}
+/* =========================
+   ОБЩИЕ ДАННЫЕ
+========================= */
+function continueCommon(){
+  if(branch === "dating"){
+    showScreen(
+      "datingPreferences",
+      "theme-pink"
+    );
+  }else{
+    showScreen(
+      "gamingProfile",
+      "theme-cold"
+    );
+  }
+}
+/* =========================
+   ВЫБОР
+========================= */
+function chooseOption(button){
+  const parent =
+    button.parentElement;
+  parent
+    .querySelectorAll(".option")
+    .forEach(item=>{
+      item.classList.remove("selected");
+    });
+  button.classList.add("selected");
+}
+/* =========================
+   ИГРА
+========================= */
+function selectGame(button,game){
+  document
+    .querySelectorAll(".game")
+    .forEach(item=>{
+      item.classList.remove("selected");
+    });
+  button.classList.add("selected");
+  selectedGame = game;
+  const options =
+    document.getElementById("gameOptions");
+  let html = "";
+  if(game === "Dota 2"){
+    html = `
+      <input
+        class="input"
+        placeholder="Предпочитаемая роль: Carry, Mid, Offlane, Support..."
+      >
+    `;
+  }
+  if(game === "CS2"){
+    html = `
+      <input
+        class="input"
+        placeholder="Роль: Rifler, AWPer, IGL..."
+      >
+    `;
+  }
+  if(game === "Valorant"){
+    html = `
+      <input
+        class="input"
+        placeholder="Предпочитаемая роль / агент"
+      >
+    `;
+  }
+  if(game === "League of Legends"){
+    html = `
+      <input
+        class="input"
+        placeholder="Предпочитаемая позиция"
+      >
+    `;
+  }
+  options.innerHTML = html;
+}
+function continueGameProfile(){
+  if(!selectedGame){
+    alert("Сначала выбери игру");
+    return;
+  }
+  showScreen(
+    "gamingTime",
+    "theme-black"
+  );
+}
+/* =========================
+   АНКЕТЫ
+========================= */
+function openProfiles(type){
+  branch = type;
+  currentProfile = 0;
+  showScreen(
+    "profiles",
+    type === "dating"
+      ? "theme-purple"
+      : "theme-blue"
+  );
+  setTimeout(()=>{
+    loadProfile();
+  },550);
+}
+function loadProfile(){
+  const list =
+    branch === "dating"
+      ? datingProfiles
+      : gamingProfiles;
+  const person =
+    list[currentProfile];
+  document.getElementById(
+    "profilePhoto"
+  ).src =
+    person.photo;
+  document.getElementById(
+    "profileName"
+  ).textContent =
+    person.name + ", " + person.age;
+  document.getElementById(
+    "profileCity"
+  ).textContent =
+    "📍 " + person.city;
+  document.getElementById(
+    "profileDescription"
+  ).textContent =
+    person.description;
+  document.getElementById(
+    "counter"
+  ).textContent =
+    (currentProfile + 1)
+    + " / "
+    + list.length;
+  changeTheme(person.theme);
+}
+function nextProfile(){
+  const list =
+    branch === "dating"
+      ? datingProfiles
+      : gamingProfiles;
+  const card =
+    document.getElementById("profileCard");
+  card.style.opacity = "0";
+  card.style.transform =
+    "scale(.97) translateY(10px)";
+  setTimeout(()=>{
+    currentProfile++;
+    if(currentProfile >= list.length){
+      currentProfile = 0;
     }
-
-  </script>
-
+    loadProfile();
+    card.style.opacity = "1";
+    card.style.transform =
+      "scale(1) translateY(0)";
+  },350);
+}
+</script>
 </body>
 </html>
