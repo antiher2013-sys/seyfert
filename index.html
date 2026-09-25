@@ -6,523 +6,843 @@
 <title>Seyfert — Моя анкета</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #08090d;
+    --panel: #11131a;
+    --panel2: #151821;
+    --border: #252936;
+    --text: #f4f4f7;
+    --muted: #858998;
+    --accent: #8f6cff;
+    --accent2: #a98cff;
+    --premium: #d5a84b;
+    --danger: #ff5364;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+}
+
+button,
+.main-photo {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+    width: 100%;
+    max-width: 520px;
+    min-height: 100vh;
+    margin: auto;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(111, 70, 190, .20),
+            transparent 38%
+        ),
+        var(--bg);
+}
+
+/* =========================
+   TOP
+========================= */
+
+.topbar {
+    height: 64px;
+    padding: 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar-title {
+    font-size: 22px;
+    font-weight: 750;
+}
+
+.top-settings {
+    width: 42px;
+    height: 42px;
+
+    border: 0;
+    border-radius: 14px;
+
+    background: #1a1d27;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    padding-bottom: 110px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+    padding: 22px 18px 24px;
+    text-align: center;
+}
+
+.main-photo {
+    width: 148px;
+    height: 148px;
+
+    border: 0;
+    border-radius: 34px;
+
+    margin-bottom: 16px;
+
+    background:
+        radial-gradient(
+            circle at 30% 22%,
+            #7657ff,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 76% 22%,
+            #ed7350,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            #d49225,
+            transparent 40%
+        ),
+        #292735;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 58px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 14px 42px rgba(0,0,0,.38);
+}
+
+.name-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.name {
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.age {
+    font-weight: 500;
+}
+
+.premium-free {
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    border: 1px solid rgba(143,108,255,.35);
+
+    background: rgba(143,108,255,.11);
+
+    color: #ad97ff;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.location {
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+}
+
+/* =========================
+   VIEW PROFILE
+========================= */
+
+.view-profile {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 15px;
+
+    border-radius: 17px;
+
+    border: 1px solid #45356b;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(93,57,151,.24),
+            rgba(33,23,54,.48)
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.view-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.view-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 13px;
+
+    background: #282039;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-title {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.view-subtitle {
+    margin-top: 3px;
+
+    color: #858092;
+
+    font-size: 12px;
+}
+
+.view-arrow {
+    color: var(--accent2);
+    font-size: 24px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 22px 18px;
+
+    border-top: 1px solid var(--border);
+}
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.section-action {
+    border: 0;
+    background: transparent;
+
+    color: var(--accent2);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.about {
+    color: #c5c7d0;
+
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.counter {
+    margin-top: 8px;
+
+    color: #666a79;
+
+    font-size: 12px;
+}
+
+/* =========================
+   PHOTOS
+========================= */
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+}
+
+.photo {
+    aspect-ratio: 1;
+
+    border-radius: 16px;
+
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            #6550df,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 75% 20%,
+            #df704e,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            #c88720,
+            transparent 40%
+        ),
+        #272634;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.photo-add {
+    background: #12151d;
+
+    border: 1px dashed #383c4c;
+
+    color: var(--accent2);
+
+    cursor: pointer;
+}
+
+/* =========================
+   TAGS
+========================= */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.tag {
+    padding: 9px 13px;
+
+    border-radius: 999px;
+
+    background: #171a25;
+
+    border: 1px solid #292d3c;
+
+    color: #d3d5df;
+
+    font-size: 14px;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.info-card {
+    padding: 14px;
+
+    border-radius: 16px;
+
+    background: var(--panel);
+
+    border: 1px solid #20232e;
+}
+
+.info-label {
+    color: #6f7382;
+
+    font-size: 11px;
+    font-weight: 750;
+
+    text-transform: uppercase;
+}
+
+.info-value {
+    margin-top: 7px;
+
+    font-size: 15px;
+    font-weight: 650;
+}
+
+/* =========================
+   FUNCTION BUTTONS
+========================= */
+
+.functions {
+    padding: 22px 18px 30px;
+
+    border-top: 1px solid var(--border);
+}
+
+.function {
+    width: 100%;
+
+    min-height: 64px;
+
+    margin-bottom: 10px;
+
+    padding: 11px 15px;
+
+    border-radius: 18px;
+
+    border: 1px solid #252936;
+
+    background: var(--panel);
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
+
+.function:active {
+    transform: scale(.985);
+}
+
+.function-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    margin-right: 13px;
+
+    background: #1b1e28;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+.function-body {
+    flex: 1;
+
+    text-align: left;
+}
+
+.function-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.function-description {
+    margin-top: 3px;
+
+    color: #747888;
+
+    font-size: 12px;
+}
+
+.function-arrow {
+    color: #656978;
+
+    font-size: 22px;
+}
+
+/* PREMIUM */
+
+.function.premium {
+    border-color: rgba(213,168,75,.30);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(104,76,24,.20),
+            rgba(25,23,18,.70)
+        );
+}
+
+.function.premium .function-icon {
+    background: rgba(213,168,75,.15);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.70);
+
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-sheet {
+    width: 100%;
+    max-width: 520px;
+
+    max-height: 88vh;
+
+    overflow-y: auto;
+
+    background: #11131a;
+
+    border-radius: 25px 25px 0 0;
+
+    border-top: 1px solid #292d3a;
+
+    padding: 20px 18px 30px;
+
+    animation: sheetIn .22s ease;
+}
+
+@keyframes sheetIn {
+    from {
+        transform: translateY(40px);
+        opacity: .4;
     }
 
-    body {
-        background: #08090d;
-        color: #f4f4f7;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
+}
 
-    button {
-        font: inherit;
-        color: inherit;
-    }
+.modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    .app {
-        width: 100%;
-        max-width: 520px;
-        min-height: 100vh;
-        margin: 0 auto;
-        background:
-            radial-gradient(
-                circle at 50% -10%,
-                rgba(104, 62, 180, 0.20),
-                transparent 38%
-            ),
-            #08090d;
-    }
+    margin-bottom: 20px;
+}
 
-    /* =========================
-       HEADER
-    ========================= */
+.modal-title {
+    font-size: 22px;
+    font-weight: 800;
+}
 
-    .topbar {
-        height: 64px;
-        padding: 0 18px;
+.close {
+    width: 38px;
+    height: 38px;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    border: 0;
+    border-radius: 12px;
 
-        border-bottom: 1px solid #20222c;
-    }
+    background: #1c1f28;
 
-    .topbar-title {
-        font-size: 22px;
-        font-weight: 700;
-    }
+    cursor: pointer;
+}
 
-    .topbar-button {
-        width: 42px;
-        height: 42px;
+.modal-item {
+    padding: 16px 0;
 
-        border: 0;
-        border-radius: 14px;
+    border-bottom: 1px solid #252834;
+}
 
-        background: #1b1d2a;
+.modal-item:last-child {
+    border-bottom: 0;
+}
 
-        cursor: pointer;
-    }
+.modal-item-title {
+    font-weight: 700;
+}
 
-    /* =========================
-       CONTENT
-    ========================= */
+.modal-item-description {
+    margin-top: 5px;
 
-    .content {
-        padding-bottom: 100px;
-    }
+    color: var(--muted);
 
-    /* =========================
-       PROFILE HEADER
-    ========================= */
+    font-size: 13px;
+    line-height: 1.45;
+}
 
-    .profile-header {
-        padding: 20px 18px 24px;
-        text-align: center;
-    }
+/* =========================
+   PREMIUM FREE
+========================= */
+
+.free-card {
+    padding: 17px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(143,108,255,.15),
+            rgba(28,24,43,.7)
+        );
+
+    border: 1px solid rgba(143,108,255,.28);
+
+    margin-bottom: 12px;
+}
+
+.free-title {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.free-description {
+    margin-top: 6px;
+
+    color: #9b9dac;
+
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.task {
+    padding: 15px 0;
+
+    border-bottom: 1px solid #252834;
+}
+
+.task-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.task-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    background: #1c1f2a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-body {
+    flex: 1;
+}
+
+.task-name {
+    font-weight: 650;
+}
+
+.task-progress {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.task-button {
+    padding: 9px 12px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: #30245a;
+
+    color: #b8a5ff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================
+   REPORTS
+========================= */
+
+.report-stat {
+    padding: 18px;
+
+    border-radius: 17px;
+
+    background: #151820;
+
+    border: 1px solid #242834;
+
+    margin-bottom: 10px;
+}
+
+.report-number {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.report-label {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.status {
+    display: inline-block;
+
+    margin-top: 9px;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    background: rgba(143,108,255,.12);
+
+    color: #a993ff;
+
+    font-size: 11px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 50%;
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: 520px;
+
+    height: 78px;
+
+    padding: 7px 8px;
+
+    background: rgba(10,11,15,.97);
+
+    border-top: 1px solid var(--border);
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    z-index: 50;
+}
+
+.nav {
+    border: 0;
+    background: transparent;
+
+    border-radius: 16px;
+
+    color: #646879;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    cursor: pointer;
+}
+
+.nav.active {
+    background: #211a42;
+
+    color: #f2f1f7;
+}
+
+.nav-icon {
+    font-size: 20px;
+}
+
+.nav-label {
+    font-size: 10px;
+    font-weight: 650;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 380px) {
 
     .main-photo {
-        width: 150px;
-        height: 150px;
-
-        margin: 0 auto 18px;
-
-        border-radius: 34px;
-
-        background:
-            radial-gradient(
-                circle at 30% 25%,
-                #7352ff,
-                transparent 35%
-            ),
-            radial-gradient(
-                circle at 75% 20%,
-                #ff7650,
-                transparent 35%
-            ),
-            radial-gradient(
-                circle at 50% 90%,
-                #d89124,
-                transparent 40%
-            ),
-            #242333;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 64px;
-        font-weight: 700;
-
-        box-shadow:
-            0 10px 40px rgba(0,0,0,.35);
+        width: 132px;
+        height: 132px;
     }
 
-    .profile-name {
-        font-size: 30px;
-        font-weight: 750;
-        letter-spacing: -0.5px;
+    .name {
+        font-size: 26px;
     }
-
-    .profile-location {
-        margin-top: 7px;
-
-        color: #9295a6;
-        font-size: 16px;
-    }
-
-    /* =========================
-       VIEW PROFILE
-    ========================= */
-
-    .view-profile {
-        margin-top: 20px;
-
-        width: 100%;
-        padding: 15px 18px;
-
-        border: 1px solid #45356d;
-        border-radius: 17px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(93,57,151,.25),
-                rgba(33,23,54,.55)
-            );
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        text-align: left;
-
-        cursor: pointer;
-    }
-
-    .view-profile-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .view-profile-icon {
-        font-size: 25px;
-    }
-
-    .view-profile-title {
-        font-size: 16px;
-        font-weight: 700;
-    }
-
-    .view-profile-subtitle {
-        margin-top: 3px;
-        color: #8e91a3;
-        font-size: 13px;
-    }
-
-    .arrow {
-        color: #8d68ff;
-        font-size: 25px;
-    }
-
-    /* =========================
-       PROFILE INFO
-    ========================= */
-
-    .section {
-        padding: 22px 18px;
-
-        border-top: 1px solid #20222c;
-    }
-
-    .section-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        margin-bottom: 17px;
-    }
-
-    .section-title {
-        font-size: 22px;
-        font-weight: 700;
-    }
-
-    .edit-button {
-        border: 0;
-        background: transparent;
-
-        color: #936cff;
-
-        font-weight: 650;
-        cursor: pointer;
-    }
-
-    .about-text {
-        color: #c5c7d0;
-
-        font-size: 17px;
-        line-height: 1.55;
-    }
-
-    .counter {
-        margin-top: 10px;
-
-        color: #656879;
-        font-size: 14px;
-    }
-
-    /* =========================
-       PHOTOS
-    ========================= */
-
-    .photos {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-    }
-
-    .photo {
-        aspect-ratio: 1;
-
-        border-radius: 17px;
-
-        background:
-            radial-gradient(
-                circle at 30% 20%,
-                #6650e8,
-                transparent 35%
-            ),
-            radial-gradient(
-                circle at 75% 20%,
-                #ef7550,
-                transparent 35%
-            ),
-            radial-gradient(
-                circle at 50% 90%,
-                #d28c20,
-                transparent 40%
-            ),
-            #242333;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 28px;
-        font-weight: 700;
-    }
-
-    .photo.add {
-        background: #151722;
-        border: 1px dashed #393c4c;
-        color: #8d68ff;
-        font-size: 30px;
-    }
-
-    /* =========================
-       INTERESTS
-    ========================= */
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 9px;
-    }
-
-    .tag {
-        padding: 10px 14px;
-
-        border-radius: 999px;
-
-        background: #171a27;
-        border: 1px solid #292d3d;
-
-        color: #d4d5df;
-
-        font-size: 14px;
-    }
-
-    /* =========================
-       INFO GRID
-    ========================= */
 
     .info-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr;
     }
 
-    .info-card {
-        padding: 15px;
-
-        border-radius: 16px;
-
-        background: #12141b;
-        border: 1px solid #20232e;
+    .photos {
+        gap: 6px;
     }
-
-    .info-label {
-        color: #6f7283;
-
-        font-size: 12px;
-        font-weight: 700;
-
-        text-transform: uppercase;
-        letter-spacing: .5px;
-    }
-
-    .info-value {
-        margin-top: 7px;
-
-        font-size: 16px;
-        font-weight: 600;
-    }
-
-    /* =========================
-       FUNCTION BUTTONS
-    ========================= */
-
-    .functions {
-        padding: 22px 18px 30px;
-
-        border-top: 1px solid #20222c;
-    }
-
-    .function-button {
-        width: 100%;
-
-        min-height: 62px;
-
-        margin-bottom: 10px;
-
-        padding: 12px 16px;
-
-        border: 1px solid #242735;
-        border-radius: 18px;
-
-        background: #11131a;
-
-        display: flex;
-        align-items: center;
-
-        cursor: pointer;
-
-        transition:
-            background .18s ease,
-            transform .18s ease;
-    }
-
-    .function-button:active {
-        transform: scale(.985);
-    }
-
-    .function-icon {
-        width: 42px;
-        height: 42px;
-
-        border-radius: 13px;
-
-        background: #1c1f2c;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 20px;
-
-        margin-right: 13px;
-    }
-
-    .function-text {
-        flex: 1;
-        text-align: left;
-    }
-
-    .function-title {
-        font-size: 16px;
-        font-weight: 650;
-    }
-
-    .function-description {
-        margin-top: 3px;
-
-        color: #747787;
-        font-size: 12px;
-    }
-
-    .function-arrow {
-        color: #626575;
-        font-size: 22px;
-    }
-
-    /* PREMIUM */
-
-    .premium {
-        border-color: #4b377a;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(83,50,137,.25),
-                rgba(22,18,34,.75)
-            );
-    }
-
-    .premium .function-icon {
-        background: #38265f;
-    }
-
-    /* =========================
-       BOTTOM NAV
-    ========================= */
-
-    .bottom-nav {
-        position: fixed;
-
-        left: 50%;
-        bottom: 0;
-
-        transform: translateX(-50%);
-
-        width: 100%;
-        max-width: 520px;
-
-        height: 78px;
-
-        padding: 7px 8px;
-
-        background: rgba(12,13,18,.97);
-
-        border-top: 1px solid #20222c;
-
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-
-        z-index: 20;
-    }
-
-    .nav-item {
-        border: 0;
-        background: transparent;
-
-        color: #666a7b;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        gap: 3px;
-
-        border-radius: 17px;
-
-        cursor: pointer;
-    }
-
-    .nav-item.active {
-        background: #211944;
-        color: #f0eff6;
-    }
-
-    .nav-icon {
-        font-size: 21px;
-    }
-
-    .nav-label {
-        font-size: 11px;
-        font-weight: 600;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 380px) {
-
-        .main-photo {
-            width: 130px;
-            height: 130px;
-        }
-
-        .profile-name {
-            font-size: 27px;
-        }
-
-        .info-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .photos {
-            gap: 7px;
-        }
-    }
+}
 </style>
 </head>
 
@@ -533,15 +853,19 @@
     <!-- HEADER -->
 
     <header class="topbar">
-        <div class="topbar-title">Моя анкета</div>
+
+        <div class="topbar-title">
+            Моя анкета
+        </div>
 
         <button
-            class="topbar-button"
+            class="top-settings"
             onclick="openSettings()"
             aria-label="Настройки"
         >
             ⚙️
         </button>
+
     </header>
 
 
@@ -549,53 +873,64 @@
 
         <!-- PROFILE -->
 
-        <section class="profile-header">
+        <section class="profile">
 
             <button
                 class="main-photo"
-                onclick="viewAsOthers()"
-                aria-label="Посмотреть анкету глазами других"
+                onclick="viewProfile()"
+                aria-label="Посмотреть свою анкету со стороны"
             >
                 S
             </button>
 
-            <h1 class="profile-name">
-                Seyfert, 25
-            </h1>
 
-            <div class="profile-location">
-                📍 Москва
+            <div class="name-line">
+
+                <div class="name">
+                    Дима <span class="age">21</span>
+                </div>
+
+                <button
+                    class="premium-free"
+                    onclick="openPremiumFree()"
+                >
+                    Premium Free
+                </button>
+
             </div>
 
 
-            <!-- VIEW FROM OUTSIDE -->
+            <div class="location">
+                📍 Санкт-Петербург
+            </div>
+
 
             <button
                 class="view-profile"
-                onclick="viewAsOthers()"
+                onclick="viewProfile()"
             >
 
-                <div class="view-profile-left">
+                <div class="view-left">
 
-                    <div class="view-profile-icon">
-                        👀
+                    <div class="view-icon">
+                        👁️
                     </div>
 
                     <div>
 
-                        <div class="view-profile-title">
-                            Моя анкета глазами других
+                        <div class="view-title">
+                            Посмотреть свою анкету
                         </div>
 
-                        <div class="view-profile-subtitle">
-                            Посмотреть, как вас видят другие пользователи
+                        <div class="view-subtitle">
+                            Так её видят другие пользователи
                         </div>
 
                     </div>
 
                 </div>
 
-                <div class="arrow">
+                <div class="view-arrow">
                     ›
                 </div>
 
@@ -608,14 +943,14 @@
 
         <section class="section">
 
-            <div class="section-header">
+            <div class="section-head">
 
-                <h2 class="section-title">
+                <div class="section-title">
                     Мои фото
-                </h2>
+                </div>
 
                 <button
-                    class="edit-button"
+                    class="section-action"
                     onclick="editPhotos()"
                 >
                     Изменить
@@ -623,12 +958,19 @@
 
             </div>
 
+
             <div class="photos">
 
-                <div class="photo">S</div>
-                <div class="photo">S</div>
-                <div class="photo">S</div>
-                <div class="photo">S</div>
+                <div class="photo">D</div>
+                <div class="photo">D</div>
+                <div class="photo">D</div>
+
+                <button
+                    class="photo photo-add"
+                    onclick="editPhotos()"
+                >
+                    +
+                </button>
 
             </div>
 
@@ -639,14 +981,14 @@
 
         <section class="section">
 
-            <div class="section-header">
+            <div class="section-head">
 
-                <h2 class="section-title">
+                <div class="section-title">
                     О себе
-                </h2>
+                </div>
 
                 <button
-                    class="edit-button"
+                    class="section-action"
                     onclick="editAbout()"
                 >
                     Редактировать
@@ -654,14 +996,15 @@
 
             </div>
 
-            <p class="about-text">
-                Дизайнер, ночной геймер и человек, который вечно
-                ищет хороший кофе. Ищу адекватных людей — для
-                общения и не только.
-            </p>
+
+            <div class="about">
+                Люблю музыку, ночные разговоры, игры и людей,
+                с которыми можно быть собой. Ищу общение,
+                дружбу и отношения без лишней игры.
+            </div>
 
             <div class="counter">
-                113/300
+                148 / 300
             </div>
 
         </section>
@@ -671,29 +1014,30 @@
 
         <section class="section">
 
-            <div class="section-header">
+            <div class="section-head">
 
-                <h2 class="section-title">
+                <div class="section-title">
                     Интересы
-                </h2>
+                </div>
 
                 <button
-                    class="edit-button"
+                    class="section-action"
                     onclick="editInterests()"
                 >
-                    Добавить
+                    Изменить
                 </button>
 
             </div>
 
+
             <div class="tags">
 
-                <div class="tag">☕ Кофе</div>
-                <div class="tag">😂 Мемы</div>
-                <div class="tag">🎬 Кино</div>
                 <div class="tag">🎵 Музыка</div>
+                <div class="tag">🎬 Кино</div>
+                <div class="tag">☕ Кофе</div>
                 <div class="tag">✈️ Путешествия</div>
                 <div class="tag">🐕 Животные</div>
+                <div class="tag">🎨 Творчество</div>
 
             </div>
 
@@ -704,14 +1048,14 @@
 
         <section class="section">
 
-            <div class="section-header">
+            <div class="section-head">
 
-                <h2 class="section-title">
-                    О себе
-                </h2>
+                <div class="section-title">
+                    Основная информация
+                </div>
 
                 <button
-                    class="edit-button"
+                    class="section-action"
                     onclick="editInfo()"
                 >
                     Изменить
@@ -719,26 +1063,50 @@
 
             </div>
 
+
             <div class="info-grid">
 
                 <div class="info-card">
-                    <div class="info-label">Пол</div>
-                    <div class="info-value">Парень</div>
+                    <div class="info-label">
+                        Пол
+                    </div>
+
+                    <div class="info-value">
+                        Парень
+                    </div>
                 </div>
 
-                <div class="info-card">
-                    <div class="info-label">Город</div>
-                    <div class="info-value">Москва</div>
-                </div>
 
                 <div class="info-card">
-                    <div class="info-label">Цель</div>
-                    <div class="info-value">Общение</div>
+                    <div class="info-label">
+                        Город
+                    </div>
+
+                    <div class="info-value">
+                        Санкт-Петербург
+                    </div>
                 </div>
 
+
                 <div class="info-card">
-                    <div class="info-label">Возраст</div>
-                    <div class="info-value">25</div>
+                    <div class="info-label">
+                        Цели знакомства
+                    </div>
+
+                    <div class="info-value">
+                        Общение · отношения
+                    </div>
+                </div>
+
+
+                <div class="info-card">
+                    <div class="info-label">
+                        Возраст
+                    </div>
+
+                    <div class="info-value">
+                        21
+                    </div>
                 </div>
 
             </div>
@@ -746,44 +1114,14 @@
         </section>
 
 
-        <!-- FUNCTIONAL BUTTONS -->
+        <!-- FUNCTIONS -->
 
         <section class="functions">
-
-            <!-- EDIT -->
-
-            <button
-                class="function-button"
-                onclick="editProfile()"
-            >
-
-                <div class="function-icon">
-                    ✏️
-                </div>
-
-                <div class="function-text">
-
-                    <div class="function-title">
-                        Редактировать анкету
-                    </div>
-
-                    <div class="function-description">
-                        Изменить информацию, фото и интересы
-                    </div>
-
-                </div>
-
-                <div class="function-arrow">
-                    ›
-                </div>
-
-            </button>
-
 
             <!-- SETTINGS -->
 
             <button
-                class="function-button"
+                class="function"
                 onclick="openSettings()"
             >
 
@@ -791,14 +1129,14 @@
                     ⚙️
                 </div>
 
-                <div class="function-text">
+                <div class="function-body">
 
                     <div class="function-title">
                         Настройки
                     </div>
 
                     <div class="function-description">
-                        Приватность, уведомления и рекомендации
+                        Уведомления, фильтры, внешний вид и аккаунты
                     </div>
 
                 </div>
@@ -813,7 +1151,7 @@
             <!-- PREMIUM -->
 
             <button
-                class="function-button premium"
+                class="function premium"
                 onclick="openPremium()"
             >
 
@@ -821,14 +1159,14 @@
                     💎
                 </div>
 
-                <div class="function-text">
+                <div class="function-body">
 
                     <div class="function-title">
                         Premium
                     </div>
 
                     <div class="function-description">
-                        Дополнительные возможности Seyfert
+                        Больше возможностей и приоритет в Seyfert
                     </div>
 
                 </div>
@@ -843,7 +1181,7 @@
             <!-- SECURITY -->
 
             <button
-                class="function-button"
+                class="function"
                 onclick="openSecurity()"
             >
 
@@ -851,14 +1189,14 @@
                     🛡️
                 </div>
 
-                <div class="function-text">
+                <div class="function-body">
 
                     <div class="function-title">
                         Безопасность
                     </div>
 
                     <div class="function-description">
-                        Блокировки, жалобы и защита аккаунта
+                        Жалобы, защита аккаунта и управление аккаунтом
                     </div>
 
                 </div>
@@ -873,7 +1211,7 @@
             <!-- SUPPORT -->
 
             <button
-                class="function-button"
+                class="function"
                 onclick="openSupport()"
             >
 
@@ -881,14 +1219,14 @@
                     🆘
                 </div>
 
-                <div class="function-text">
+                <div class="function-body">
 
                     <div class="function-title">
                         Центр поддержки
                     </div>
 
                     <div class="function-description">
-                        Помощь и обращение в поддержку Seyfert
+                        Помощь и обращения в поддержку Seyfert
                     </div>
 
                 </div>
@@ -908,27 +1246,27 @@
 
     <nav class="bottom-nav">
 
-        <button class="nav-item">
-            <span class="nav-icon">👥</span>
+        <button class="nav">
+            <span class="nav-icon">❤️</span>
             <span class="nav-label">Анкеты</span>
         </button>
 
-        <button class="nav-item">
+        <button class="nav">
             <span class="nav-icon">💬</span>
             <span class="nav-label">Чаты</span>
         </button>
 
-        <button class="nav-item">
+        <button class="nav">
             <span class="nav-icon">🌐</span>
-            <span class="nav-label">Глобал</span>
+            <span class="nav-label">Глобальные</span>
         </button>
 
-        <button class="nav-item">
-            <span class="nav-icon">📣</span>
+        <button class="nav">
+            <span class="nav-icon">📋</span>
             <span class="nav-label">Активности</span>
         </button>
 
-        <button class="nav-item active">
+        <button class="nav active">
             <span class="nav-icon">👤</span>
             <span class="nav-label">Профиль</span>
         </button>
@@ -938,46 +1276,740 @@
 </div>
 
 
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="modal"
+    onclick="closeModalOutside(event)"
+>
+
+    <div
+        class="modal-sheet"
+        id="modalSheet"
+    >
+
+        <div class="modal-head">
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+                Раздел
+            </div>
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-function viewAsOthers() {
-    alert("Здесь откроется просмотр анкеты глазами других пользователей.");
+/* =========================
+   MODAL SYSTEM
+========================= */
+
+function openModal(title, content) {
+
+    document.getElementById("modalTitle").textContent = title;
+
+    document.getElementById("modalContent").innerHTML = content;
+
+    document.getElementById("modal").classList.add("active");
+
+    document.body.style.overflow = "hidden";
 }
+
+function closeModal() {
+
+    document.getElementById("modal").classList.remove("active");
+
+    document.body.style.overflow = "";
+}
+
+function closeModalOutside(event) {
+
+    if (event.target.id === "modal") {
+        closeModal();
+    }
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function viewProfile() {
+
+    openModal(
+        "Ваша анкета",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                👀 Просмотр со стороны
+            </div>
+
+            <div class="modal-item-description">
+                Здесь будет открываться полноценная версия
+                вашей анкеты именно в том виде, в котором
+                её видят другие пользователи Seyfert.
+            </div>
+
+        </div>
+        `
+    );
+}
+
+
+/* =========================
+   PHOTO EDIT
+========================= */
 
 function editPhotos() {
-    alert("Редактирование фотографий.");
+
+    openModal(
+        "Мои фото",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                📸 Управление фотографиями
+            </div>
+
+            <div class="modal-item-description">
+                Зажмите нужную фотографию, чтобы удалить её
+                или поменять местами с другой.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ➕ Добавить фотографию
+            </div>
+
+            <div class="modal-item-description">
+                Добавьте новую фотографию в свою анкету.
+            </div>
+
+        </div>
+        `
+    );
 }
+
+
+/* =========================
+   ABOUT
+========================= */
 
 function editAbout() {
-    alert("Редактирование описания.");
+
+    openModal(
+        "О себе",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ✏️ Изменить описание
+            </div>
+
+            <div class="modal-item-description">
+                Здесь будет полноценный редактор текста
+                вашего описания.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                Ограничение
+            </div>
+
+            <div class="modal-item-description">
+                Максимальная длина описания будет определена
+                при создании окончательной анкеты.
+            </div>
+
+        </div>
+        `
+    );
 }
+
+
+/* =========================
+   INTERESTS
+========================= */
 
 function editInterests() {
-    alert("Редактирование интересов.");
+
+    openModal(
+        "Интересы",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🔎 Ваши интересы
+            </div>
+
+            <div class="modal-item-description">
+                Выберите интересы, которые будут использоваться
+                системой рекомендаций и определят доступные
+                вам глобальные чаты.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🌐 Глобальные чаты
+            </div>
+
+            <div class="modal-item-description">
+                В глобальных чатах отображаются только темы,
+                соответствующие интересам вашей анкеты.
+            </div>
+
+        </div>
+        `
+    );
 }
+
+
+/* =========================
+   BASIC INFO
+========================= */
 
 function editInfo() {
-    alert("Редактирование информации о себе.");
+
+    openModal(
+        "Основная информация",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                👤 Пол
+            </div>
+
+            <div class="modal-item-description">
+                Парень
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                📍 Город
+            </div>
+
+            <div class="modal-item-description">
+                Санкт-Петербург
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ❤️ Цели знакомства
+            </div>
+
+            <div class="modal-item-description">
+                Общение · отношения
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🎂 Возраст
+            </div>
+
+            <div class="modal-item-description">
+                Изменение параметров анкеты будет доступно
+                согласно установленным ограничениям Seyfert.
+            </div>
+
+        </div>
+        `
+    );
 }
 
-function editProfile() {
-    alert("Раздел «Редактировать анкету».");
-}
+
+/* =========================
+   SETTINGS
+========================= */
 
 function openSettings() {
-    alert("Раздел «Настройки».");
+
+    openModal(
+        "Настройки",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🔔 Уведомления
+            </div>
+
+            <div class="modal-item-description">
+                Полностью включить или отключить уведомления,
+                либо отдельно настроить личные сообщения
+                и теги в глобальных чатах.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🔎 Фильтры поиска
+            </div>
+
+            <div class="modal-item-description">
+                Управление собственными фильтрами рекомендаций.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🎨 Внешний вид
+            </div>
+
+            <div class="modal-item-description">
+                Выбор темы и цвета интерфейса Seyfert.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🔗 Привязанные аккаунты
+            </div>
+
+            <div class="modal-item-description">
+                Steam · Telegram · Discord и другие аккаунты,
+                которые появятся в будущих обновлениях.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ⏸️ Временно приостановить аккаунт
+            </div>
+
+            <div class="modal-item-description">
+                Временно скрыть аккаунт и остановить его
+                участие в системе рекомендаций.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title" style="color:#ff5364;">
+                🗑️ Удалить аккаунт
+            </div>
+
+            <div class="modal-item-description">
+                Полное удаление аккаунта и связанных с ним данных
+                после подтверждения действия.
+            </div>
+
+        </div>
+        `
+    );
 }
+
+
+/* =========================
+   PREMIUM
+========================= */
 
 function openPremium() {
-    alert("Раздел Seyfert Premium.");
+
+    openModal(
+        "Seyfert Premium",
+        `
+        <div class="free-card">
+
+            <div class="free-title">
+                💎 Premium
+            </div>
+
+            <div class="free-description">
+                Расширенные возможности, дополнительные лимиты
+                и приоритет внутри Seyfert.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🎥 Увеличенный лимит видеокружков
+            </div>
+
+            <div class="modal-item-description">
+                Бесплатно — до 30 секунд.
+                Premium получает увеличенный лимит.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🎙️ Увеличенный лимит голосовых
+            </div>
+
+            <div class="modal-item-description">
+                Бесплатно — до 30 секунд.
+                Premium получает увеличенный лимит.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                ❤️ Больше действий с анкетами
+            </div>
+
+            <div class="modal-item-description">
+                Увеличенные ограничения на просмотр,
+                лайки и дизлайки.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🚀 Приоритет в рекомендациях
+            </div>
+
+            <div class="modal-item-description">
+                Premium-профиль получает дополнительный
+                приоритет при формировании рекомендаций.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🌐 Голосовые и кружки в глобальных чатах
+            </div>
+
+            <div class="modal-item-description">
+                Дополнительные форматы общения доступны
+                Premium-пользователям с отдельным лимитом.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                👀 Кто вас лайкнул
+            </div>
+
+            <div class="modal-item-description">
+                Просмотр пользователей, которые поставили
+                вам лайк, и возможность открыть их анкеты.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                ❤️ Ваши лайки
+            </div>
+
+            <div class="modal-item-description">
+                Просмотр пользователей, которым вы поставили лайк,
+                и доступ к их анкетам.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🛡️ Защита от новых аккаунтов
+            </div>
+
+            <div class="modal-item-description">
+                Дополнительный приватный статус для ограничения
+                контакта с новыми аккаунтами.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🎁 Розыгрыши
+            </div>
+
+            <div class="modal-item-description">
+                Доступ к Premium-розыгрышам Seyfert.
+            </div>
+        </div>
+
+        <div class="modal-item">
+            <div class="modal-item-title">
+                🆘 Приоритет поддержки
+            </div>
+
+            <div class="modal-item-description">
+                Жалобы и обращения Premium рассматриваются
+                в первом порядке.
+            </div>
+        </div>
+        `
+    );
 }
+
+
+/* =========================
+   PREMIUM FREE
+========================= */
+
+function openPremiumFree() {
+
+    openModal(
+        "Premium Free",
+        `
+        <div class="free-card">
+
+            <div class="free-title">
+                ✨ Получай Premium бесплатно
+            </div>
+
+            <div class="free-description">
+                Выполняй задания внутри Seyfert и получай
+                Premium-возможности на определённый срок.
+            </div>
+
+        </div>
+
+        <div class="task">
+
+            <div class="task-row">
+
+                <div class="task-icon">
+                    📅
+                </div>
+
+                <div class="task-body">
+
+                    <div class="task-name">
+                        Заходи несколько дней подряд
+                    </div>
+
+                    <div class="task-progress">
+                        3 / 7 дней
+                    </div>
+
+                </div>
+
+                <button class="task-button">
+                    Прогресс
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="task">
+
+            <div class="task-row">
+
+                <div class="task-icon">
+                    ▶️
+                </div>
+
+                <div class="task-body">
+
+                    <div class="task-name">
+                        Посмотри рекламный ролик
+                    </div>
+
+                    <div class="task-progress">
+                        Получи Premium за просмотр
+                    </div>
+
+                </div>
+
+                <button class="task-button">
+                    Смотреть
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="task">
+
+            <div class="task-row">
+
+                <div class="task-icon">
+                    📣
+                </div>
+
+                <div class="task-body">
+
+                    <div class="task-name">
+                        Подпишись на официальную группу
+                    </div>
+
+                    <div class="task-progress">
+                        Задание доступно
+                    </div>
+
+                </div>
+
+                <button class="task-button">
+                    Открыть
+                </button>
+
+            </div>
+
+        </div>
+        `
+    );
+}
+
+
+/* =========================
+   SECURITY
+========================= */
 
 function openSecurity() {
-    alert("Раздел «Безопасность».");
+
+    openModal(
+        "Безопасность",
+        `
+        <div class="report-stat">
+
+            <div class="report-number">
+                3
+            </div>
+
+            <div class="report-label">
+                Отправленные жалобы
+            </div>
+
+            <div class="status">
+                1 на проверке
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ⚑ Жалобы
+            </div>
+
+            <div class="modal-item-description">
+                Здесь отображается краткая информация
+                о ваших жалобах и их статусах.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🔐 Защита аккаунта
+            </div>
+
+            <div class="modal-item-description">
+                Базовые параметры безопасности аккаунта.
+                Подтверждение аккаунта будет добавлено
+                в одном из будущих обновлений.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ⏸️ Временно приостановить аккаунт
+            </div>
+
+            <div class="modal-item-description">
+                Временно скрыть аккаунт и прекратить
+                его участие в рекомендациях.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div
+                class="modal-item-title"
+                style="color:#ff5364;"
+            >
+                🗑️ Удалить аккаунт
+            </div>
+
+            <div class="modal-item-description">
+                Полное удаление аккаунта.
+                Перед действием потребуется подтверждение.
+            </div>
+
+        </div>
+        `
+    );
 }
 
+
+/* =========================
+   SUPPORT
+========================= */
+
 function openSupport() {
-    alert("Центр поддержки Seyfert.");
+
+    openModal(
+        "Центр поддержки",
+        `
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                🆘 Чем можем помочь?
+            </div>
+
+            <div class="modal-item-description">
+                Здесь появится система поддержки Seyfert:
+                вопросы, обращения, проблемы с аккаунтом
+                и другие категории помощи.
+            </div>
+
+        </div>
+
+        <div class="modal-item">
+
+            <div class="modal-item-title">
+                ⚑ Мои обращения
+            </div>
+
+            <div class="modal-item-description">
+                История обращений и их текущий статус.
+            </div>
+
+        </div>
+        `
+    );
 }
 
 </script>
