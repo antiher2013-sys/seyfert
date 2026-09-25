@@ -1,976 +1,2257 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Seyfert — Чаты</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #0b0b10;
-    color: white;
-    min-height: 100vh;
-}
-
-button {
-    font: inherit;
-    color: inherit;
-}
-
-.app {
-    width: 100%;
-    max-width: 520px;
-    min-height: 100vh;
-    margin: auto;
-    padding-bottom: 85px;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    padding: 22px 18px 14px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-/* =========================
-   CHAT TABS
-========================= */
-
-.tabs {
-    display: flex;
-    padding: 0 12px;
-    border-bottom: 1px solid rgba(255,255,255,.1);
-}
-
-.tab {
-    flex: 1;
-    padding: 14px 4px;
-    background: none;
-    border: none;
-    opacity: .5;
-    cursor: pointer;
-    position: relative;
-}
-
-.tab.active {
-    opacity: 1;
-}
-
-.tab.active::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 15%;
-    right: 15%;
-    height: 2px;
-    background: white;
-    border-radius: 5px;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.content {
-    padding: 18px;
-}
-
-/* =========================
-   MATCHES
-========================= */
-
-.section-title {
-    font-size: 14px;
-    opacity: .65;
-    margin-bottom: 12px;
-}
-
-.matches {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    padding-bottom: 8px;
-}
-
-.matches::-webkit-scrollbar {
-    display: none;
-}
-
-.match {
-    flex: 0 0 auto;
-    width: 68px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.match-photo {
-    width: 62px;
-    height: 62px;
-    margin: auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid rgba(255,255,255,.75);
-}
-
-.match-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.match-name {
-    margin-top: 6px;
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* =========================
-   CHAT LIST
-========================= */
-
-.chat-list {
-    margin-top: 24px;
-}
-
-.chat {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 13px 5px;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    cursor: pointer;
-}
-
-.chat-photo {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.chat-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.chat-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.chat-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.chat-name {
-    font-weight: 700;
-}
-
-.chat-time {
-    font-size: 11px;
-    opacity: .45;
-}
-
-.chat-message {
-    margin-top: 5px;
-    font-size: 13px;
-    opacity: .55;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.unread {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 11px;
-    font-weight: 700;
-}
-
-/* =========================
-   OTHER TABS
-========================= */
-
-.placeholder {
-    text-align: center;
-    padding: 80px 20px;
-    opacity: .6;
-}
-
-.placeholder h2 {
-    margin-bottom: 10px;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navigation {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 100%;
-    max-width: 520px;
-
-    display: flex;
-    justify-content: space-around;
-
-    padding: 12px 5px calc(12px + env(safe-area-inset-bottom));
-
-    background: rgba(10,10,15,.92);
-    backdrop-filter: blur(18px);
-
-    border-top: 1px solid rgba(255,255,255,.08);
-}
-
-.nav-item {
-    border: none;
-    background: none;
-    opacity: .5;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-.nav-item.active {
-    opacity: 1;
-}
-
-.nav-icon {
-    display: block;
-    font-size: 21px;
-    margin-bottom: 3px;
-}
-
-/* =========================
-   DIALOG
-========================= */
-
-.chat-screen {
-    display: none;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.chat-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 18px;
-    border-bottom: 1px solid rgba(255,255,255,.1);
-}
-
-.back {
-    border: none;
-    background: none;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.chat-header-photo {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.chat-header-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.chat-header-name {
-    font-weight: 700;
-}
-
-.messages {
-    flex: 1;
-    padding: 20px 18px 100px;
-}
-
-.message {
-    max-width: 78%;
-    padding: 10px 14px;
-    margin-bottom: 10px;
-    border-radius: 18px;
-    background: #24242c;
-}
-
-.message.mine {
-    margin-left: auto;
-    background: #ffffff;
-    color: black;
-}
-
-.message-time {
-    font-size: 9px;
-    opacity: .45;
-    margin-top: 4px;
-}
-
-.message-input {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 100%;
-    max-width: 520px;
-
-    display: flex;
-    gap: 8px;
-
-    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-
-    background: rgba(10,10,15,.95);
-    backdrop-filter: blur(18px);
-}
-
-.message-input input {
-    flex: 1;
-    min-width: 0;
-
-    border: none;
-    outline: none;
-
-    padding: 12px 15px;
-    border-radius: 20px;
-
-    background: #202027;
-    color: white;
-}
-
-.send {
-    width: 44px;
-    height: 44px;
-
-    border-radius: 50%;
-    border: none;
-
-    background: white;
-    color: black;
-
-    cursor: pointer;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Seyfert — Чаты</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #05030b;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       ОСНОВНОЕ ПРИЛОЖЕНИЕ
+    ========================= */
+
+    .app {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding-bottom: 90px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding:
+        calc(18px + env(safe-area-inset-top))
+        18px
+        12px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .settings-button {
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.07);
+      color: white;
+
+      font-size: 19px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .settings-button:active {
+      transform: scale(0.9);
+    }
+
+    /* =========================
+       ВЕРХНИЕ ВКЛАДКИ
+    ========================= */
+
+    .tabs {
+      display: flex;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.10);
+
+      padding: 0 10px;
+    }
+
+    .tab {
+      position: relative;
+
+      flex: 1;
+
+      padding: 14px 4px;
+
+      border: 0;
+      background: transparent;
+
+      color: white;
+
+      font-size: 14px;
+
+      opacity: 0.5;
+
+      cursor: pointer;
+    }
+
+    .tab.active {
+      opacity: 1;
+    }
+
+    .tab.active::after {
+      content: "";
+
+      position: absolute;
+
+      left: 18%;
+      right: 18%;
+      bottom: -1px;
+
+      height: 2px;
+
+      border-radius: 5px;
+
+      background: white;
+    }
+
+    /* =========================
+       КОНТЕНТ
+    ========================= */
+
+    .content {
+      padding: 18px;
+    }
+
+    .section-title {
+      margin-bottom: 12px;
+
+      font-size: 13px;
+
+      opacity: 0.55;
+    }
+
+    /* =========================
+       МЕТЧИ
+    ========================= */
+
+    .matches {
+      display: flex;
+
+      gap: 16px;
+
+      overflow-x: auto;
+
+      padding-bottom: 7px;
+    }
+
+    .matches::-webkit-scrollbar {
+      display: none;
+    }
+
+    .match {
+      flex: 0 0 68px;
+
+      text-align: center;
+
+      cursor: pointer;
+    }
+
+    .match-photo {
+      position: relative;
+
+      width: 62px;
+      height: 62px;
+
+      margin: 0 auto;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+
+      border:
+        2px solid rgba(255,255,255,0.9);
+    }
+
+    .match-photo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .match-name {
+      margin-top: 6px;
+
+      font-size: 12px;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* =========================
+       СПИСОК ЧАТОВ
+    ========================= */
+
+    .chat-list {
+      margin-top: 24px;
+    }
+
+    .chat {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 13px 4px;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.07);
+
+      cursor: pointer;
+    }
+
+    .chat-photo {
+      flex: 0 0 54px;
+
+      width: 54px;
+      height: 54px;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+    }
+
+    .chat-photo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .chat-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .chat-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 8px;
+    }
+
+    .chat-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .chat-time {
+      font-size: 11px;
+
+      opacity: 0.4;
+    }
+
+    .chat-message {
+      margin-top: 5px;
+
+      font-size: 13px;
+
+      opacity: 0.55;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+    .unread {
+      min-width: 21px;
+      height: 21px;
+
+      padding: 0 6px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: white;
+
+      color: black;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       НИЖНЯЯ НАВИГАЦИЯ
+    ========================= */
+
+    .navigation {
+      position: fixed;
+
+      left: 50%;
+      bottom: 0;
+
+      transform: translateX(-50%);
+
+      width: 100%;
+      max-width: 520px;
+
+      display: flex;
+
+      justify-content: space-around;
+
+      padding:
+        11px
+        4px
+        calc(11px + env(safe-area-inset-bottom));
+
+      background:
+        rgba(8,8,13,0.94);
+
+      backdrop-filter: blur(18px);
+
+      border-top:
+        1px solid rgba(255,255,255,0.10);
+
+      z-index: 30;
+    }
+
+    .nav-item {
+      border: 0;
+
+      background: transparent;
+
+      color: white;
+
+      opacity: 0.5;
+
+      font-size: 11px;
+
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      opacity: 1;
+    }
+
+    .nav-icon {
+      display: block;
+
+      margin-bottom: 3px;
+
+      font-size: 21px;
+    }
+
+    /* =========================
+       ЭКРАН ДИАЛОГА
+    ========================= */
+
+    .dialog-screen {
+      display: none;
+
+      width: 100%;
+      max-width: 520px;
+
+      min-height: 100vh;
+
+      margin: 0 auto;
+
+      flex-direction: column;
+    }
+
+    .dialog-header {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      padding:
+        calc(12px + env(safe-area-inset-top))
+        14px
+        12px;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.10);
+    }
+
+    .back-button {
+      width: 40px;
+      height: 40px;
+
+      border: 0;
+
+      background: transparent;
+
+      color: white;
+
+      font-size: 27px;
+
+      cursor: pointer;
+    }
+
+    .dialog-photo {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+    }
+
+    .dialog-photo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .dialog-user {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .dialog-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .dialog-status {
+      min-height: 16px;
+
+      margin-top: 2px;
+
+      font-size: 12px;
+
+      color: #79e39b;
+    }
+
+    .report-button {
+      width: 40px;
+      height: 40px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.07);
+
+      color: white;
+
+      font-size: 18px;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       СООБЩЕНИЯ
+    ========================= */
+
+    .messages {
+      flex: 1;
+
+      padding:
+        20px
+        16px
+        110px;
+
+      overflow-y: auto;
+    }
+
+    .message {
+      max-width: 78%;
+
+      margin-bottom: 10px;
+
+      padding:
+        10px
+        14px;
+
+      border-radius: 18px;
+
+      background: #24242d;
+
+      line-height: 1.4;
+
+      font-size: 14px;
+    }
+
+    .message.mine {
+      margin-left: auto;
+
+      background: white;
+
+      color: black;
+    }
+
+    .message-time {
+      margin-top: 4px;
+
+      font-size: 9px;
+
+      opacity: 0.45;
+    }
+
+    .start-message {
+      text-align: center;
+
+      margin:
+        45px
+        auto;
+
+      max-width: 230px;
+
+      opacity: 0.45;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       ПОЛЕ ВВОДА
+    ========================= */
+
+    .message-bar {
+      position: fixed;
+
+      left: 50%;
+      bottom: 0;
+
+      transform: translateX(-50%);
+
+      width: 100%;
+      max-width: 520px;
+
+      display: flex;
+
+      gap: 7px;
+
+      padding:
+        9px
+        10px
+        calc(9px + env(safe-area-inset-bottom));
+
+      background:
+        rgba(8,8,13,0.95);
+
+      backdrop-filter: blur(18px);
+
+      z-index: 40;
+    }
+
+    .message-bar input {
+      min-width: 0;
+
+      flex: 1;
+
+      border: 0;
+      outline: none;
+
+      border-radius: 22px;
+
+      padding:
+        12px
+        15px;
+
+      background: #202028;
+
+      color: white;
+    }
+
+    .message-action {
+      width: 42px;
+      height: 42px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+
+      color: white;
+
+      cursor: pointer;
+    }
+
+    .message-send {
+      background: white;
+
+      color: black;
+    }
+
+    /* =========================
+       НАСТРОЙКИ
+    ========================= */
+
+    .overlay {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,0.72);
+
+      z-index: 70;
+
+      align-items: flex-end;
+
+      justify-content: center;
+    }
+
+    .settings-sheet {
+      width: 100%;
+      max-width: 520px;
+
+      padding: 20px;
+
+      border-radius:
+        24px
+        24px
+        0
+        0;
+
+      background: #191920;
+    }
+
+    .settings-title {
+      margin-bottom: 16px;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .settings-row {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding:
+        15px
+        0;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+    }
+
+    .settings-label {
+      font-size: 14px;
+    }
+
+    .switch {
+      position: relative;
+
+      width: 48px;
+      height: 28px;
+
+      border: 0;
+
+      border-radius: 20px;
+
+      background: #444;
+
+      cursor: pointer;
+    }
+
+    .switch::after {
+      content: "";
+
+      position: absolute;
+
+      left: 3px;
+      top: 3px;
+
+      width: 22px;
+      height: 22px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      transition: 0.2s;
+    }
+
+    .switch.on {
+      background: white;
+    }
+
+    .switch.on::after {
+      left: 23px;
+
+      background: #111;
+    }
+
+    .close-settings {
+      width: 100%;
+
+      margin-top: 15px;
+
+      padding: 13px;
+
+      border: 0;
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,0.08);
+
+      color: white;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       ЖАЛОБА / БЛОКИРОВКА
+    ========================= */
+
+    .safety-menu {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,0.72);
+
+      z-index: 80;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .safety-card {
+      width: 100%;
+      max-width: 370px;
+
+      padding: 20px;
+
+      border-radius: 22px;
+
+      background: #191920;
+    }
+
+    .safety-title {
+      margin-bottom: 14px;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .safety-option {
+      width: 100%;
+
+      margin-top: 8px;
+
+      padding: 13px;
+
+      border: 0;
+
+      border-radius: 13px;
+
+      background: rgba(255,255,255,0.07);
+
+      color: white;
+
+      text-align: left;
+
+      cursor: pointer;
+    }
+
+    .safety-option.danger {
+      color: #ff7777;
+    }
+
+    .safety-cancel {
+      width: 100%;
+
+      margin-top: 10px;
+
+      padding: 13px;
+
+      border: 0;
+
+      border-radius: 13px;
+
+      background: white;
+
+      color: black;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       УВЕДОМЛЕНИЕ
+    ========================= */
+
+    .toast {
+      display: none;
+
+      position: fixed;
+
+      left: 50%;
+      bottom: 100px;
+
+      transform: translateX(-50%);
+
+      z-index: 100;
+
+      padding:
+        10px
+        16px;
+
+      border-radius: 22px;
+
+      background: white;
+
+      color: black;
+
+      font-size: 13px;
+
+      white-space: nowrap;
+    }
+
+    /* =========================
+       ЗАГЛУШКА АНКЕТЫ
+    ========================= */
+
+    .profile-preview {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 90;
+
+      background: #05030b;
+
+      padding: 20px;
+    }
+
+    .profile-preview-inner {
+      max-width: 520px;
+
+      margin: 0 auto;
+
+      text-align: center;
+    }
+
+    .profile-preview-photo {
+      width: 100%;
+
+      max-height: 65vh;
+
+      object-fit: cover;
+
+      border-radius: 28px;
+    }
+
+    .profile-preview h2 {
+      margin-top: 15px;
+    }
+
+    .profile-preview button {
+      margin-top: 20px;
+
+      padding: 12px 25px;
+
+      border: 0;
+
+      border-radius: 20px;
+
+      background: white;
+
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- =========================
-     ОСНОВНОЙ ЭКРАН
-========================= -->
+  <!-- =========================
+       ОСНОВНОЙ ЭКРАН
+  ========================= -->
 
-<div class="app" id="mainScreen">
+  <div class="app" id="mainScreen">
 
     <header class="header">
-        <div class="logo">SEYFERT</div>
+
+      <div class="logo">
+        SEYFERT
+      </div>
+
+      <button
+        class="settings-button"
+        onclick="openSettings()"
+        aria-label="Настройки чатов"
+      >
+        ⚙️
+      </button>
+
     </header>
+
+
+    <!-- ВКЛАДКИ -->
 
     <div class="tabs">
 
-        <button class="tab active" onclick="switchTab('chats', this)">
-            Чаты
-        </button>
+      <button
+        class="tab active"
+        onclick="switchTab('chats', this)"
+      >
+        Чаты
+      </button>
 
-        <button class="tab" onclick="switchTab('likes', this)">
-            Мои лайки
-        </button>
+      <button
+        class="tab"
+        onclick="switchTab('likes', this)"
+      >
+        Мои лайки
+      </button>
 
-        <button class="tab" onclick="switchTab('likedMe', this)">
-            Кому я нравлюсь
-        </button>
+      <button
+        class="tab"
+        onclick="switchTab('liked', this)"
+      >
+        Кому я нравлюсь
+      </button>
 
     </div>
 
-    <main class="content" id="content"></main>
 
-</div>
+    <main
+      class="content"
+      id="content"
+    ></main>
 
-
-<!-- =========================
-     ЭКРАН ДИАЛОГА
-========================= -->
-
-<div class="chat-screen" id="chatScreen">
-
-    <header class="chat-header">
-
-        <button class="back" onclick="closeChat()">
-            ←
-        </button>
-
-        <div class="chat-header-photo">
-            <img id="dialogPhoto" src="">
-        </div>
-
-        <div class="chat-header-name" id="dialogName">
-        </div>
-
-    </header>
-
-    <div class="messages" id="messages"></div>
-
-    <form class="message-input" onsubmit="sendMessage(event)">
-
-        <input
-            id="messageInput"
-            type="text"
-            placeholder="Написать сообщение..."
-            autocomplete="off"
-        >
-
-        <button class="send">
-            ➤
-        </button>
-
-    </form>
-
-</div>
+  </div>
 
 
-<!-- =========================
-     НИЖНЯЯ НАВИГАЦИЯ
-========================= -->
+  <!-- =========================
+       НИЖНЯЯ НАВИГАЦИЯ
+  ========================= -->
 
-<nav class="navigation">
+  <nav class="navigation" id="navigation">
 
     <button class="nav-item">
-        <span class="nav-icon">⌂</span>
-        Анкеты
+      <span class="nav-icon">⌂</span>
+      Анкеты
     </button>
 
     <button class="nav-item active">
-        <span class="nav-icon">♡</span>
-        Чаты
+      <span class="nav-icon">♡</span>
+      Чаты
     </button>
 
     <button class="nav-item">
-        <span class="nav-icon">◌</span>
-        Интересы
+      <span class="nav-icon">◌</span>
+      Интересы
     </button>
 
     <button class="nav-item">
-        <span class="nav-icon">◉</span>
-        Моя анкета
+      <span class="nav-icon">◉</span>
+      Моя анкета
     </button>
 
-</nav>
+  </nav>
 
 
-<script>
+  <!-- =========================
+       ДИАЛОГ
+  ========================= -->
 
-/* =========================
-   ТЕСТОВЫЕ ДАННЫЕ
-========================= */
+  <div
+    class="dialog-screen"
+    id="dialogScreen"
+  >
 
-const matches = [
+    <header class="dialog-header">
 
-    {
+      <button
+        class="back-button"
+        onclick="closeDialog()"
+      >
+        ←
+      </button>
+
+
+      <div class="dialog-photo">
+
+        <img
+          id="dialogPhoto"
+          src=""
+          alt=""
+        >
+
+      </div>
+
+
+      <div class="dialog-user">
+
+        <div
+          class="dialog-name"
+          id="dialogName"
+        >
+        </div>
+
+        <div
+          class="dialog-status"
+          id="dialogStatus"
+        >
+        </div>
+
+      </div>
+
+
+      <button
+        class="report-button"
+        onclick="openSafety()"
+        aria-label="Жалоба"
+      >
+        ⚠️
+      </button>
+
+    </header>
+
+
+    <div
+      class="messages"
+      id="messages"
+    >
+    </div>
+
+
+    <form
+      class="message-bar"
+      onsubmit="sendMessage(event)"
+    >
+
+      <button
+        type="button"
+        class="message-action"
+        onclick="requestFeature('Голосовое сообщение')"
+      >
+        🎤
+      </button>
+
+      <button
+        type="button"
+        class="message-action"
+        onclick="requestFeature('Видеокружок')"
+      >
+        🎥
+      </button>
+
+      <input
+        id="messageInput"
+        type="text"
+        placeholder="Написать сообщение..."
+        autocomplete="off"
+      >
+
+      <button
+        type="submit"
+        class="message-action message-send"
+      >
+        ➤
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <!-- =========================
+       НАСТРОЙКИ
+  ========================= -->
+
+  <div
+    class="overlay"
+    id="settingsOverlay"
+  >
+
+    <div class="settings-sheet">
+
+      <div class="settings-title">
+        Настройки чатов
+      </div>
+
+
+      <div class="settings-row">
+
+        <div class="settings-label">
+          Показать только непрочитанные сообщения
+        </div>
+
+        <button
+          class="switch"
+          id="unreadSwitch"
+          onclick="toggleFilter('unread')"
+        >
+        </button>
+
+      </div>
+
+
+      <div class="settings-row">
+
+        <div class="settings-label">
+          Показать заблокированных пользователей
+        </div>
+
+        <button
+          class="switch"
+          id="blockedSwitch"
+          onclick="toggleFilter('blocked')"
+        >
+        </button>
+
+      </div>
+
+
+      <button
+        class="close-settings"
+        onclick="closeSettings()"
+      >
+        Готово
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       ЖАЛОБА / БЛОКИРОВКА
+  ========================= -->
+
+  <div
+    class="safety-menu"
+    id="safetyMenu"
+  >
+
+    <div class="safety-card">
+
+      <div
+        class="safety-title"
+        id="safetyTitle"
+      >
+        Безопасность
+      </div>
+
+
+      <button
+        class="safety-option danger"
+        onclick="reportUser()"
+      >
+        ⚠️ Пожаловаться
+      </button>
+
+
+      <button
+        class="safety-option"
+        onclick="blockUser()"
+      >
+        🚫 Заблокировать
+      </button>
+
+
+      <button
+        class="safety-cancel"
+        onclick="closeSafety()"
+      >
+        Отмена
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       ПРЕДПРОСМОТР АНКЕТЫ
+  ========================= -->
+
+  <div
+    class="profile-preview"
+    id="profilePreview"
+  >
+
+    <div class="profile-preview-inner">
+
+      <button
+        onclick="closeProfile()"
+        style="
+          position:absolute;
+          top:20px;
+          left:20px;
+          width:42px;
+          height:42px;
+          border:0;
+          border-radius:50%;
+          background:rgba(255,255,255,0.1);
+          color:white;
+          font-size:25px;
+        "
+      >
+        ←
+      </button>
+
+
+      <img
+        id="profilePreviewPhoto"
+        class="profile-preview-photo"
+        src=""
+        alt=""
+      >
+
+
+      <h2 id="profilePreviewName"></h2>
+
+
+      <p
+        style="
+          margin-top:8px;
+          opacity:0.6;
+        "
+      >
+        Здесь будет полная анкета пользователя.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="toast"
+    id="toast"
+  >
+  </div>
+
+
+  <script>
+
+    /* =========================
+       ТЕСТОВЫЕ ПОЛЬЗОВАТЕЛИ
+    ========================= */
+
+    const users = {
+
+      "Алина": {
+        photo:
+          "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=85",
+
+        status:
+          "В сети",
+
+        bot: [
+          "Привет! 👋",
+          "Рада, что ты написалa. Как проходит вечер?"
+        ]
+      },
+
+
+      "София": {
+        photo:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85",
+
+        status:
+          "была в сети 12 мин назад",
+
+        bot: [
+          "Привет :)",
+          "О, интересно. Расскажешь подробнее?"
+        ]
+      },
+
+
+      "Маша": {
+        photo:
+          "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85",
+
+        status:
+          "печатает…",
+
+        bot: [
+          "Привет!",
+          "Я как раз хотела тебе ответить 😄"
+        ]
+      },
+
+
+      "Ева": {
+        photo:
+          "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=85",
+
+        status:
+          "была в сети сегодня в 18:42",
+
+        bot: [
+          "Привет!",
+          "Давай знакомиться."
+        ]
+      }
+    };
+
+
+    /* =========================
+       СОСТОЯНИЕ ЧАТОВ
+    ========================= */
+
+    let chats = [
+
+      {
         name: "Алина",
-        photo:
-        "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=85"
-    },
+        lastMessage: "Начните общение",
+        time: "",
+        unread: 0,
+        started: false,
+        blocked: false
+      },
 
-    {
+      {
         name: "София",
-        photo:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=85"
-    },
-
-    {
-        name: "Маша",
-        photo:
-        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=85"
-    },
-
-    {
-        name: "Ева",
-        photo:
-        "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=500&q=85"
-    }
-
-];
-
-
-const chats = [
-
-    {
-        name: "Алина",
-        photo:
-        "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=85",
-
-        message:
-        "Я тоже люблю электронную музыку",
-
-        time: "19:42",
-
-        unread: 2
-    },
-
-    {
-        name: "София",
-        photo:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=85",
-
-        message:
-        "Давай как-нибудь обсудим это",
-
+        lastMessage: "Давай как-нибудь обсудим это",
         time: "18:17",
+        unread: 2,
+        started: true,
+        blocked: false
+      },
 
-        unread: 0
-    },
-
-    {
+      {
         name: "Маша",
-        photo:
-        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=85",
-
-        message:
-        "Привет :)",
-
+        lastMessage: "Привет :)",
         time: "вчера",
-
-        unread: 1
-    }
-
-];
-
-
-const likes = [
-
-    {
-        name: "Лера",
-        photo:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=85"
-    },
-
-    {
-        name: "Катя",
-        photo:
-        "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=500&q=85"
-    }
-
-];
+        unread: 1,
+        started: true,
+        blocked: false
+      }
+    ];
 
 
-const likedMe = [
+    let currentUser = "";
 
-    {
-        name: "Ирина",
-        photo:
-        "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=500&q=85"
-    },
+    let filters = {
+      unread: false,
+      blocked: false
+    };
 
-    {
-        name: "Настя",
-        photo:
-        "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=500&q=85"
-    }
-
-];
+    let botTimers = [];
 
 
-/* =========================
-   РЕНДЕР ЧАТОВ
-========================= */
+    /* =========================
+       ОТРИСОВКА ЧАТОВ
+    ========================= */
 
-function renderChats() {
+    function renderChats() {
 
-    let html = `
+      let visibleChats =
+        chats.filter(chat => {
 
+          const unreadAllowed =
+            !filters.unread ||
+            chat.unread > 0;
+
+          const blockedAllowed =
+            filters.blocked ||
+            !chat.blocked;
+
+          return unreadAllowed &&
+                 blockedAllowed;
+        });
+
+
+      let html = "";
+
+
+      /* МЕТЧИ */
+
+      html += `
         <div class="section-title">
-            Метчи
+          Взаимные метчи
         </div>
 
         <div class="matches">
-    `;
+      `;
 
-    matches.forEach(person => {
+
+      Object.keys(users).forEach(name => {
+
+        const user = users[name];
 
         html += `
+          <div
+            class="match"
+            onclick="openProfile('${name}')"
+          >
 
-            <div
-                class="match"
-                onclick="openChat('${person.name}', '${person.photo}')"
-            >
+            <div class="match-photo">
 
-                <div class="match-photo">
-
-                    <img
-                        src="${person.photo}"
-                        alt="${person.name}"
-                    >
-
-                </div>
-
-                <div class="match-name">
-                    ${person.name}
-                </div>
+              <img
+                src="${user.photo}"
+                alt="${name}"
+              >
 
             </div>
 
+            <div class="match-name">
+              ${name}
+            </div>
+
+          </div>
         `;
 
-    });
+      });
 
-    html += `
+
+      html += `
         </div>
 
         <div class="chat-list">
 
-            <div class="section-title">
-                Сообщения
-            </div>
-    `;
+          <div class="section-title">
+            Сообщения
+          </div>
+      `;
 
-    chats.forEach(person => {
+
+      if (visibleChats.length === 0) {
+
+        html += `
+          <div
+            style="
+              padding-top:30px;
+              text-align:center;
+              opacity:0.45;
+              font-size:13px;
+            "
+          >
+            Нет подходящих чатов
+          </div>
+        `;
+
+      }
+
+
+      visibleChats.forEach(chat => {
+
+        const user = users[chat.name];
 
         html += `
 
-            <div
-                class="chat"
-                onclick="openChat('${person.name}', '${person.photo}')"
-            >
+          <div
+            class="chat"
+            onclick="openDialog('${chat.name}')"
+          >
 
-                <div class="chat-photo">
+            <div class="chat-photo">
 
-                    <img
-                        src="${person.photo}"
-                        alt="${person.name}"
-                    >
-
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-top">
-
-                        <div class="chat-name">
-                            ${person.name}
-                        </div>
-
-                        <div class="chat-time">
-                            ${person.time}
-                        </div>
-
-                    </div>
-
-                    <div class="chat-message">
-                        ${person.message}
-                    </div>
-
-                </div>
-
-                ${
-                    person.unread
-                    ?
-                    `<div class="unread">${person.unread}</div>`
-                    :
-                    ""
-                }
+              <img
+                src="${user.photo}"
+                alt="${chat.name}"
+              >
 
             </div>
 
-        `;
 
-    });
+            <div class="chat-info">
 
-    html += `
-        </div>
-    `;
+              <div class="chat-top">
 
-    document.getElementById("content").innerHTML = html;
-}
-
-
-/* =========================
-   МОИ ЛАЙКИ
-========================= */
-
-function renderLikes() {
-
-    let html = `
-        <div class="section-title">
-            Мои лайки
-        </div>
-    `;
-
-    likes.forEach(person => {
-
-        html += `
-
-            <div
-                class="chat"
-                onclick="openChat('${person.name}', '${person.photo}')"
-            >
-
-                <div class="chat-photo">
-
-                    <img
-                        src="${person.photo}"
-                        alt="${person.name}"
-                    >
-
+                <div class="chat-name">
+                  ${chat.name}
                 </div>
 
-                <div class="chat-info">
-
-                    <div class="chat-name">
-                        ${person.name}
-                    </div>
-
-                    <div class="chat-message">
-                        ❤️ Лайк отправлен
-                    </div>
-
+                <div class="chat-time">
+                  ${chat.time}
                 </div>
+
+              </div>
+
+
+              <div class="chat-message">
+
+                ${chat.lastMessage}
+
+              </div>
 
             </div>
 
+
+            ${
+              chat.unread > 0
+                ? `
+                  <div class="unread">
+                    ${chat.unread}
+                  </div>
+                `
+                : ""
+            }
+
+          </div>
+
         `;
 
-    });
-
-    document.getElementById("content").innerHTML = html;
-}
+      });
 
 
-/* =========================
-   КОМУ Я НРАВЛЮСЬ
-========================= */
-
-function renderLikedMe() {
-
-    let html = `
-        <div class="section-title">
-            Кому я нравлюсь
+      html += `
         </div>
-    `;
-
-    likedMe.forEach(person => {
-
-        html += `
-
-            <div class="chat">
-
-                <div class="chat-photo">
-
-                    <img
-                        src="${person.photo}"
-                        alt="${person.name}"
-                    >
-
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-name">
-                        ${person.name}
-                    </div>
-
-                    <div class="chat-message">
-                        ❤️ Поставили вам лайк
-                    </div>
-
-                </div>
-
-                <button
-                    class="send"
-                    onclick="createMatch(event, '${person.name}')"
-                >
-                    ♥
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-    document.getElementById("content").innerHTML = html;
-}
+      `;
 
 
-/* =========================
-   ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
-========================= */
+      document.getElementById("content").innerHTML =
+        html;
+    }
 
-function switchTab(tab, button) {
 
-    document
+    /* =========================
+       ВКЛАДКИ
+    ========================= */
+
+    function switchTab(tab, button) {
+
+      document
         .querySelectorAll(".tab")
-        .forEach(item => item.classList.remove("active"));
+        .forEach(item =>
+          item.classList.remove("active")
+        );
 
-    button.classList.add("active");
 
-    if (tab === "chats") {
+      button.classList.add("active");
+
+
+      if (tab === "chats") {
+
         renderChats();
+
+      }
+
+
+      if (tab === "likes") {
+
+        document.getElementById("content").innerHTML = `
+
+          <div class="section-title">
+            Мои лайки
+          </div>
+
+          <div
+            style="
+              padding:70px 20px;
+              text-align:center;
+              opacity:0.55;
+            "
+          >
+
+            <div style="font-size:40px;">
+              🔒
+            </div>
+
+            <div style="margin-top:15px;">
+              Premium-функция
+            </div>
+
+            <div
+              style="
+                margin-top:8px;
+                font-size:13px;
+              "
+            >
+              Фотографии пользователей будут
+              отображаться размытыми.
+            </div>
+
+          </div>
+        `;
+
+      }
+
+
+      if (tab === "liked") {
+
+        document.getElementById("content").innerHTML = `
+
+          <div class="section-title">
+            Кому я нравлюсь
+          </div>
+
+          <div
+            style="
+              padding:70px 20px;
+              text-align:center;
+              opacity:0.55;
+            "
+          >
+
+            <div style="font-size:40px;">
+              🔒
+            </div>
+
+            <div style="margin-top:15px;">
+              Premium-функция
+            </div>
+
+            <div
+              style="
+                margin-top:8px;
+                font-size:13px;
+              "
+            >
+              Фотографии пользователей будут
+              отображаться размытыми.
+            </div>
+
+          </div>
+        `;
+
+      }
+
     }
 
-    if (tab === "likes") {
-        renderLikes();
-    }
 
-    if (tab === "likedMe") {
-        renderLikedMe();
-    }
+    /* =========================
+       ОТКРЫТИЕ ДИАЛОГА
+    ========================= */
 
-}
+    function openDialog(name) {
 
+      currentUser = name;
 
-/* =========================
-   ОТКРЫТИЕ ДИАЛОГА
-========================= */
-
-function openChat(name, photo) {
-
-    document.getElementById("mainScreen").style.display = "none";
-
-    document.querySelector(".navigation").style.display = "none";
-
-    document.getElementById("chatScreen").style.display = "flex";
-
-    document.getElementById("dialogName").textContent = name;
-
-    document.getElementById("dialogPhoto").src = photo;
+      const user =
+        users[name];
 
 
-    document.getElementById("messages").innerHTML = `
-
-        <div class="message">
-            Привет! 👋
-            <div class="message-time">
-                19:30
-            </div>
-        </div>
-
-        <div class="message mine">
-            Привет :)
-            <div class="message-time">
-                19:31
-            </div>
-        </div>
-
-        <div class="message">
-            Рад познакомиться!
-            <div class="message-time">
-                19:32
-            </div>
-        </div>
-
-    `;
-
-}
+      document.getElementById("mainScreen")
+        .style.display = "none";
 
 
-/* =========================
-   ЗАКРЫТИЕ ДИАЛОГА
-========================= */
-
-function closeChat() {
-
-    document.getElementById("chatScreen").style.display = "none";
-
-    document.getElementById("mainScreen").style.display = "block";
-
-    document.querySelector(".navigation").style.display = "flex";
-
-}
+      document.getElementById("navigation")
+        .style.display = "none";
 
 
-/* =========================
-   ОТПРАВКА СООБЩЕНИЯ
-========================= */
+      document.getElementById("dialogScreen")
+        .style.display = "flex";
 
-function sendMessage(event) {
 
-    event.preventDefault();
+      document.getElementById("dialogName")
+        .textContent = name;
 
-    const input =
-        document.getElementById("messageInput");
 
-    const text =
-        input.value.trim();
+      document.getElementById("dialogPhoto")
+        .src = user.photo;
 
-    if (!text) return;
 
-    const messages =
+      document.getElementById("dialogStatus")
+        .textContent = user.status;
+
+
+      const chat =
+        chats.find(item =>
+          item.name === name
+        );
+
+
+      if (chat) {
+
+        chat.unread = 0;
+
+      }
+
+
+      const messages =
         document.getElementById("messages");
 
-    const message =
+
+      messages.innerHTML = "";
+
+
+      if (!chat || !chat.started) {
+
+        messages.innerHTML = `
+
+          <div class="start-message">
+
+            Вы создали взаимный метч.
+
+            <br><br>
+
+            Начните общение с ${name}.
+
+          </div>
+
+        `;
+
+      } else {
+
+        addMessage(
+          "Привет! 👋",
+          false,
+          "19:30"
+        );
+
+
+        addMessage(
+          chat.lastMessage,
+          false,
+          chat.time || "19:32"
+        );
+
+      }
+
+
+      /*
+        Тестовый бот Алина
+      */
+
+      if (name === "Алина") {
+
+        startBot();
+
+      }
+
+    }
+
+
+    /* =========================
+       БОТ
+    ========================= */
+
+    function startBot() {
+
+      botTimers.forEach(timer =>
+        clearTimeout(timer)
+      );
+
+
+      botTimers = [];
+
+
+      botTimers.push(
+
+        setTimeout(() => {
+
+          if (currentUser !== "Алина") {
+            return;
+          }
+
+          document.getElementById("dialogStatus")
+            .textContent =
+            "печатает…";
+
+        }, 1300)
+
+      );
+
+
+      botTimers.push(
+
+        setTimeout(() => {
+
+          if (currentUser !== "Алина") {
+            return;
+          }
+
+          document.getElementById("dialogStatus")
+            .textContent =
+            users["Алина"].status;
+
+
+          addMessage(
+            users["Алина"].bot[0],
+            false,
+            "сейчас"
+          );
+
+        }, 2600)
+
+      );
+
+
+      botTimers.push(
+
+        setTimeout(() => {
+
+          if (currentUser !== "Алина") {
+            return;
+          }
+
+          document.getElementById("dialogStatus")
+            .textContent =
+            "печатает…";
+
+        }, 4000)
+
+      );
+
+
+      botTimers.push(
+
+        setTimeout(() => {
+
+          if (currentUser !== "Алина") {
+            return;
+          }
+
+          document.getElementById("dialogStatus")
+            .textContent =
+            users["Алина"].status;
+
+
+          addMessage(
+            users["Алина"].bot[1],
+            false,
+            "сейчас"
+          );
+
+        }, 5300)
+
+      );
+
+    }
+
+
+    /* =========================
+       ДОБАВЛЕНИЕ СООБЩЕНИЯ
+    ========================= */
+
+    function addMessage(
+      text,
+      mine,
+      time
+    ) {
+
+      const message =
         document.createElement("div");
 
-    message.className = "message mine";
 
-    message.innerHTML = `
+      message.className =
+        "message" +
+        (mine ? " mine" : "");
+
+
+      message.innerHTML = `
+
         ${text}
-        <div class="message-time">
-            сейчас
-        </div>
-    `;
 
-    messages.appendChild(message);
+        ${
+          time
+            ? `
+              <div class="message-time">
+                ${time}
+              </div>
+            `
+            : ""
+        }
 
-    input.value = "";
+      `;
 
-    messages.scrollTop =
+
+      document.getElementById("messages")
+        .appendChild(message);
+
+
+      const messages =
+        document.getElementById("messages");
+
+
+      messages.scrollTop =
         messages.scrollHeight;
 
-}
+    }
 
 
-/* =========================
-   СОЗДАНИЕ МЕТЧА
-========================= */
+    /* =========================
+       ОТПРАВКА СООБЩЕНИЯ
+    ========================= */
 
-function createMatch(event, name) {
+    function sendMessage(event) {
 
-    event.stopPropagation();
-
-    alert(
-        "МЕТЧ с " + name + " создан!"
-    );
-
-}
+      event.preventDefault();
 
 
-/* =========================
-   ПЕРВЫЙ ЗАПУСК
-========================= */
+      const input =
+        document.getElementById("messageInput");
 
-renderChats();
 
-</script>
+      const text =
+        input.value.trim();
+
+
+      if (!text) {
+        return;
+      }
+
+
+      addMessage(
+        text,
+        true,
+        "сейчас"
+      );
+
+
+      input.value = "";
+
+
+      const chat =
+        chats.find(item =>
+          item.name === currentUser
+        );
+
+
+      if (chat) {
+
+        chat.started = true;
+
+        chat.lastMessage = text;
+
+        chat.time = "сейчас";
+
+      }
+
+
+      /*
+        Ответ бота
+      */
+
+      if (currentUser === "Алина") {
+
+        setTimeout(() => {
+
+          document.getElementById("dialogStatus")
+            .textContent =
+            "печатает…";
+
+        }, 500);
+
+
+        setTimeout(() => {
+
+          document.getElementById("dialogStatus")
+            .textContent =
+            users["Алина"].status;
+
+
+          addMessage(
+            "Интересно! Расскажи ещё 🙂",
+            false,
+            "сейчас"
+          );
+
+        }, 1900);
+
+      }
+
+    }
+
+
+    /* =========================
+       ЗАКРЫТИЕ ДИАЛОГА
+    ========================= */
+
+    function closeDialog() {
+
+      botTimers.forEach(timer =>
+        clearTimeout(timer)
+      );
+
+
+      botTimers = [];
+
+
+      document.getElementById("dialogScreen")
+        .style.display = "none";
+
+
+      document.getElementById("mainScreen")
+        .style.display = "block";
+
+
+      document.getElementById("navigation")
+        .style.display = "flex";
+
+
+      renderChats();
+
+    }
+
+
+    /* =========================
+       НАСТРОЙКИ
+    ========================= */
+
+    function openSettings() {
+
+      document.getElementById("settingsOverlay")
+        .style.display = "flex";
+
+
+      syncSwitches();
+
+    }
+
+
+    function closeSettings() {
+
+      document.getElementById("settingsOverlay")
+        .style.display = "none";
+
+
+      renderChats();
+
+    }
+
+
+    function toggleFilter(type) {
+
+      filters[type] =
+        !filters[type];
+
+
+      syncSwitches();
+
+      renderChats();
+
+    }
+
+
+    function syncSwitches() {
+
+      document.getElementById("unreadSwitch")
+        .classList.toggle(
+          "on",
+          filters.unread
+        );
+
+
+      document.getElementById("blockedSwitch")
+        .classList.toggle(
+          "on",
+          filters.blocked
+        );
+
+    }
+
+
+    /* =========================
+       ЖАЛОБА / БЛОКИРОВКА
+    ========================= */
+
+    function openSafety() {
+
+      document.getElementById("safetyTitle")
+        .textContent =
+        "Безопасность: " +
+        currentUser;
+
+
+      document.getElementById("safetyMenu")
+        .style.display = "flex";
+
+    }
+
+
+    function closeSafety() {
+
+      document.getElementById("safetyMenu")
+        .style.display = "none";
+
+    }
+
+
+    function reportUser() {
+
+      const chat =
+        chats.find(item =>
+          item.name === currentUser
+        );
+
+
+      if (chat) {
+
+        chat.reported = true;
+
+      }
+
+
+      closeSafety();
+
+
+      showToast(
+        "Жалоба отправлена. Анкета временно скрыта."
+      );
+
+
+      setTimeout(() => {
+
+        closeDialog();
+
+      }, 900);
+
+    }
+
+
+    function blockUser() {
+
+      const chat =
+        chats.find(item =>
+          item.name === currentUser
+        );
+
+
+      if (chat) {
+
+        chat.blocked = true;
+
+      }
+
+
+      closeSafety();
+
+
+      showToast(
+        "Пользователь заблокирован."
+      );
+
+
+      setTimeout(() => {
+
+        closeDialog();
+
+      }, 900);
+
+    }
+
+
+    /* =========================
+       ГОЛОС / ВИДЕО
+    ========================= */
+
+    function requestFeature(name) {
+
+      showToast(
+        name +
+        " — разрешение будет запрошено при первом использовании."
+      );
+
+    }
+
+
+    /* =========================
+       АНКЕТА МЕТЧА
+    ========================= */
+
+    function openProfile(name) {
+
+      const user =
+        users[name];
+
+
+      document.getElementById(
+        "profilePreviewPhoto"
+      ).src =
+        user.photo;
+
+
+      document.getElementById(
+        "profilePreviewName"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "profilePreview"
+      ).style.display =
+        "block";
+
+    }
+
+
+    function closeProfile() {
+
+      document.getElementById(
+        "profilePreview"
+      ).style.display =
+        "none";
+
+    }
+
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    function showToast(text) {
+
+      const toast =
+        document.getElementById("toast");
+
+
+      toast.textContent =
+        text;
+
+
+      toast.style.display =
+        "block";
+
+
+      clearTimeout(
+        toast.timer
+      );
+
+
+      toast.timer =
+        setTimeout(() => {
+
+          toast.style.display =
+            "none";
+
+        }, 2800);
+
+    }
+
+
+    /* =========================
+       ЗАПУСК
+    ========================= */
+
+    renderChats();
+
+  </script>
 
 </body>
 </html>
