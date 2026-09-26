@@ -2,1773 +2,2043 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seyfert — Моя анкета</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Seyfert</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-    --bg:#08090d;
-    --panel:#11131a;
-    --panel2:#171a22;
-    --border:#272b37;
-    --text:#f5f5f7;
-    --muted:#858997;
-    --accent:#906cff;
-    --accent-soft:#241d3d;
-    --premium:#d5aa50;
-    --danger:#ff5364;
-    --success:#5ed49a;
+  --bg:#08090f;
+  --panel:#111522;
+  --panel2:#171b29;
+  --panel3:#1d2232;
+  --line:rgba(170,180,210,.14);
+  --text:#f5f6fa;
+  --muted:#858da3;
+  --purple:#8558ff;
+  --pink:#ef3d91;
+  --blue:#3bc7ff;
+  --green:#55dfa0;
+  --red:#ff637f;
+  --shadow:0 20px 55px rgba(0,0,0,.38);
 }
-
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+html,body{
+  margin:0;
+  min-height:100%;
+  background:#05060a;
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+}
 body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
 }
-
+button,input,textarea,select{
+  font:inherit;
+}
 button{
-    font:inherit;
-    color:inherit;
-    border:0;
+  color:inherit;
 }
-
 button:active{
-    transform:scale(.98);
+  transform:scale(.985);
 }
-
 .app{
-    width:100%;
-    max-width:520px;
-    min-height:100vh;
-    margin:auto;
-    background:
-        radial-gradient(circle at 50% -10%,rgba(120,75,220,.18),transparent 38%),
-        var(--bg);
+  width:100%;
+  max-width:620px;
+  min-height:100vh;
+  margin:auto;
+  padding-bottom:90px;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(122,79,255,.13),transparent 34%),
+    radial-gradient(circle at 100% 18%,rgba(239,61,145,.07),transparent 30%),
+    var(--bg);
 }
-
 /* HEADER */
-
 .header{
-    height:64px;
-    padding:0 18px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  height:70px;
+  padding:15px 19px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-
-.header-title{
-    font-size:22px;
-    font-weight:800;
+.logo{
+  font-size:19px;
+  font-weight:850;
+  letter-spacing:.5px;
 }
-
-.header-button{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    background:var(--panel2);
-    cursor:pointer;
+.header-action{
+  width:41px;
+  height:41px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#ffffff06;
+  cursor:pointer;
 }
-
-/* CONTENT */
-
-.content{
-    padding-bottom:100px;
+/* PAGES */
+.page{
+  display:none;
+  padding:0 17px;
 }
-
-/* PROFILE */
-
-.profile{
-    padding:25px 18px;
-    text-align:center;
+.page.active{
+  display:block;
 }
-
-.avatar{
-    width:150px;
-    height:150px;
-    margin:auto;
-    border-radius:35px;
-    background:
-        radial-gradient(circle at 30% 20%,#7257ff,transparent 35%),
-        radial-gradient(circle at 75% 25%,#e97555,transparent 35%),
-        radial-gradient(circle at 50% 90%,#c58a27,transparent 40%),
-        #282735;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:60px;
-    font-weight:900;
-    cursor:pointer;
+.page-title{
+  margin:9px 2px 4px;
+  font-size:30px;
+  font-weight:850;
+  letter-spacing:-.7px;
 }
-
-.name-row{
-    margin-top:16px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
+.page-subtitle{
+  margin:0 2px 19px;
+  color:var(--muted);
+  font-size:14px;
 }
-
-.name{
-    font-size:29px;
-    font-weight:850;
+/* COMMON */
+.card{
+  background:linear-gradient(145deg,#151a28,#10141e);
+  border:1px solid var(--line);
+  border-radius:25px;
+  box-shadow:var(--shadow);
 }
-
-.premium-free{
-    padding:5px 9px;
-    border-radius:8px;
-    background:rgba(144,108,255,.12);
-    border:1px solid rgba(144,108,255,.35);
-    color:#ad98ff;
-    font-size:11px;
-    font-weight:800;
-    cursor:pointer;
+.button{
+  border:0;
+  border-radius:15px;
+  padding:13px 17px;
+  background:linear-gradient(100deg,var(--purple),var(--pink));
+  font-weight:750;
+  cursor:pointer;
 }
-
-.city{
-    margin-top:6px;
-    color:var(--muted);
+.secondary{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px 16px;
+  background:#ffffff06;
+  cursor:pointer;
 }
-
-/* VIEW PROFILE */
-
-.view-profile{
-    width:100%;
-    margin-top:20px;
-    padding:15px;
-    border-radius:17px;
-    border:1px solid #49366d;
-    background:linear-gradient(135deg,rgba(95,61,150,.25),rgba(28,23,46,.6));
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    cursor:pointer;
+.small-button{
+  border:1px solid var(--line);
+  background:#ffffff05;
+  border-radius:13px;
+  padding:9px 12px;
+  cursor:pointer;
 }
-
-.view-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-align:left;
-}
-
-.view-icon{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    background:#29203d;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.view-title{
-    font-weight:750;
-}
-
-.view-subtitle{
-    margin-top:3px;
-    color:#85808f;
-    font-size:12px;
-}
-
-/* SECTIONS */
-
 .section{
-    padding:22px 18px;
-    border-top:1px solid var(--border);
+  margin-top:19px;
 }
-
 .section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:11px;
 }
-
 .section-title{
-    font-size:21px;
-    font-weight:800;
+  font-size:20px;
+  font-weight:780;
 }
-
-.edit{
-    background:none;
-    color:#aa94ff;
-    cursor:pointer;
-    font-size:14px;
-    font-weight:700;
+.section-action{
+  border:0;
+  background:none;
+  color:#aa88ff;
+  font-weight:700;
+  cursor:pointer;
 }
-
-/* PHOTOS */
-
-.photos{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:9px;
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:11px;
+  font-weight:750;
 }
-
-.photo{
-    aspect-ratio:1;
-    border-radius:15px;
-    background:
-        radial-gradient(circle at 30% 20%,#6750df,transparent 35%),
-        radial-gradient(circle at 75% 20%,#dd6f4e,transparent 35%),
-        #292735;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    font-weight:800;
+.badge.purple{
+  color:#bc9cff;
+  background:rgba(133,88,255,.13);
+  border:1px solid rgba(133,88,255,.25);
 }
-
-.photo-add{
-    background:#12151d;
-    border:1px dashed #3a3e4c;
-    color:#a993ff;
-    cursor:pointer;
+.badge.green{
+  color:#63e5a9;
+  background:rgba(85,223,160,.09);
+  border:1px solid rgba(85,223,160,.22);
 }
-
-/* ABOUT */
-
-.about{
-    color:#c7c9d2;
-    line-height:1.55;
-    font-size:15px;
+.badge.pink{
+  color:#ff91bf;
+  background:rgba(239,61,145,.1);
+  border:1px solid rgba(239,61,145,.22);
 }
-
-/* TAGS */
-
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+/* ANKETY */
+.profile-stage{
+  position:relative;
+  height:590px;
+  touch-action:pan-y;
 }
-
+.profile-card{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:30px;
+  background:#111621;
+  border:1px solid rgba(170,180,210,.17);
+  box-shadow:0 25px 70px rgba(0,0,0,.48);
+  transition:transform .28s ease,opacity .28s ease;
+}
+.profile-photo{
+  height:64%;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 22% 22%,#795aff,transparent 31%),
+    radial-gradient(circle at 82% 28%,#ed4c91,transparent 35%),
+    linear-gradient(135deg,#162849,#302044);
+}
+.photo-letter{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:105px;
+  font-weight:900;
+  color:#fff;
+  text-shadow:0 10px 35px rgba(0,0,0,.4);
+}
+.profile-gradient{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:45%;
+  background:linear-gradient(transparent,rgba(10,13,20,.94));
+}
+.profile-top{
+  position:absolute;
+  top:16px;
+  left:16px;
+  right:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.profile-info{
+  padding:14px 18px 17px;
+}
+.profile-name{
+  font-size:27px;
+  font-weight:850;
+}
+.profile-city{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:14px;
+}
+.profile-bio{
+  margin-top:11px;
+  color:#c6cbd8;
+  line-height:1.4;
+  font-size:14px;
+}
+.profile-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
 .tag{
-    padding:9px 13px;
-    border-radius:999px;
-    background:#171a23;
-    border:1px solid #292d39;
-    font-size:14px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#ffffff07;
+  border:1px solid var(--line);
+  color:#aeb5c8;
+  font-size:11px;
 }
-
-/* INFO */
-
-.info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+.swipe-actions{
+  display:flex;
+  justify-content:center;
+  gap:17px;
+  margin-top:15px;
 }
-
-.info{
-    padding:14px;
-    border-radius:16px;
-    background:var(--panel);
-    border:1px solid #222630;
+.swipe-button{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:#151a26;
+  cursor:pointer;
+  font-size:22px;
 }
-
-.info-label{
-    color:#707482;
-    font-size:11px;
-    text-transform:uppercase;
-    font-weight:750;
+.swipe-button.like{
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  border:0;
 }
-
-.info-value{
-    margin-top:7px;
-    font-size:15px;
-    font-weight:700;
+.swipe-button.skip{
+  color:#ff7791;
 }
-
-/* FUNCTION BUTTONS */
-
-.functions{
-    padding:22px 18px 30px;
-    border-top:1px solid var(--border);
+.empty-card{
+  height:100%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:30px;
 }
-
-.function{
-    width:100%;
-    min-height:66px;
-    margin-bottom:10px;
-    padding:11px 15px;
-    border-radius:18px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    cursor:pointer;
-    text-align:left;
+/* CHATS */
+.chat-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
-
-.function-icon{
-    width:43px;
-    height:43px;
-    margin-right:13px;
-    border-radius:13px;
-    background:#1c1f28;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
+.chat-card{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  cursor:pointer;
 }
-
-.function-body{
-    flex:1;
+.avatar{
+  position:relative;
+  width:57px;
+  height:57px;
+  flex:none;
+  border-radius:19px;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  font-weight:850;
+  background:linear-gradient(135deg,#684cff,#e84791);
 }
-
-.function-title{
-    font-weight:750;
+.online{
+  position:absolute;
+  width:11px;
+  height:11px;
+  right:-2px;
+  bottom:-1px;
+  border-radius:50%;
+  background:var(--green);
+  border:3px solid #151a26;
 }
-
-.function-description{
-    margin-top:3px;
-    color:#777b89;
-    font-size:12px;
+.chat-content{
+  flex:1;
+  min-width:0;
 }
-
-.function-arrow{
-    color:#666a78;
-    font-size:22px;
+.chat-line{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
 }
-
-.function.premium{
-    border-color:rgba(213,170,80,.3);
-    background:linear-gradient(135deg,rgba(100,75,25,.2),rgba(25,23,18,.7));
+.chat-name{
+  font-weight:760;
 }
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
-    z-index:100;
+.chat-time{
+  color:#686f84;
+  font-size:11px;
 }
-
-.modal.active{
-    display:flex;
+.chat-message{
+  margin-top:4px;
+  color:#838ba0;
+  font-size:13px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
-
-.sheet{
-    width:100%;
-    max-width:520px;
-    max-height:90vh;
-    overflow-y:auto;
-    background:#11131a;
-    border-top:1px solid #303440;
-    border-radius:26px 26px 0 0;
-    padding:20px 18px 35px;
-    animation:up .22s ease;
+/* GLOBAL */
+.global-list{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
 }
-
-@keyframes up{
-    from{transform:translateY(40px);opacity:0}
-    to{transform:translateY(0);opacity:1}
+.global-card{
+  padding:16px;
+  cursor:pointer;
 }
-
-.sheet-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:18px;
+.global-main{
+  display:flex;
+  gap:13px;
+  align-items:center;
 }
-
-.sheet-title{
-    font-size:23px;
-    font-weight:850;
+.global-icon{
+  width:53px;
+  height:53px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  font-size:25px;
+  background:linear-gradient(135deg,#30224e,#18233a);
+  border:1px solid rgba(133,88,255,.25);
 }
-
-.close{
-    width:39px;
-    height:39px;
-    border-radius:12px;
-    background:#1c1f28;
-    cursor:pointer;
+.global-name{
+  font-size:17px;
+  font-weight:780;
 }
-
-.item{
-    padding:17px 0;
-    border-bottom:1px solid #252934;
+.global-desc{
+  color:#81899e;
+  font-size:12px;
+  margin-top:3px;
 }
-
-.item:last-child{
-    border-bottom:0;
+.global-meta{
+  display:flex;
+  justify-content:space-between;
+  margin-top:13px;
+  color:#6e778c;
+  font-size:11px;
 }
-
-.item-title{
-    font-weight:750;
+/* PROFILE */
+.profile-hero{
+  padding:18px;
 }
-
-.item-text{
-    margin-top:6px;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.45;
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:15px;
 }
-
-/* TOGGLE */
-
-.setting-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
+.profile-avatar{
+  width:91px;
+  height:91px;
+  border-radius:28px;
+  display:grid;
+  place-items:center;
+  font-size:39px;
+  font-weight:900;
+  background:linear-gradient(135deg,#7456ff,#ea438f,#36c9ef);
+  box-shadow:0 0 35px rgba(126,80,255,.2);
 }
-
-.toggle{
-    width:48px;
-    height:27px;
-    padding:3px;
-    border-radius:20px;
-    background:#30333d;
-    cursor:pointer;
-    transition:.2s;
+.profile-name-big{
+  font-size:25px;
+  font-weight:850;
 }
-
-.toggle span{
-    display:block;
-    width:21px;
-    height:21px;
-    border-radius:50%;
-    background:#fff;
-    transition:.2s;
+.profile-meta{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
 }
-
-.toggle.on{
-    background:var(--accent);
+.premium-free{
+  margin-top:8px;
+  border:1px solid rgba(153,87,255,.32);
+  background:rgba(133,88,255,.11);
+  color:#c29cff;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:800;
+  cursor:pointer;
 }
-
-.toggle.on span{
-    transform:translateX(21px);
+.profile-actions{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
 }
-
-/* SELECT */
-
-.select{
-    width:100%;
-    margin-top:10px;
-    padding:13px;
-    border-radius:13px;
-    border:1px solid #2b2f3b;
-    background:#171a22;
-    color:white;
-    outline:none;
+.profile-actions button{
+  flex:1;
 }
-
-/* PREMIUM CARD */
-
-.premium-card{
-    padding:18px;
-    border-radius:18px;
-    background:linear-gradient(135deg,rgba(115,82,26,.24),rgba(27,24,19,.7));
-    border:1px solid rgba(213,170,80,.3);
-    margin-bottom:12px;
+.menu-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
 }
-
-.premium-title{
-    font-size:20px;
-    font-weight:850;
+.menu-item{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  text-align:left;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:#121722;
+  cursor:pointer;
 }
-
-.premium-text{
-    margin-top:6px;
-    color:#aaa7a0;
-    font-size:13px;
-    line-height:1.45;
+.menu-icon{
+  width:42px;
+  height:42px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:rgba(133,88,255,.1);
+  font-size:19px;
 }
-
-/* REPORT CARD */
-
-.report-card{
-    padding:18px;
-    border-radius:18px;
-    background:#151820;
-    border:1px solid #262a35;
-    margin-bottom:12px;
+.menu-copy{
+  flex:1;
 }
-
-.report-number{
-    font-size:30px;
-    font-weight:850;
+.menu-title{
+  font-weight:760;
 }
-
-.report-label{
-    color:var(--muted);
-    margin-top:4px;
+.menu-description{
+  color:#747d93;
+  font-size:11px;
+  margin-top:3px;
 }
-
-.report-active{
-    margin-top:10px;
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:8px;
-    background:rgba(144,108,255,.12);
-    color:#a995ff;
-    font-size:11px;
+.menu-arrow{
+  color:#626b81;
+  font-size:19px;
 }
-
-/* BOTTOM */
-
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:520px;
-    height:76px;
-    background:rgba(9,10,14,.97);
-    border-top:1px solid var(--border);
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    z-index:50;
+/* NAV */
+.bottom-nav{
+  position:fixed;
+  z-index:50;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:min(620px,100%);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  padding:8px 8px 10px;
+  background:rgba(7,9,14,.95);
+  backdrop-filter:blur(20px);
+  border-top:1px solid rgba(170,180,210,.1);
 }
-
-.nav{
-    background:none;
-    color:#676b79;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    cursor:pointer;
+.nav-button{
+  border:0;
+  border-radius:17px;
+  background:transparent;
+  padding:7px 3px;
+  color:#727a90;
+  cursor:pointer;
 }
-
-.nav.active{
-    color:white;
+.nav-button.active{
+  color:#fff;
+  background:rgba(133,88,255,.15);
 }
-
 .nav-icon{
-    font-size:19px;
+  display:block;
+  font-size:21px;
 }
-
-.nav-text{
-    font-size:10px;
+.nav-label{
+  display:block;
+  margin-top:3px;
+  font-size:10px;
+  font-weight:700;
 }
-
-/* SMALL */
-
-@media(max-width:380px){
-    .avatar{
-        width:135px;
-        height:135px;
-    }
-
-    .info-grid{
-        grid-template-columns:1fr;
-    }
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:12px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+}
+.modal.show{
+  display:flex;
+}
+.modal-box{
+  width:min(600px,100%);
+  max-height:88vh;
+  overflow:auto;
+  padding:19px;
+  border-radius:27px 27px 20px 20px;
+  background:#111621;
+  border:1px solid var(--line);
+  box-shadow:0 25px 80px rgba(0,0,0,.6);
+}
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:17px;
+}
+.modal-title{
+  font-size:22px;
+  font-weight:820;
+}
+.close{
+  width:39px;
+  height:39px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:#ffffff07;
+  cursor:pointer;
+}
+.modal-row{
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+.modal-row:last-child{
+  border-bottom:0;
+}
+.modal-label{
+  color:#858da3;
+  font-size:11px;
+}
+.modal-value{
+  margin-top:6px;
+  font-weight:700;
+}
+.input,.textarea,.select{
+  width:100%;
+  margin-top:8px;
+  padding:13px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#181e2a;
+  color:white;
+  outline:none;
+}
+.textarea{
+  min-height:110px;
+  resize:vertical;
+}
+.modal-buttons{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
+}
+.modal-buttons button{
+  flex:1;
+}
+/* CHAT WINDOW */
+.chat-header{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.back-button{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:#ffffff06;
+  cursor:pointer;
+}
+.chat-header-info{
+  flex:1;
+}
+.chat-header-name{
+  font-weight:780;
+}
+.chat-header-status{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:2px;
+}
+.message-list{
+  min-height:250px;
+  max-height:52vh;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:15px 0;
+}
+.message{
+  max-width:78%;
+  padding:10px 13px;
+  border-radius:17px;
+  line-height:1.4;
+  font-size:14px;
+}
+.message.mine{
+  align-self:flex-end;
+  background:linear-gradient(135deg,#7454ff,#a44de1);
+}
+.message.theirs{
+  align-self:flex-start;
+  background:#1b2130;
+  color:#d1d5df;
+}
+.message-form{
+  display:flex;
+  gap:8px;
+}
+.message-input{
+  flex:1;
+  min-width:0;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#181e2a;
+  color:#fff;
+  padding:12px;
+  outline:none;
+}
+/* SUPPORT */
+.support-count{
+  text-align:center;
+  padding:20px;
+}
+.support-number{
+  font-size:38px;
+  font-weight:900;
+}
+.support-muted{
+  color:var(--muted);
+  font-size:12px;
+}
+/* TOAST */
+.toast{
+  position:fixed;
+  z-index:300;
+  left:50%;
+  bottom:96px;
+  transform:translateX(-50%);
+  max-width:90%;
+  padding:11px 16px;
+  border-radius:999px;
+  background:#f3f4f7;
+  color:#111;
+  font-size:12px;
+  font-weight:650;
+  display:none;
+}
+/* RESPONSIVE */
+@media(max-width:390px){
+  .profile-stage{
+    height:555px;
+  }
+  .profile-photo{
+    height:62%;
+  }
+  .profile-name{
+    font-size:24px;
+  }
+  .page-title{
+    font-size:27px;
+  }
 }
 </style>
 </head>
-
 <body>
-
 <div class="app">
-
 <header class="header">
-    <div class="header-title">Моя анкета</div>
-    <button class="header-button" onclick="openSettings()">⚙️</button>
+  <div class="logo">SEYFERT</div>
+  <button class="header-action" onclick="openNotifications()">🔔</button>
 </header>
-
-<main class="content">
-
-<section class="profile">
-
-    <button class="avatar" onclick="openProfilePreview()">S</button>
-
-    <div class="name-row">
-        <div class="name">Дима <span style="font-weight:500">21</span></div>
-
+<!-- ========================= -->
+<!-- 1. АНКЕТЫ -->
+<!-- ========================= -->
+<section id="page-profiles" class="page active">
+  <div class="page-title">Анкеты</div>
+  <div class="page-subtitle">
+    Люди, которые подходят под твои фильтры
+  </div>
+  <div id="profileStage" class="profile-stage"></div>
+  <div class="swipe-actions">
+    <button class="swipe-button skip" onclick="swipeProfile('left')">✕</button>
+    <button class="swipe-button super" onclick="openCurrentProfile()">👁</button>
+    <button class="swipe-button like" onclick="swipeProfile('right')">♥</button>
+  </div>
+</section>
+<!-- ========================= -->
+<!-- 2. ЧАТЫ -->
+<!-- ========================= -->
+<section id="page-chats" class="page">
+  <div class="page-title">Чаты</div>
+  <div class="page-subtitle">
+    Твои собеседники
+  </div>
+  <div id="chatList" class="chat-list"></div>
+</section>
+<!-- ========================= -->
+<!-- 3. ГЛОБАЛ -->
+<!-- ========================= -->
+<section id="page-global" class="page">
+  <div class="page-title">Глобал</div>
+  <div class="page-subtitle">
+    Чаты по интересам из твоей анкеты
+  </div>
+  <div id="globalList" class="global-list"></div>
+</section>
+<!-- ========================= -->
+<!-- 4. ПРОФИЛЬ -->
+<!-- ========================= -->
+<section id="page-profile" class="page">
+  <div class="page-title">Моя анкета</div>
+  <div class="page-subtitle">
+    Твой профиль и настройки
+  </div>
+  <div class="card profile-hero">
+    <div class="profile-head">
+      <div class="profile-avatar">D</div>
+      <div>
+        <div class="profile-name-big">
+          Дима, 21
+        </div>
+        <div class="profile-meta">
+          📍 Санкт-Петербург
+        </div>
         <button class="premium-free" onclick="openPremiumFree()">
-            Premium Free
+          Premium Free
         </button>
+      </div>
     </div>
-
-    <div class="city">📍 Санкт-Петербург</div>
-
-    <button class="view-profile" onclick="openProfilePreview()">
-
-        <div class="view-left">
-            <div class="view-icon">👁️</div>
-
-            <div>
-                <div class="view-title">Посмотреть свою анкету</div>
-                <div class="view-subtitle">Так её видят другие пользователи</div>
-            </div>
-        </div>
-
-        <div>›</div>
-
-    </button>
-
-</section>
-
-
-<section class="section">
-
+    <div class="profile-actions">
+      <button class="button" onclick="previewOwnProfile()">
+        Посмотреть анкету
+      </button>
+      <button class="secondary" onclick="editAbout()">
+        О себе
+      </button>
+    </div>
+  </div>
+  <div class="section">
     <div class="section-head">
-        <div class="section-title">Мои фото</div>
-        <button class="edit" onclick="openPhotos()">Изменить</button>
+      <div class="section-title">О себе</div>
+      <button class="section-action" onclick="editAbout()">
+        Изменить
+      </button>
     </div>
-
-    <div class="photos">
-        <div class="photo">D</div>
-        <div class="photo">D</div>
-        <div class="photo">D</div>
-        <button class="photo photo-add" onclick="openPhotos()">+</button>
+    <div class="card" style="padding:16px">
+      <div style="color:#c4cad8;line-height:1.5;font-size:14px">
+        Люблю музыку, игры, ночные разговоры и людей,
+        с которыми можно быть собой.
+      </div>
     </div>
-
-</section>
-
-
-<section class="section">
-
+  </div>
+  <div class="section">
     <div class="section-head">
-        <div class="section-title">О себе</div>
-        <button class="edit" onclick="openAbout()">Редактировать</button>
+      <div class="section-title">Интересы</div>
+      <button class="section-action" onclick="editInterests()">
+        Изменить
+      </button>
     </div>
-
-    <div class="about">
-        Люблю музыку, ночные разговоры, игры и людей,
-        с которыми можно быть собой. Ищу общение,
-        дружбу и отношения без лишней игры.
-    </div>
-
-</section>
-
-
-<section class="section">
-
+    <div id="profileTags" class="card" style="padding:14px"></div>
+  </div>
+  <div class="section">
     <div class="section-head">
-        <div class="section-title">Интересы</div>
-        <button class="edit" onclick="openInterests()">Изменить</button>
+      <div class="section-title">Основная информация</div>
+      <button class="section-action" onclick="editBasic()">
+        Изменить
+      </button>
     </div>
-
-    <div class="tags">
-        <div class="tag">🎵 Музыка</div>
-        <div class="tag">🎬 Кино</div>
-        <div class="tag">☕ Кофе</div>
-        <div class="tag">✈️ Путешествия</div>
-        <div class="tag">🐕 Животные</div>
+    <div class="card" style="padding:16px">
+      <div class="modal-row">
+        <div class="modal-label">Пол</div>
+        <div class="modal-value">Парень</div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">Возраст</div>
+        <div class="modal-value">21</div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">Город</div>
+        <div class="modal-value">Санкт-Петербург</div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">Цели знакомства</div>
+        <div class="modal-value">Общение · отношения</div>
+      </div>
     </div>
-
-</section>
-
-
-<section class="section">
-
+  </div>
+  <div class="section">
     <div class="section-head">
-        <div class="section-title">Основная информация</div>
-        <button class="edit" onclick="openBasicInfo()">Изменить</button>
+      <div class="section-title">Разделы</div>
     </div>
-
-    <div class="info-grid">
-
-        <div class="info">
-            <div class="info-label">Пол</div>
-            <div class="info-value">Парень</div>
+    <div class="menu-list">
+      <button class="menu-item" onclick="openSettings()">
+        <div class="menu-icon">⚙️</div>
+        <div class="menu-copy">
+          <div class="menu-title">Настройки</div>
+          <div class="menu-description">
+            Уведомления, фильтры и внешний вид
+          </div>
         </div>
-
-        <div class="info">
-            <div class="info-label">Город</div>
-            <div class="info-value">Санкт-Петербург</div>
+        <div class="menu-arrow">›</div>
+      </button>
+      <button class="menu-item" onclick="openPremium()">
+        <div class="menu-icon">💎</div>
+        <div class="menu-copy">
+          <div class="menu-title">Premium</div>
+          <div class="menu-description">
+            Дополнительные возможности
+          </div>
         </div>
-
-        <div class="info">
-            <div class="info-label">Цели</div>
-            <div class="info-value">Общение · отношения</div>
+        <div class="menu-arrow">›</div>
+      </button>
+      <button class="menu-item" onclick="openSecurity()">
+        <div class="menu-icon">🛡️</div>
+        <div class="menu-copy">
+          <div class="menu-title">Безопасность</div>
+          <div class="menu-description">
+            Защита аккаунта
+          </div>
         </div>
-
-        <div class="info">
-            <div class="info-label">Возраст</div>
-            <div class="info-value">21</div>
+        <div class="menu-arrow">›</div>
+      </button>
+      <button class="menu-item" onclick="openSupport()">
+        <div class="menu-icon">🆘</div>
+        <div class="menu-copy">
+          <div class="menu-title">Центр поддержки</div>
+          <div class="menu-description">
+            Обращения и жалобы
+          </div>
         </div>
-
+        <div class="menu-arrow">›</div>
+      </button>
     </div>
-
+  </div>
 </section>
-
-
-<section class="functions">
-
-    <button class="function" onclick="openSettings()">
-
-        <div class="function-icon">⚙️</div>
-
-        <div class="function-body">
-            <div class="function-title">Настройки</div>
-            <div class="function-description">
-                Уведомления, фильтры, внешний вид и аккаунты
-            </div>
-        </div>
-
-        <div class="function-arrow">›</div>
-
-    </button>
-
-
-    <button class="function premium" onclick="openPremium()">
-
-        <div class="function-icon">💎</div>
-
-        <div class="function-body">
-            <div class="function-title">Premium</div>
-            <div class="function-description">
-                Дополнительные возможности Seyfert
-            </div>
-        </div>
-
-        <div class="function-arrow">›</div>
-
-    </button>
-
-
-    <button class="function" onclick="openSecurity()">
-
-        <div class="function-icon">🛡️</div>
-
-        <div class="function-body">
-            <div class="function-title">Безопасность</div>
-            <div class="function-description">
-                Защита аккаунта
-            </div>
-        </div>
-
-        <div class="function-arrow">›</div>
-
-    </button>
-
-
-    <button class="function" onclick="openSupport()">
-
-        <div class="function-icon">🆘</div>
-
-        <div class="function-body">
-            <div class="function-title">Центр поддержки</div>
-            <div class="function-description">
-                Жалобы и обращения
-            </div>
-        </div>
-
-        <div class="function-arrow">›</div>
-
-    </button>
-
-</section>
-
-</main>
-
-
-<nav class="bottom">
-
-    <button class="nav">
-        <span class="nav-icon">❤️</span>
-        <span class="nav-text">Анкеты</span>
-    </button>
-
-    <button class="nav">
-        <span class="nav-icon">💬</span>
-        <span class="nav-text">Чаты</span>
-    </button>
-
-    <button class="nav">
-        <span class="nav-icon">🌐</span>
-        <span class="nav-text">Глобальные</span>
-    </button>
-
-    <button class="nav">
-        <span class="nav-icon">📋</span>
-        <span class="nav-text">Активности</span>
-    </button>
-
-    <button class="nav active">
-        <span class="nav-icon">👤</span>
-        <span class="nav-text">Профиль</span>
-    </button>
-
+<!-- ========================= -->
+<!-- NAVIGATION -->
+<!-- ========================= -->
+<nav class="bottom-nav">
+  <button class="nav-button active" onclick="navigate('profiles',this)">
+    <span class="nav-icon">♥</span>
+    <span class="nav-label">Анкеты</span>
+  </button>
+  <button class="nav-button" onclick="navigate('chats',this)">
+    <span class="nav-icon">💬</span>
+    <span class="nav-label">Чаты</span>
+  </button>
+  <button class="nav-button" onclick="navigate('global',this)">
+    <span class="nav-icon">🌐</span>
+    <span class="nav-label">Глобал</span>
+  </button>
+  <button class="nav-button" onclick="navigate('profile',this)">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Профиль</span>
+  </button>
 </nav>
-
 </div>
-
-
-<div class="modal" id="modal">
-
-<div class="sheet">
-
-    <div class="sheet-head">
-
-        <div class="sheet-title" id="modalTitle">
-            Раздел
-        </div>
-
-        <button class="close" onclick="closeModal()">✕</button>
-
+<!-- ========================= -->
+<!-- MODAL -->
+<!-- ========================= -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div id="modalTitle" class="modal-title">
+        Seyfert
+      </div>
+      <button class="close" onclick="closeModal()">✕</button>
     </div>
-
-    <div id="modalContent"></div>
-
+    <div id="modalBody"></div>
+  </div>
 </div>
-
-</div>
-
-
+<div id="toast" class="toast"></div>
 <script>
-
-const modal=document.getElementById("modal");
-const title=document.getElementById("modalTitle");
-const content=document.getElementById("modalContent");
-
-function show(titleText,html){
-
-    title.textContent=titleText;
-    content.innerHTML=html;
-
-    modal.classList.add("active");
-    document.body.style.overflow="hidden";
+/* =========================
+   DATA
+========================= */
+const profiles = [
+  {
+    name:"Алина",
+    age:21,
+    city:"Санкт-Петербург",
+    letter:"А",
+    bio:"Люблю музыку, долгие прогулки и разговоры до утра.",
+    interests:["Музыка","Кино","Dota 2"],
+    online:true
+  },
+  {
+    name:"Маша",
+    age:22,
+    city:"Москва",
+    letter:"М",
+    bio:"Ищу людей, с которыми можно смеяться и говорить обо всём.",
+    interests:["Игры","Музыка","Путешествия"],
+    online:true
+  },
+  {
+    name:"София",
+    age:20,
+    city:"Казань",
+    letter:"С",
+    bio:"Кино, кофе, книги и хорошие собеседники.",
+    interests:["Кино","Книги","Кофе"],
+    online:false
+  }
+];
+let currentProfileIndex = 0;
+let myInterests = [
+  "Dota 2",
+  "Музыка",
+  "Кино",
+  "Игры"
+];
+let chats = [
+  {
+    name:"Алина",
+    letter:"А",
+    type:"Собеседник",
+    message:"Интересно! Расскажи ещё 🙂",
+    time:"сейчас",
+    online:true,
+    messages:[
+      {
+        mine:false,
+        text:"Привет 🙂"
+      },
+      {
+        mine:true,
+        text:"Привет! Рад познакомиться"
+      },
+      {
+        mine:false,
+        text:"Интересно! Расскажи ещё 🙂"
+      }
+    ]
+  },
+  {
+    name:"Маша",
+    letter:"М",
+    type:"Собеседник",
+    message:"Как проходит твой день?",
+    time:"12:42",
+    online:true,
+    messages:[
+      {
+        mine:false,
+        text:"Как проходит твой день?"
+      }
+    ]
+  }
+];
+let globalMessages = {};
+/* =========================
+   NAVIGATION
+========================= */
+function navigate(page,button){
+  document.querySelectorAll(".page")
+    .forEach(x=>x.classList.remove("active"));
+  document
+    .getElementById("page-"+page)
+    .classList.add("active");
+  document.querySelectorAll(".nav-button")
+    .forEach(x=>x.classList.remove("active"));
+  if(button){
+    button.classList.add("active");
+  }
+  if(page==="profiles"){
+    renderProfiles();
+  }
+  if(page==="chats"){
+    renderChats();
+  }
+  if(page==="global"){
+    renderGlobal();
+  }
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
-
-function closeModal(){
-
-    modal.classList.remove("active");
-    document.body.style.overflow="";
-}
-
-modal.addEventListener("click",e=>{
-    if(e.target===modal) closeModal();
-});
-
-
-/* PROFILE PREVIEW */
-
-function openProfilePreview(){
-
-show("Ваша анкета",`
-
-<div class="item">
-    <div class="item-title">👀 Просмотр со стороны</div>
-    <div class="item-text">
-        Здесь будет отображаться полноценная анкета
-        именно так, как её видит другой пользователь.
-    </div>
-</div>
-
-<div class="item">
-    <div class="item-title">Алина, 21</div>
-    <div class="item-text">
-        Санкт-Петербург · Онлайн
-    </div>
-</div>
-
-<div class="item">
-    <div class="item-title">Цели знакомства</div>
-    <div class="item-text">
-        Общение · отношения · дружба
-    </div>
-</div>
-
-`);
-}
-
-
-/* PHOTOS */
-
-function openPhotos(){
-
-show("Мои фото",`
-
-<div class="item">
-    <div class="item-title">📸 Управление фотографиями</div>
-    <div class="item-text">
-        Зажмите фотографию, чтобы удалить её
-        или поменять местами с другой.
-    </div>
-</div>
-
-<div class="item">
-    <div class="item-title">➕ Добавить фотографию</div>
-    <div class="item-text">
-        Добавить новую фотографию в анкету.
-    </div>
-</div>
-
-`);
-}
-
-
-/* ABOUT */
-
-function openAbout(){
-
-show("О себе",`
-
-<div class="item">
-
-    <div class="item-title">Описание</div>
-
-    <textarea
-        style="
-        width:100%;
-        min-height:130px;
-        margin-top:12px;
-        padding:13px;
-        border-radius:13px;
-        background:#171a22;
-        border:1px solid #2b2f3b;
-        color:white;
-        resize:none;
-        outline:none;
-        "
-    >Люблю музыку, ночные разговоры, игры и людей, с которыми можно быть собой.</textarea>
-
-</div>
-
-<div class="item">
-    <button
-        style="
-        width:100%;
-        padding:14px;
-        border-radius:13px;
-        background:var(--accent);
-        color:white;
-        font-weight:750;
-        cursor:pointer;
-        "
-        onclick="closeModal()"
-    >
-        Сохранить
-    </button>
-</div>
-
-`);
-}
-
-
-/* INTERESTS */
-
-function openInterests(){
-
-show("Интересы",`
-
-<div class="item">
-
-    <div class="item-title">Выберите интересы</div>
-
-    <div class="tags" style="margin-top:13px">
-
-        ${["🎵 Музыка","🎬 Кино","☕ Кофе","✈️ Путешествия","🐕 Животные","🎨 Творчество"]
-        .map(x=>`<button
-            onclick="this.classList.toggle('selected')"
-            style="
-            padding:9px 13px;
-            border-radius:999px;
-            background:#171a23;
-            border:1px solid #292d39;
-            cursor:pointer;
-            "
-        >${x}</button>`).join("")}
-
-    </div>
-
-</div>
-
-<div class="item">
-
-    <div class="item-title">🌐 Глобальные чаты</div>
-
-    <div class="item-text">
-        Выбранные интересы определяют, в какие глобальные
-        чаты вы можете входить.
-    </div>
-
-</div>
-
-`);
-}
-
-
-/* BASIC INFO */
-
-function openBasicInfo(){
-
-show("Основная информация",`
-
-<div class="item">
-
-    <div class="item-title">Пол</div>
-
-    <select class="select">
-        <option>Парень</option>
-        <option>Девушка</option>
-    </select>
-
-</div>
-
-<div class="item">
-
-    <div class="item-title">Город</div>
-
-    <input
-        class="select"
-        value="Санкт-Петербург"
-    >
-
-</div>
-
-<div class="item">
-
-    <div class="item-title">Цели знакомства</div>
-
-    <div class="tags" style="margin-top:12px">
-
-        <button class="tag">Общение</button>
-        <button class="tag">Отношения</button>
-        <button class="tag">Дружба</button>
-        <button class="tag">Без обязательств</button>
-
-    </div>
-
-</div>
-
-`);
-}
-
-
-/* SETTINGS */
-
-function openSettings(){
-
-show("Настройки",`
-
-<div class="item">
-
-    <div class="setting-row">
-
+/* =========================
+   PROFILES
+========================= */
+function renderProfiles(){
+  const stage=document.getElementById("profileStage");
+  if(currentProfileIndex>=profiles.length){
+    stage.innerHTML=`
+      <div class="profile-card empty-card">
         <div>
-            <div class="item-title">🔔 Все уведомления</div>
-            <div class="item-text">
-                Полностью включить или отключить уведомления.
-            </div>
+          <div style="font-size:48px">✨</div>
+          <h2>Анкеты закончились</h2>
+          <p style="color:var(--muted);line-height:1.5">
+            Пока подходящих анкет больше нет.
+            Попробуй изменить фильтры позже.
+          </p>
+          <button class="button"
+            onclick="currentProfileIndex=0;renderProfiles()">
+            Посмотреть снова
+          </button>
         </div>
-
-        <button class="toggle on" onclick="toggle(this)">
-            <span></span>
-        </button>
-
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="setting-row">
-
-        <div>
-            <div class="item-title">💬 Личные сообщения</div>
-            <div class="item-text">
-                Уведомления о новых личных сообщениях.
-            </div>
-        </div>
-
-        <button class="toggle on" onclick="toggle(this)">
-            <span></span>
-        </button>
-
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="setting-row">
-
-        <div>
-            <div class="item-title">🌐 Теги в глобальных чатах</div>
-            <div class="item-text">
-                Уведомления, когда вас отмечают.
-            </div>
-        </div>
-
-        <button class="toggle on" onclick="toggle(this)">
-            <span></span>
-        </button>
-
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">🔎 Фильтры поиска</div>
-
-    <div class="item-text">
-        Управление фильтрами рекомендаций.
-    </div>
-
-    <button
-        onclick="openFilters()"
-        style="
-        margin-top:11px;
-        padding:10px 13px;
-        border-radius:11px;
-        background:var(--accent-soft);
-        color:#b19dff;
-        cursor:pointer;
-        "
-    >
-        Открыть фильтры
-    </button>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">🎨 Внешний вид</div>
-
-    <select class="select">
-        <option>Тёмная тема</option>
-        <option>Системная тема</option>
-        <option>Светлая тема</option>
-    </select>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">🎨 Цвет интерфейса</div>
-
-    <select class="select">
-        <option>Фиолетовый</option>
-        <option>Синий</option>
-        <option>Красный</option>
-        <option>Зелёный</option>
-    </select>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">🔗 Привязанные аккаунты</div>
-
-    <div class="item-text">
-        Steam · Telegram · Discord
-    </div>
-
-    <button
-        onclick="openAccounts()"
-        style="
-        margin-top:11px;
-        padding:10px 13px;
-        border-radius:11px;
-        background:var(--accent-soft);
-        color:#b19dff;
-        cursor:pointer;
-        "
-    >
-        Управлять аккаунтами
-    </button>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">⏸️ Временно приостановить</div>
-
-    <div class="item-text">
-        Временно скрыть аккаунт.
-    </div>
-
-    <button
-        style="
-        margin-top:10px;
-        padding:11px 14px;
-        border-radius:11px;
-        background:#292c35;
-        cursor:pointer;
-        "
-        onclick="alert('Здесь появится подтверждение приостановки аккаунта')"
-    >
-        Приостановить
-    </button>
-
-</div>
-
-
-<div class="item">
-
+      </div>
+    `;
+    return;
+  }
+  const p=profiles[currentProfileIndex];
+  stage.innerHTML=`
     <div
-        class="item-title"
-        style="color:var(--danger)"
+      id="activeProfile"
+      class="profile-card"
+      ontouchstart="touchStart(event)"
+      ontouchend="touchEnd(event)"
     >
-        🗑️ Удаление аккаунта
-    </div>
-
-    <div class="item-text">
-        Полностью удалить аккаунт.
-    </div>
-
-    <button
-        style="
-        margin-top:10px;
-        padding:11px 14px;
-        border-radius:11px;
-        background:rgba(255,83,100,.12);
-        color:#ff7180;
-        cursor:pointer;
-        "
-        onclick="alert('Здесь появится подтверждение удаления аккаунта')"
-    >
-        Удалить аккаунт
-    </button>
-
-</div>
-
-`);
-}
-
-
-function toggle(el){
-    el.classList.toggle("on");
-}
-
-
-function openFilters(){
-
-show("Фильтры поиска",`
-
-<div class="item">
-
-    <div class="item-title">Возраст</div>
-
-    <select class="select">
-        <option>18–25</option>
-        <option>18–30</option>
-        <option>21–30</option>
-        <option>Любой возраст</option>
-    </select>
-
-</div>
-
-<div class="item">
-
-    <div class="item-title">Пол</div>
-
-    <select class="select">
-        <option>Все</option>
-        <option>Парни</option>
-        <option>Девушки</option>
-    </select>
-
-</div>
-
-<div class="item">
-
-    <div class="item-title">Город</div>
-
-    <select class="select">
-        <option>Санкт-Петербург</option>
-        <option>Любой город</option>
-    </select>
-
-</div>
-
-<div class="item">
-
-    <button
-        style="
-        width:100%;
-        padding:14px;
-        border-radius:13px;
-        background:var(--accent);
-        cursor:pointer;
-        font-weight:750;
-        "
-        onclick="closeModal()"
-    >
-        Сохранить фильтры
-    </button>
-
-</div>
-
-`);
-}
-
-
-function openAccounts(){
-
-show("Привязанные аккаунты",`
-
-<div class="item">
-    <div class="setting-row">
-        <div>
-            <div class="item-title">🎮 Steam</div>
-            <div class="item-text">Не привязан</div>
+      <div class="profile-photo">
+        <div class="photo-letter">
+          ${p.letter}
         </div>
-
-        <button
-            style="padding:9px 12px;border-radius:10px;background:#292d38;cursor:pointer"
-        >
-            Привязать
-        </button>
-    </div>
-</div>
-
-<div class="item">
-    <div class="setting-row">
-        <div>
-            <div class="item-title">✈️ Telegram</div>
-            <div class="item-text">Не привязан</div>
+        <div class="profile-gradient"></div>
+        <div class="profile-top">
+          ${
+            p.online
+            ? `<span class="badge green">● Сейчас онлайн</span>`
+            : `<span class="badge purple">Была недавно</span>`
+          }
+          <button
+            class="small-button"
+            onclick="openCurrentProfile()">
+            ⋯
+          </button>
         </div>
-
-        <button
-            style="padding:9px 12px;border-radius:10px;background:#292d38;cursor:pointer"
-        >
-            Привязать
-        </button>
-    </div>
-</div>
-
-<div class="item">
-    <div class="setting-row">
-        <div>
-            <div class="item-title">🎧 Discord</div>
-            <div class="item-text">Не привязан</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">
+          ${p.name}, ${p.age}
         </div>
-
+        <div class="profile-city">
+          📍 ${p.city}
+        </div>
+        <div class="profile-bio">
+          ${p.bio}
+        </div>
+        <div class="profile-tags">
+          ${p.interests
+            .map(i=>`<span class="tag">${i}</span>`)
+            .join("")
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+/* =========================
+   SWIPE
+========================= */
+let touchX=0;
+function touchStart(e){
+  touchX=e.changedTouches[0].screenX;
+}
+function touchEnd(e){
+  const endX=e.changedTouches[0].screenX;
+  const diff=endX-touchX;
+  if(Math.abs(diff)<70){
+    return;
+  }
+  swipeProfile(
+    diff>0 ? "right" : "left"
+  );
+}
+function swipeProfile(direction){
+  const card=document.getElementById("activeProfile");
+  if(!card){
+    return;
+  }
+  if(direction==="right"){
+    card.style.transform="translateX(120%) rotate(12deg)";
+    card.style.opacity="0";
+    showToast("Лайк отправлен ❤️");
+  }else{
+    card.style.transform="translateX(-120%) rotate(-12deg)";
+    card.style.opacity="0";
+    showToast("Анкета пропущена");
+  }
+  setTimeout(()=>{
+    currentProfileIndex++;
+    renderProfiles();
+  },250);
+}
+function openCurrentProfile(){
+  const p=profiles[currentProfileIndex];
+  if(!p){
+    return;
+  }
+  showModal(
+    `${p.name}, ${p.age}`,
+    `
+      <div class="modal-row">
+        <div class="modal-label">
+          Город
+        </div>
+        <div class="modal-value">
+          📍 ${p.city}
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">
+          О себе
+        </div>
+        <div style="margin-top:7px;line-height:1.5;color:#c4cad8">
+          ${p.bio}
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">
+          Интересы
+        </div>
+        <div class="profile-tags">
+          ${p.interests
+            .map(i=>`<span class="tag">${i}</span>`)
+            .join("")
+          }
+        </div>
+      </div>
+      <div class="modal-buttons">
         <button
-            style="padding:9px 12px;border-radius:10px;background:#292d38;cursor:pointer"
-        >
-            Привязать
+          class="secondary"
+          onclick="closeModal();swipeProfile('left')">
+          Пропустить
         </button>
-    </div>
-</div>
-
-`);
+        <button
+          class="button"
+          onclick="closeModal();swipeProfile('right')">
+          Нравится
+        </button>
+      </div>
+    `
+  );
 }
-
-
-/* PREMIUM */
-
-function openPremium(){
-
-show("Seyfert Premium",`
-
-<div class="premium-card">
-
-    <div class="premium-title">💎 Premium</div>
-
-    <div class="premium-text">
-        Расширенные лимиты, приоритет в рекомендациях
-        и дополнительные возможности общения.
+/* =========================
+   CHATS
+========================= */
+function renderChats(){
+  const list=document.getElementById("chatList");
+  list.innerHTML=chats.map((chat,index)=>`
+    <div
+      class="card chat-card"
+      onclick="openChat(${index})">
+      <div class="avatar">
+        ${chat.letter}
+        ${
+          chat.online
+          ? `<span class="online"></span>`
+          : ""
+        }
+      </div>
+      <div class="chat-content">
+        <div class="chat-line">
+          <div class="chat-name">
+            ${chat.name}
+          </div>
+          <div class="chat-time">
+            ${chat.time}
+          </div>
+        </div>
+        <div class="chat-message">
+          ${chat.message}
+        </div>
+        <div style="margin-top:6px">
+          <span class="badge purple">
+            Собеседник
+          </span>
+        </div>
+      </div>
     </div>
-
-</div>
-
-${[
-["🎥","Видеокружки","Увеличенный лимит вместо базовых 30 секунд."],
-["🎙️","Голосовые","Увеличенный лимит вместо базовых 30 секунд."],
-["❤️","Лайки и дизлайки","Больше доступных действий с анкетами."],
-["🚀","Приоритет","Дополнительный приоритет в рекомендациях."],
-["🌐","Глобальные чаты","Голосовые и видеокружки с Premium-лимитом."],
-["👀","Кто вас лайкнул","Просмотр лайкнувших и их анкет."],
-["❤️","Ваши лайки","Просмотр поставленных вами лайков."],
-["🔒","Приватные статусы","Дополнительные ограничения для контактов."],
-["🎁","Розыгрыши","Участие в Premium-розыгрышах."],
-["🆘","Поддержка","Приоритетное рассмотрение обращений."]
-].map(x=>`
-
-<div class="item">
-    <div class="item-title">${x[0]} ${x[1]}</div>
-    <div class="item-text">${x[2]}</div>
-</div>
-
-`).join("")}
-
-<div class="item">
-
-    <button
-        style="
-        width:100%;
-        padding:15px;
-        border-radius:14px;
-        background:linear-gradient(135deg,#d7ae55,#96702b);
-        color:#17120a;
-        font-weight:850;
-        cursor:pointer;
-        "
-        onclick="alert('Здесь появится оформление Premium')"
-    >
-        Подключить Premium
-    </button>
-
-</div>
-
-`);
+  `).join("");
 }
-
-
-/* PREMIUM FREE */
-
-function openPremiumFree(){
-
-show("Premium Free",`
-
-<div class="premium-card"
-style="
-background:linear-gradient(135deg,rgba(144,108,255,.18),rgba(31,25,51,.7));
-border-color:rgba(144,108,255,.3);
-">
-
-    <div class="premium-title">✨ Получай Premium бесплатно</div>
-
-    <div class="premium-text">
-        Выполняй задания и получай Premium
-        на определённый срок.
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">📅 Заходи несколько дней подряд</div>
-
-    <div class="item-text">
-        Прогресс: 3 / 7 дней.
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">▶️ Посмотри рекламный ролик</div>
-
-    <div class="item-text">
-        Посмотри рекламный ролик и получи награду.
-    </div>
-
-    <button
-        onclick="alert('Здесь будет рекламный ролик')"
-        style="
-        margin-top:10px;
-        padding:10px 13px;
-        border-radius:10px;
-        background:var(--accent-soft);
-        color:#b19dff;
-        cursor:pointer;
-        "
-    >
-        Смотреть
-    </button>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">📣 Подписка на группу</div>
-
-    <div class="item-text">
-        Подпишись на официальную группу Seyfert
-        для получения награды.
-    </div>
-
-    <button
-        onclick="alert('Здесь появится внешняя ссылка')"
-        style="
-        margin-top:10px;
-        padding:10px 13px;
-        border-radius:10px;
-        background:var(--accent-soft);
-        color:#b19dff;
-        cursor:pointer;
-        "
-    >
-        Открыть
-    </button>
-
-</div>
-
-`);
+function openChat(index){
+  const chat=chats[index];
+  showModal(
+    "",
+    `
+      <div class="chat-header">
+        <button
+          class="back-button"
+          onclick="closeModal()">
+          ‹
+        </button>
+        <div class="avatar">
+          ${chat.letter}
+        </div>
+        <div class="chat-header-info">
+          <div class="chat-header-name">
+            ${chat.name}
+          </div>
+          <div class="chat-header-status">
+            ${chat.online ? "в сети" : "была недавно"}
+          </div>
+        </div>
+      </div>
+      <div id="messageList" class="message-list">
+        ${chat.messages.map(m=>`
+          <div class="message ${m.mine?"mine":"theirs"}">
+            ${m.text}
+          </div>
+        `).join("")}
+      </div>
+      <form
+        class="message-form"
+        onsubmit="sendChatMessage(event,${index})">
+        <input
+          id="chatInput"
+          class="message-input"
+          placeholder="Сообщение..."
+          autocomplete="off"
+        >
+        <button class="button">
+          ➤
+        </button>
+      </form>
+    `
+  );
 }
-
-
-/* SECURITY */
-
-function openSecurity(){
-
-show("Безопасность",`
-
-<div class="item">
-
-    <div class="item-title">🔐 Защита аккаунта</div>
-
-    <div class="item-text">
-        Управление базовыми параметрами безопасности
-        вашего аккаунта.
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="setting-row">
-
-        <div>
-            <div class="item-title">Защита новых входов</div>
-            <div class="item-text">
-                Дополнительное подтверждение подозрительных входов.
+function sendChatMessage(e,index){
+  e.preventDefault();
+  const input=document.getElementById("chatInput");
+  const text=input.value.trim();
+  if(!text){
+    return;
+  }
+  chats[index].messages.push({
+    mine:true,
+    text:text
+  });
+  chats[index].message=text;
+  chats[index].time="сейчас";
+  openChat(index);
+  setTimeout(()=>{
+    const chat=chats[index];
+    chat.messages.push({
+      mine:false,
+      text:"Сообщение получено 🙂"
+    });
+    chat.message="Сообщение получено 🙂";
+    openChat(index);
+  },900);
+}
+/* =========================
+   GLOBAL
+========================= */
+function renderGlobal(){
+  const list=document.getElementById("globalList");
+  list.innerHTML=myInterests.map((interest,index)=>{
+    const icons={
+      "Dota 2":"🎮",
+      "Музыка":"🎵",
+      "Кино":"🎬",
+      "Игры":"🕹️",
+      "Путешествия":"✈️",
+      "Книги":"📚",
+      "Кофе":"☕"
+    };
+    return `
+      <div
+        class="card global-card"
+        onclick="openGlobal('${interest}')">
+        <div class="global-main">
+          <div class="global-icon">
+            ${icons[interest] || "💬"}
+          </div>
+          <div>
+            <div class="global-name">
+              ${interest}
             </div>
+            <div class="global-desc">
+              Глобальный чат по интересу
+            </div>
+          </div>
         </div>
-
-        <button class="toggle on" onclick="toggle(this)">
-            <span></span>
+        <div class="global-meta">
+          <span>
+            ${Math.floor(Math.random()*90)+20} участников
+          </span>
+          <span>
+            Открыть →
+          </span>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+function openGlobal(interest){
+  if(!globalMessages[interest]){
+    globalMessages[interest]=[
+      {
+        name:"Алекс",
+        text:`Кто сегодня играет в ${interest}?`
+      },
+      {
+        name:"Миша",
+        text:"Я здесь 🙂"
+      }
+    ];
+  }
+  showModal(
+    `Глобал · ${interest}`,
+    `
+      <div
+        id="globalMessageList"
+        class="message-list"
+        style="max-height:50vh">
+        ${globalMessages[interest].map(m=>`
+          <div class="message theirs">
+            <b>${m.name}</b><br>
+            ${m.text}
+          </div>
+        `).join("")}
+      </div>
+      <form
+        class="message-form"
+        onsubmit="sendGlobalMessage(event,'${interest}')">
+        <input
+          id="globalInput"
+          class="message-input"
+          placeholder="Написать в ${interest}..."
+        >
+        <button class="button">
+          ➤
         </button>
-
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">🔑 Способ входа</div>
-
-    <div class="item-text">
-        Настройка способов авторизации аккаунта.
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">📱 Активные устройства</div>
-
-    <div class="item-text">
-        Управление устройствами, с которых выполнен вход.
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">ℹ️ Подтверждение аккаунта</div>
-
-    <div class="item-text">
-        Функция будет добавлена в одном из будущих обновлений Seyfert.
-    </div>
-
-</div>
-
-`);
+      </form>
+    `
+  );
 }
-
-
-/* SUPPORT */
-
+function sendGlobalMessage(e,interest){
+  e.preventDefault();
+  const input=document.getElementById("globalInput");
+  const text=input.value.trim();
+  if(!text){
+    return;
+  }
+  globalMessages[interest].push({
+    name:"Дима",
+    text:text
+  });
+  openGlobal(interest);
+}
+/* =========================
+   PROFILE
+========================= */
+function renderInterests(){
+  document.getElementById("profileTags").innerHTML=
+    `<div class="profile-tags">
+      ${myInterests.map(i=>
+        `<span class="tag">${i}</span>`
+      ).join("")}
+    </div>`;
+}
+function previewOwnProfile(){
+  showModal(
+    "Твоя анкета",
+    `
+      <div style="text-align:center">
+        <div class="profile-avatar"
+             style="margin:auto">
+          D
+        </div>
+        <h2 style="margin-bottom:3px">
+          Дима, 21
+        </h2>
+        <div style="color:var(--muted)">
+          📍 Санкт-Петербург
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">
+          О себе
+        </div>
+        <div style="margin-top:7px;line-height:1.5;color:#c4cad8">
+          Люблю музыку, игры, ночные разговоры
+          и людей, с которыми можно быть собой.
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">
+          Интересы
+        </div>
+        <div class="profile-tags">
+          ${myInterests.map(i=>
+            `<span class="tag">${i}</span>`
+          ).join("")}
+        </div>
+      </div>
+    `
+  );
+}
+function editAbout(){
+  showModal(
+    "О себе",
+    `
+      <div class="form-group">
+        <div class="modal-label">
+          Текст анкеты
+        </div>
+        <textarea
+          id="aboutInput"
+          class="textarea">Люблю музыку, игры, ночные разговоры и людей, с которыми можно быть собой.</textarea>
+      </div>
+      <button
+        class="button"
+        style="width:100%"
+        onclick="saveAbout()">
+        Сохранить
+      </button>
+    `
+  );
+}
+function saveAbout(){
+  showToast("Информация сохранена");
+  closeModal();
+}
+function editInterests(){
+  const all=[
+    "Dota 2",
+    "Музыка",
+    "Кино",
+    "Игры",
+    "Путешествия",
+    "Книги",
+    "Кофе"
+  ];
+  showModal(
+    "Интересы",
+    `
+      <div style="color:var(--muted);font-size:13px;line-height:1.45;margin-bottom:13px">
+        Именно эти интересы используются
+        для формирования твоих глобальных чатов.
+      </div>
+      <div class="profile-tags">
+        ${all.map(i=>`
+          <button
+            class="tag ${myInterests.includes(i)?"selected":""}"
+            style="cursor:pointer"
+            onclick="toggleInterest(this,'${i}')">
+            ${i}
+          </button>
+        `).join("")}
+      </div>
+      <button
+        class="button"
+        style="width:100%;margin-top:18px"
+        onclick="renderInterests();renderGlobal();closeModal();showToast('Интересы сохранены')">
+        Сохранить
+      </button>
+    `
+  );
+}
+function toggleInterest(button,interest){
+  button.classList.toggle("selected");
+  if(myInterests.includes(interest)){
+    myInterests=myInterests.filter(x=>x!==interest);
+  }else{
+    myInterests.push(interest);
+  }
+}
+function editBasic(){
+  showModal(
+    "Основная информация",
+    `
+      <div class="form-group">
+        <div class="modal-label">
+          Имя
+        </div>
+        <input
+          class="input"
+          value="Дима">
+      </div>
+      <div class="form-group">
+        <div class="modal-label">
+          Город
+        </div>
+        <input
+          class="input"
+          value="Санкт-Петербург">
+      </div>
+      <div class="form-group">
+        <div class="modal-label">
+          Цели знакомства
+        </div>
+        <div class="profile-tags">
+          <span class="tag">Общение</span>
+          <span class="tag">Отношения</span>
+        </div>
+      </div>
+      <button
+        class="button"
+        style="width:100%"
+        onclick="closeModal();showToast('Информация сохранена')">
+        Сохранить
+      </button>
+    `
+  );
+}
+/* =========================
+   SETTINGS
+========================= */
+function openSettings(){
+  showModal(
+    "Настройки",
+    `
+      <div class="modal-row">
+        <div style="font-weight:750">
+          Уведомления
+        </div>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Можно отключать полностью,
+          только личные сообщения или теги
+          в глобальном чате.
+        </div>
+        <button
+          class="secondary"
+          style="margin-top:10px"
+          onclick="notificationSettings()">
+          Настроить
+        </button>
+      </div>
+      <div class="modal-row">
+        <div style="font-weight:750">
+          Фильтры поиска
+        </div>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Фильтры, по которым формируются рекомендации.
+        </div>
+        <button
+          class="secondary"
+          style="margin-top:10px"
+          onclick="searchFilters()">
+          Открыть фильтры
+        </button>
+      </div>
+      <div class="modal-row">
+        <div style="font-weight:750">
+          Внешний вид
+        </div>
+        <select class="select">
+          <option>Тёмная тема</option>
+          <option>Системная тема</option>
+          <option>Светлая тема</option>
+        </select>
+      </div>
+      <div class="modal-row">
+        <div style="font-weight:750">
+          Аккаунты
+        </div>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Steam · Telegram · Discord
+        </div>
+        <button
+          class="secondary"
+          style="margin-top:10px"
+          onclick="linkedAccounts()">
+          Управлять
+        </button>
+      </div>
+      <div class="modal-row">
+        <button
+          class="secondary"
+          style="width:100%"
+          onclick="showToast('Аккаунт временно приостановлен')">
+          Временно приостановить
+        </button>
+      </div>
+      <div class="modal-row">
+        <button
+          class="secondary"
+          style="width:100%;color:#ff718b"
+          onclick="confirmDelete()">
+          Удалить аккаунт
+        </button>
+      </div>
+    `
+  );
+}
+function notificationSettings(){
+  showModal(
+    "Уведомления",
+    `
+      <div class="modal-row">
+        <div class="modal-label">
+          Все уведомления
+        </div>
+        <select class="select">
+          <option>Включены</option>
+          <option>Выключены</option>
+        </select>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">
+          Личные сообщения
+        </div>
+        <select class="select">
+          <option>Включены</option>
+          <option>Выключены</option>
+        </select>
+      </div>
+      <div class="modal-row">
+        <div class="modal-label">
+          Теги в глобальных чатах
+        </div>
+        <select class="select">
+          <option>Включены</option>
+          <option>Выключены</option>
+        </select>
+      </div>
+    `
+  );
+}
+function searchFilters(){
+  showModal(
+    "Фильтры поиска",
+    `
+      <div class="form-group">
+        <div class="modal-label">
+          Пол
+        </div>
+        <select class="select">
+          <option>Парни и девушки</option>
+          <option>Парни</option>
+          <option>Девушки</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="modal-label">
+          Возраст
+        </div>
+        <select class="select">
+          <option>18–25</option>
+          <option>18–30</option>
+          <option>18–35</option>
+          <option>Без ограничения</option>
+        </select>
+      </div>
+      <button
+        class="button"
+        style="width:100%"
+        onclick="closeModal();showToast('Фильтры сохранены')">
+        Сохранить
+      </button>
+    `
+  );
+}
+function linkedAccounts(){
+  showModal(
+    "Аккаунты",
+    `
+      <div class="modal-row">
+        <b>Steam</b>
+        <button
+          class="secondary"
+          style="float:right"
+          onclick="showToast('Steam будет подключён')">
+          Подключить
+        </button>
+      </div>
+      <div class="modal-row">
+        <b>Telegram</b>
+        <button
+          class="secondary"
+          style="float:right"
+          onclick="showToast('Telegram будет подключён')">
+          Подключить
+        </button>
+      </div>
+      <div class="modal-row">
+        <b>Discord</b>
+        <button
+          class="secondary"
+          style="float:right"
+          onclick="showToast('Discord будет подключён')">
+          Подключить
+        </button>
+      </div>
+    `
+  );
+}
+function confirmDelete(){
+  if(confirm("Удалить аккаунт?")){
+    showToast("Демо: запрос на удаление отправлен");
+    closeModal();
+  }
+}
+/* =========================
+   PREMIUM
+========================= */
+function openPremium(){
+  showModal(
+    "Seyfert Premium",
+    `
+      <div
+        class="card"
+        style="
+          padding:18px;
+          border-color:rgba(216,157,67,.28);
+          background:linear-gradient(135deg,#241d12,#15161d)
+        ">
+        <div style="font-size:21px;font-weight:850">
+          💎 Premium
+        </div>
+        <div style="color:#aaa397;font-size:13px;line-height:1.5;margin-top:5px">
+          Дополнительные возможности Seyfert.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>🎥 Кружки и голосовые</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Увеличение базового ограничения 30 секунд.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>❤️ Лайки и дизлайки</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Увеличение ограничений просмотра анкет.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>👀 Лайки</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Просмотр своих лайков и пользователей,
+          которым ты понравился.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>🚀 Рекомендации</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Приоритет в рекомендациях.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>🌐 Глобальные чаты</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Кружки и голосовые с Premium-лимитами.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>🎁 Розыгрыши</b>
+      </div>
+      <div class="modal-row">
+        <b>🔒 Приватные статусы</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Защита от новых аккаунтов и приватные возможности.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>🆘 Центр поддержки</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Приоритет рассмотрения жалоб.
+        </div>
+      </div>
+      <button
+        class="button"
+        style="width:100%;margin-top:15px"
+        onclick="showToast('Оформление Premium — демо')">
+        Подключить Premium
+      </button>
+    `
+  );
+}
+function openPremiumFree(){
+  showModal(
+    "Premium Free",
+    `
+      <div class="card" style="padding:17px">
+        <b style="font-size:20px">
+          ✨ Premium Free
+        </b>
+        <div style="color:var(--muted);font-size:12px;line-height:1.5;margin-top:6px">
+          Выполняй условия и получай отдельные
+          возможности Premium бесплатно.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>📅 Заходи несколько дней подряд</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Прогресс: 3 / 7 дней
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>▶️ Посмотри рекламный ролик</b>
+        <button
+          class="secondary"
+          style="margin-top:9px"
+          onclick="showToast('Здесь будет рекламный ролик')">
+          Смотреть
+        </button>
+      </div>
+      <div class="modal-row">
+        <b>📣 Подпишись на группу</b>
+        <button
+          class="secondary"
+          style="margin-top:9px"
+          onclick="showToast('Здесь появится рекламное задание')">
+          Открыть
+        </button>
+      </div>
+    `
+  );
+}
+/* =========================
+   SECURITY
+========================= */
+function openSecurity(){
+  showModal(
+    "Безопасность",
+    `
+      <div class="modal-row">
+        <b>🔐 Защита аккаунта</b>
+        <div style="color:var(--muted);font-size:12px;line-height:1.5;margin-top:5px">
+          Здесь находятся только функции защиты аккаунта.
+          Жалобы и удаление здесь не дублируются.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>📱 Активные устройства</b>
+        <button
+          class="secondary"
+          style="margin-top:9px"
+          onclick="showToast('Список устройств открыт')">
+          Посмотреть
+        </button>
+      </div>
+      <div class="modal-row">
+        <b>🔑 Способ входа</b>
+        <button
+          class="secondary"
+          style="margin-top:9px"
+          onclick="showToast('Настройки входа открыты')">
+          Настроить
+        </button>
+      </div>
+    `
+  );
+}
+/* =========================
+   SUPPORT
+========================= */
 function openSupport(){
-
-show("Центр поддержки",`
-
-<div class="report-card">
-
-    <div class="report-number">3</div>
-
-    <div class="report-label">
-        Всего отправленных жалоб
-    </div>
-
-    <div class="report-active">
-        1 активная жалоба
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">⚑ Мои жалобы</div>
-
-    <div class="item-text">
-        Просматривайте активные жалобы
-        и отслеживайте их статус.
-    </div>
-
-    <button
-        onclick="openReports()"
-        style="
-        margin-top:11px;
-        padding:10px 13px;
-        border-radius:11px;
-        background:var(--accent-soft);
-        color:#b19dff;
-        cursor:pointer;
-        "
-    >
-        Посмотреть жалобы
-    </button>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">🆘 Обращение в поддержку</div>
-
-    <div class="item-text">
-        Сообщить о проблеме или получить помощь.
-    </div>
-
-    <button
-        onclick="openTicket()"
-        style="
-        margin-top:11px;
-        padding:11px 14px;
-        border-radius:11px;
-        background:var(--accent);
-        cursor:pointer;
-        font-weight:750;
-        "
-    >
-        Создать обращение
-    </button>
-
-</div>
-
-`);
+  showModal(
+    "Центр поддержки",
+    `
+      <div class="card support-count">
+        <div class="support-number">
+          3
+        </div>
+        <div class="support-muted">
+          Всего отправленных жалоб
+        </div>
+        <div style="margin-top:9px">
+          <span class="badge purple">
+            1 активная
+          </span>
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>⚑ Мои жалобы</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:5px">
+          Просмотр активных жалоб и их статусов.
+        </div>
+        <button
+          class="secondary"
+          style="margin-top:9px"
+          onclick="openReports()">
+          Посмотреть
+        </button>
+      </div>
+      <div class="modal-row">
+        <b>🆘 Новое обращение</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:5px">
+          Сообщить о проблеме или получить помощь.
+        </div>
+        <button
+          class="button"
+          style="margin-top:9px"
+          onclick="newTicket()">
+          Создать обращение
+        </button>
+      </div>
+    `
+  );
 }
-
-
 function openReports(){
-
-show("Мои жалобы",`
-
-<div class="item">
-
-    <div class="item-title">
-        Жалоба №1042
-    </div>
-
-    <div class="item-text">
-        Статус: на рассмотрении
-    </div>
-
-    <div class="report-active">
-        Активна
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">
-        Жалоба №982
-    </div>
-
-    <div class="item-text">
-        Статус: рассмотрено
-    </div>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">
-        Жалоба №941
-    </div>
-
-    <div class="item-text">
-        Статус: нарушение не подтверждено
-    </div>
-
-</div>
-
-`);
+  showModal(
+    "Мои жалобы",
+    `
+      <div class="modal-row">
+        <b>Жалоба №1042</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:5px">
+          Статус: на рассмотрении
+        </div>
+        <span class="badge purple" style="margin-top:8px">
+          Активна
+        </span>
+      </div>
+      <div class="modal-row">
+        <b>Жалоба №982</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:5px">
+          Статус: рассмотрено
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>Жалоба №941</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:5px">
+          Нарушение не подтверждено
+        </div>
+      </div>
+    `
+  );
 }
-
-
-function openTicket(){
-
-show("Новое обращение",`
-
-<div class="item">
-
-    <div class="item-title">Категория</div>
-
-    <select class="select">
-        <option>Проблема с аккаунтом</option>
-        <option>Техническая проблема</option>
-        <option>Вопрос</option>
-        <option>Другое</option>
-    </select>
-
-</div>
-
-
-<div class="item">
-
-    <div class="item-title">Сообщение</div>
-
-    <textarea
-        placeholder="Опишите проблему..."
-        style="
-        width:100%;
-        min-height:130px;
-        margin-top:10px;
-        padding:13px;
-        border-radius:13px;
-        background:#171a22;
-        border:1px solid #2b2f3b;
-        color:white;
-        resize:none;
-        outline:none;
-        "
-    ></textarea>
-
-</div>
-
-
-<div class="item">
-
-    <button
-        onclick="alert('Обращение отправлено');closeModal()"
-        style="
-        width:100%;
-        padding:14px;
-        border-radius:13px;
-        background:var(--accent);
-        font-weight:750;
-        cursor:pointer;
-        "
-    >
-        Отправить обращение
-    </button>
-
-</div>
-
-`);
+function newTicket(){
+  showModal(
+    "Новое обращение",
+    `
+      <div class="form-group">
+        <div class="modal-label">
+          Категория
+        </div>
+        <select class="select">
+          <option>Проблема с аккаунтом</option>
+          <option>Техническая проблема</option>
+          <option>Вопрос</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="modal-label">
+          Сообщение
+        </div>
+        <textarea
+          class="textarea"
+          placeholder="Опишите проблему..."></textarea>
+      </div>
+      <button
+        class="button"
+        style="width:100%"
+        onclick="closeModal();showToast('Обращение отправлено')">
+        Отправить
+      </button>
+    `
+  );
 }
-
+/* =========================
+   NOTIFICATIONS
+========================= */
+function openNotifications(){
+  showModal(
+    "Уведомления",
+    `
+      <div class="modal-row">
+        <b>❤️ Новый лайк</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Тебе поставили лайк.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>💬 Новое сообщение</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Тебе написал собеседник.
+        </div>
+      </div>
+      <div class="modal-row">
+        <b>🌐 Ответ в глобальном чате</b>
+        <div style="color:var(--muted);font-size:12px;margin-top:4px">
+          Вам ответили в чате по интересу.
+        </div>
+      </div>
+    `
+  );
+}
+/* =========================
+   MODALS / TOAST
+========================= */
+function showModal(title,content){
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalBody").innerHTML=content;
+  document.getElementById("modal").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+  document.body.style.overflow="";
+}
+document.getElementById("modal")
+  .addEventListener("click",function(e){
+    if(e.target===this){
+      closeModal();
+    }
+  });
+function showToast(text){
+  const toast=document.getElementById("toast");
+  toast.textContent=text;
+  toast.style.display="block";
+  clearTimeout(toast._timer);
+  toast._timer=setTimeout(()=>{
+    toast.style.display="none";
+  },2200);
+}
+/* =========================
+   START
+========================= */
+renderProfiles();
+renderChats();
+renderGlobal();
+renderInterests();
 </script>
-
 </body>
 </html>
