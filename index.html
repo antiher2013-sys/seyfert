@@ -1235,11 +1235,15 @@ button{
   background:rgba(255,255,255,.045);
 
   border:1px solid rgba(255,255,255,.065);
+
+  transition:
+    background .2s ease,
+    border-color .2s ease;
 }
 
 .notification-icon{
-  width:38px;
-  height:38px;
+  width:40px;
+  height:40px;
 
   flex-shrink:0;
 
@@ -1253,11 +1257,13 @@ button{
 
   color:#bda8f3;
 
-  font-size:17px;
+  font-size:18px;
+  line-height:1;
 }
 
 .notification-content{
   min-width:0;
+  flex:1;
 }
 
 .notification-text{
@@ -1265,14 +1271,62 @@ button{
 
   font-size:13px;
   line-height:1.4;
+  font-weight:700;
 }
 
 .notification-time{
-  margin-top:4px;
+  margin-top:5px;
 
   color:#777181;
 
   font-size:10px;
+}
+
+/* =========================================================
+   SYSTEM NOTIFICATION TYPES
+========================================================= */
+
+.notification-item.warning{
+  border-color:rgba(255,190,80,.12);
+}
+
+.notification-item.warning
+.notification-icon{
+  color:#ffc45c;
+  background:rgba(255,190,80,.11);
+}
+
+.notification-item.danger{
+  border-color:rgba(255,102,131,.16);
+}
+
+.notification-item.danger
+.notification-icon{
+  color:#ff6683;
+  background:rgba(255,102,131,.11);
+}
+
+.notification-item.blocked{
+  border-color:rgba(255,255,255,.12);
+}
+
+.notification-item.blocked
+.notification-icon{
+  color:#d5d0dc;
+  background:rgba(255,255,255,.08);
+}
+
+.notification-item.premium{
+  border-color:rgba(139,92,246,.2);
+}
+
+.notification-item.premium
+.notification-icon{
+  color:#c4a7ff;
+  background:rgba(139,92,246,.16);
+
+  box-shadow:
+    0 0 18px rgba(139,92,246,.12);
 }
 
 /* =========================================================
@@ -2111,106 +2165,85 @@ textarea{
 
     </div>
 
-    <div class="notifications-list">
+  <div class="notifications-list">
 
-      <div class="notification-item">
+  <div class="notification-item warning">
 
-        <div class="notification-icon">
-          ♥
-        </div>
+    <div class="notification-icon">
+      ⚠️
+    </div>
 
-        <div class="notification-content">
+    <div class="notification-content">
 
-          <div class="notification-text">
-            Кто-то отправил тебе лайк ❤️
-          </div>
-
-          <div class="notification-time">
-            Только что
-          </div>
-
-        </div>
-
+      <div class="notification-text">
+        Жалоба принята ⚠️
       </div>
 
-      <div class="notification-item">
-
-        <div class="notification-icon">
-          💬
-        </div>
-
-        <div class="notification-content">
-
-          <div class="notification-text">
-            У тебя новое сообщение
-          </div>
-
-          <div class="notification-time">
-            Сегодня, 18:42
-          </div>
-
-        </div>
-
+      <div class="notification-time">
+        Только что
       </div>
 
-      <div class="notification-item">
+    </div>
 
-        <div class="notification-icon">
-          ✨
-        </div>
+  </div>
 
-        <div class="notification-content">
 
-          <div class="notification-text">
-            Твоя анкета получила новую реакцию
-          </div>
+  <div class="notification-item danger">
 
-          <div class="notification-time">
-            Вчера, 21:17
-          </div>
+    <div class="notification-icon">
+      ❌
+    </div>
 
-        </div>
+    <div class="notification-content">
 
+      <div class="notification-text">
+        Вам временно ограничен доступ к аккаунту ❌
       </div>
 
-      <div class="notification-item">
-
-        <div class="notification-icon">
-          ◎
-        </div>
-
-        <div class="notification-content">
-
-          <div class="notification-text">
-            Новая активность в Глобале
-          </div>
-
-          <div class="notification-time">
-            2 дня назад
-          </div>
-
-        </div>
-
+      <div class="notification-time">
+        Сегодня, 18:42
       </div>
 
-      <div class="notification-item">
+    </div>
 
-        <div class="notification-icon">
-          ♡
-        </div>
+  </div>
 
-        <div class="notification-content">
 
-          <div class="notification-text">
-            Тебе понравилась новая анкета
-          </div>
+  <div class="notification-item blocked">
 
-          <div class="notification-time">
-            3 дня назад
-          </div>
+    <div class="notification-icon">
+      ⛔️
+    </div>
 
-        </div>
+    <div class="notification-content">
 
+      <div class="notification-text">
+        Ваш аккаунт изменён в связи с правилами сайта ⛔️
+      </div>
+
+      <div class="notification-time">
+        Вчера, 21:17
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="notification-item premium">
+
+    <div class="notification-icon">
+      🔔
+    </div>
+
+    <div class="notification-content">
+
+      <div class="notification-text">
+        Подписка на Premium оформлена 🔔
+      </div>
+
+      <div class="notification-time">
+        2 дня назад
       </div>
 
     </div>
