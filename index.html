@@ -54,12 +54,12 @@ button{
 /* ================= HEADER ================= */
 
 .header{
-  height:64px;
+  height:60px;
   flex-shrink:0;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:10px 16px;
+  justify-content:center;
+  padding:8px 15px;
 }
 
 .logo{
@@ -72,15 +72,6 @@ button{
   color:var(--purple);
 }
 
-.header-btn{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  color:#fff;
-  background:rgba(255,255,255,.045);
-  border:1px solid var(--line);
-}
-
 /* ================= MAIN ================= */
 
 .main{
@@ -88,33 +79,8 @@ button{
   min-height:0;
   display:flex;
   flex-direction:column;
-  padding:0 12px;
+  padding:0 11px 7px;
 }
-
-.top{
-  height:48px;
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.title{
-  font-size:27px;
-  font-weight:900;
-}
-
-.filter{
-  padding:9px 12px;
-  border-radius:13px;
-  color:#ddd8e8;
-  background:rgba(255,255,255,.045);
-  border:1px solid var(--line);
-  font-size:13px;
-  font-weight:700;
-}
-
-/* ================= CARD AREA ================= */
 
 .card-area{
   flex:1;
@@ -122,13 +88,18 @@ button{
   position:relative;
 }
 
+/* ================= CARD ================= */
+
 .card{
   position:absolute;
   inset:0;
+
   overflow:hidden;
 
-  border-radius:30px;
+  border-radius:32px;
+
   background:var(--card);
+
   border:1px solid rgba(255,255,255,.12);
 
   box-shadow:
@@ -148,12 +119,21 @@ button{
 .photo{
   position:absolute;
   inset:0;
+
+  transition:
+    opacity .38s ease,
+    transform .48s cubic-bezier(.22,.8,.22,1);
+}
+
+.card.expanded .photo{
+  opacity:0;
+  transform:scale(1.04);
+  pointer-events:none;
 }
 
 .photo-bg{
   position:absolute;
   inset:0;
-  transition:background .25s ease;
 }
 
 .photo-bg::after{
@@ -165,9 +145,9 @@ button{
     linear-gradient(
       to bottom,
       rgba(0,0,0,.04) 20%,
-      rgba(0,0,0,.1) 45%,
-      rgba(8,7,17,.72) 73%,
-      rgba(8,7,17,.98) 100%
+      rgba(0,0,0,.08) 42%,
+      rgba(8,7,17,.28) 65%,
+      rgba(8,7,17,.94) 100%
     );
 }
 
@@ -176,52 +156,83 @@ button{
 .person{
   position:absolute;
   z-index:2;
+
   left:50%;
-  top:40%;
-  width:220px;
-  height:330px;
+  top:43%;
+
+  width:260px;
+  height:390px;
+
   transform:translate(-50%,-50%);
 }
 
 .head{
   position:absolute;
+
   top:0;
   left:50%;
-  width:112px;
-  height:132px;
+
+  width:126px;
+  height:148px;
+
   transform:translateX(-50%);
+
   border-radius:52% 52% 48% 48%;
-  background:linear-gradient(145deg,#d1afc0,#725b7e);
+
+  background:
+    linear-gradient(
+      145deg,
+      #d1afc0,
+      #725b7e
+    );
 }
 
 .body{
   position:absolute;
+
   bottom:0;
   left:50%;
-  width:220px;
-  height:215px;
+
+  width:260px;
+  height:250px;
+
   transform:translateX(-50%);
-  border-radius:120px 120px 20px 20px;
-  background:linear-gradient(145deg,#30233e,#0c0d15);
+
+  border-radius:140px 140px 25px 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #30233e,
+      #0c0d15
+    );
 }
 
 /* ================= PHOTO PROGRESS ================= */
 
 .photo-progress{
   position:absolute;
-  z-index:30;
+  z-index:20;
+
   top:12px;
   left:17px;
   right:17px;
+
   display:flex;
   gap:4px;
 }
 
 .photo-progress span{
   flex:1;
+
   height:3px;
+
   border-radius:10px;
+
   background:rgba(255,255,255,.3);
+
+  transition:
+    background .2s ease;
 }
 
 .photo-progress span.active{
@@ -232,10 +243,12 @@ button{
 
 .photo-zone{
   position:absolute;
-  z-index:20;
+  z-index:18;
+
   top:0;
   bottom:0;
-  width:27%;
+
+  width:28%;
 }
 
 .photo-zone.left{
@@ -246,69 +259,54 @@ button{
   right:0;
 }
 
-/* ================= CARD TOP ================= */
+/* ================= FILTER ================= */
 
-.card-top{
+.card-filter{
   position:absolute;
   z-index:35;
-  top:25px;
+
+  top:23px;
   left:16px;
-  right:16px;
 
-  display:flex;
-  justify-content:space-between;
+  padding:9px 13px;
 
-  pointer-events:none;
-}
+  border-radius:13px;
 
-.status{
-  display:flex;
-  align-items:center;
-  gap:7px;
+  color:#eeeaf5;
 
-  padding:7px 10px;
+  background:rgba(7,7,13,.58);
 
-  border-radius:999px;
-
-  background:rgba(7,7,13,.55);
   border:1px solid rgba(255,255,255,.1);
 
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(12px);
 
-  color:#e5e1eb;
+  font-size:12px;
+  font-weight:800;
 
-  font-size:11px;
-  font-weight:700;
+  pointer-events:auto;
 }
 
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 9px rgba(105,230,167,.7);
-}
-
-.dot.recent{
-  background:#aaa4b3;
-  box-shadow:none;
-  opacity:.7;
-}
+/* ================= REPORT ================= */
 
 .report{
+  position:absolute;
+  z-index:35;
+
+  top:23px;
+  right:16px;
+
   width:39px;
   height:39px;
 
   border-radius:13px;
 
   color:#ddd9e4;
-  background:rgba(7,7,13,.55);
+
+  background:rgba(7,7,13,.58);
 
   border:1px solid rgba(255,255,255,.1);
 
-  backdrop-filter:blur(14px);
-
-  pointer-events:auto;
+  backdrop-filter:blur(12px);
 }
 
 /* ================= PROFILE INFO ================= */
@@ -319,7 +317,17 @@ button{
 
   left:20px;
   right:20px;
-  bottom:105px;
+  bottom:112px;
+
+  transition:
+    opacity .3s ease,
+    transform .4s ease;
+}
+
+.card.expanded .profile-info{
+  opacity:0;
+  transform:translateY(20px);
+  pointer-events:none;
 }
 
 .name-line{
@@ -334,47 +342,85 @@ button{
 }
 
 .age{
-  font-size:19px;
+  font-size:20px;
   color:#d0cad9;
 }
 
 .city{
   margin-top:3px;
+
   color:#c2bccd;
+
   font-size:13px;
 }
 
-.meta-line{
+.status-row{
   display:flex;
+  align-items:center;
   flex-wrap:wrap;
-  gap:10px;
+
+  gap:8px;
+
   margin-top:6px;
 }
 
-.distance,
-.last-seen{
-  color:#c2b3ed;
+.distance{
+  color:#bda8f3;
+
   font-size:12px;
   font-weight:700;
 }
 
-.last-seen{
-  color:#b9b2c5;
+.status{
+  display:flex;
+  align-items:center;
+  gap:5px;
+
+  color:#c5bfce;
+
+  font-size:11px;
+  font-weight:700;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 9px rgba(105,230,167,.7);
+}
+
+.status-dot.offline{
+  background:#85808d;
+  box-shadow:none;
 }
 
 .bio{
-  margin-top:10px;
-  max-width:520px;
+  margin-top:9px;
+
+  max-width:510px;
 
   color:#ddd9e5;
+
   font-size:14px;
   line-height:1.4;
+
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 
 .tags{
   display:flex;
   flex-wrap:wrap;
+
   gap:6px;
+
   margin-top:10px;
 }
 
@@ -384,7 +430,9 @@ button{
   border-radius:999px;
 
   color:#cbb9ff;
+
   background:rgba(139,92,246,.13);
+
   border:1px solid rgba(139,92,246,.22);
 
   font-size:10px;
@@ -395,23 +443,41 @@ button{
 
 .card-bottom{
   position:absolute;
-  z-index:40;
+  z-index:23;
 
   left:0;
   right:0;
   bottom:0;
 
-  height:190px;
+  height:210px;
 
   pointer-events:none;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(8,7,17,0),
-      rgba(8,7,17,.72) 42%,
-      rgba(8,7,17,.96) 72%,
-      rgba(8,7,17,1)
+      transparent 0%,
+      rgba(8,7,17,.2) 18%,
+      rgba(8,7,17,.78) 62%,
+      rgba(8,7,17,.97) 100%
+    );
+
+  backdrop-filter:blur(2px);
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 34%,
+      black 100%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 34%,
+      black 100%
     );
 }
 
@@ -419,37 +485,46 @@ button{
 
 .card-actions{
   position:absolute;
-  z-index:60;
+  z-index:40;
 
-  left:18px;
-  right:18px;
-  bottom:17px;
+  left:20px;
+  right:20px;
+  bottom:19px;
 
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:16px;
+
+  gap:18px;
+
+  transition:
+    opacity .3s ease,
+    transform .35s ease;
+}
+
+.card.expanded .card-actions{
+  opacity:0;
+  transform:translateY(25px);
+  pointer-events:none;
 }
 
 .action{
-  width:55px;
-  height:55px;
+  width:58px;
+  height:58px;
 
   border-radius:50%;
 
   color:#fff;
 
-  background:rgba(20,17,31,.82);
-  border:1px solid rgba(255,255,255,.13);
+  background:#14111f;
+
+  border:1px solid var(--line);
 
   box-shadow:
-    0 10px 28px rgba(0,0,0,.35);
-
-  backdrop-filter:blur(15px);
+    0 10px 30px rgba(0,0,0,.3);
 
   transition:
-    transform .12s ease,
-    background .2s ease;
+    transform .12s ease;
 }
 
 .action:active{
@@ -460,13 +535,9 @@ button{
   color:var(--red);
 }
 
-.action.like{
-  color:#ff6f95;
-}
-
 .action.comment{
-  width:63px;
-  height:63px;
+  width:66px;
+  height:66px;
 
   color:white;
 
@@ -481,11 +552,249 @@ button{
     0 12px 35px rgba(139,92,246,.4);
 }
 
+.action.like{
+  color:#ff6f95;
+}
+
+/* ================= DETAILS ================= */
+
+.details{
+  position:absolute;
+  z-index:60;
+
+  inset:0;
+
+  overflow-y:auto;
+
+  padding:
+    24px
+    20px
+    28px;
+
+  opacity:0;
+  transform:translateY(100%);
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      180deg,
+      #151320 0%,
+      #11101b 100%
+    );
+
+  transition:
+    opacity .32s ease,
+    transform .48s cubic-bezier(.22,.8,.22,1);
+}
+
+.card.expanded .details{
+  opacity:1;
+
+  transform:translateY(0);
+
+  pointer-events:auto;
+}
+
+/* верх деталей */
+
+.details-header{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-start;
+
+  gap:15px;
+
+  margin-bottom:22px;
+}
+
+.details-title{
+  font-size:25px;
+  font-weight:900;
+}
+
+.details-subtitle{
+  margin-top:4px;
+
+  color:#9e98ae;
+
+  font-size:12px;
+}
+
+.collapse{
+  flex-shrink:0;
+
+  width:40px;
+  height:40px;
+
+  border-radius:13px;
+
+  color:#eee;
+
+  background:rgba(255,255,255,.06);
+
+  border:1px solid var(--line);
+}
+
+/* информация */
+
+.detail-heading{
+  margin:
+    0
+    0
+    11px;
+
+  color:#8f899e;
+
+  font-size:11px;
+  font-weight:700;
+
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.detail-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:8px;
+}
+
+.detail-item{
+  min-height:65px;
+
+  padding:11px;
+
+  border-radius:15px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  opacity:0;
+  transform:translateY(10px);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.card.expanded .detail-item{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card.expanded .detail-item:nth-child(1){
+  transition-delay:.05s;
+}
+
+.card.expanded .detail-item:nth-child(2){
+  transition-delay:.08s;
+}
+
+.card.expanded .detail-item:nth-child(3){
+  transition-delay:.11s;
+}
+
+.card.expanded .detail-item:nth-child(4){
+  transition-delay:.14s;
+}
+
+.card.expanded .detail-item:nth-child(5){
+  transition-delay:.17s;
+}
+
+.card.expanded .detail-item:nth-child(6){
+  transition-delay:.20s;
+}
+
+.card.expanded .detail-item:nth-child(7){
+  transition-delay:.23s;
+}
+
+.card.expanded .detail-item:nth-child(8){
+  transition-delay:.26s;
+}
+
+.detail-icon{
+  font-size:16px;
+}
+
+.detail-label{
+  margin-top:4px;
+
+  color:#817b8f;
+
+  font-size:9px;
+}
+
+.detail-value{
+  margin-top:2px;
+
+  color:#eeeaf3;
+
+  font-size:12px;
+  font-weight:700;
+}
+
+/* bio */
+
+.full-bio{
+  margin-top:20px;
+
+  padding:14px;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  color:#ddd9e5;
+
+  font-size:14px;
+  line-height:1.55;
+}
+
+/* interests */
+
+.interests{
+  margin-top:20px;
+}
+
+.interest-list{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:7px;
+}
+
+.interest{
+  padding:8px 11px;
+
+  border-radius:10px;
+
+  background:
+    rgba(139,92,246,.12);
+
+  color:#c8b7f7;
+
+  border:1px solid rgba(139,92,246,.2);
+
+  font-size:10px;
+  font-weight:700;
+}
+
 /* ================= SWIPE LABELS ================= */
 
 .swipe-label{
   position:absolute;
-  z-index:70;
+  z-index:50;
 
   top:42%;
 
@@ -497,164 +806,28 @@ button{
   letter-spacing:1px;
 
   opacity:0;
+
   pointer-events:none;
 }
 
 .like-label{
   left:22px;
+
   color:var(--green);
+
   border:2px solid var(--green);
+
   transform:rotate(-12deg);
 }
 
 .nope-label{
   right:22px;
+
   color:var(--red);
+
   border:2px solid var(--red);
+
   transform:rotate(12deg);
-}
-
-/* ================= DETAILS POPUP ================= */
-
-.details-popup{
-  position:absolute;
-  z-index:100;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:76%;
-
-  padding:20px;
-
-  border-radius:28px 28px 0 0;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(24,20,38,.98),
-      rgba(12,11,20,.99)
-    );
-
-  border:1px solid rgba(255,255,255,.1);
-
-  box-shadow:
-    0 -20px 70px rgba(0,0,0,.55);
-
-  transform:translateY(105%);
-
-  transition:
-    transform .48s cubic-bezier(.22,.8,.22,1);
-}
-
-.card.details-open .details-popup{
-  transform:translateY(0);
-}
-
-.details-handle{
-  width:42px;
-  height:4px;
-
-  margin:0 auto 17px;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,.22);
-}
-
-.details-title{
-  font-size:20px;
-  font-weight:900;
-}
-
-.details-subtitle{
-  margin-top:4px;
-  color:#8f899e;
-  font-size:11px;
-}
-
-.detail-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-
-  margin-top:16px;
-}
-
-.detail-item{
-  min-height:62px;
-  padding:10px 11px;
-
-  border-radius:15px;
-
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.detail-icon{
-  font-size:16px;
-}
-
-.detail-label{
-  margin-top:4px;
-  color:#817b8f;
-  font-size:9px;
-}
-
-.detail-value{
-  margin-top:2px;
-  color:#eeeaf3;
-  font-size:12px;
-  font-weight:700;
-}
-
-.details-interests{
-  margin-top:18px;
-}
-
-.section-label{
-  color:#8f899e;
-  font-size:11px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.7px;
-}
-
-.interest-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:9px;
-}
-
-.interest{
-  padding:7px 10px;
-  border-radius:10px;
-
-  background:rgba(139,92,246,.12);
-  color:#c8b7f7;
-
-  border:1px solid rgba(139,92,246,.2);
-
-  font-size:10px;
-  font-weight:700;
-}
-
-.details-close{
-  position:absolute;
-  right:17px;
-  top:17px;
-
-  width:37px;
-  height:37px;
-
-  border-radius:12px;
-
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--line);
-
-  color:#eee;
 }
 
 /* ================= EMPTY ================= */
@@ -663,16 +836,19 @@ button{
   position:absolute;
   inset:0;
 
-  border-radius:30px;
+  border-radius:32px;
 
   background:#11101b;
+
   border:1px solid var(--line);
 
   display:flex;
+
   justify-content:center;
   align-items:center;
 
   text-align:center;
+
   padding:30px;
 }
 
@@ -683,50 +859,12 @@ button{
 
 .empty-text{
   margin-top:9px;
+
   color:var(--muted);
+
   line-height:1.5;
+
   font-size:14px;
-}
-
-/* ================= BOTTOM NAV ================= */
-
-.bottom-nav{
-  height:76px;
-  flex-shrink:0;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-
-  align-items:center;
-
-  padding:7px 5px 9px;
-}
-
-.nav-item{
-  height:58px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:4px;
-
-  border-radius:17px;
-
-  color:#817b8f;
-  background:transparent;
-
-  font-size:10px;
-  font-weight:700;
-}
-
-.nav-item.active{
-  color:#cdbbff;
-  background:rgba(139,92,246,.08);
-}
-
-.nav-icon{
-  font-size:20px;
 }
 
 /* ================= SHEETS ================= */
@@ -735,9 +873,10 @@ button{
   position:fixed;
   inset:0;
 
-  z-index:200;
+  z-index:100;
 
   display:none;
+
   align-items:flex-end;
 
   background:rgba(0,0,0,.72);
@@ -751,6 +890,7 @@ button{
 
 .sheet{
   width:min(620px,100%);
+
   max-height:90%;
 
   overflow-y:auto;
@@ -771,6 +911,7 @@ button{
 
 .sheet-head{
   display:flex;
+
   justify-content:space-between;
   align-items:center;
 }
@@ -787,6 +928,7 @@ button{
   border-radius:13px;
 
   background:rgba(255,255,255,.05);
+
   color:white;
 
   border:1px solid var(--line);
@@ -794,66 +936,61 @@ button{
 
 /* ================= FILTER ================= */
 
+.filter-summary{
+  margin-top:15px;
+
+  padding:11px 12px;
+
+  border-radius:14px;
+
+  background:rgba(139,92,246,.08);
+
+  border:1px solid rgba(139,92,246,.16);
+
+  color:#cbb9ff;
+
+  font-size:11px;
+}
+
 .field{
   margin-top:17px;
 }
 
 .field-label{
   color:var(--muted);
+
   font-size:12px;
-  font-weight:700;
 }
 
-.range-values{
+/* range */
+
+.range-row{
   display:flex;
+
   justify-content:space-between;
 
-  margin-top:8px;
+  margin-top:9px;
 
-  color:#eeeaf3;
-  font-size:14px;
+  color:#ddd8e8;
+
+  font-size:13px;
   font-weight:800;
 }
 
 input[type="range"]{
   width:100%;
-  margin-top:9px;
+
+  margin-top:8px;
+
   accent-color:var(--purple);
 }
 
-.gender-options{
-  display:flex;
-  gap:7px;
-  margin-top:8px;
-}
-
-.gender-option{
-  flex:1;
-
-  padding:11px 7px;
-
-  border-radius:13px;
-
-  color:#aaa4b3;
-  background:rgba(255,255,255,.04);
-
-  border:1px solid var(--line);
-
-  font-size:11px;
-  font-weight:700;
-}
-
-.gender-option.selected{
-  color:#fff;
-
-  background:rgba(139,92,246,.16);
-  border-color:rgba(139,92,246,.4);
-}
-
-.city-select{
+select,
+textarea{
   width:100%;
 
-  margin-top:8px;
+  margin-top:7px;
+
   padding:13px;
 
   color:white;
@@ -861,25 +998,34 @@ input[type="range"]{
   background:#191526;
 
   border:1px solid var(--line);
+
   border-radius:14px;
 
   outline:none;
 }
 
+textarea{
+  height:110px;
+
+  resize:none;
+}
+
 .interest-filter{
   display:flex;
+
   flex-wrap:wrap;
+
   gap:7px;
 
   margin-top:9px;
 }
 
-.interest-filter button{
+.interest-option{
   padding:8px 10px;
 
-  border-radius:11px;
+  border-radius:10px;
 
-  color:#aaa4b3;
+  color:#aaa4b5;
 
   background:rgba(255,255,255,.04);
 
@@ -887,20 +1033,27 @@ input[type="range"]{
 
   font-size:10px;
   font-weight:700;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
 }
 
-.interest-filter button.selected{
+.interest-option.active{
   color:#fff;
 
-  background:rgba(139,92,246,.18);
+  background:rgba(139,92,246,.2);
 
   border-color:rgba(139,92,246,.45);
 }
 
-.filter-actions{
+.filter-buttons{
   display:flex;
+
   gap:8px;
-  margin-top:19px;
+
+  margin-top:18px;
 }
 
 .primary{
@@ -922,12 +1075,12 @@ input[type="range"]{
     );
 }
 
-.reset{
-  padding:14px 17px;
+.secondary{
+  padding:14px 16px;
 
   border-radius:15px;
 
-  color:#d1cbd9;
+  color:#ddd8e8;
 
   background:rgba(255,255,255,.05);
 
@@ -936,26 +1089,7 @@ input[type="range"]{
   font-weight:800;
 }
 
-/* ================= COMMENT / REPORT ================= */
-
-textarea{
-  width:100%;
-
-  margin-top:7px;
-  padding:13px;
-
-  color:white;
-
-  background:#191526;
-
-  border:1px solid var(--line);
-  border-radius:14px;
-
-  outline:none;
-
-  height:110px;
-  resize:none;
-}
+/* ================= COMMENT ================= */
 
 .counter{
   margin-top:5px;
@@ -967,29 +1101,13 @@ textarea{
   font-size:10px;
 }
 
-.comment-send{
-  width:100%;
-  margin-top:18px;
-  padding:14px;
-
-  border-radius:15px;
-
-  color:white;
-
-  font-weight:800;
-
-  background:
-    linear-gradient(
-      100deg,
-      var(--purple),
-      var(--pink)
-    );
-}
+/* ================= REPORT ================= */
 
 .report-option{
   width:100%;
 
   margin-top:8px;
+
   padding:14px;
 
   text-align:left;
@@ -1008,10 +1126,10 @@ textarea{
 .toast{
   position:fixed;
 
-  z-index:500;
+  z-index:300;
 
   left:50%;
-  bottom:25px;
+  bottom:24px;
 
   transform:translateX(-50%);
 
@@ -1020,19 +1138,60 @@ textarea{
   border-radius:999px;
 
   background:#f4f3f7;
+
   color:#15131b;
 
   font-size:12px;
   font-weight:800;
 
   opacity:0;
+
   pointer-events:none;
 
-  transition:opacity .2s ease;
+  transition:
+    opacity .2s ease;
 }
 
 .toast.show{
   opacity:1;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-height:700px){
+
+  .header{
+    height:52px;
+  }
+
+  .profile-info{
+    bottom:100px;
+  }
+
+  .card-bottom{
+    height:185px;
+  }
+
+  .card-actions{
+    bottom:14px;
+  }
+
+}
+
+@media(max-width:390px){
+
+  .detail-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .name{
+    font-size:28px;
+  }
+
+  .bio{
+    font-size:13px;
+  }
+
 }
 </style>
 </head>
@@ -1047,61 +1206,19 @@ textarea{
     SEY<span>F</span>ERT
   </div>
 
-  <button class="header-btn" id="notifications">
-    🔔
-  </button>
-
 </header>
 
 
 <main class="main">
 
-  <div class="top">
-
-    <div class="title">
-      Анкеты
-    </div>
-
-    <button class="filter" id="filterButton">
-      ⚙ Фильтр
-    </button>
-
-  </div>
-
-
   <div class="card-area" id="cardArea"></div>
-
-
-  <nav class="bottom-nav">
-
-    <button class="nav-item active">
-      <div class="nav-icon">👤</div>
-      Анкеты
-    </button>
-
-    <button class="nav-item">
-      <div class="nav-icon">💬</div>
-      Чаты
-    </button>
-
-    <button class="nav-item">
-      <div class="nav-icon">🌐</div>
-      Глобал
-    </button>
-
-    <button class="nav-item">
-      <div class="nav-icon">◉</div>
-      Профиль
-    </button>
-
-  </nav>
 
 </main>
 
 </div>
 
 
-<!-- FILTER -->
+<!-- ================= FILTER ================= -->
 
 <div class="overlay" id="filterOverlay">
 
@@ -1113,10 +1230,17 @@ textarea{
         Фильтры
       </div>
 
-      <button class="close" data-close="filterOverlay">
+      <button
+        class="close"
+        data-close="filterOverlay">
         ✕
       </button>
 
+    </div>
+
+
+    <div class="filter-summary" id="filterSummary">
+      Фильтры не применены
     </div>
 
 
@@ -1126,31 +1250,25 @@ textarea{
         Возраст
       </div>
 
-      <div class="range-values">
-
-        <span id="minAgeValue">18</span>
-
-        <span>до</span>
-
-        <span id="maxAgeValue">60</span>
-
+      <div class="range-row">
+        <span id="ageMinText">18</span>
+        <span>—</span>
+        <span id="ageMaxText">60</span>
       </div>
 
       <input
         type="range"
-        id="minAge"
+        id="ageMin"
         min="18"
         max="60"
-        value="18"
-      >
+        value="18">
 
       <input
         type="range"
-        id="maxAge"
+        id="ageMax"
         min="18"
         max="60"
-        value="60"
-      >
+        value="60">
 
     </div>
 
@@ -1161,21 +1279,21 @@ textarea{
         Пол
       </div>
 
-      <div class="gender-options">
+      <select id="gender">
 
-        <button class="gender-option selected" data-gender="all">
+        <option value="all">
           Все
-        </button>
+        </option>
 
-        <button class="gender-option" data-gender="female">
+        <option value="female">
           Девушки
-        </button>
+        </option>
 
-        <button class="gender-option" data-gender="male">
+        <option value="male">
           Парни
-        </button>
+        </option>
 
-      </div>
+      </select>
 
     </div>
 
@@ -1186,7 +1304,7 @@ textarea{
         Город
       </div>
 
-      <select class="city-select" id="city">
+      <select id="city">
 
         <option value="all">
           Любой город
@@ -1219,60 +1337,25 @@ textarea{
         Интересы
       </div>
 
-      <div class="interest-filter" id="interestFilter">
-
-        <button data-interest="Музыка">
-          Музыка
-        </button>
-
-        <button data-interest="Игры">
-          Игры
-        </button>
-
-        <button data-interest="ПК">
-          ПК
-        </button>
-
-        <button data-interest="Кино">
-          Кино
-        </button>
-
-        <button data-interest="Спорт">
-          Спорт
-        </button>
-
-        <button data-interest="Путешествия">
-          Путешествия
-        </button>
-
-        <button data-interest="Кошки">
-          Кошки
-        </button>
-
-        <button data-interest="Готовка">
-          Готовка
-        </button>
-
-        <button data-interest="Фото">
-          Фото
-        </button>
-
-        <button data-interest="Технологии">
-          Технологии
-        </button>
-
+      <div
+        class="interest-filter"
+        id="interestFilter">
       </div>
 
     </div>
 
 
-    <div class="filter-actions">
+    <div class="filter-buttons">
 
-      <button class="reset" id="resetFilters">
+      <button
+        class="secondary"
+        id="resetFilters">
         Сбросить
       </button>
 
-      <button class="primary" id="applyFilters">
+      <button
+        class="primary"
+        id="applyFilters">
         Применить
       </button>
 
@@ -1283,7 +1366,7 @@ textarea{
 </div>
 
 
-<!-- COMMENT -->
+<!-- ================= COMMENT ================= -->
 
 <div class="overlay" id="commentOverlay">
 
@@ -1295,7 +1378,9 @@ textarea{
         Лайк с комментарием
       </div>
 
-      <button class="close" data-close="commentOverlay">
+      <button
+        class="close"
+        data-close="commentOverlay">
         ✕
       </button>
 
@@ -1311,17 +1396,20 @@ textarea{
       <textarea
         id="commentInput"
         maxlength="180"
-        placeholder="Например: «Тоже люблю такую музыку»">
-      </textarea>
+        placeholder="Например: «Тоже люблю такую музыку»"></textarea>
 
-      <div class="counter" id="counter">
+      <div
+        class="counter"
+        id="counter">
         0 / 180
       </div>
 
     </div>
 
 
-    <button class="comment-send" id="sendComment">
+    <button
+      class="primary"
+      id="sendComment">
       Отправить лайк ❤️
     </button>
 
@@ -1330,7 +1418,7 @@ textarea{
 </div>
 
 
-<!-- REPORT -->
+<!-- ================= REPORT ================= -->
 
 <div class="overlay" id="reportOverlay">
 
@@ -1342,29 +1430,42 @@ textarea{
         Пожаловаться
       </div>
 
-      <button class="close" data-close="reportOverlay">
+      <button
+        class="close"
+        data-close="reportOverlay">
         ✕
       </button>
 
     </div>
 
-    <button class="report-option" data-report="Спам">
+
+    <button
+      class="report-option"
+      data-report="Спам">
       🚫 Спам
     </button>
 
-    <button class="report-option" data-report="Оскорбление">
+    <button
+      class="report-option"
+      data-report="Оскорбление">
       ⚠️ Оскорбление
     </button>
 
-    <button class="report-option" data-report="Неприемлемый контент">
+    <button
+      class="report-option"
+      data-report="Неприемлемый контент">
       🔞 Неприемлемый контент
     </button>
 
-    <button class="report-option" data-report="Фейковый профиль">
+    <button
+      class="report-option"
+      data-report="Фейковый профиль">
       👤 Фейковый профиль
     </button>
 
-    <button class="report-option" data-report="Другое">
+    <button
+      class="report-option"
+      data-report="Другое">
       ••• Другое
     </button>
 
@@ -1373,28 +1474,86 @@ textarea{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast">
+</div>
 
 
 <script>
 
 /* =========================================================
-   TEST PROFILES
+   ТЕСТОВЫЕ ПРОФИЛИ
 ========================================================= */
 
-const profiles=[
+const profiles = [
 
   {
     id:1,
-    name:"Алина",
+
+    name:"Дима",
     age:21,
-    gender:"female",
-    city:"Санкт-Петербург",
+    gender:"male",
+    city:"Москва",
 
     distance:3,
 
     online:true,
-    lastSeen:"Сейчас онлайн",
+
+    onlineText:"Сейчас онлайн",
+
+    photos:[
+      "photo1",
+      "photo2",
+      "photo3"
+    ],
+
+    bio:
+      "Готовка, ПК, игры, музыка, кошки. Люблю спокойные разговоры и людей, с которыми можно быть собой.",
+
+    interests:[
+      "Готовка",
+      "ПК игры",
+      "Кошки"
+    ],
+
+    games:[
+      "Dota 2",
+      "CS 2"
+    ],
+
+    details:{
+      weight:"Не указано",
+      height:"Не указано",
+      income:"Не указано",
+      onlineTime:"Вечером",
+
+      children:"Не указано",
+
+      smoking:"Не указано",
+      alcohol:"Не указано",
+
+      personality:"Не указано",
+
+      work:"Не указано"
+    }
+
+  },
+
+
+  {
+    id:2,
+
+    name:"Алина",
+    age:22,
+    gender:"female",
+    city:"Санкт-Петербург",
+
+    distance:5,
+
+    online:false,
+
+    onlineText:"Была недавно",
 
     photos:[
       "photo1",
@@ -1404,43 +1563,54 @@ const profiles=[
     ],
 
     bio:
-      "Люблю музыку, прогулки по ночному городу и разговоры до утра.",
+      "Музыка, прогулки, кино и разговоры до утра.",
 
     interests:[
       "Музыка",
       "Кино",
-      "Игры"
+      "Путешествия"
+    ],
+
+    games:[
+      "Dota 2"
     ],
 
     details:{
       weight:"54 кг",
+      height:"168 см",
       income:"100–150 тыс. ₽",
       onlineTime:"18:00–01:00",
+
       children:"Нет детей",
+
       smoking:"Не курю",
       alcohol:"Иногда",
+
       personality:"INFJ",
+
       work:"Дизайн"
     }
+
   },
 
 
   {
-    id:2,
+    id:3,
+
     name:"Макс",
     age:24,
     gender:"male",
     city:"Москва",
 
-    distance:5,
+    distance:7,
 
-    online:false,
-    lastSeen:"Был недавно",
+    online:true,
+
+    onlineText:"Сейчас онлайн",
 
     photos:[
       "photo1",
-      "photo2",
-      "photo3"
+      "photo2"
     ],
 
     bio:
@@ -1452,41 +1622,51 @@ const profiles=[
       "Технологии"
     ],
 
+    games:[
+      "CS 2",
+      "Dota 2"
+    ],
+
     details:{
       weight:"78 кг",
+      height:"182 см",
       income:"150–200 тыс. ₽",
       onlineTime:"20:00–03:00",
+
       children:"Нет детей",
+
       smoking:"Не курю",
       alcohol:"Редко",
+
       personality:"ENTP",
+
       work:"IT"
     }
+
   },
 
-
   {
-    id:3,
+    id:4,
+
     name:"София",
-    age:22,
+    age:27,
     gender:"female",
     city:"Казань",
 
-    distance:8,
+    distance:11,
 
     online:false,
-    lastSeen:"Была недавно",
+
+    onlineText:"Была недавно",
 
     photos:[
       "photo1",
       "photo2",
-      "photo3",
-      "photo4",
-      "photo5"
+      "photo3"
     ],
 
     bio:
-      "Фотография, путешествия и кофе.",
+      "Фотография, путешествия, кофе и новые места.",
 
     interests:[
       "Фото",
@@ -1494,16 +1674,24 @@ const profiles=[
       "Музыка"
     ],
 
+    games:[],
+
     details:{
       weight:"58 кг",
+      height:"170 см",
       income:"Не указано",
       onlineTime:"17:00–00:00",
+
       children:"Нет детей",
+
       smoking:"Не курю",
       alcohol:"Иногда",
+
       personality:"ENFP",
+
       work:"Маркетинг"
     }
+
   }
 
 ];
@@ -1516,11 +1704,13 @@ const profiles=[
 let activeProfiles=[...profiles];
 
 let index=0;
+
 let current=null;
 
 let photoIndex=0;
 
-let detailsOpen=false;
+let expanded=false;
+
 let locked=false;
 
 let pointer=false;
@@ -1531,12 +1721,118 @@ let startY=0;
 let dx=0;
 let dy=0;
 
-let selectedGender="all";
-let selectedInterests=new Set();
 
+/* фильтры */
+
+let filterState={
+
+  minAge:18,
+
+  maxAge:60,
+
+  gender:"all",
+
+  city:"all",
+
+  interests:[]
+
+};
+
+
+/* =========================================================
+   DOM
+========================================================= */
 
 const area=
   document.getElementById("cardArea");
+
+
+/* =========================================================
+   INTERESTS
+========================================================= */
+
+const allInterests=[
+
+  "Музыка",
+  "Кино",
+  "Игры",
+  "Готовка",
+  "ПК игры",
+  "Кошки",
+  "Спорт",
+  "Путешествия",
+  "Фото",
+  "Технологии"
+
+];
+
+
+const interestFilter=
+  document.getElementById("interestFilter");
+
+
+function renderInterestFilter(){
+
+  interestFilter.innerHTML=
+
+    allInterests
+      .map(
+
+        interest=>`
+
+          <button
+            type="button"
+            class="interest-option ${
+              filterState.interests.includes(interest)
+              ?"active"
+              :""
+            }"
+            data-interest="${safe(interest)}">
+
+            ${safe(interest)}
+
+          </button>
+
+        `
+
+      )
+      .join("");
+
+
+  interestFilter
+    .querySelectorAll(".interest-option")
+    .forEach(
+
+      button=>{
+
+        button.onclick=()=>{
+
+          const value=
+            button.dataset.interest;
+
+          if(
+            filterState.interests.includes(value)
+          ){
+
+            filterState.interests=
+              filterState.interests
+                .filter(x=>x!==value);
+
+          }else{
+
+            filterState.interests.push(value);
+
+          }
+
+          renderInterestFilter();
+
+        };
+
+      }
+
+    );
+
+}
 
 
 /* =========================================================
@@ -1565,7 +1861,7 @@ function render(){
 
           <div class="empty-text">
             Попробуй изменить фильтры —
-            возможно, там есть кто-то ещё.
+            возможно, здесь есть кто-то ещё.
           </div>
 
         </div>
@@ -1577,14 +1873,16 @@ function render(){
     current=null;
 
     return;
+
   }
 
 
-  current=activeProfiles[index];
+  current=
+    activeProfiles[index];
 
   photoIndex=0;
 
-  detailsOpen=false;
+  expanded=false;
 
   locked=false;
 
@@ -1599,13 +1897,14 @@ function render(){
 
   card.innerHTML=`
 
+    <!-- PHOTO -->
+
     <div class="photo">
 
       <div
         class="photo-bg"
         id="photoBg">
       </div>
-
 
       <div class="person">
 
@@ -1618,11 +1917,14 @@ function render(){
     </div>
 
 
+    <!-- PHOTO PROGRESS -->
+
     <div
       class="photo-progress"
       id="progress">
 
       ${current.photos.map(
+
         (_,i)=>`
 
           <span
@@ -1630,16 +1932,18 @@ function render(){
           </span>
 
         `
+
       ).join("")}
 
     </div>
 
 
+    <!-- PHOTO NAVIGATION -->
+
     <div
       class="photo-zone left"
       id="leftPhoto">
     </div>
-
 
     <div
       class="photo-zone right"
@@ -1647,27 +1951,29 @@ function render(){
     </div>
 
 
-    <div class="card-top">
+    <!-- FILTER -->
 
-      <div class="status">
+    <button
+      class="card-filter"
+      id="cardFilter">
 
-        <span
-          class="dot ${current.online?"":"recent"}">
-        </span>
+      ⚙ Фильтр
 
-        ${safe(current.lastSeen)}
-
-      </div>
+    </button>
 
 
-      <button
-        class="report"
-        id="report">
-        ⚑
-      </button>
+    <!-- REPORT -->
 
-    </div>
+    <button
+      class="report"
+      id="report">
 
+      ⚑
+
+    </button>
+
+
+    <!-- SWIPE LABELS -->
 
     <div
       class="swipe-label like-label"
@@ -1677,7 +1983,6 @@ function render(){
 
     </div>
 
-
     <div
       class="swipe-label nope-label"
       id="nopeLabel">
@@ -1686,6 +1991,8 @@ function render(){
 
     </div>
 
+
+    <!-- PROFILE INFO -->
 
     <div class="profile-info">
 
@@ -1707,14 +2014,24 @@ function render(){
       </div>
 
 
-      <div class="meta-line">
+      <div class="status-row">
 
         <div class="distance">
           📍 ${current.distance} км от вас
         </div>
 
-        <div class="last-seen">
-          • ${safe(current.lastSeen)}
+        <div class="status">
+
+          <span
+            class="status-dot ${
+              current.online
+              ?""
+              :"offline"
+            }">
+          </span>
+
+          ${safe(current.onlineText)}
+
         </div>
 
       </div>
@@ -1728,6 +2045,7 @@ function render(){
       <div class="tags">
 
         ${current.interests.map(
+
           x=>`
 
             <span class="tag">
@@ -1735,6 +2053,19 @@ function render(){
             </span>
 
           `
+
+        ).join("")}
+
+        ${current.games.map(
+
+          x=>`
+
+            <span class="tag">
+              🎮 ${safe(x)}
+            </span>
+
+          `
+
         ).join("")}
 
       </div>
@@ -1742,8 +2073,12 @@ function render(){
     </div>
 
 
+    <!-- BLURRED BOTTOM -->
+
     <div class="card-bottom"></div>
 
+
+    <!-- REACTIONS -->
 
     <div class="card-actions">
 
@@ -1776,27 +2111,46 @@ function render(){
     </div>
 
 
-    <div class="details-popup">
+    <!-- DETAILS -->
 
-      <div class="details-handle"></div>
+    <div class="details">
+
+      <div class="details-header">
+
+        <div>
+
+          <div class="details-title">
+
+            ${safe(current.name)}, ${current.age}
+
+          </div>
+
+          <div class="details-subtitle">
+
+            ${safe(current.city)}
+            ·
+            ${current.distance} км от вас
+            ·
+            ${safe(current.onlineText)}
+
+          </div>
+
+        </div>
 
 
-      <button
-        class="details-close"
-        id="detailsClose">
+        <button
+          class="collapse"
+          id="collapse">
 
-        ↓
+          ↓
 
-      </button>
+        </button>
 
-
-      <div class="details-title">
-        О ${safe(current.name)}
       </div>
 
 
-      <div class="details-subtitle">
-        Подробная информация анкеты
+      <div class="detail-heading">
+        О пользователе
       </div>
 
 
@@ -1806,6 +2160,12 @@ function render(){
           "⚖️",
           "Вес",
           current.details.weight
+        )}
+
+        ${detail(
+          "📏",
+          "Рост",
+          current.details.height
         )}
 
         ${detail(
@@ -1853,9 +2213,20 @@ function render(){
       </div>
 
 
-      <div class="details-interests">
+      <div class="full-bio">
 
-        <div class="section-label">
+        <div class="detail-heading">
+          Биография
+        </div>
+
+        ${safe(current.bio)}
+
+      </div>
+
+
+      <div class="interests">
+
+        <div class="detail-heading">
           Интересы
         </div>
 
@@ -1863,6 +2234,7 @@ function render(){
         <div class="interest-list">
 
           ${current.interests.map(
+
             x=>`
 
               <span class="interest">
@@ -1870,11 +2242,45 @@ function render(){
               </span>
 
             `
+
           ).join("")}
 
         </div>
 
       </div>
+
+
+      ${
+        current.games.length
+        ?`
+
+          <div class="interests">
+
+            <div class="detail-heading">
+              Игры
+            </div>
+
+            <div class="interest-list">
+
+              ${current.games.map(
+
+                x=>`
+
+                  <span class="interest">
+                    🎮 ${safe(x)}
+                  </span>
+
+                `
+
+              ).join("")}
+
+            </div>
+
+          </div>
+
+        `
+        :""
+      }
 
     </div>
 
@@ -1883,15 +2289,15 @@ function render(){
 
   area.appendChild(card);
 
-
   updatePhoto();
 
-  bindCard(card);
+  bind(card);
+
 }
 
 
 /* =========================================================
-   DETAIL
+   DETAIL ITEM
 ========================================================= */
 
 function detail(icon,label,value){
@@ -1915,6 +2321,7 @@ function detail(icon,label,value){
     </div>
 
   `;
+
 }
 
 
@@ -1966,15 +2373,18 @@ function updatePhoto(){
   document
     .querySelectorAll("#progress span")
     .forEach(
-      (el,i)=>{
 
-        el.classList.toggle(
+      (x,i)=>{
+
+        x.classList.toggle(
           "active",
           i===photoIndex
         );
 
       }
+
     );
+
 }
 
 
@@ -1986,9 +2396,11 @@ function nextPhoto(){
   )
     return;
 
+
   photoIndex++;
 
   updatePhoto();
+
 }
 
 
@@ -2000,17 +2412,19 @@ function previousPhoto(){
   )
     return;
 
+
   photoIndex--;
 
   updatePhoto();
+
 }
 
 
 /* =========================================================
-   CARD BIND
+   CARD EVENTS
 ========================================================= */
 
-function bindCard(card){
+function bind(card){
 
   const left=
     document.getElementById("leftPhoto");
@@ -2021,9 +2435,23 @@ function bindCard(card){
   const report=
     document.getElementById("report");
 
-  const detailsClose=
-    document.getElementById("detailsClose");
+  const filter=
+    document.getElementById("cardFilter");
 
+  const collapse=
+    document.getElementById("collapse");
+
+  const like=
+    document.getElementById("like");
+
+  const dislike=
+    document.getElementById("dislike");
+
+  const comment=
+    document.getElementById("comment");
+
+
+  /* photo */
 
   left.onclick=e=>{
 
@@ -2045,6 +2473,19 @@ function bindCard(card){
   };
 
 
+  /* filter */
+
+  filter.onclick=e=>{
+
+    e.stopPropagation();
+
+    open("filterOverlay");
+
+  };
+
+
+  /* report */
+
   report.onclick=e=>{
 
     e.stopPropagation();
@@ -2054,52 +2495,47 @@ function bindCard(card){
   };
 
 
-  detailsClose.onclick=e=>{
+  /* collapse */
+
+  collapse.onclick=e=>{
 
     e.stopPropagation();
 
-    closeDetails();
+    collapseCard();
 
   };
 
 
-  document
-    .getElementById("like")
-    .onclick=e=>{
+  /* reactions */
 
-      e.stopPropagation();
+  like.onclick=e=>{
 
-      likeProfile();
+    e.stopPropagation();
 
-    };
+    likeProfile();
 
-
-  document
-    .getElementById("dislike")
-    .onclick=e=>{
-
-      e.stopPropagation();
-
-      dislikeProfile();
-
-    };
+  };
 
 
-  document
-    .getElementById("comment")
-    .onclick=e=>{
+  dislike.onclick=e=>{
 
-      e.stopPropagation();
+    e.stopPropagation();
 
-      openComment();
+    dislikeProfile();
 
-    };
+  };
 
 
-  /*
-    Центральная часть карточки —
-    открытие подробной информации.
-  */
+  comment.onclick=e=>{
+
+    e.stopPropagation();
+
+    openComment();
+
+  };
+
+
+  /* center click */
 
   card.addEventListener(
     "click",
@@ -2115,25 +2551,35 @@ function bindCard(card){
       if(
         e.target.closest(".photo-zone") ||
         e.target.closest(".report") ||
-        e.target.closest(".card-actions") ||
-        e.target.closest(".details-popup")
+        e.target.closest(".card-filter") ||
+        e.target.closest(".collapse") ||
+        e.target.closest(".card-actions")
       )
         return;
 
 
-      openDetails();
+      if(
+        e.target.closest(".details")
+      )
+        return;
+
+
+      toggleCard();
 
     }
   );
 
 
-  /* ================= POINTER ================= */
+  /* pointer */
 
   card.addEventListener(
     "pointerdown",
     e=>{
 
-      if(locked || detailsOpen)
+      if(
+        locked ||
+        expanded
+      )
         return;
 
 
@@ -2162,12 +2608,13 @@ function bindCard(card){
       if(
         !pointer ||
         locked ||
-        detailsOpen
+        expanded
       )
         return;
 
 
       dx=e.clientX-startX;
+
       dy=e.clientY-startY;
 
 
@@ -2180,10 +2627,14 @@ function bindCard(card){
 
 
       const likeLabel=
-        document.getElementById("likeLabel");
+        document.getElementById(
+          "likeLabel"
+        );
 
       const nopeLabel=
-        document.getElementById("nopeLabel");
+        document.getElementById(
+          "nopeLabel"
+        );
 
 
       likeLabel.style.opacity=
@@ -2216,28 +2667,10 @@ function bindCard(card){
 
 
 /* =========================================================
-   DETAILS POPUP
+   EXPAND
 ========================================================= */
 
-function openDetails(){
-
-  const card=
-    document.getElementById("card");
-
-  if(!card || locked)
-    return;
-
-
-  detailsOpen=true;
-
-  card.classList.add(
-    "details-open"
-  );
-
-}
-
-
-function closeDetails(){
+function toggleCard(){
 
   const card=
     document.getElementById("card");
@@ -2246,11 +2679,25 @@ function closeDetails(){
     return;
 
 
-  detailsOpen=false;
+  expanded=true;
 
-  card.classList.remove(
-    "details-open"
-  );
+  card.classList.add("expanded");
+
+}
+
+
+function collapseCard(){
+
+  const card=
+    document.getElementById("card");
+
+  if(!card)
+    return;
+
+
+  expanded=false;
+
+  card.classList.remove("expanded");
 
 }
 
@@ -2281,6 +2728,7 @@ function finishSwipe(card){
       dislikeProfile();
 
     return;
+
   }
 
 
@@ -2382,14 +2830,17 @@ function nextProfile(){
 ========================================================= */
 
 const commentInput=
-  document.getElementById("commentInput");
+  document.getElementById(
+    "commentInput"
+  );
 
 
 commentInput.oninput=()=>{
 
-  document.getElementById("counter")
-    .textContent=
-      `${commentInput.value.length} / 180`;
+  document.getElementById(
+    "counter"
+  ).textContent=
+    `${commentInput.value.length} / 180`;
 
 };
 
@@ -2411,337 +2862,408 @@ function openComment(){
 }
 
 
-document
-  .getElementById("sendComment")
-  .onclick=()=>{
+document.getElementById(
+  "sendComment"
+).onclick=()=>{
 
-    const text=
-      commentInput.value.trim();
-
-
-    close("commentOverlay");
+  const text=
+    commentInput.value.trim();
 
 
-    commentInput.value="";
+  close("commentOverlay");
 
 
-    document.getElementById("counter")
-      .textContent="0 / 180";
+  commentInput.value="";
 
 
-    toast(
-      text
-      ?"Лайк с комментарием отправлен ❤️"
-      :"Лайк отправлен ❤️"
-    );
+  document.getElementById(
+    "counter"
+  ).textContent="0 / 180";
 
-  };
+
+  toast(
+
+    text
+    ?`Лайк с комментарием отправлен ❤️`
+    :`Лайк отправлен ❤️`
+
+  );
+
+};
 
 
 /* =========================================================
-   FILTER UI
+   FILTER
 ========================================================= */
 
-const minAge=
-  document.getElementById("minAge");
-
-const maxAge=
-  document.getElementById("maxAge");
-
-
-function updateAgeLabels(){
-
-  let min=
-    Number(minAge.value);
-
-  let max=
-    Number(maxAge.value);
-
-
-  if(min>max-1){
-
-    min=max-1;
-
-    if(min<18)
-      min=18;
-
-    minAge.value=min;
-
-  }
-
-
-  if(max<min+1){
-
-    max=min+1;
-
-    if(max>60)
-      max=60;
-
-    maxAge.value=max;
-
-  }
-
-
-  document.getElementById("minAgeValue")
-    .textContent=min;
-
-
-  document.getElementById("maxAgeValue")
-    .textContent=max;
-
-}
-
-
-minAge.oninput=updateAgeLabels;
-
-maxAge.oninput=updateAgeLabels;
-
-
-document
-  .querySelectorAll(".gender-option")
-  .forEach(
-    button=>{
-
-      button.onclick=()=>{
-
-        selectedGender=
-          button.dataset.gender;
-
-
-        document
-          .querySelectorAll(".gender-option")
-          .forEach(
-            x=>
-              x.classList.toggle(
-                "selected",
-                x===button
-              )
-          );
-
-      };
-
-    }
-  );
-
-
-document
-  .querySelectorAll("[data-interest]")
-  .forEach(
-    button=>{
-
-      button.onclick=()=>{
-
-        const value=
-          button.dataset.interest;
-
-
-        if(
-          selectedInterests.has(value)
-        ){
-
-          selectedInterests.delete(value);
-
-          button.classList.remove(
-            "selected"
-          );
-
-        }else{
-
-          selectedInterests.add(value);
-
-          button.classList.add(
-            "selected"
-          );
-
-        }
-
-      };
-
-    }
-  );
-
-
-/* =========================================================
-   APPLY FILTERS
-========================================================= */
-
-document
-  .getElementById("applyFilters")
-  .onclick=()=>{
-
-    const min=
-      Number(minAge.value);
-
-    const max=
-      Number(maxAge.value);
-
-
-    const city=
-      document.getElementById("city")
-        .value;
-
-
-    activeProfiles=
-      profiles.filter(
-        profile=>{
-
-          const ageOK=
-            profile.age>=min &&
-            profile.age<=max;
-
-
-          const genderOK=
-            selectedGender==="all" ||
-            profile.gender===selectedGender;
-
-
-          const cityOK=
-            city==="all" ||
-            profile.city===city;
-
-
-          const interestsOK=
-            selectedInterests.size===0 ||
-            [...selectedInterests]
-              .some(
-                interest=>
-                  profile.interests
-                    .includes(interest)
-              );
-
-
-          return(
-            ageOK &&
-            genderOK &&
-            cityOK &&
-            interestsOK
-          );
-
-        }
+document.getElementById(
+  "ageMin"
+).oninput=e=>{
+
+  let value=
+    Number(e.target.value);
+
+
+  if(
+    value >
+    Number(
+      document.getElementById(
+        "ageMax"
+      ).value
+    )
+  ){
+
+    value=
+      Number(
+        document.getElementById(
+          "ageMax"
+        ).value
       );
 
+    e.target.value=value;
 
-    index=0;
-
-
-    close("filterOverlay");
+  }
 
 
-    render();
+  document.getElementById(
+    "ageMinText"
+  ).textContent=value;
+
+};
 
 
-    toast(
-      `Найдено анкет: ${activeProfiles.length}`
+document.getElementById(
+  "ageMax"
+).oninput=e=>{
+
+  let value=
+    Number(e.target.value);
+
+
+  if(
+    value <
+    Number(
+      document.getElementById(
+        "ageMin"
+      ).value
+    )
+  ){
+
+    value=
+      Number(
+        document.getElementById(
+          "ageMin"
+        ).value
+      );
+
+    e.target.value=value;
+
+  }
+
+
+  document.getElementById(
+    "ageMaxText"
+  ).textContent=value;
+
+};
+
+
+document.getElementById(
+  "applyFilters"
+).onclick=()=>{
+
+  const minAge=
+    Number(
+      document.getElementById(
+        "ageMin"
+      ).value
     );
 
+
+  const maxAge=
+    Number(
+      document.getElementById(
+        "ageMax"
+      ).value
+    );
+
+
+  const gender=
+    document.getElementById(
+      "gender"
+    ).value;
+
+
+  const city=
+    document.getElementById(
+      "city"
+    ).value;
+
+
+  filterState={
+
+    minAge,
+    maxAge,
+
+    gender,
+    city,
+
+    interests:[
+      ...filterState.interests
+    ]
+
   };
+
+
+  activeProfiles=
+    profiles.filter(
+
+      p=>{
+
+        const ageOK=
+          p.age>=minAge &&
+          p.age<=maxAge;
+
+
+        const genderOK=
+          gender==="all" ||
+          p.gender===gender;
+
+
+        const cityOK=
+          city==="all" ||
+          p.city===city;
+
+
+        const interestOK=
+
+          filterState.interests.length===0 ||
+
+          filterState.interests.some(
+
+            interest=>
+
+              p.interests.includes(interest) ||
+
+              p.games.includes(interest)
+
+          );
+
+
+        return(
+          ageOK &&
+          genderOK &&
+          cityOK &&
+          interestOK
+        );
+
+      }
+
+    );
+
+
+  index=0;
+
+
+  updateFilterSummary();
+
+
+  close(
+    "filterOverlay"
+  );
+
+
+  render();
+
+
+  toast(
+    `Найдено анкет: ${activeProfiles.length}`
+  );
+
+};
 
 
 /* =========================================================
    RESET FILTERS
 ========================================================= */
 
-document
-  .getElementById("resetFilters")
-  .onclick=()=>{
+document.getElementById(
+  "resetFilters"
+).onclick=()=>{
 
-    minAge.value=18;
-    maxAge.value=60;
+  filterState={
 
-    updateAgeLabels();
+    minAge:18,
 
+    maxAge:60,
 
-    selectedGender="all";
+    gender:"all",
 
+    city:"all",
 
-    document
-      .querySelectorAll(".gender-option")
-      .forEach(
-        button=>{
-          button.classList.toggle(
-            "selected",
-            button.dataset.gender==="all"
-          );
-        }
-      );
-
-
-    document
-      .getElementById("city")
-      .value="all";
-
-
-    selectedInterests.clear();
-
-
-    document
-      .querySelectorAll("[data-interest]")
-      .forEach(
-        button=>
-          button.classList.remove(
-            "selected"
-          )
-      );
-
-
-    activeProfiles=[
-      ...profiles
-    ];
-
-    index=0;
-
-
-    render();
-
-
-    close("filterOverlay");
-
-
-    toast("Фильтры сброшены");
+    interests:[]
 
   };
+
+
+  document.getElementById(
+    "ageMin"
+  ).value=18;
+
+
+  document.getElementById(
+    "ageMax"
+  ).value=60;
+
+
+  document.getElementById(
+    "ageMinText"
+  ).textContent=18;
+
+
+  document.getElementById(
+    "ageMaxText"
+  ).textContent=60;
+
+
+  document.getElementById(
+    "gender"
+  ).value="all";
+
+
+  document.getElementById(
+    "city"
+  ).value="all";
+
+
+  activeProfiles=[
+    ...profiles
+  ];
+
+
+  index=0;
+
+
+  renderInterestFilter();
+
+
+  updateFilterSummary();
+
+
+  render();
+
+
+  close(
+    "filterOverlay"
+  );
+
+
+  toast(
+    "Фильтры сброшены"
+  );
+
+};
+
+
+/* =========================================================
+   FILTER SUMMARY
+========================================================= */
+
+function updateFilterSummary(){
+
+  const parts=[];
+
+
+  if(filterState.minAge!==18 ||
+     filterState.maxAge!==60){
+
+    parts.push(
+      `${filterState.minAge}–${filterState.maxAge} лет`
+    );
+
+  }
+
+
+  if(
+    filterState.gender!=="all"
+  ){
+
+    parts.push(
+      filterState.gender==="female"
+      ?"Девушки"
+      :"Парни"
+    );
+
+  }
+
+
+  if(
+    filterState.city!=="all"
+  ){
+
+    parts.push(
+      filterState.city
+    );
+
+  }
+
+
+  if(
+    filterState.interests.length
+  ){
+
+    parts.push(
+      `интересы: ${filterState.interests.length}`
+    );
+
+  }
+
+
+  document.getElementById(
+    "filterSummary"
+  ).textContent=
+
+    parts.length
+    ?`Активно: ${parts.join(" · ")}`
+    :"Фильтры не применены";
+
+}
 
 
 /* =========================================================
    FILTER OPEN
 ========================================================= */
 
-document
-  .getElementById("filterButton")
-  .onclick=()=>{
+document.getElementById(
+  "cardFilter"
+);
 
-    open("filterOverlay");
+function openFilter(){
 
-  };
+  renderInterestFilter();
 
+  updateFilterSummary();
 
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
+  open("filterOverlay");
 
-document
-  .getElementById("notifications")
-  .onclick=()=>{
-
-    toast(
-      "Уведомлений пока нет"
-    );
-
-  };
+}
 
 
 /* =========================================================
-   REPORTS
+   REPORT
 ========================================================= */
 
 document
   .querySelectorAll("[data-report]")
   .forEach(
+
     button=>{
 
       button.onclick=()=>{
 
-        close("reportOverlay");
+        close(
+          "reportOverlay"
+        );
 
 
         toast(
@@ -2751,6 +3273,7 @@ document
       };
 
     }
+
   );
 
 
@@ -2779,6 +3302,7 @@ function close(id){
 document
   .querySelectorAll("[data-close]")
   .forEach(
+
     button=>{
 
       button.onclick=()=>{
@@ -2790,24 +3314,32 @@ document
       };
 
     }
+
   );
 
 
 document
   .querySelectorAll(".overlay")
   .forEach(
+
     overlay=>{
 
       overlay.onclick=e=>{
 
-        if(e.target===overlay)
+        if(
+          e.target===overlay
+        ){
+
           overlay.classList.remove(
             "open"
           );
 
+        }
+
       };
 
     }
+
   );
 
 
@@ -2821,43 +3353,75 @@ let toastTimer;
 function toast(message){
 
   const el=
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
 
   el.textContent=message;
 
 
-  el.classList.add("show");
+  el.classList.add(
+    "show"
+  );
 
 
-  clearTimeout(toastTimer);
+  clearTimeout(
+    toastTimer
+  );
 
 
   toastTimer=
+
     setTimeout(
+
       ()=>{
+
         el.classList.remove(
           "show"
         );
+
       },
+
       1900
+
     );
 
 }
 
 
 /* =========================================================
-   SAFE
+   SAFE HTML
 ========================================================= */
 
 function safe(value){
 
   return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
@@ -2866,7 +3430,9 @@ function safe(value){
    START
 ========================================================= */
 
-updateAgeLabels();
+renderInterestFilter();
+
+updateFilterSummary();
 
 render();
 
