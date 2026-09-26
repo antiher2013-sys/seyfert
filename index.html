@@ -11,7 +11,6 @@
 }
 :root {
     --bg: #080711;
-    --bg2: #100c1c;
     --card: #151221;
     --white: #f8f7fc;
     --muted: #aaa5b8;
@@ -25,7 +24,6 @@
 html,
 body {
     margin: 0;
-    width: 100%;
     min-height: 100%;
     background:
         radial-gradient(
@@ -58,7 +56,9 @@ body {
     display: flex;
     flex-direction: column;
 }
-/* ---------------- HEADER ---------------- */
+/* =========================
+   HEADER
+========================= */
 .header {
     height: 72px;
     flex: none;
@@ -75,10 +75,6 @@ body {
 .logo span {
     color: var(--purple);
 }
-.header-actions {
-    display: flex;
-    gap: 8px;
-}
 .icon-button {
     width: 42px;
     height: 42px;
@@ -88,15 +84,18 @@ body {
     border-radius: 14px;
     background: rgba(255,255,255,.045);
     color: white;
-    font-size: 18px;
+    font-size: 19px;
     cursor: pointer;
     backdrop-filter: blur(14px);
 }
-/* ---------------- CONTENT ---------------- */
+/* =========================
+   CONTENT
+========================= */
 .content {
     position: relative;
     flex: 1;
-    padding: 0 15px 20px;
+    min-height: 0;
+    padding: 0 15px 12px;
     display: flex;
     flex-direction: column;
 }
@@ -124,7 +123,9 @@ body {
     font-weight: 700;
     cursor: pointer;
 }
-/* ---------------- CARD ---------------- */
+/* =========================
+   CARD
+========================= */
 .card-area {
     position: relative;
     flex: 1;
@@ -146,11 +147,7 @@ body {
         transform .30s cubic-bezier(.2,.8,.2,1),
         opacity .30s ease;
 }
-/*
-    Пока настоящих фотографий нет,
-    используем красивую заглушку.
-    Позже сюда подставим фото анкеты.
-*/
+/* Фото — главный элемент */
 .photo {
     position: absolute;
     inset: 0;
@@ -185,9 +182,7 @@ body {
             rgba(5,5,10,.98) 100%
         );
 }
-/*
-    Декоративный силуэт вместо реального фото.
-*/
+/* Временная визуальная заглушка фото */
 .person {
     position: absolute;
     left: 50%;
@@ -211,8 +206,6 @@ body {
             #c7a5b8,
             #735d7e
         );
-    box-shadow:
-        0 15px 50px rgba(0,0,0,.25);
 }
 .person-body {
     position: absolute;
@@ -229,10 +222,12 @@ body {
             #0d0e19
         );
 }
-/* ---------------- CARD TOP ---------------- */
+/* =========================
+   CARD TOP
+========================= */
 .card-top {
     position: absolute;
-    z-index: 3;
+    z-index: 5;
     top: 15px;
     left: 15px;
     right: 15px;
@@ -257,7 +252,8 @@ body {
     height: 7px;
     border-radius: 50%;
     background: var(--green);
-    box-shadow: 0 0 10px rgba(99,230,166,.7);
+    box-shadow:
+        0 0 10px rgba(99,230,166,.7);
 }
 .report-button {
     width: 39px;
@@ -271,7 +267,9 @@ body {
     color: #d8d4df;
     cursor: pointer;
 }
-/* ---------------- CARD INFO ---------------- */
+/* =========================
+   CARD INFORMATION
+========================= */
 .profile-info {
     position: absolute;
     z-index: 4;
@@ -320,7 +318,9 @@ body {
     font-size: 10px;
     font-weight: 700;
 }
-/* ---------------- SWIPE INDICATORS ---------------- */
+/* =========================
+   SWIPE LABELS
+========================= */
 .swipe-label {
     position: absolute;
     z-index: 10;
@@ -345,13 +345,15 @@ body {
     border: 2px solid #ff6683;
     transform: rotate(12deg);
 }
-.up-label {
+.details-label {
     left: 50%;
     color: #b78cff;
     border: 2px solid #b78cff;
     transform: translateX(-50%);
 }
-/* ---------------- ACTIONS ---------------- */
+/* =========================
+   ACTIONS
+========================= */
 .actions {
     flex: none;
     height: 86px;
@@ -368,10 +370,12 @@ body {
     border-radius: 50%;
     border: 1px solid var(--border);
     background: #14111f;
-    box-shadow: 0 10px 30px rgba(0,0,0,.28);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.28);
     font-size: 21px;
     cursor: pointer;
-    transition: transform .16s ease;
+    transition:
+        transform .16s ease;
 }
 .action:active {
     transform: scale(.9);
@@ -379,7 +383,7 @@ body {
 .action.dislike {
     color: var(--danger);
 }
-.action.like {
+.action.comment-like {
     width: 64px;
     height: 64px;
     color: white;
@@ -393,13 +397,12 @@ body {
     box-shadow:
         0 12px 35px rgba(139,92,246,.35);
 }
-.action.up {
+.action.details {
     color: #bb92ff;
 }
-.action.info {
-    color: #b8b0c7;
-}
-/* ---------------- FILTER MODAL ---------------- */
+/* =========================
+   OVERLAYS
+========================= */
 .overlay {
     position: fixed;
     inset: 0;
@@ -424,6 +427,8 @@ body {
             #0f1019
         );
     border: 1px solid var(--border);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 .sheet-header {
     display: flex;
@@ -444,6 +449,9 @@ body {
     color: white;
     cursor: pointer;
 }
+/* =========================
+   FILTERS
+========================= */
 .filter-row {
     padding: 14px 0;
     border-bottom: 1px solid var(--border);
@@ -451,10 +459,6 @@ body {
 .filter-label {
     color: #aaa5b8;
     font-size: 12px;
-}
-.filter-value {
-    margin-top: 7px;
-    font-weight: 750;
 }
 select {
     width: 100%;
@@ -482,7 +486,116 @@ select {
     font-weight: 800;
     cursor: pointer;
 }
-/* ---------------- REPORT ---------------- */
+/* =========================
+   COMMENT LIKE
+========================= */
+.comment-input {
+    width: 100%;
+    min-height: 105px;
+    margin-top: 12px;
+    padding: 13px;
+    resize: none;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    background: #191526;
+    color: white;
+    outline: none;
+    font-size: 14px;
+}
+.comment-input::placeholder {
+    color: #716b7d;
+}
+.counter {
+    margin-top: 5px;
+    color: #716b7d;
+    font-size: 10px;
+    text-align: right;
+}
+/* =========================
+   DETAILS
+========================= */
+.detail-hero {
+    height: 210px;
+    margin-bottom: 15px;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(139,92,246,.45),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 78% 22%,
+            rgba(217,70,239,.38),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #31204b,
+            #090b15
+        );
+}
+.detail-person {
+    position: absolute;
+    left: 50%;
+    bottom: -40px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 175px;
+}
+.detail-head {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 78px;
+    height: 88px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background:
+        linear-gradient(
+            145deg,
+            #c7a5b8,
+            #735d7e
+        );
+}
+.detail-body {
+    position: absolute;
+    bottom: 0;
+    width: 120px;
+    height: 105px;
+    border-radius: 70px 70px 0 0;
+    background:
+        linear-gradient(
+            135deg,
+            #292039,
+            #0d0e19
+        );
+}
+.detail-section {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+.detail-label {
+    color: #8f899c;
+    font-size: 11px;
+}
+.detail-value {
+    margin-top: 6px;
+    color: #e3dfea;
+    line-height: 1.5;
+    font-size: 14px;
+}
+.detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+/* =========================
+   REPORT
+========================= */
 .report-option {
     width: 100%;
     padding: 14px;
@@ -494,7 +607,9 @@ select {
     color: white;
     cursor: pointer;
 }
-/* ---------------- TOAST ---------------- */
+/* =========================
+   TOAST
+========================= */
 .toast {
     position: fixed;
     z-index: 200;
@@ -509,7 +624,9 @@ select {
     font-weight: 750;
     display: none;
 }
-/* ---------------- RESPONSIVE ---------------- */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 390px) {
     .title {
         font-size: 25px;
@@ -531,18 +648,19 @@ select {
 </head>
 <body>
 <div class="app">
+    <!-- HEADER -->
     <header class="header">
         <div class="logo">
             SEY<span>F</span>ERT
         </div>
-        <div class="header-actions">
-            <button
-                class="icon-button"
-                onclick="showToast('Здесь будут уведомления')">
-                ♡
-            </button>
-        </div>
+        <button
+            class="icon-button"
+            onclick="showToast('Уведомления')"
+            aria-label="Уведомления">
+            🔔
+        </button>
     </header>
+    <!-- CONTENT -->
     <main class="content">
         <div class="top-line">
             <div class="title">
@@ -558,12 +676,14 @@ select {
             <div
                 id="profileCard"
                 class="profile-card">
+                <!-- PHOTO -->
                 <div class="photo">
                     <div class="person">
                         <div class="person-head"></div>
                         <div class="person-body"></div>
                     </div>
                 </div>
+                <!-- CARD TOP -->
                 <div class="card-top">
                     <div class="online">
                         <span class="online-dot"></span>
@@ -571,10 +691,12 @@ select {
                     </div>
                     <button
                         class="report-button"
-                        onclick="openReport(event)">
+                        onclick="openReport(event)"
+                        aria-label="Пожаловаться">
                         ⚑
                     </button>
                 </div>
+                <!-- SWIPE INDICATORS -->
                 <div
                     id="likeLabel"
                     class="swipe-label like-label">
@@ -586,10 +708,11 @@ select {
                     NOPE
                 </div>
                 <div
-                    id="upLabel"
-                    class="swipe-label up-label">
-                    SUPER
+                    id="detailsLabel"
+                    class="swipe-label details-label">
+                    ПОДРОБНЕЕ
                 </div>
+                <!-- INFORMATION -->
                 <div class="profile-info">
                     <div class="name-line">
                         <div class="name">
@@ -620,31 +743,42 @@ select {
                 </div>
             </div>
         </div>
+        <!-- ACTION BUTTONS -->
         <div class="actions">
+            <!-- ДИЗЛАЙК -->
             <button
                 class="action dislike"
-                onclick="swipe('left')">
+                onclick="swipe('left')"
+                aria-label="Дизлайк">
                 ✕
             </button>
+            <!-- ЛАЙК С КОММЕНТАРИЕМ -->
             <button
-                class="action up"
-                onclick="swipe('up')">
-                ★
+                class="action comment-like"
+                onclick="openCommentLike()"
+                aria-label="Лайк с комментарием">
+                💬
             </button>
+            <!-- ПОДРОБНАЯ ИНФОРМАЦИЯ -->
+            <button
+                class="action details"
+                onclick="openDetails()"
+                aria-label="Подробная информация">
+                ↑
+            </button>
+            <!-- ОБЫЧНЫЙ ЛАЙК -->
             <button
                 class="action like"
-                onclick="swipe('right')">
-                ♥
-            </button>
-            <button
-                class="action info"
-                onclick="openProfileInfo()">
-                i
+                onclick="swipe('right')"
+                aria-label="Лайк">
+                ♥️
             </button>
         </div>
     </main>
 </div>
-<!-- FILTER -->
+<!-- =========================
+     FILTER MODAL
+========================= -->
 <div
     id="filterOverlay"
     class="overlay"
@@ -652,7 +786,7 @@ select {
     <div class="sheet">
         <div class="sheet-header">
             <div class="sheet-title">
-                Фильтры
+                Фильтры поиска
             </div>
             <button
                 class="close"
@@ -660,36 +794,40 @@ select {
                 ✕
             </button>
         </div>
+        <!-- AGE -->
         <div class="filter-row">
             <div class="filter-label">
                 Возраст
             </div>
-            <select>
+            <select id="ageFilter">
                 <option>18–25</option>
                 <option>18–30</option>
                 <option>18–35</option>
                 <option>Без ограничения</option>
             </select>
         </div>
+        <!-- GENDER -->
         <div class="filter-row">
             <div class="filter-label">
                 Пол
             </div>
-            <select>
+            <select id="genderFilter">
                 <option>Все</option>
                 <option>Девушки</option>
                 <option>Парни</option>
             </select>
         </div>
+        <!-- CITY -->
         <div class="filter-row">
             <div class="filter-label">
-                Расстояние
+                Город
             </div>
-            <select>
-                <option>До 10 км</option>
-                <option>До 25 км</option>
-                <option>До 50 км</option>
-                <option>Без ограничения</option>
+            <select id="cityFilter">
+                <option>Любой город</option>
+                <option>Санкт-Петербург</option>
+                <option>Москва</option>
+                <option>Казань</option>
+                <option>Екатеринбург</option>
             </select>
         </div>
         <button
@@ -699,7 +837,126 @@ select {
         </button>
     </div>
 </div>
-<!-- REPORT -->
+<!-- =========================
+     COMMENT LIKE MODAL
+========================= -->
+<div
+    id="commentOverlay"
+    class="overlay"
+    onclick="closeOutside(event,'commentOverlay')">
+    <div class="sheet">
+        <div class="sheet-header">
+            <div class="sheet-title">
+                Лайк с комментарием
+            </div>
+            <button
+                class="close"
+                onclick="closeCommentLike()">
+                ✕
+            </button>
+        </div>
+        <div
+            style="
+                color:#aaa5b8;
+                font-size:13px;
+                line-height:1.5;
+            ">
+            Напиши короткое сообщение вместе
+            с лайком. Оно будет видно пользователю
+            вместе с твоей реакцией.
+        </div>
+        <textarea
+            id="commentInput"
+            class="comment-input"
+            maxlength="180"
+            placeholder="Например: «Классный плейлист, тоже люблю такую музыку»"
+            oninput="updateCounter()"></textarea>
+        <div
+            id="commentCounter"
+            class="counter">
+            0 / 180
+        </div>
+        <button
+            class="save"
+            onclick="sendCommentLike()">
+            Отправить лайк ❤️
+        </button>
+    </div>
+</div>
+<!-- =========================
+     DETAILS MODAL
+========================= -->
+<div
+    id="detailsOverlay"
+    class="overlay"
+    onclick="closeOutside(event,'detailsOverlay')">
+    <div class="sheet">
+        <div class="sheet-header">
+            <div class="sheet-title">
+                Подробная анкета
+            </div>
+            <button
+                class="close"
+                onclick="closeDetails()">
+                ✕
+            </button>
+        </div>
+        <div class="detail-hero">
+            <div class="detail-person">
+                <div class="detail-head"></div>
+                <div class="detail-body"></div>
+            </div>
+        </div>
+        <div class="detail-section">
+            <div
+                style="
+                    font-size:25px;
+                    font-weight:850;
+                ">
+                Алина, 21
+            </div>
+            <div
+                class="detail-value"
+                style="color:#aaa5b8">
+                📍 Санкт-Петербург
+            </div>
+        </div>
+        <div class="detail-section">
+            <div class="detail-label">
+                О себе
+            </div>
+            <div class="detail-value">
+                Люблю музыку, прогулки по ночному
+                городу и разговоры до утра.
+                Ценю открытых людей и хорошие
+                разговоры без формальностей.
+            </div>
+        </div>
+        <div class="detail-section">
+            <div class="detail-label">
+                Интересы
+            </div>
+            <div class="detail-tags">
+                <span class="tag">Музыка</span>
+                <span class="tag">Кино</span>
+                <span class="tag">Dota 2</span>
+                <span class="tag">Прогулки</span>
+                <span class="tag">Ночные разговоры</span>
+            </div>
+        </div>
+        <div class="detail-section">
+            <div class="detail-label">
+                Статус
+            </div>
+            <div class="detail-value">
+                🟢 Сейчас онлайн
+            </div>
+        </div>
+    </div>
+</div>
+<!-- =========================
+     REPORT MODAL
+========================= -->
 <div
     id="reportOverlay"
     class="overlay"
@@ -715,9 +972,13 @@ select {
                 ✕
             </button>
         </div>
-        <div style="color:#aaa5b8;font-size:13px;line-height:1.45">
-            Выбери причину жалобы. Это демо —
-            отправка пока не уходит на сервер.
+        <div
+            style="
+                color:#aaa5b8;
+                font-size:13px;
+                line-height:1.45;
+            ">
+            Выбери причину жалобы.
         </div>
         <button
             class="report-option"
@@ -746,68 +1007,26 @@ select {
         </button>
     </div>
 </div>
-<div
-    id="infoOverlay"
-    class="overlay"
-    onclick="closeOutside(event,'infoOverlay')">
-    <div class="sheet">
-        <div class="sheet-header">
-            <div class="sheet-title">
-                Алина, 21
-            </div>
-            <button
-                class="close"
-                onclick="closeInfo()">
-                ✕
-            </button>
-        </div>
-        <div class="filter-row">
-            <div class="filter-label">
-                Город
-            </div>
-            <div class="filter-value">
-                📍 Санкт-Петербург
-            </div>
-        </div>
-        <div class="filter-row">
-            <div class="filter-label">
-                О себе
-            </div>
-            <div style="margin-top:7px;line-height:1.5;color:#ddd9e4">
-                Люблю музыку, прогулки по ночному
-                городу и разговоры до утра.
-            </div>
-        </div>
-        <div class="filter-row">
-            <div class="filter-label">
-                Интересы
-            </div>
-            <div class="tags">
-                <span class="tag">Музыка</span>
-                <span class="tag">Кино</span>
-                <span class="tag">Dota 2</span>
-            </div>
-        </div>
-    </div>
-</div>
-<div
-    id="toast"
-    class="toast">
-</div>
+<div id="toast" class="toast"></div>
 <script>
-const card = document.getElementById("profileCard");
+/* =========================
+   CARD SWIPE
+========================= */
+const card =
+    document.getElementById("profileCard");
 let startX = 0;
 let startY = 0;
 let currentX = 0;
 let currentY = 0;
 let dragging = false;
-/* ---------------- SWIPE TOUCH ---------------- */
 card.addEventListener(
     "pointerdown",
     function(e) {
         dragging = true;
         startX = e.clientX;
         startY = e.clientY;
+        currentX = 0;
+        currentY = 0;
         card.setPointerCapture(e.pointerId);
     }
 );
@@ -817,10 +1036,12 @@ card.addEventListener(
         if (!dragging) return;
         currentX = e.clientX - startX;
         currentY = e.clientY - startY;
-        const rotate = currentX / 18;
+        const rotate =
+            currentX / 18;
         card.style.transition = "none";
         card.style.transform =
-            `translate(${currentX}px, ${currentY}px) rotate(${rotate}deg)`;
+            `translate(${currentX}px,${currentY}px)
+             rotate(${rotate}deg)`;
         updateSwipeLabels();
     }
 );
@@ -830,89 +1051,117 @@ card.addEventListener(
         if (!dragging) return;
         dragging = false;
         card.style.transition =
-            "transform .30s cubic-bezier(.2,.8,.2,1), opacity .30s ease";
-        const distance = Math.sqrt(
-            currentX * currentX +
-            currentY * currentY
-        );
+            "transform .30s cubic-bezier(.2,.8,.2,1),
+             opacity .30s ease";
+        const distance =
+            Math.sqrt(
+                currentX * currentX +
+                currentY * currentY
+            );
         if (distance > 100) {
-            if (Math.abs(currentX) > Math.abs(currentY)) {
+            if (
+                Math.abs(currentX) >
+                Math.abs(currentY)
+            ) {
                 swipe(
                     currentX > 0
                     ? "right"
                     : "left"
                 );
-            } else if (currentY < 0) {
-                swipe("up");
+            } else if (
+                currentY < 0
+            ) {
+                openDetails();
+                resetCard();
             } else {
                 resetCard();
             }
         } else {
             resetCard();
         }
-        currentX = 0;
-        currentY = 0;
     }
 );
-/* ---------------- LABELS ---------------- */
+/* =========================
+   SWIPE LABELS
+========================= */
 function updateSwipeLabels() {
     const like =
         document.getElementById("likeLabel");
     const nope =
         document.getElementById("nopeLabel");
-    const up =
-        document.getElementById("upLabel");
+    const details =
+        document.getElementById("detailsLabel");
     like.style.opacity =
         currentX > 20
-        ? Math.min(currentX / 90, 1)
+        ? Math.min(currentX / 90,1)
         : 0;
     nope.style.opacity =
         currentX < -20
-        ? Math.min(Math.abs(currentX) / 90, 1)
+        ? Math.min(
+            Math.abs(currentX) / 90,
+            1
+        )
         : 0;
-    up.style.opacity =
-        currentY < -20 && Math.abs(currentY) > Math.abs(currentX)
-        ? Math.min(Math.abs(currentY) / 100, 1)
+    details.style.opacity =
+        currentY < -20 &&
+        Math.abs(currentY) >
+        Math.abs(currentX)
+        ? Math.min(
+            Math.abs(currentY) / 100,
+            1
+        )
         : 0;
 }
-/* ---------------- SWIPE ACTION ---------------- */
+/* =========================
+   BUTTON SWIPES
+========================= */
 function swipe(direction) {
     const distance = 700;
     if (direction === "right") {
         card.style.transform =
-            `translate(${distance}px,-20px) rotate(18deg)`;
+            `translate(${distance}px,-20px)
+             rotate(18deg)`;
         card.style.opacity = "0";
-        showToast("Лайк ❤️");
+        showToast("Лайк отправлен ❤️");
     }
     if (direction === "left") {
         card.style.transform =
-            `translate(-${distance}px,-20px) rotate(-18deg)`;
+            `translate(-${distance}px,-20px)
+             rotate(-18deg)`;
         card.style.opacity = "0";
-        showToast("Дизлайк");
+        showToast("Анкета пропущена");
     }
-    if (direction === "up") {
-        card.style.transform =
-            `translate(0,-${distance}px) rotate(0deg)`;
-        card.style.opacity = "0";
-        showToast("SUPER ⭐");
-    }
-    setTimeout(resetCard, 350);
+    setTimeout(
+        resetCard,
+        350
+    );
 }
 function resetCard() {
-    card.style.transition =
-        "none";
+    card.style.transition = "none";
     card.style.opacity = "1";
     card.style.transform =
         "translate(0,0) rotate(0deg)";
-    document.getElementById("likeLabel").style.opacity = 0;
-    document.getElementById("nopeLabel").style.opacity = 0;
-    document.getElementById("upLabel").style.opacity = 0;
-    setTimeout(() => {
-        card.style.transition =
-            "transform .30s cubic-bezier(.2,.8,.2,1), opacity .30s ease";
-    }, 30);
+    document
+        .getElementById("likeLabel")
+        .style.opacity = 0;
+    document
+        .getElementById("nopeLabel")
+        .style.opacity = 0;
+    document
+        .getElementById("detailsLabel")
+        .style.opacity = 0;
+    setTimeout(
+        function() {
+            card.style.transition =
+                "transform .30s cubic-bezier(.2,.8,.2,1),
+                 opacity .30s ease";
+        },
+        30
+    );
 }
-/* ---------------- FILTER ---------------- */
+/* =========================
+   FILTERS
+========================= */
 function openFilters() {
     document
         .getElementById("filterOverlay")
@@ -924,12 +1173,84 @@ function closeFilters() {
         .classList.remove("show");
 }
 function saveFilters() {
+    const age =
+        document.getElementById("ageFilter").value;
+    const gender =
+        document.getElementById("genderFilter").value;
+    const city =
+        document.getElementById("cityFilter").value;
     closeFilters();
-    showToast("Фильтры применены");
+    showToast(
+        `Фильтры: ${age} · ${gender} · ${city}`
+    );
 }
-/* ---------------- REPORT ---------------- */
+/* =========================
+   COMMENT LIKE
+========================= */
+function openCommentLike() {
+    document
+        .getElementById("commentOverlay")
+        .classList.add("show");
+    setTimeout(
+        function() {
+            document
+                .getElementById("commentInput")
+                .focus();
+        },
+        150
+    );
+}
+function closeCommentLike() {
+    document
+        .getElementById("commentOverlay")
+        .classList.remove("show");
+}
+function updateCounter() {
+    const input =
+        document.getElementById("commentInput");
+    document
+        .getElementById("commentCounter")
+        .textContent =
+        `${input.value.length} / 180`;
+}
+function sendCommentLike() {
+    const input =
+        document.getElementById("commentInput");
+    const comment =
+        input.value.trim();
+    closeCommentLike();
+    input.value = "";
+    updateCounter();
+    if (comment) {
+        showToast(
+            "Лайк с комментарием отправлен ❤️"
+        );
+    } else {
+        showToast(
+            "Лайк отправлен ❤️"
+        );
+    }
+}
+/* =========================
+   DETAILS
+========================= */
+function openDetails() {
+    document
+        .getElementById("detailsOverlay")
+        .classList.add("show");
+}
+function closeDetails() {
+    document
+        .getElementById("detailsOverlay")
+        .classList.remove("show");
+}
+/* =========================
+   REPORT
+========================= */
 function openReport(e) {
-    e.stopPropagation();
+    if (e) {
+        e.stopPropagation();
+    }
     document
         .getElementById("reportOverlay")
         .classList.add("show");
@@ -945,18 +1266,9 @@ function sendReport(reason) {
         "Жалоба отправлена: " + reason
     );
 }
-/* ---------------- INFO ---------------- */
-function openProfileInfo() {
-    document
-        .getElementById("infoOverlay")
-        .classList.add("show");
-}
-function closeInfo() {
-    document
-        .getElementById("infoOverlay")
-        .classList.remove("show");
-}
-/* ---------------- OVERLAY ---------------- */
+/* =========================
+   OVERLAY
+========================= */
 function closeOutside(e,id) {
     if (e.target.id === id) {
         document
@@ -964,7 +1276,9 @@ function closeOutside(e,id) {
             .classList.remove("show");
     }
 }
-/* ---------------- TOAST ---------------- */
+/* =========================
+   TOAST
+========================= */
 function showToast(text) {
     const toast =
         document.getElementById("toast");
@@ -973,12 +1287,14 @@ function showToast(text) {
     clearTimeout(
         toast._timer
     );
-    toast._timer = setTimeout(
-        function() {
-            toast.style.display = "none";
-        },
-        1800
-    );
+    toast._timer =
+        setTimeout(
+            function() {
+                toast.style.display =
+                    "none";
+            },
+            1900
+        );
 }
 </script>
 </body>
