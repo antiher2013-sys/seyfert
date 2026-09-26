@@ -2,226 +2,153 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>Seyfert — Анкеты</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-:root {
-    --bg: #080711;
-    --panel: #14111f;
-    --purple: #8b5cf6;
-    --pink: #d946ef;
-    --text: #f8f7fc;
-    --muted: #aaa5b8;
-    --danger: #ff5f7d;
-    --success: #65e6a5;
-    --border: rgba(255,255,255,.1);
+:root{
+    --bg:#080711;
+    --panel:#14111f;
+    --purple:#8b5cf6;
+    --pink:#d946ef;
+    --text:#f8f7fc;
+    --muted:#aaa5b8;
+    --danger:#ff5f7d;
+    --success:#65e6a5;
+    --border:rgba(255,255,255,.1);
 }
 
-html,
-body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
     background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(124,58,237,.28),
-            transparent 42%
-        ),
+        radial-gradient(circle at 50% -10%,rgba(124,58,237,.28),transparent 42%),
         #080711;
-
-    color: var(--text);
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        sans-serif;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 }
 
-button,
-select,
-textarea {
-    font: inherit;
+button,select,textarea{
+    font:inherit;
 }
 
-button {
-    cursor: pointer;
+button{
+    cursor:pointer;
 }
 
-.app {
-    width: 100%;
-    max-width: 620px;
-    height: 100%;
-    margin: auto;
-
-    display: flex;
-    flex-direction: column;
+.app{
+    width:100%;
+    max-width:620px;
+    height:100%;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    height: 70px;
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 12px 17px;
+.header{
+    height:70px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 17px;
 }
 
-.logo {
-    font-size: 21px;
-    font-weight: 900;
-    letter-spacing: .8px;
+.logo{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:.8px;
 }
 
-.logo span {
-    color: var(--purple);
+.logo span{
+    color:var(--purple);
 }
 
-.header-button {
-    width: 43px;
-    height: 43px;
-
-    border-radius: 14px;
-
-    border: 1px solid var(--border);
-
-    background: rgba(255,255,255,.045);
-
-    color: white;
-
-    font-size: 19px;
+.header-button{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.045);
+    color:white;
+    font-size:19px;
 }
 
-/* =========================
-   MAIN
-========================= */
-
-.main {
-    flex: 1;
-    min-height: 0;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 0 15px 8px;
+.main{
+    flex:1;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    padding:0 15px 8px;
 }
 
-.top {
-    height: 53px;
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 2px 10px;
+.top{
+    height:53px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 2px 10px;
 }
 
-.title {
-    font-size: 27px;
-    font-weight: 900;
-    letter-spacing: -.6px;
+.title{
+    font-size:27px;
+    font-weight:900;
+    letter-spacing:-.6px;
 }
 
-.filter-button {
-    padding: 9px 12px;
-
-    border-radius: 13px;
-
-    border: 1px solid var(--border);
-
-    background: rgba(255,255,255,.045);
-
-    color: #ddd9e7;
-
-    font-size: 13px;
-    font-weight: 700;
+.filter-button{
+    padding:9px 12px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.045);
+    color:#ddd9e7;
+    font-size:13px;
+    font-weight:700;
 }
 
-/* =========================
-   CARD
-========================= */
-
-.card-wrap {
-    position: relative;
-
-    flex: 1;
-    min-height: 0;
+.card-wrap{
+    position:relative;
+    flex:1;
+    min-height:0;
 }
 
-.card {
-    position: absolute;
-    inset: 0;
+/* CARD */
 
-    overflow: hidden;
-
-    border-radius: 30px;
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    background: #151221;
-
+.card{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.12);
+    background:#151221;
     box-shadow:
         0 30px 80px rgba(0,0,0,.55),
         0 0 60px rgba(124,58,237,.11);
-
-    touch-action: none;
-    user-select: none;
-
+    touch-action:none;
+    user-select:none;
     transition:
         transform .3s cubic-bezier(.2,.8,.2,1),
         opacity .3s ease;
 }
 
-/* Фоновая фотография-заглушка */
-
-.photo {
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 25% 20%,
-            rgba(139,92,246,.5),
-            transparent 29%
-        ),
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(217,70,239,.38),
-            transparent 29%
-        ),
-        linear-gradient(
-            145deg,
-            #34204c,
-            #17152a 52%,
-            #090a12
-        );
+.photo{
+    position:absolute;
+    inset:0;
 }
 
-.photo::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
+.photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
     background:
         linear-gradient(
             to bottom,
@@ -232,637 +159,459 @@ button {
         );
 }
 
-/* Временная фигура вместо фотографии */
-
-.person {
-    position: absolute;
-
-    left: 50%;
-    top: 41%;
-
-    width: 230px;
-    height: 340px;
-
-    transform: translate(-50%, -50%);
+.person{
+    position:absolute;
+    left:50%;
+    top:41%;
+    width:230px;
+    height:340px;
+    transform:translate(-50%,-50%);
 }
 
-.head {
-    position: absolute;
+.head{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:118px;
+    height:140px;
+    transform:translateX(-50%);
+    border-radius:52% 52% 48% 48%;
+    background:linear-gradient(145deg,#d0adbd,#765e80);
+}
 
-    left: 50%;
-    top: 0;
+.body{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    width:230px;
+    height:225px;
+    transform:translateX(-50%);
+    border-radius:120px 120px 25px 25px;
+    background:linear-gradient(145deg,#30233f,#0c0d17);
+}
 
-    width: 118px;
-    height: 140px;
+/* TOP */
 
-    transform: translateX(-50%);
+.card-top{
+    position:absolute;
+    z-index:5;
+    top:15px;
+    left:15px;
+    right:15px;
+    display:flex;
+    justify-content:space-between;
+}
 
-    border-radius: 52% 52% 48% 48%;
+.online{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 10px;
+    border-radius:999px;
+    background:rgba(7,7,13,.58);
+    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(12px);
+    font-size:11px;
+    font-weight:700;
+}
 
+.online-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--success);
+    box-shadow:0 0 10px rgba(101,230,165,.7);
+}
+
+.report{
+    width:39px;
+    height:39px;
+    border-radius:13px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(7,7,13,.58);
+    color:#d8d4df;
+    backdrop-filter:blur(12px);
+}
+
+/* INDICATORS */
+
+.swipe-indicator{
+    position:absolute;
+    z-index:20;
+    top:42%;
+    padding:9px 14px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1px;
+    opacity:0;
+    pointer-events:none;
+}
+
+.like-indicator{
+    left:22px;
+    color:#6ee7a5;
+    border:2px solid #6ee7a5;
+    transform:rotate(-12deg);
+}
+
+.nope-indicator{
+    right:22px;
+    color:#ff6482;
+    border:2px solid #ff6482;
+    transform:rotate(12deg);
+}
+
+.up-indicator{
+    left:50%;
+    color:#b48aff;
+    border:2px solid #b48aff;
+    transform:translateX(-50%);
+}
+
+/* INFO */
+
+.profile-info{
+    position:absolute;
+    z-index:5;
+    left:20px;
+    right:20px;
+    bottom:19px;
+}
+
+.name-line{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+}
+
+.name{
+    font-size:30px;
+    font-weight:900;
+}
+
+.age{
+    color:#d3cedc;
+    font-size:19px;
+}
+
+.city{
+    margin-top:3px;
+    color:#c1bccb;
+    font-size:13px;
+}
+
+.bio{
+    max-width:500px;
+    margin-top:10px;
+    color:#ddd9e4;
+    line-height:1.42;
+    font-size:14px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:10px;
+}
+
+.tag{
+    padding:6px 9px;
+    border-radius:999px;
+    background:rgba(139,92,246,.13);
+    border:1px solid rgba(139,92,246,.22);
+    color:#c7b4ff;
+    font-size:10px;
+    font-weight:700;
+}
+
+/* ACTIONS */
+
+.actions{
+    height:84px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+}
+
+.action{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:#14111f;
+    color:white;
+    font-size:21px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    transition:transform .12s ease;
+}
+
+.action:active{
+    transform:scale(.88);
+}
+
+.action.dislike{
+    color:var(--danger);
+}
+
+.action.comment{
+    width:65px;
+    height:65px;
+    border:none;
+    background:linear-gradient(145deg,var(--purple),var(--pink));
+    box-shadow:0 12px 35px rgba(139,92,246,.4);
+}
+
+.action.like{
+    color:#ff6e94;
+}
+
+/* EMPTY */
+
+.empty-state{
+    position:absolute;
+    inset:0;
+    border-radius:30px;
+    border:1px solid var(--border);
     background:
-        linear-gradient(
-            145deg,
-            #d0adbd,
-            #765e80
-        );
+        radial-gradient(circle at 50% 30%,rgba(139,92,246,.16),transparent 40%),
+        #11101b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
 }
 
-.body {
-    position: absolute;
+.empty-content{
+    max-width:330px;
+}
 
-    left: 50%;
-    bottom: 0;
+.empty-icon{
+    font-size:48px;
+    margin-bottom:16px;
+}
 
-    width: 230px;
-    height: 225px;
+.empty-title{
+    font-size:24px;
+    font-weight:900;
+}
 
-    transform: translateX(-50%);
+.empty-text{
+    margin-top:10px;
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+}
 
-    border-radius: 120px 120px 25px 25px;
+.reset-filters{
+    margin-top:18px;
+    padding:12px 17px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(100deg,var(--purple),var(--pink));
+    color:white;
+    font-weight:800;
+}
 
+/* OVERLAY */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:flex-end;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(12px);
+}
+
+.overlay.open{
+    display:flex;
+}
+
+.sheet{
+    width:min(620px,100%);
+    max-height:90%;
+    overflow-y:auto;
+    margin:auto;
+    padding:21px;
+    border-radius:28px 28px 0 0;
+    background:linear-gradient(145deg,#171326,#0f1019);
+    border:1px solid var(--border);
+}
+
+.sheet-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.sheet-title{
+    font-size:23px;
+    font-weight:900;
+}
+
+.close{
+    width:40px;
+    height:40px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.05);
+    color:white;
+}
+
+.filter-item{
+    margin-top:15px;
+}
+
+.filter-label{
+    color:var(--muted);
+    font-size:12px;
+}
+
+select,textarea{
+    width:100%;
+    margin-top:7px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#191526;
+    color:white;
+    outline:none;
+}
+
+select{
+    padding:13px;
+}
+
+.apply{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(100deg,var(--purple),var(--pink));
+    color:white;
+    font-weight:800;
+}
+
+.comment-description{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+}
+
+textarea{
+    height:110px;
+    padding:13px;
+    resize:none;
+    font-size:14px;
+}
+
+.counter{
+    margin-top:5px;
+    color:#716b7d;
+    text-align:right;
+    font-size:10px;
+}
+
+/* DETAILS */
+
+.details-photo{
+    height:210px;
+    border-radius:22px;
+    overflow:hidden;
+    position:relative;
     background:
-        linear-gradient(
-            145deg,
-            #30233f,
-            #0c0d17
-        );
+        radial-gradient(circle at 25% 20%,rgba(139,92,246,.5),transparent 29%),
+        radial-gradient(circle at 80% 20%,rgba(217,70,239,.38),transparent 29%),
+        linear-gradient(145deg,#34204c,#090a12);
 }
 
-/* =========================
-   CARD TOP
-========================= */
-
-.card-top {
-    position: absolute;
-
-    z-index: 5;
-
-    top: 15px;
-    left: 15px;
-    right: 15px;
-
-    display: flex;
-    justify-content: space-between;
+.details-person{
+    position:absolute;
+    left:50%;
+    bottom:-40px;
+    width:120px;
+    height:175px;
+    transform:translateX(-50%);
 }
 
-.online {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 7px 10px;
-
-    border-radius: 999px;
-
-    background: rgba(7,7,13,.58);
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    backdrop-filter: blur(12px);
-
-    font-size: 11px;
-    font-weight: 700;
+.details-head{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:78px;
+    height:88px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:linear-gradient(145deg,#d0adbd,#765e80);
 }
 
-.online-dot {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: var(--success);
-
-    box-shadow: 0 0 10px rgba(101,230,165,.7);
+.details-body{
+    position:absolute;
+    bottom:0;
+    width:120px;
+    height:105px;
+    border-radius:70px 70px 0 0;
+    background:linear-gradient(145deg,#30233f,#0c0d17);
 }
 
-.report {
-    width: 39px;
-    height: 39px;
-
-    border-radius: 13px;
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    background: rgba(7,7,13,.58);
-
-    color: #d8d4df;
-
-    backdrop-filter: blur(12px);
+.details-section{
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
 }
 
-/* =========================
-   CARD INFO
-========================= */
-
-.profile-info {
-    position: absolute;
-
-    z-index: 5;
-
-    left: 20px;
-    right: 20px;
-    bottom: 19px;
+.details-label{
+    color:#8f899c;
+    font-size:11px;
 }
 
-.name-line {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+.details-value{
+    margin-top:6px;
+    color:#e3dfea;
+    font-size:14px;
+    line-height:1.5;
 }
 
-.name {
-    font-size: 30px;
-    font-weight: 900;
+/* REPORT */
+
+.report-option{
+    width:100%;
+    margin-top:8px;
+    padding:14px;
+    text-align:left;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:rgba(255,255,255,.035);
+    color:white;
 }
 
-.age {
-    color: #d3cedc;
-    font-size: 19px;
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:300;
+    left:50%;
+    bottom:24px;
+    transform:translateX(-50%);
+    padding:11px 16px;
+    border-radius:999px;
+    background:#f4f3f7;
+    color:#15131b;
+    font-size:12px;
+    font-weight:800;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
 }
 
-.city {
-    margin-top: 3px;
-
-    color: #c1bccb;
-
-    font-size: 13px;
-}
-
-.bio {
-    max-width: 500px;
-
-    margin-top: 10px;
-
-    color: #ddd9e4;
-
-    line-height: 1.42;
-
-    font-size: 14px;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-
-    margin-top: 10px;
-}
-
-.tag {
-    padding: 6px 9px;
-
-    border-radius: 999px;
-
-    background: rgba(139,92,246,.13);
-
-    border: 1px solid rgba(139,92,246,.22);
-
-    color: #c7b4ff;
-
-    font-size: 10px;
-    font-weight: 700;
-}
-
-/* =========================
-   SWIPE INDICATORS
-========================= */
-
-.swipe-indicator {
-    position: absolute;
-
-    z-index: 20;
-
-    top: 42%;
-
-    padding: 9px 14px;
-
-    border-radius: 12px;
-
-    font-size: 18px;
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-    opacity: 0;
-
-    pointer-events: none;
-}
-
-.like-indicator {
-    left: 22px;
-
-    color: #6ee7a5;
-    border: 2px solid #6ee7a5;
-
-    transform: rotate(-12deg);
-}
-
-.nope-indicator {
-    right: 22px;
-
-    color: #ff6482;
-    border: 2px solid #ff6482;
-
-    transform: rotate(12deg);
-}
-
-.up-indicator {
-    left: 50%;
-
-    color: #b48aff;
-    border: 2px solid #b48aff;
-
-    transform: translateX(-50%);
-}
-
-/* =========================
-   ACTIONS
-========================= */
-
-.actions {
-    height: 84px;
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 18px;
-}
-
-.action {
-    width: 58px;
-    height: 58px;
-
-    border-radius: 50%;
-
-    border: 1px solid var(--border);
-
-    background: #14111f;
-
-    color: white;
-
-    font-size: 21px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.3);
-
-    transition:
-        transform .12s ease,
-        box-shadow .15s ease;
-}
-
-.action:active {
-    transform: scale(.88);
-}
-
-.action.dislike {
-    color: var(--danger);
-}
-
-.action.comment {
-    width: 65px;
-    height: 65px;
-
-    border: none;
-
-    background:
-        linear-gradient(
-            145deg,
-            var(--purple),
-            var(--pink)
-        );
-
-    box-shadow:
-        0 12px 35px rgba(139,92,246,.4);
-}
-
-.action.like {
-    color: #ff6e94;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.overlay {
-    position: fixed;
-    inset: 0;
-
-    z-index: 100;
-
-    display: none;
-
-    align-items: flex-end;
-
-    background: rgba(0,0,0,.72);
-
-    backdrop-filter: blur(12px);
-}
-
-.overlay.open {
-    display: flex;
-}
-
-.sheet {
-    width: min(620px, 100%);
-
-    max-height: 90%;
-
-    overflow-y: auto;
-
-    margin: auto;
-
-    padding: 21px;
-
-    border-radius: 28px 28px 0 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #171326,
-            #0f1019
-        );
-
-    border: 1px solid var(--border);
-}
-
-.sheet-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 18px;
-}
-
-.sheet-title {
-    font-size: 23px;
-    font-weight: 900;
-}
-
-.close {
-    width: 40px;
-    height: 40px;
-
-    border-radius: 13px;
-
-    border: 1px solid var(--border);
-
-    background: rgba(255,255,255,.05);
-
-    color: white;
-}
-
-/* =========================
-   FILTERS
-========================= */
-
-.filter-item {
-    margin-top: 15px;
-}
-
-.filter-label {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-select,
-textarea {
-    width: 100%;
-
-    margin-top: 7px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    background: #191526;
-
-    color: white;
-
-    outline: none;
-}
-
-select {
-    padding: 13px;
-}
-
-.apply {
-    width: 100%;
-
-    margin-top: 20px;
-
-    padding: 14px;
-
-    border: none;
-
-    border-radius: 15px;
-
-    background:
-        linear-gradient(
-            100deg,
-            var(--purple),
-            var(--pink)
-        );
-
-    color: white;
-
-    font-weight: 800;
-}
-
-/* =========================
-   COMMENT
-========================= */
-
-.comment-description {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-textarea {
-    height: 110px;
-
-    padding: 13px;
-
-    resize: none;
-
-    font-size: 14px;
-}
-
-.counter {
-    margin-top: 5px;
-
-    color: #716b7d;
-
-    text-align: right;
-
-    font-size: 10px;
-}
-
-/* =========================
-   DETAILS
-========================= */
-
-.details-photo {
-    height: 210px;
-
-    border-radius: 22px;
-
-    overflow: hidden;
-
-    position: relative;
-
-    background:
-        radial-gradient(
-            circle at 25% 20%,
-            rgba(139,92,246,.5),
-            transparent 29%
-        ),
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(217,70,239,.38),
-            transparent 29%
-        ),
-        linear-gradient(
-            145deg,
-            #34204c,
-            #090a12
-        );
-}
-
-.details-person {
-    position: absolute;
-
-    left: 50%;
-    bottom: -40px;
-
-    width: 120px;
-    height: 175px;
-
-    transform: translateX(-50%);
-}
-
-.details-head {
-    position: absolute;
-
-    left: 50%;
-    top: 0;
-
-    width: 78px;
-    height: 88px;
-
-    transform: translateX(-50%);
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #d0adbd,
-            #765e80
-        );
-}
-
-.details-body {
-    position: absolute;
-
-    bottom: 0;
-
-    width: 120px;
-    height: 105px;
-
-    border-radius: 70px 70px 0 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #30233f,
-            #0c0d17
-        );
-}
-
-.details-section {
-    padding: 15px 0;
-
-    border-bottom: 1px solid var(--border);
-}
-
-.details-label {
-    color: #8f899c;
-
-    font-size: 11px;
-}
-
-.details-value {
-    margin-top: 6px;
-
-    color: #e3dfea;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-/* =========================
-   REPORT
-========================= */
-
-.report-option {
-    width: 100%;
-
-    margin-top: 8px;
-
-    padding: 14px;
-
-    text-align: left;
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    background: rgba(255,255,255,.035);
-
-    color: white;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast {
-    position: fixed;
-
-    z-index: 300;
-
-    left: 50%;
-    bottom: 24px;
-
-    transform: translateX(-50%);
-
-    padding: 11px 16px;
-
-    border-radius: 999px;
-
-    background: #f4f3f7;
-
-    color: #15131b;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: opacity .2s ease;
-}
-
-.toast.show {
-    opacity: 1;
+.toast.show{
+    opacity:1;
 }
 </style>
 </head>
@@ -871,341 +620,956 @@ textarea {
 
 <div class="app">
 
-    <header class="header">
+<header class="header">
 
-        <div class="logo">
-            SEY<span>F</span>ERT
+    <div class="logo">
+        SEY<span>F</span>ERT
+    </div>
+
+    <button
+        class="header-button"
+        id="notificationsButton">
+        🔔
+    </button>
+
+</header>
+
+
+<main class="main">
+
+    <div class="top">
+
+        <div class="title">
+            Анкеты
         </div>
 
         <button
-            class="header-button"
-            id="notificationsButton"
-            aria-label="Уведомления">
-            🔔
-        </button>
-
-    </header>
-
-
-    <main class="main">
-
-        <div class="top">
-
-            <div class="title">
-                Анкеты
-            </div>
-
-            <button
-                class="filter-button"
-                id="filterButton">
-                ⚙ Фильтр
-            </button>
-
-        </div>
-
-
-        <div class="card-wrap">
-
-            <div
-                class="card"
-                id="card">
-
-                <div class="photo">
-
-                    <div class="person">
-
-                        <div class="head"></div>
-                        <div class="body"></div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="card-top">
-
-                    <div class="online">
-
-                        <span class="online-dot"></span>
-
-                        Сейчас онлайн
-
-                    </div>
-
-                    <button
-                        class="report"
-                        id="reportButton"
-                        aria-label="Пожаловаться">
-                        ⚑
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="swipe-indicator like-indicator"
-                    id="likeIndicator">
-                    LIKE
-                </div>
-
-
-                <div
-                    class="swipe-indicator nope-indicator"
-                    id="nopeIndicator">
-                    NOPE
-                </div>
-
-
-                <div
-                    class="swipe-indicator up-indicator"
-                    id="upIndicator">
-                    ПОДРОБНЕЕ
-                </div>
-
-
-                <div class="profile-info">
-
-                    <div class="name-line">
-
-                        <div class="name">
-                            Алина
-                        </div>
-
-                        <div class="age">
-                            21
-                        </div>
-
-                    </div>
-
-                    <div class="city">
-                        📍 Санкт-Петербург
-                    </div>
-
-                    <div class="bio">
-                        Люблю музыку, прогулки по ночному
-                        городу и разговоры до утра.
-                    </div>
-
-                    <div class="tags">
-
-                        <span class="tag">Музыка</span>
-                        <span class="tag">Кино</span>
-                        <span class="tag">Dota 2</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- ТОЛЬКО ТРИ КНОПКИ -->
-
-        <div class="actions">
-
-            <button
-                class="action dislike"
-                id="dislikeButton"
-                aria-label="Дизлайк">
-                ✕
-            </button>
-
-            <button
-                class="action comment"
-                id="commentButton"
-                aria-label="Лайк с комментарием">
-                💬
-            </button>
-
-            <button
-                class="action like"
-                id="likeButton"
-                aria-label="Лайк">
-                ♥
-            </button>
-
-        </div>
-
-    </main>
-
-</div>
-
-
-<!-- =========================
-     FILTER
-========================= -->
-
-<div
-    class="overlay"
-    id="filterOverlay">
-
-    <div class="sheet">
-
-        <div class="sheet-header">
-
-            <div class="sheet-title">
-                Фильтры поиска
-            </div>
-
-            <button
-                class="close"
-                data-close="filterOverlay">
-                ✕
-            </button>
-
-        </div>
-
-
-        <div class="filter-item">
-
-            <div class="filter-label">
-                Возраст
-            </div>
-
-            <select id="ageFilter">
-
-                <option>18–25</option>
-                <option>18–30</option>
-                <option>18–35</option>
-                <option>Без ограничения</option>
-
-            </select>
-
-        </div>
-
-
-        <div class="filter-item">
-
-            <div class="filter-label">
-                Пол
-            </div>
-
-            <select id="genderFilter">
-
-                <option>Все</option>
-                <option>Девушки</option>
-                <option>Парни</option>
-
-            </select>
-
-        </div>
-
-
-        <div class="filter-item">
-
-            <div class="filter-label">
-                Город
-            </div>
-
-            <select id="cityFilter">
-
-                <option>Любой город</option>
-                <option>Санкт-Петербург</option>
-                <option>Москва</option>
-                <option>Казань</option>
-                <option>Екатеринбург</option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="apply"
-            id="applyFilters">
-            Применить
+            class="filter-button"
+            id="filterButton">
+            ⚙ Фильтр
         </button>
 
     </div>
 
+
+    <div class="card-wrap" id="cardWrap">
+
+        <!-- карточка создаётся JavaScript -->
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="action dislike"
+            id="dislikeButton">
+            ✕
+        </button>
+
+        <button
+            class="action comment"
+            id="commentButton">
+            💬
+        </button>
+
+        <button
+            class="action like"
+            id="likeButton">
+            ♥
+        </button>
+
+    </div>
+
+</main>
+
 </div>
 
 
-<!-- =========================
-     COMMENT LIKE
-========================= -->
+<!-- FILTER -->
 
-<div
-    class="overlay"
-    id="commentOverlay">
+<div class="overlay" id="filterOverlay">
 
-    <div class="sheet">
+<div class="sheet">
 
-        <div class="sheet-header">
+<div class="sheet-header">
 
-            <div class="sheet-title">
-                Лайк с комментарием
+<div class="sheet-title">
+Фильтры поиска
+</div>
+
+<button
+class="close"
+data-close="filterOverlay">
+✕
+</button>
+
+</div>
+
+<div class="filter-item">
+
+<div class="filter-label">
+Возраст
+</div>
+
+<select id="ageFilter">
+
+<option value="18-25">18–25</option>
+<option value="18-30">18–30</option>
+<option value="18-35">18–35</option>
+<option value="all">Без ограничения</option>
+
+</select>
+
+</div>
+
+<div class="filter-item">
+
+<div class="filter-label">
+Пол
+</div>
+
+<select id="genderFilter">
+
+<option value="all">Все</option>
+<option value="female">Девушки</option>
+<option value="male">Парни</option>
+
+</select>
+
+</div>
+
+<div class="filter-item">
+
+<div class="filter-label">
+Город
+</div>
+
+<select id="cityFilter">
+
+<option value="all">Любой город</option>
+<option value="Санкт-Петербург">Санкт-Петербург</option>
+<option value="Москва">Москва</option>
+<option value="Казань">Казань</option>
+<option value="Екатеринбург">Екатеринбург</option>
+
+</select>
+
+</div>
+
+<button
+class="apply"
+id="applyFilters">
+Применить
+</button>
+
+</div>
+
+</div>
+
+
+<!-- COMMENT -->
+
+<div class="overlay" id="commentOverlay">
+
+<div class="sheet">
+
+<div class="sheet-header">
+
+<div class="sheet-title">
+Лайк с комментарием
+</div>
+
+<button
+class="close"
+data-close="commentOverlay">
+✕
+</button>
+
+</div>
+
+<div class="comment-description">
+Отправь лайк вместе с коротким сообщением.
+</div>
+
+<textarea
+id="commentInput"
+maxlength="180"
+placeholder="Например: «Тоже люблю такую музыку»">
+</textarea>
+
+<div class="counter" id="counter">
+0 / 180
+</div>
+
+<button
+class="apply"
+id="sendComment">
+Отправить лайк ❤️
+</button>
+
+</div>
+
+</div>
+
+
+<!-- DETAILS -->
+
+<div class="overlay" id="detailsOverlay">
+
+<div class="sheet">
+
+<div class="sheet-header">
+
+<div class="sheet-title">
+Подробная информация
+</div>
+
+<button
+class="close"
+data-close="detailsOverlay">
+✕
+</button>
+
+</div>
+
+<div id="detailsContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- REPORT -->
+
+<div class="overlay" id="reportOverlay">
+
+<div class="sheet">
+
+<div class="sheet-header">
+
+<div class="sheet-title">
+Пожаловаться
+</div>
+
+<button
+class="close"
+data-close="reportOverlay">
+✕
+</button>
+
+</div>
+
+<div class="comment-description">
+Выбери причину жалобы.
+</div>
+
+<button class="report-option" data-report="Спам">
+🚫 Спам
+</button>
+
+<button class="report-option" data-report="Оскорбление">
+⚠️ Оскорбление
+</button>
+
+<button class="report-option" data-report="Неприемлемый контент">
+🔞 Неприемлемый контент
+</button>
+
+<button class="report-option" data-report="Фейковый профиль">
+👤 Фейковый профиль
+</button>
+
+<button class="report-option" data-report="Другое">
+••• Другое
+</button>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =====================================================
+   ДАННЫЕ АНКЕТ
+===================================================== */
+
+const profiles = [
+
+{
+    id:1,
+    name:"Алина",
+    age:21,
+    gender:"female",
+    city:"Санкт-Петербург",
+    online:true,
+    bio:"Люблю музыку, прогулки по ночному городу и разговоры до утра.",
+    interests:["Музыка","Кино","Dota 2"],
+    details:"Ценю открытых людей и хорошие разговоры без формальностей."
+},
+
+{
+    id:2,
+    name:"Макс",
+    age:24,
+    gender:"male",
+    city:"Москва",
+    online:true,
+    bio:"Игры, спорт, техника и вечные попытки найти хороший фильм.",
+    interests:["Игры","Спорт","Технологии"],
+    details:"Могу часами обсуждать железо, игры и совершенно случайные темы."
+},
+
+{
+    id:3,
+    name:"София",
+    age:22,
+    gender:"female",
+    city:"Казань",
+    online:false,
+    bio:"Фотография, путешествия и кофе. Иногда всё это одновременно.",
+    interests:["Фото","Путешествия","Музыка"],
+    details:"Люблю спонтанные поездки и людей, с которыми можно быть собой."
+},
+
+{
+    id:4,
+    name:"Артём",
+    age:27,
+    gender:"male",
+    city:"Екатеринбург",
+    online:true,
+    bio:"Музыка, компьютерные игры и долгие ночные разговоры.",
+    interests:["Рок","Игры","Фильмы"],
+    details:"Ищу людей для общения, игр и нормальных разговоров без напряжения."
+},
+
+{
+    id:5,
+    name:"Лера",
+    age:25,
+    gender:"female",
+    city:"Москва",
+    online:true,
+    bio:"Кино, книги и прогулки. Люблю уютные места и интересных людей.",
+    interests:["Кино","Книги","Прогулки"],
+    details:"Всегда рада новым знакомствам и необычным историям."
+}
+
+];
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let activeProfiles = [...profiles];
+
+let currentIndex = 0;
+
+let currentProfile = null;
+
+let pointerActive = false;
+
+let startX = 0;
+let startY = 0;
+
+let deltaX = 0;
+let deltaY = 0;
+
+let cardLocked = false;
+
+
+/* =====================================================
+   DOM
+===================================================== */
+
+const cardWrap =
+    document.getElementById("cardWrap");
+
+const likeButton =
+    document.getElementById("likeButton");
+
+const dislikeButton =
+    document.getElementById("dislikeButton");
+
+const commentButton =
+    document.getElementById("commentButton");
+
+const detailsContent =
+    document.getElementById("detailsContent");
+
+const commentInput =
+    document.getElementById("commentInput");
+
+const counter =
+    document.getElementById("counter");
+
+
+/* =====================================================
+   RENDER CARD
+===================================================== */
+
+function renderCard(){
+
+    cardWrap.innerHTML = "";
+
+    if(currentIndex >= activeProfiles.length){
+
+        renderEmpty();
+
+        return;
+
+    }
+
+    currentProfile =
+        activeProfiles[currentIndex];
+
+
+    const card =
+        document.createElement("div");
+
+    card.className = "card";
+
+    card.id = "card";
+
+
+    const hue =
+        currentProfile.id * 53;
+
+    card.innerHTML = `
+
+        <div
+            class="photo"
+            style="
+                background:
+                radial-gradient(
+                    circle at 25% 20%,
+                    hsla(${hue},75%,65%,.5),
+                    transparent 29%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(217,70,239,.38),
+                    transparent 29%
+                ),
+                linear-gradient(
+                    145deg,
+                    hsl(${hue},35%,27%),
+                    #090a12
+                );
+            "
+        >
+
+            <div class="person">
+
+                <div class="head"></div>
+                <div class="body"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-top">
+
+            <div class="online">
+
+                <span class="online-dot"
+                    style="
+                    opacity:${currentProfile.online ? 1 : .35};
+                    ">
+                </span>
+
+                ${
+                    currentProfile.online
+                    ? "Сейчас онлайн"
+                    : "Был(а) недавно"
+                }
+
             </div>
 
             <button
-                class="close"
-                data-close="commentOverlay">
-                ✕
+                class="report"
+                id="reportButton">
+                ⚑
             </button>
 
         </div>
-
-
-        <div class="comment-description">
-
-            Отправь лайк вместе с коротким
-            сообщением. Оно появится у пользователя
-            вместе с твоей реакцией.
-
-        </div>
-
-
-        <textarea
-            id="commentInput"
-            maxlength="180"
-            placeholder="Например: «Тоже люблю такую музыку»">
-        </textarea>
 
 
         <div
-            class="counter"
-            id="counter">
-            0 / 180
+            class="swipe-indicator like-indicator"
+            id="likeIndicator">
+            LIKE
         </div>
 
 
-        <button
-            class="apply"
-            id="sendComment">
-            Отправить лайк ❤️
-        </button>
-
-    </div>
-
-</div>
+        <div
+            class="swipe-indicator nope-indicator"
+            id="nopeIndicator">
+            NOPE
+        </div>
 
 
-<!-- =========================
-     DETAILS
-========================= -->
+        <div
+            class="swipe-indicator up-indicator"
+            id="upIndicator">
+            ПОДРОБНЕЕ
+        </div>
 
-<div
-    class="overlay"
-    id="detailsOverlay">
 
-    <div class="sheet">
+        <div class="profile-info">
 
-        <div class="sheet-header">
+            <div class="name-line">
 
-            <div class="sheet-title">
-                Подробная информация
+                <div class="name">
+                    ${escapeHTML(currentProfile.name)}
+                </div>
+
+                <div class="age">
+                    ${currentProfile.age}
+                </div>
+
             </div>
 
-            <button
-                class="close"
-                data-close="detailsOverlay">
-                ✕
-            </button>
+            <div class="city">
+                📍 ${escapeHTML(currentProfile.city)}
+            </div>
+
+            <div class="bio">
+                ${escapeHTML(currentProfile.bio)}
+            </div>
+
+            <div class="tags">
+
+                ${currentProfile.interests
+                    .map(
+                        tag =>
+                        `<span class="tag">
+                            ${escapeHTML(tag)}
+                        </span>`
+                    )
+                    .join("")
+                }
+
+            </div>
 
         </div>
+    `;
 
+
+    cardWrap.appendChild(card);
+
+    bindCard(card);
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+function renderEmpty(){
+
+    currentProfile = null;
+
+    cardWrap.innerHTML = `
+
+        <div class="empty-state">
+
+            <div class="empty-content">
+
+                <div class="empty-icon">
+                    ✨
+                </div>
+
+                <div class="empty-title">
+                    Новых анкет пока нет
+                </div>
+
+                <div class="empty-text">
+                    Мы показали все анкеты,
+                    которые подходят под твои
+                    текущие фильтры.
+                </div>
+
+                <button
+                    class="reset-filters"
+                    id="resetFilters">
+                    Сбросить фильтры
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+
+    document
+        .getElementById("resetFilters")
+        .addEventListener(
+            "click",
+            function(){
+
+                activeProfiles = [...profiles];
+
+                currentIndex = 0;
+
+                document
+                    .getElementById("ageFilter")
+                    .value = "18-25";
+
+                document
+                    .getElementById("genderFilter")
+                    .value = "all";
+
+                document
+                    .getElementById("cityFilter")
+                    .value = "all";
+
+                renderCard();
+
+                showToast(
+                    "Фильтры сброшены"
+                );
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   BIND CARD
+===================================================== */
+
+function bindCard(card){
+
+    const likeIndicator =
+        card.querySelector(".like-indicator");
+
+    const nopeIndicator =
+        card.querySelector(".nope-indicator");
+
+    const upIndicator =
+        card.querySelector(".up-indicator");
+
+    const reportButton =
+        card.querySelector("#reportButton");
+
+
+    reportButton.addEventListener(
+        "click",
+        function(event){
+
+            event.stopPropagation();
+
+            openOverlay(
+                "reportOverlay"
+            );
+
+        }
+    );
+
+
+    card.addEventListener(
+        "pointerdown",
+        function(event){
+
+            if(cardLocked)
+                return;
+
+            pointerActive = true;
+
+            startX = event.clientX;
+            startY = event.clientY;
+
+            deltaX = 0;
+            deltaY = 0;
+
+            card.style.transition =
+                "none";
+
+            card.setPointerCapture(
+                event.pointerId
+            );
+
+        }
+    );
+
+
+    card.addEventListener(
+        "pointermove",
+        function(event){
+
+            if(
+                !pointerActive ||
+                cardLocked
+            )
+                return;
+
+
+            deltaX =
+                event.clientX - startX;
+
+            deltaY =
+                event.clientY - startY;
+
+
+            const rotation =
+                deltaX / 18;
+
+
+            card.style.transform =
+                `
+                translate(${deltaX}px,${deltaY}px)
+                rotate(${rotation}deg)
+                `;
+
+
+            likeIndicator.style.opacity =
+                deltaX > 20
+                ? Math.min(deltaX / 100,1)
+                : 0;
+
+
+            nopeIndicator.style.opacity =
+                deltaX < -20
+                ? Math.min(
+                    Math.abs(deltaX)/100,
+                    1
+                  )
+                : 0;
+
+
+            upIndicator.style.opacity =
+                deltaY < -20 &&
+                Math.abs(deltaY) >
+                Math.abs(deltaX)
+                ? Math.min(
+                    Math.abs(deltaY)/110,
+                    1
+                  )
+                : 0;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "pointerup",
+        function(){
+
+            finishSwipe(
+                card
+            );
+
+        }
+    );
+
+
+    card.addEventListener(
+        "pointercancel",
+        function(){
+
+            finishSwipe(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FINISH SWIPE
+===================================================== */
+
+function finishSwipe(card){
+
+    if(!pointerActive)
+        return;
+
+    pointerActive = false;
+
+
+    card.style.transition =
+        "transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease";
+
+
+    const horizontal =
+        Math.abs(deltaX);
+
+    const vertical =
+        Math.abs(deltaY);
+
+
+    if(
+        horizontal > 100 &&
+        horizontal > vertical
+    ){
+
+        if(deltaX > 0)
+            performLike();
+
+        else
+            performDislike();
+
+        return;
+    }
+
+
+    if(
+        deltaY < -100 &&
+        vertical > horizontal
+    ){
+
+        openDetails();
+
+        resetCardPosition(
+            card
+        );
+
+        return;
+    }
+
+
+    resetCardPosition(
+        card
+    );
+
+}
+
+
+function resetCardPosition(card){
+
+    card.style.transform =
+        "translate(0,0) rotate(0deg)";
+
+    deltaX = 0;
+    deltaY = 0;
+
+}
+
+
+/* =====================================================
+   LIKE
+===================================================== */
+
+function performLike(){
+
+    if(
+        cardLocked ||
+        !currentProfile
+    )
+        return;
+
+    cardLocked = true;
+
+    const card =
+        document.getElementById("card");
+
+    if(!card)
+        return;
+
+
+    card.style.transition =
+        "transform .3s ease,opacity .3s ease";
+
+    card.style.transform =
+        "translate(700px,-20px) rotate(18deg)";
+
+    card.style.opacity = "0";
+
+
+    showToast(
+        `Лайк отправлен: ${currentProfile.name} ❤️`
+    );
+
+
+    setTimeout(
+        nextProfile,
+        330
+    );
+
+}
+
+
+/* =====================================================
+   DISLIKE
+===================================================== */
+
+function performDislike(){
+
+    if(
+        cardLocked ||
+        !currentProfile
+    )
+        return;
+
+    cardLocked = true;
+
+    const card =
+        document.getElementById("card");
+
+    if(!card)
+        return;
+
+
+    card.style.transition =
+        "transform .3s ease,opacity .3s ease";
+
+    card.style.transform =
+        "translate(-700px,-20px) rotate(-18deg)";
+
+    card.style.opacity = "0";
+
+
+    showToast(
+        `Анкета пропущена`
+    );
+
+
+    setTimeout(
+        nextProfile,
+        330
+    );
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextProfile(){
+
+    currentIndex++;
+
+    cardLocked = false;
+
+    renderCard();
+
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+function openDetails(){
+
+    if(!currentProfile)
+        return;
+
+
+    detailsContent.innerHTML = `
 
         <div class="details-photo">
 
@@ -1225,13 +1589,14 @@ textarea {
                 font-size:25px;
                 font-weight:900;
             ">
-                Алина, 21
+                ${escapeHTML(currentProfile.name)},
+                ${currentProfile.age}
             </div>
 
             <div
                 class="details-value"
                 style="color:#aaa5b8;">
-                📍 Санкт-Петербург
+                📍 ${escapeHTML(currentProfile.city)}
             </div>
 
         </div>
@@ -1244,10 +1609,7 @@ textarea {
             </div>
 
             <div class="details-value">
-                Люблю музыку, прогулки по ночному
-                городу и разговоры до утра.
-                Ценю открытых людей и хорошие
-                разговоры без формальностей.
+                ${escapeHTML(currentProfile.bio)}
             </div>
 
         </div>
@@ -1261,458 +1623,73 @@ textarea {
 
             <div class="tags">
 
-                <span class="tag">Музыка</span>
-                <span class="tag">Кино</span>
-                <span class="tag">Dota 2</span>
-                <span class="tag">Прогулки</span>
-                <span class="tag">Игры</span>
+                ${currentProfile.interests
+                    .map(
+                        tag =>
+                        `<span class="tag">
+                            ${escapeHTML(tag)}
+                        </span>`
+                    )
+                    .join("")
+                }
 
             </div>
 
         </div>
 
-    </div>
 
-</div>
+        <div class="details-section">
 
-
-<!-- =========================
-     REPORT
-========================= -->
-
-<div
-    class="overlay"
-    id="reportOverlay">
-
-    <div class="sheet">
-
-        <div class="sheet-header">
-
-            <div class="sheet-title">
-                Пожаловаться
+            <div class="details-label">
+                Подробнее
             </div>
 
-            <button
-                class="close"
-                data-close="reportOverlay">
-                ✕
-            </button>
+            <div class="details-value">
+                ${escapeHTML(currentProfile.details)}
+            </div>
 
         </div>
+    `;
 
 
-        <div class="comment-description">
-            Выбери причину жалобы.
-        </div>
+    openOverlay(
+        "detailsOverlay"
+    );
 
-
-        <button
-            class="report-option"
-            data-report="Спам">
-            🚫 Спам
-        </button>
-
-        <button
-            class="report-option"
-            data-report="Оскорбление">
-            ⚠️ Оскорбление
-        </button>
-
-        <button
-            class="report-option"
-            data-report="Неприемлемый контент">
-            🔞 Неприемлемый контент
-        </button>
-
-        <button
-            class="report-option"
-            data-report="Фейковый профиль">
-            👤 Фейковый профиль
-        </button>
-
-        <button
-            class="report-option"
-            data-report="Другое">
-            ••• Другое
-        </button>
-
-    </div>
-
-</div>
-
-
-<div
-    class="toast"
-    id="toast">
-</div>
-
-
-<script>
-/* =====================================================
-   STATE
-===================================================== */
-
-const card = document.getElementById("card");
-
-const likeIndicator =
-    document.getElementById("likeIndicator");
-
-const nopeIndicator =
-    document.getElementById("nopeIndicator");
-
-const upIndicator =
-    document.getElementById("upIndicator");
-
-
-let pointerActive = false;
-
-let startX = 0;
-let startY = 0;
-
-let deltaX = 0;
-let deltaY = 0;
-
-let cardLocked = false;
-
-
-/* =====================================================
-   POINTER / SWIPE
-===================================================== */
-
-card.addEventListener(
-    "pointerdown",
-    function(event) {
-
-        if (cardLocked) return;
-
-        pointerActive = true;
-
-        startX = event.clientX;
-        startY = event.clientY;
-
-        deltaX = 0;
-        deltaY = 0;
-
-        card.style.transition = "none";
-
-        card.setPointerCapture(event.pointerId);
-
-    }
-);
-
-
-card.addEventListener(
-    "pointermove",
-    function(event) {
-
-        if (!pointerActive || cardLocked)
-            return;
-
-        deltaX = event.clientX - startX;
-        deltaY = event.clientY - startY;
-
-        const rotation =
-            deltaX / 18;
-
-        card.style.transform =
-            `translate(${deltaX}px, ${deltaY}px)
-             rotate(${rotation}deg)`;
-
-        updateIndicators();
-
-    }
-);
-
-
-card.addEventListener(
-    "pointerup",
-    finishSwipe
-);
-
-
-card.addEventListener(
-    "pointercancel",
-    finishSwipe
-);
-
-
-function finishSwipe() {
-
-    if (!pointerActive)
-        return;
-
-    pointerActive = false;
-
-    card.style.transition =
-        "transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s ease";
-
-
-    const horizontal =
-        Math.abs(deltaX);
-
-    const vertical =
-        Math.abs(deltaY);
-
-
-    /*
-       ВАЖНО:
-
-       Горизонталь имеет приоритет,
-       если движение явно горизонтальное.
-
-       Вертикальный свайп вверх —
-       только подробная информация.
-    */
-
-    if (
-        horizontal > 100 &&
-        horizontal > vertical
-    ) {
-
-        if (deltaX > 0) {
-
-            performLike();
-
-        } else {
-
-            performDislike();
-
-        }
-
-        return;
-    }
-
-
-    if (
-        deltaY < -100 &&
-        vertical > horizontal
-    ) {
-
-        openDetails();
-
-        resetCard();
-
-        return;
-    }
-
-
-    resetCard();
 }
-
-
-/* =====================================================
-   INDICATORS
-===================================================== */
-
-function updateIndicators() {
-
-    const horizontal =
-        Math.abs(deltaX);
-
-    const vertical =
-        Math.abs(deltaY);
-
-
-    likeIndicator.style.opacity =
-        deltaX > 20
-            ? Math.min(deltaX / 100, 1)
-            : 0;
-
-
-    nopeIndicator.style.opacity =
-        deltaX < -20
-            ? Math.min(Math.abs(deltaX) / 100, 1)
-            : 0;
-
-
-    upIndicator.style.opacity =
-        deltaY < -20 &&
-        vertical > horizontal
-            ? Math.min(Math.abs(deltaY) / 110, 1)
-            : 0;
-}
-
-
-/* =====================================================
-   BUTTON ACTIONS
-===================================================== */
-
-document
-    .getElementById("likeButton")
-    .addEventListener(
-        "click",
-        performLike
-    );
-
-
-document
-    .getElementById("dislikeButton")
-    .addEventListener(
-        "click",
-        performDislike
-    );
-
-
-function performLike() {
-
-    if (cardLocked)
-        return;
-
-    cardLocked = true;
-
-    card.style.transition =
-        "transform .3s ease, opacity .3s ease";
-
-    card.style.transform =
-        "translate(700px,-20px) rotate(18deg)";
-
-    card.style.opacity = "0";
-
-    showToast("Лайк отправлен ❤️");
-
-    setTimeout(
-        resetCard,
-        350
-    );
-}
-
-
-function performDislike() {
-
-    if (cardLocked)
-        return;
-
-    cardLocked = true;
-
-    card.style.transition =
-        "transform .3s ease, opacity .3s ease";
-
-    card.style.transform =
-        "translate(-700px,-20px) rotate(-18deg)";
-
-    card.style.opacity = "0";
-
-    showToast("Анкета пропущена");
-
-    setTimeout(
-        resetCard,
-        350
-    );
-}
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
-function resetCard() {
-
-    card.style.transition = "none";
-
-    card.style.transform =
-        "translate(0,0) rotate(0deg)";
-
-    card.style.opacity = "1";
-
-    likeIndicator.style.opacity = 0;
-    nopeIndicator.style.opacity = 0;
-    upIndicator.style.opacity = 0;
-
-    deltaX = 0;
-    deltaY = 0;
-
-    setTimeout(
-        function() {
-
-            card.style.transition =
-                "transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s ease";
-
-            cardLocked = false;
-
-        },
-        30
-    );
-}
-
-
-/* =====================================================
-   FILTER
-===================================================== */
-
-document
-    .getElementById("filterButton")
-    .addEventListener(
-        "click",
-        function() {
-
-            openOverlay("filterOverlay");
-
-        }
-    );
-
-
-document
-    .getElementById("applyFilters")
-    .addEventListener(
-        "click",
-        function() {
-
-            const age =
-                document.getElementById("ageFilter").value;
-
-            const gender =
-                document.getElementById("genderFilter").value;
-
-            const city =
-                document.getElementById("cityFilter").value;
-
-            closeOverlay("filterOverlay");
-
-            showToast(
-                `Фильтр применён: ${age} · ${gender} · ${city}`
-            );
-
-        }
-    );
 
 
 /* =====================================================
    COMMENT LIKE
 ===================================================== */
 
-document
-    .getElementById("commentButton")
-    .addEventListener(
-        "click",
-        function() {
+commentButton.addEventListener(
+    "click",
+    function(){
 
-            openOverlay("commentOverlay");
+        if(!currentProfile)
+            return;
 
-            setTimeout(
-                function() {
+        openOverlay(
+            "commentOverlay"
+        );
 
-                    document
-                        .getElementById("commentInput")
-                        .focus();
+        setTimeout(
+            function(){
 
-                },
-                150
-            );
+                commentInput.focus();
 
-        }
-    );
+            },
+            150
+        );
 
-
-const commentInput =
-    document.getElementById("commentInput");
-
-const counter =
-    document.getElementById("counter");
+    }
+);
 
 
 commentInput.addEventListener(
     "input",
-    function() {
+    function(){
 
         counter.textContent =
             `${commentInput.value.length} / 180`;
@@ -1725,46 +1702,178 @@ document
     .getElementById("sendComment")
     .addEventListener(
         "click",
-        function() {
+        function(){
+
+            if(!currentProfile)
+                return;
+
+
+            const name =
+                currentProfile.name;
 
             const comment =
                 commentInput.value.trim();
 
-            closeOverlay("commentOverlay");
+
+            closeOverlay(
+                "commentOverlay"
+            );
+
 
             commentInput.value = "";
 
             counter.textContent =
                 "0 / 180";
 
-            if (comment) {
+
+            if(comment){
 
                 showToast(
-                    "Лайк с комментарием отправлен ❤️"
+                    `Лайк с комментарием отправлен ${name} ❤️`
                 );
 
-            } else {
+            }else{
 
                 showToast(
-                    "Лайк отправлен ❤️"
+                    `Лайк отправлен ${name} ❤️`
                 );
 
             }
+
+
+            /*
+                В реальном приложении здесь
+                позже появится API-запрос.
+            */
 
         }
     );
 
 
 /* =====================================================
-   DETAILS
+   BUTTONS
 ===================================================== */
 
-function openDetails() {
+likeButton.addEventListener(
+    "click",
+    performLike
+);
 
-    if (cardLocked)
-        return;
 
-    openOverlay("detailsOverlay");
+dislikeButton.addEventListener(
+    "click",
+    performDislike
+);
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+document
+    .getElementById("filterButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            openOverlay(
+                "filterOverlay"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById("applyFilters")
+    .addEventListener(
+        "click",
+        applyFilters
+    );
+
+
+function applyFilters(){
+
+    const age =
+        document
+            .getElementById("ageFilter")
+            .value;
+
+    const gender =
+        document
+            .getElementById("genderFilter")
+            .value;
+
+    const city =
+        document
+            .getElementById("cityFilter")
+            .value;
+
+
+    activeProfiles =
+        profiles.filter(
+            profile => {
+
+                /* AGE */
+
+                let ageOK = true;
+
+                if(age !== "all"){
+
+                    const parts =
+                        age.split("-");
+
+                    const min =
+                        Number(parts[0]);
+
+                    const max =
+                        Number(parts[1]);
+
+                    ageOK =
+                        profile.age >= min &&
+                        profile.age <= max;
+
+                }
+
+
+                /* GENDER */
+
+                const genderOK =
+                    gender === "all" ||
+                    profile.gender === gender;
+
+
+                /* CITY */
+
+                const cityOK =
+                    city === "all" ||
+                    profile.city === city;
+
+
+                return (
+                    ageOK &&
+                    genderOK &&
+                    cityOK
+                );
+
+            }
+        );
+
+
+    currentIndex = 0;
+
+    cardLocked = false;
+
+    closeOverlay(
+        "filterOverlay"
+    );
+
+    renderCard();
+
+
+    showToast(
+        `Найдено анкет: ${activeProfiles.length}`
+    );
 
 }
 
@@ -1774,36 +1883,29 @@ function openDetails() {
 ===================================================== */
 
 document
-    .getElementById("reportButton")
-    .addEventListener(
-        "click",
-        function(event) {
-
-            event.stopPropagation();
-
-            openOverlay("reportOverlay");
-
-        }
-    );
-
-
-document
     .querySelectorAll("[data-report]")
     .forEach(
-        function(button) {
+        button => {
 
             button.addEventListener(
                 "click",
-                function() {
+                function(){
+
+                    if(!currentProfile)
+                        return;
+
 
                     const reason =
                         button.dataset.report;
 
-                    closeOverlay("reportOverlay");
+
+                    closeOverlay(
+                        "reportOverlay"
+                    );
+
 
                     showToast(
-                        "Жалоба отправлена: " +
-                        reason
+                        `Жалоба отправлена: ${reason}`
                     );
 
                 }
@@ -1821,7 +1923,7 @@ document
     .getElementById("notificationsButton")
     .addEventListener(
         "click",
-        function() {
+        function(){
 
             showToast(
                 "Уведомления открыты"
@@ -1835,7 +1937,7 @@ document
    OVERLAYS
 ===================================================== */
 
-function openOverlay(id) {
+function openOverlay(id){
 
     document
         .getElementById(id)
@@ -1844,7 +1946,7 @@ function openOverlay(id) {
 }
 
 
-function closeOverlay(id) {
+function closeOverlay(id){
 
     document
         .getElementById(id)
@@ -1856,11 +1958,11 @@ function closeOverlay(id) {
 document
     .querySelectorAll("[data-close]")
     .forEach(
-        function(button) {
+        button => {
 
             button.addEventListener(
                 "click",
-                function() {
+                function(){
 
                     closeOverlay(
                         button.dataset.close
@@ -1876,15 +1978,15 @@ document
 document
     .querySelectorAll(".overlay")
     .forEach(
-        function(overlay) {
+        overlay => {
 
             overlay.addEventListener(
                 "click",
-                function(event) {
+                function(event){
 
-                    if (
+                    if(
                         event.target === overlay
-                    ) {
+                    ){
 
                         overlay.classList.remove(
                             "open"
@@ -1905,20 +2007,29 @@ document
 
 let toastTimer;
 
-function showToast(message) {
+function showToast(message){
 
     const toast =
         document.getElementById("toast");
 
-    toast.textContent = message;
 
-    toast.classList.add("show");
+    toast.textContent =
+        message;
 
-    clearTimeout(toastTimer);
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
 
     toastTimer =
         setTimeout(
-            function() {
+            function(){
 
                 toast.classList.remove(
                     "show"
@@ -1929,6 +2040,30 @@ function showToast(message) {
         );
 
 }
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderCard();
+
 </script>
 
 </body>
