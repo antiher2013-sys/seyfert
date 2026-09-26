@@ -2,9 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<title>Seyfert — Recommendation Test</title>
+<title>Seyfert</title>
 
 <style>
 *{
@@ -15,7 +16,7 @@
 :root{
   --bg:#080711;
   --card:#151320;
-  --card2:#1d182b;
+  --card2:#1b1728;
   --text:#f7f5fb;
   --muted:#9e98ae;
   --purple:#8b5cf6;
@@ -25,14 +26,14 @@
   --line:rgba(255,255,255,.1);
 }
 
-html,
-body{
+html,body{
   margin:0;
   width:100%;
-  min-height:100%;
+  height:100%;
+  overflow:hidden;
   background:
     radial-gradient(
-      circle at 50% -10%,
+      circle at 50% -15%,
       rgba(139,92,246,.25),
       transparent 42%
     ),
@@ -46,27 +47,39 @@ body{
     sans-serif;
 }
 
-body{
-  padding:18px 14px 30px;
+button{
+  font:inherit;
+  border:0;
+  cursor:pointer;
 }
 
 .app{
   width:100%;
   max-width:620px;
+  height:100%;
   margin:auto;
+
+  display:flex;
+  flex-direction:column;
 }
 
-/* ================= HEADER ================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
+  height:68px;
+  flex-shrink:0;
+
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:20px;
+  justify-content:space-between;
+
+  padding:12px 17px;
 }
 
 .logo{
-  font-size:22px;
+  font-size:21px;
   font-weight:900;
   letter-spacing:1px;
 }
@@ -75,338 +88,924 @@ body{
   color:var(--purple);
 }
 
-.version{
-  padding:6px 10px;
-  border-radius:999px;
-  color:#c8b9ee;
-  background:rgba(139,92,246,.1);
-  border:1px solid rgba(139,92,246,.2);
-  font-size:10px;
-  font-weight:800;
-}
+.header-btn{
+  width:43px;
+  height:43px;
 
-/* ================= USER ================= */
-
-.user-card{
-  padding:18px;
-  border-radius:22px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(139,92,246,.13),
-      rgba(255,255,255,.025)
-    );
-  border:1px solid var(--line);
-  margin-bottom:14px;
-}
-
-.section-label{
-  color:#817b8f;
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.8px;
-}
-
-.user-name{
-  margin-top:7px;
-  font-size:25px;
-  font-weight:900;
-}
-
-.user-meta{
-  margin-top:4px;
-  color:#bcb5c9;
-  font-size:13px;
-}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:12px;
-}
-
-.chip{
-  padding:7px 9px;
-  border-radius:10px;
-  color:#d4c5fa;
-  background:rgba(139,92,246,.12);
-  border:1px solid rgba(139,92,246,.2);
-  font-size:10px;
-  font-weight:700;
-}
-
-.game-chip{
-  color:#f2c7ff;
-  background:rgba(217,70,239,.1);
-  border-color:rgba(217,70,239,.2);
-}
-
-/* ================= FILTER ================= */
-
-.panel{
-  padding:17px;
-  border-radius:22px;
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--line);
-  margin-bottom:14px;
-}
-
-.panel-title{
-  font-size:17px;
-  font-weight:900;
-}
-
-.filter-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:13px;
-}
-
-.field label{
-  display:block;
-  margin-bottom:6px;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:700;
-}
-
-select{
-  width:100%;
-  padding:12px;
-  color:white;
-  background:#191526;
-  border:1px solid var(--line);
-  border-radius:13px;
-  outline:none;
-}
-
-.primary{
-  width:100%;
-  margin-top:12px;
-  padding:13px;
   border-radius:14px;
-  color:white;
-  background:linear-gradient(
-    100deg,
-    var(--purple),
-    var(--pink)
-  );
-  font-weight:800;
+
+  color:#fff;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
 }
 
-/* ================= RESULT ================= */
+/* =====================================================
+   MAIN
+===================================================== */
 
-.result-head{
+.main{
+  flex:1;
+  min-height:0;
+
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:22px 2px 10px;
+  flex-direction:column;
+
+  padding:0 15px 8px;
 }
 
-.result-title{
-  font-size:18px;
+.top{
+  height:53px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.title{
+  font-size:28px;
   font-weight:900;
 }
 
-.result-count{
-  color:var(--muted);
-  font-size:11px;
+.filter{
+  padding:9px 12px;
+
+  border-radius:13px;
+
+  color:#ddd8e8;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+
+  font-size:13px;
+  font-weight:700;
 }
 
-/* ================= PROFILE ================= */
+/* =====================================================
+   CARD AREA
+===================================================== */
 
-.profile{
-  padding:16px;
-  margin-bottom:10px;
-  border-radius:20px;
+.card-area{
+  flex:1;
+  min-height:0;
+  position:relative;
+}
+
+.card{
+  position:absolute;
+  inset:0;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 55px rgba(139,92,246,.1);
+
+  touch-action:none;
+  user-select:none;
+
+  transition:
+    height .48s cubic-bezier(.22,.8,.22,1),
+    transform .32s cubic-bezier(.2,.8,.2,1),
+    opacity .3s ease;
+}
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.photo{
+  position:absolute;
+  inset:0;
+
+  height:100%;
+  min-height:330px;
+
+  transition:
+    height .48s cubic-bezier(.22,.8,.22,1);
+}
+
+.card.expanded .photo{
+  height:39%;
+}
+
+.photo-bg{
+  position:absolute;
+  inset:0;
+}
+
+.photo-bg::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.03) 25%,
+      rgba(0,0,0,.2) 55%,
+      rgba(8,7,17,.94) 100%
+    );
+}
+
+/* Временный персонаж */
+
+.person{
+  position:absolute;
+  z-index:2;
+
+  left:50%;
+  top:40%;
+
+  width:220px;
+  height:330px;
+
+  transform:translate(-50%,-50%);
+}
+
+.head{
+  position:absolute;
+
+  top:0;
+  left:50%;
+
+  width:112px;
+  height:132px;
+
+  transform:translateX(-50%);
+
+  border-radius:52% 52% 48% 48%;
+
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.055),
-      rgba(255,255,255,.025)
+      #d1afc0,
+      #725b7e
     );
-  border:1px solid var(--line);
-  transition:
-    transform .18s ease,
-    border-color .18s ease;
 }
 
-.profile:hover{
-  transform:translateY(-2px);
-  border-color:rgba(139,92,246,.35);
+.body{
+  position:absolute;
+
+  bottom:0;
+  left:50%;
+
+  width:220px;
+  height:215px;
+
+  transform:translateX(-50%);
+
+  border-radius:120px 120px 20px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #30233e,
+      #0c0d15
+    );
 }
 
-.profile-main{
+/* =====================================================
+   PHOTO PROGRESS
+===================================================== */
+
+.photo-progress{
+  position:absolute;
+  z-index:20;
+
+  top:12px;
+  left:17px;
+  right:17px;
+
+  display:flex;
+  gap:4px;
+}
+
+.photo-progress span{
+  flex:1;
+
+  height:3px;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.3);
+}
+
+.photo-progress span.active{
+  background:#fff;
+}
+
+/* =====================================================
+   PHOTO ZONES
+===================================================== */
+
+.photo-zone{
+  position:absolute;
+  z-index:18;
+
+  top:0;
+  bottom:0;
+
+  width:30%;
+}
+
+.photo-zone.left{
+  left:0;
+}
+
+.photo-zone.right{
+  right:0;
+}
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.card-top{
+  position:absolute;
+  z-index:25;
+
+  top:24px;
+  left:15px;
+  right:15px;
+
   display:flex;
   justify-content:space-between;
-  gap:12px;
-}
 
-.profile-left{
-  min-width:0;
-}
-
-.profile-name{
-  font-size:20px;
-  font-weight:900;
-}
-
-.profile-meta{
-  margin-top:4px;
-  color:#aaa3b4;
-  font-size:11px;
+  pointer-events:none;
 }
 
 .online{
-  display:inline-flex;
+  display:flex;
   align-items:center;
-  gap:5px;
-  margin-top:8px;
-  color:#bcb6c6;
-  font-size:10px;
+  gap:7px;
+
+  padding:7px 10px;
+
+  border-radius:999px;
+
+  color:#e5e1eb;
+
+  background:rgba(7,7,13,.58);
+  border:1px solid rgba(255,255,255,.1);
+
+  backdrop-filter:blur(12px);
+
+  font-size:11px;
+  font-weight:700;
 }
 
 .dot{
-  width:6px;
-  height:6px;
+  width:7px;
+  height:7px;
+
   border-radius:50%;
+
   background:var(--green);
+
+  box-shadow:
+    0 0 9px rgba(105,230,167,.7);
 }
 
-.dot.offline{
-  opacity:.3;
+.report{
+  width:39px;
+  height:39px;
+
+  border-radius:13px;
+
+  color:#ddd9e4;
+
+  background:rgba(7,7,13,.58);
+  border:1px solid rgba(255,255,255,.1);
+
+  backdrop-filter:blur(12px);
+
+  pointer-events:auto;
 }
 
-.score{
-  min-width:67px;
-  height:67px;
+/* =====================================================
+   PROFILE INFO
+===================================================== */
+
+.profile-info{
+  position:absolute;
+  z-index:22;
+
+  left:20px;
+  right:20px;
+  bottom:20px;
+
+  transition:
+    bottom .48s cubic-bezier(.22,.8,.22,1);
+}
+
+.card.expanded .profile-info{
+  bottom:auto;
+  top:calc(39% - 2px);
+
+  padding-top:17px;
+}
+
+.name-line{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+
+.name{
+  font-size:30px;
+  font-weight:900;
+}
+
+.age{
+  font-size:19px;
+  color:#d0cad9;
+}
+
+.city{
+  margin-top:3px;
+
+  color:#c2bccd;
+
+  font-size:13px;
+}
+
+.distance{
+  margin-top:5px;
+
+  color:#bda8f3;
+
+  font-size:12px;
+  font-weight:700;
+}
+
+.bio{
+  margin-top:10px;
+
+  max-width:500px;
+
+  color:#ddd9e5;
+
+  font-size:14px;
+  line-height:1.4;
+}
+
+.card.expanded .bio{
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+
+  margin:0;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-top:10px;
+}
+
+.tag{
+  padding:6px 9px;
+
+  border-radius:999px;
+
+  color:#cbb9ff;
+
+  background:rgba(139,92,246,.13);
+  border:1px solid rgba(139,92,246,.22);
+
+  font-size:10px;
+  font-weight:700;
+}
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.details{
+  position:absolute;
+  z-index:21;
+
+  left:20px;
+  right:20px;
+
+  top:calc(39% + 128px);
+  bottom:20px;
+
+  overflow-y:auto;
+
+  padding-bottom:10px;
+
+  opacity:0;
+  transform:translateY(18px);
+
+  pointer-events:none;
+
+  transition:
+    opacity .28s ease .12s,
+    transform .42s cubic-bezier(.22,.8,.22,1) .08s;
+}
+
+.card.expanded .details{
+  opacity:1;
+  transform:translateY(0);
+
+  pointer-events:auto;
+}
+
+.detail-heading{
+  margin-bottom:11px;
+
+  color:#8f899e;
+
+  font-size:11px;
+  font-weight:700;
+
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.detail-grid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:8px;
+}
+
+.detail-item{
+  min-height:58px;
+
+  padding:10px 11px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+
+  opacity:0;
+  transform:translateY(9px);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.card.expanded .detail-item{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card.expanded .detail-item:nth-child(1){transition-delay:.10s}
+.card.expanded .detail-item:nth-child(2){transition-delay:.14s}
+.card.expanded .detail-item:nth-child(3){transition-delay:.18s}
+.card.expanded .detail-item:nth-child(4){transition-delay:.22s}
+.card.expanded .detail-item:nth-child(5){transition-delay:.26s}
+.card.expanded .detail-item:nth-child(6){transition-delay:.30s}
+.card.expanded .detail-item:nth-child(7){transition-delay:.34s}
+.card.expanded .detail-item:nth-child(8){transition-delay:.38s}
+
+.detail-icon{
+  font-size:16px;
+}
+
+.detail-label{
+  margin-top:4px;
+
+  color:#817b8f;
+
+  font-size:9px;
+}
+
+.detail-value{
+  margin-top:2px;
+
+  color:#eeeaf3;
+
+  font-size:12px;
+  font-weight:700;
+}
+
+.interests{
+  margin-top:17px;
+}
+
+.interest-list{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:6px;
+}
+
+.interest{
+  padding:7px 10px;
+
+  border-radius:10px;
+
+  background:rgba(139,92,246,.12);
+
+  color:#c8b7f7;
+
+  border:1px solid rgba(139,92,246,.2);
+
+  font-size:10px;
+  font-weight:700;
+}
+
+/* =====================================================
+   SWIPE LABELS
+===================================================== */
+
+.swipe-label{
+  position:absolute;
+  z-index:50;
+
+  top:42%;
+
+  padding:9px 14px;
+
+  border-radius:12px;
+
+  font-weight:900;
+  letter-spacing:1px;
+
+  opacity:0;
+  pointer-events:none;
+}
+
+.like-label{
+  left:22px;
+
+  color:var(--green);
+  border:2px solid var(--green);
+
+  transform:rotate(-12deg);
+}
+
+.nope-label{
+  right:22px;
+
+  color:var(--red);
+  border:2px solid var(--red);
+
+  transform:rotate(12deg);
+}
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions{
+  height:84px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:18px;
+}
+
+.action{
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  color:#fff;
+
+  background:#14111f;
+
+  border:1px solid var(--line);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.3);
+
+  transition:
+    transform .12s ease;
+}
+
+.action:active{
+  transform:scale(.88);
+}
+
+.action.dislike{
+  color:var(--red);
+}
+
+.action.comment{
+  width:65px;
+  height:65px;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--purple),
+      var(--pink)
+    );
+
+  box-shadow:
+    0 12px 35px rgba(139,92,246,.4);
+}
+
+.action.like{
+  color:#ff6f95;
+}
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+.bottom-nav{
+  height:76px;
+  flex-shrink:0;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  align-items:center;
+
+  padding:6px 10px 9px;
+
+  border-top:1px solid rgba(255,255,255,.07);
+
+  background:
+    rgba(8,7,17,.92);
+
+  backdrop-filter:blur(20px);
+}
+
+.nav-item{
+  height:58px;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  border-radius:18px;
-  background:rgba(139,92,246,.11);
-  border:1px solid rgba(139,92,246,.2);
+
+  gap:4px;
+
+  border-radius:17px;
+
+  color:#777184;
+
+  background:transparent;
+
+  transition:
+    color .2s ease,
+    background .2s ease;
 }
 
-.score-value{
-  color:#d6c5ff;
-  font-size:20px;
-  font-weight:900;
+/*
+  Пока активен только внешний вид.
+  Остальные разделы намеренно ничего не открывают.
+*/
+
+.nav-item.active{
+  color:#fff;
+
+  background:
+    rgba(139,92,246,.12);
 }
 
-.score-label{
-  margin-top:1px;
-  color:#80798d;
-  font-size:8px;
-  text-transform:uppercase;
+.nav-icon{
+  font-size:19px;
+  line-height:1;
 }
 
-.breakdown{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-  margin-top:13px;
-}
-
-.metric{
-  min-width:0;
-  padding:8px 5px;
-  border-radius:10px;
-  text-align:center;
-  background:rgba(0,0,0,.16);
-}
-
-.metric-value{
-  font-size:11px;
-  font-weight:900;
-}
-
-.metric-label{
-  margin-top:3px;
-  color:#716b7c;
-  font-size:7px;
-  line-height:1.1;
-}
-
-.matches{
-  margin-top:11px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:5px;
-}
-
-.match{
-  padding:5px 7px;
-  border-radius:8px;
-  color:#d2c2f7;
-  background:rgba(139,92,246,.1);
+.nav-label{
   font-size:9px;
-  font-weight:700;
+  font-weight:800;
 }
 
-/* ================= EMPTY ================= */
+/* =====================================================
+   EMPTY
+===================================================== */
 
 .empty{
-  padding:35px 20px;
+  position:absolute;
+  inset:0;
+
+  border-radius:30px;
+
+  background:#11101b;
+  border:1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   text-align:center;
+
+  padding:30px;
+}
+
+.empty-title{
+  font-size:24px;
+  font-weight:900;
+}
+
+.empty-text{
+  margin-top:9px;
+
   color:var(--muted);
-  border:1px dashed var(--line);
-  border-radius:20px;
+
+  line-height:1.5;
+
+  font-size:14px;
 }
 
-.empty strong{
-  display:block;
-  margin-bottom:6px;
-  color:white;
+/* =====================================================
+   SHEETS
+===================================================== */
+
+.overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+  align-items:flex-end;
+
+  background:rgba(0,0,0,.72);
+
+  backdrop-filter:blur(12px);
 }
 
-/* ================= LOG ================= */
+.overlay.open{
+  display:flex;
+}
 
-.log{
-  margin-top:15px;
-  padding:15px;
-  border-radius:18px;
-  background:#0e0d16;
+.sheet{
+  width:min(620px,100%);
+  max-height:90%;
+
+  overflow-y:auto;
+
+  padding:21px;
+
+  border-radius:28px 28px 0 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #171326,
+      #0f1019
+    );
+
   border:1px solid var(--line);
 }
 
-.log-title{
-  margin-bottom:8px;
-  color:#8b8494;
-  font-size:9px;
-  font-weight:800;
-  text-transform:uppercase;
+.sheet-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.log-line{
-  padding:5px 0;
-  color:#aaa3b2;
+.sheet-title{
+  font-size:23px;
+  font-weight:900;
+}
+
+.close{
+  width:40px;
+  height:40px;
+
+  border-radius:13px;
+
+  background:rgba(255,255,255,.05);
+
+  color:#fff;
+
+  border:1px solid var(--line);
+}
+
+.field{
+  margin-top:15px;
+}
+
+.field-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+select,
+textarea{
+  width:100%;
+
+  margin-top:7px;
+
+  padding:13px;
+
+  color:#fff;
+
+  background:#191526;
+
+  border:1px solid var(--line);
+
+  border-radius:14px;
+
+  outline:none;
+}
+
+textarea{
+  height:110px;
+  resize:none;
+}
+
+.primary{
+  width:100%;
+
+  margin-top:18px;
+
+  padding:14px;
+
+  border-radius:15px;
+
+  color:#fff;
+
+  font-weight:800;
+
+  background:
+    linear-gradient(
+      100deg,
+      var(--purple),
+      var(--pink)
+    );
+}
+
+.report-option{
+  width:100%;
+
+  margin-top:8px;
+
+  padding:14px;
+
+  text-align:left;
+
+  border-radius:14px;
+
+  color:#fff;
+
+  background:rgba(255,255,255,.035);
+
+  border:1px solid var(--line);
+}
+
+.counter{
+  margin-top:5px;
+
+  color:#716b7d;
+
+  text-align:right;
+
   font-size:10px;
-  border-bottom:1px solid rgba(255,255,255,.04);
 }
 
-.log-line:last-child{
-  border-bottom:0;
-}
+/* =====================================================
+   TOAST
+===================================================== */
 
-.highlight{
-  color:#d1bfff;
+.toast{
+  position:fixed;
+  z-index:300;
+
+  left:50%;
+  bottom:95px;
+
+  transform:translateX(-50%);
+
+  padding:11px 16px;
+
+  border-radius:999px;
+
+  background:#f4f3f7;
+
+  color:#15131b;
+
+  font-size:12px;
   font-weight:800;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:
+    opacity .2s ease;
 }
 
-@media(max-width:420px){
-
-  .filter-grid{
-    grid-template-columns:1fr;
-  }
-
-  .breakdown{
-    grid-template-columns:repeat(3,1fr);
-  }
+.toast.show{
+  opacity:1;
 }
 </style>
 </head>
@@ -415,194 +1014,247 @@ select{
 
 <div class="app">
 
-  <header class="header">
+<header class="header">
 
-    <div class="logo">
-      SEY<span>F</span>ERT
+  <div class="logo">
+    SEY<span>F</span>ERT
+  </div>
+
+  <button
+    class="header-btn"
+    id="notifications">
+    🔔
+  </button>
+
+</header>
+
+
+<main class="main">
+
+  <div class="top">
+
+    <div class="title">
+      Анкеты
     </div>
 
-    <div class="version">
-      Recommendation Test
+    <button
+      class="filter"
+      id="filterButton">
+      ⚙ Фильтр
+    </button>
+
+  </div>
+
+
+  <div
+    class="card-area"
+    id="cardArea">
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      class="action dislike"
+      id="dislike">
+      ✕
+    </button>
+
+    <button
+      class="action comment"
+      id="comment">
+      💬
+    </button>
+
+    <button
+      class="action like"
+      id="like">
+      ♥
+    </button>
+
+  </div>
+
+</main>
+
+
+<!-- =================================================
+     BOTTOM NAVIGATION
+================================================== -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="nav-item active"
+    data-section="profiles">
+
+    <span class="nav-icon">
+      ♡
+    </span>
+
+    <span class="nav-label">
+      Анкеты
+    </span>
+
+  </button>
+
+
+  <button
+    class="nav-item"
+    data-section="chats">
+
+    <span class="nav-icon">
+      ◌
+    </span>
+
+    <span class="nav-label">
+      Чаты
+    </span>
+
+  </button>
+
+
+  <button
+    class="nav-item"
+    data-section="global">
+
+    <span class="nav-icon">
+      ◎
+    </span>
+
+    <span class="nav-label">
+      Глобал
+    </span>
+
+  </button>
+
+
+  <button
+    class="nav-item"
+    data-section="profile">
+
+    <span class="nav-icon">
+      ◯
+    </span>
+
+    <span class="nav-label">
+      Профиль
+    </span>
+
+  </button>
+
+</nav>
+
+</div>
+
+
+<!-- =================================================
+     FILTER
+================================================== -->
+
+<div
+  class="overlay"
+  id="filterOverlay">
+
+  <div class="sheet">
+
+    <div class="sheet-head">
+
+      <div class="sheet-title">
+        Фильтры
+      </div>
+
+      <button
+        class="close"
+        data-close="filterOverlay">
+        ✕
+      </button>
+
     </div>
 
-  </header>
 
+    <div class="field">
 
-  <!-- ================= USER ================= -->
-
-  <section class="user-card">
-
-    <div class="section-label">
-      Тестовый пользователь
-    </div>
-
-    <div class="user-name">
-      Дима, 21
-    </div>
-
-    <div class="user-meta">
-      📍 Москва
-    </div>
-
-    <div class="chips">
-
-      <div class="chip">
-        🍳 Готовка
+      <div class="field-label">
+        Возраст
       </div>
 
-      <div class="chip">
-        🖥️ ПК игры
-      </div>
+      <select id="age">
 
-      <div class="chip">
-        🐈 Кошки
-      </div>
+        <option value="all">
+          Без ограничения
+        </option>
 
-      <div class="chip game-chip">
-        🎮 Dota 2
-      </div>
+        <option value="18-25">
+          18–25
+        </option>
 
-      <div class="chip game-chip">
-        🎮 CS 2
-      </div>
+        <option value="18-30">
+          18–30
+        </option>
+
+        <option value="18-35">
+          18–35
+        </option>
+
+      </select>
 
     </div>
 
-  </section>
 
+    <div class="field">
 
-  <!-- ================= FILTER ================= -->
+      <div class="field-label">
+        Пол
+      </div>
 
-  <section class="panel">
+      <select id="gender">
 
-    <div class="panel-title">
-      Фильтры
+        <option value="all">
+          Все
+        </option>
+
+        <option value="female">
+          Девушки
+        </option>
+
+        <option value="male">
+          Парни
+        </option>
+
+      </select>
+
     </div>
 
-    <div class="filter-grid">
 
-      <div class="field">
+    <div class="field">
 
-        <label>
-          Возраст
-        </label>
-
-        <select id="ageFilter">
-
-          <option value="all">
-            Любой возраст
-          </option>
-
-          <option value="18-21">
-            18–21
-          </option>
-
-          <option value="22-25">
-            22–25
-          </option>
-
-          <option value="26-30">
-            26–30
-          </option>
-
-        </select>
-
+      <div class="field-label">
+        Город
       </div>
 
+      <select id="city">
 
-      <div class="field">
+        <option value="all">
+          Любой город
+        </option>
 
-        <label>
-          Пол
-        </label>
+        <option value="Москва">
+          Москва
+        </option>
 
-        <select id="genderFilter">
+        <option value="Санкт-Петербург">
+          Санкт-Петербург
+        </option>
 
-          <option value="all">
-            Все
-          </option>
+        <option value="Казань">
+          Казань
+        </option>
 
-          <option value="female">
-            Девушки
-          </option>
+        <option value="Екатеринбург">
+          Екатеринбург
+        </option>
 
-          <option value="male">
-            Парни
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Город
-        </label>
-
-        <select id="cityFilter">
-
-          <option value="all">
-            Любой
-          </option>
-
-          <option value="Москва">
-            Москва
-          </option>
-
-          <option value="Санкт-Петербург">
-            Санкт-Петербург
-          </option>
-
-          <option value="Казань">
-            Казань
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Интерес
-        </label>
-
-        <select id="interestFilter">
-
-          <option value="all">
-            Любой
-          </option>
-
-          <option value="Готовка">
-            Готовка
-          </option>
-
-          <option value="ПК игры">
-            ПК игры
-          </option>
-
-          <option value="Кошки">
-            Кошки
-          </option>
-
-          <option value="Музыка">
-            Музыка
-          </option>
-
-          <option value="Спорт">
-            Спорт
-          </option>
-
-          <option value="Кино">
-            Кино
-          </option>
-
-        </select>
-
-      </div>
+      </select>
 
     </div>
 
@@ -610,105 +1262,141 @@ select{
     <button
       class="primary"
       id="applyFilters">
-
-      Применить фильтры
-
+      Применить
     </button>
-
-  </section>
-
-
-  <!-- ================= RESULTS ================= -->
-
-  <div class="result-head">
-
-    <div class="result-title">
-      Рекомендации
-    </div>
-
-    <div
-      class="result-count"
-      id="resultCount">
-      —
-    </div>
 
   </div>
 
+</div>
 
-  <section id="results"></section>
 
+<!-- =================================================
+     COMMENT
+================================================== -->
 
-  <!-- ================= LOG ================= -->
+<div
+  class="overlay"
+  id="commentOverlay">
 
-  <section class="log">
+  <div class="sheet">
 
-    <div class="log-title">
-      Лог алгоритма
+    <div class="sheet-head">
+
+      <div class="sheet-title">
+        Лайк с комментарием
+      </div>
+
+      <button
+        class="close"
+        data-close="commentOverlay">
+        ✕
+      </button>
+
     </div>
 
-    <div id="log"></div>
 
-  </section>
+    <div class="field">
 
+      <div class="field-label">
+        Сообщение
+      </div>
+
+      <textarea
+        id="commentInput"
+        maxlength="180"
+        placeholder="Например: «Тоже люблю такую музыку»"></textarea>
+
+      <div
+        class="counter"
+        id="counter">
+        0 / 180
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary"
+      id="sendComment">
+      Отправить лайк ❤️
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =================================================
+     REPORT
+================================================== -->
+
+<div
+  class="overlay"
+  id="reportOverlay">
+
+  <div class="sheet">
+
+    <div class="sheet-head">
+
+      <div class="sheet-title">
+        Пожаловаться
+      </div>
+
+      <button
+        class="close"
+        data-close="reportOverlay">
+        ✕
+      </button>
+
+    </div>
+
+
+    <button
+      class="report-option"
+      data-report="Спам">
+      🚫 Спам
+    </button>
+
+    <button
+      class="report-option"
+      data-report="Оскорбление">
+      ⚠️ Оскорбление
+    </button>
+
+    <button
+      class="report-option"
+      data-report="Неприемлемый контент">
+      🔞 Неприемлемый контент
+    </button>
+
+    <button
+      class="report-option"
+      data-report="Фейковый профиль">
+      👤 Фейковый профиль
+    </button>
+
+    <button
+      class="report-option"
+      data-report="Другое">
+      ••• Другое
+    </button>
+
+  </div>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast">
 </div>
 
 
 <script>
 
-/*
-=========================================================
-SEYFERT — RECOMMENDATION TEST
-=========================================================
-
-Формула:
-
-40% — общие интересы + игры
-20% — расстояние
-15% — активность
-15% — заполненность
-10% — новизна
-
-Фильтры применяются ДО расчёта рейтинга.
-
-Максимум пользователя:
-3 интереса
-2 игры
-
-=========================================================
-*/
-
-
-/* ======================================================
-   ТЕСТОВЫЙ ПОЛЬЗОВАТЕЛЬ
-====================================================== */
-
-const me = {
-
-  name:"Дима",
-
-  age:21,
-
-  gender:"male",
-
-  city:"Москва",
-
-  interests:[
-    "Готовка",
-    "ПК игры",
-    "Кошки"
-  ],
-
-  games:[
-    "Dota 2",
-    "CS 2"
-  ]
-
-};
-
-
-/* ======================================================
-   ТЕСТОВЫЕ АНКЕТЫ
-====================================================== */
+/* =====================================================
+   TEST PROFILES
+===================================================== */
 
 const profiles = [
 
@@ -718,919 +1406,1229 @@ const profiles = [
     name:"Алина",
     age:21,
     gender:"female",
-    city:"Москва",
 
-    interests:[
-      "Готовка",
-      "ПК игры",
-      "Кошки"
-    ],
-
-    games:[
-      "Dota 2",
-      "CS 2"
-    ],
+    city:"Санкт-Петербург",
 
     distance:3,
 
-    activity:"online",
+    online:true,
 
-    completeness:100,
+    photos:[
+      "photo1",
+      "photo2",
+      "photo3"
+    ],
 
-    ageDays:1
+    bio:
+      "Люблю музыку, прогулки по ночному городу и разговоры до утра.",
+
+    interests:[
+      "Музыка",
+      "Кино",
+      "Dota 2"
+    ],
+
+    details:{
+      weight:"54 кг",
+      income:"100–150 тыс. ₽",
+      onlineTime:"18:00–01:00",
+      children:"Нет детей",
+      smoking:"Не курю",
+      alcohol:"Иногда",
+      personality:"INFJ",
+      work:"Дизайн"
+    }
+
   },
 
 
   {
     id:2,
 
-    name:"София",
-    age:22,
-    gender:"female",
+    name:"Макс",
+    age:24,
+    gender:"male",
+
     city:"Москва",
-
-    interests:[
-      "Кошки",
-      "Музыка",
-      "Кино"
-    ],
-
-    games:[
-      "Dota 2"
-    ],
 
     distance:5,
 
-    activity:"today",
+    online:true,
 
-    completeness:80,
+    photos:[
+      "photo1",
+      "photo2"
+    ],
 
-    ageDays:2
+    bio:
+      "Игры, спорт, техника и вечные попытки найти хороший фильм.",
+
+    interests:[
+      "Игры",
+      "Спорт",
+      "Технологии"
+    ],
+
+    details:{
+      weight:"78 кг",
+      income:"150–200 тыс. ₽",
+      onlineTime:"20:00–03:00",
+      children:"Нет детей",
+      smoking:"Не курю",
+      alcohol:"Редко",
+      personality:"ENTP",
+      work:"IT"
+    }
+
   },
 
 
   {
     id:3,
 
-    name:"Катя",
-    age:20,
+    name:"София",
+    age:22,
     gender:"female",
-    city:"Москва",
 
-    interests:[
-      "Готовка",
-      "Кошки",
-      "Спорт"
-    ],
-
-    games:[
-      "CS 2",
-      "Minecraft"
-    ],
+    city:"Казань",
 
     distance:8,
 
-    activity:"today",
+    online:false,
 
-    completeness:70,
-
-    ageDays:4
-  },
-
-
-  {
-    id:4,
-
-    name:"Мария",
-    age:25,
-    gender:"female",
-    city:"Санкт-Петербург",
-
-    interests:[
-      "Музыка",
-      "Кино",
-      "Путешествия"
+    photos:[
+      "photo1",
+      "photo2",
+      "photo3",
+      "photo4"
     ],
 
-    games:[
-      "Dota 2",
-      "CS 2"
-    ],
-
-    distance:635,
-
-    activity:"week",
-
-    completeness:90,
-
-    ageDays:10
-  },
-
-
-  {
-    id:5,
-
-    name:"Лера",
-    age:19,
-    gender:"female",
-    city:"Москва",
+    bio:
+      "Фотография, путешествия и кофе.",
 
     interests:[
-      "Готовка",
-      "ПК игры",
+      "Фото",
+      "Путешествия",
       "Музыка"
     ],
 
-    games:[
-      "Dota 2",
-      "Valorant"
-    ],
+    details:{
+      weight:"58 кг",
+      income:"Не указано",
+      onlineTime:"17:00–00:00",
+      children:"Нет детей",
+      smoking:"Не курю",
+      alcohol:"Иногда",
+      personality:"ENFP",
+      work:"Маркетинг"
+    }
 
-    distance:12,
-
-    activity:"online",
-
-    completeness:50,
-
-    ageDays:1
-  },
-
-
-  {
-    id:6,
-
-    name:"Настя",
-    age:23,
-    gender:"female",
-    city:"Казань",
-
-    interests:[
-      "Кошки",
-      "Спорт",
-      "Кино"
-    ],
-
-    games:[
-      "CS 2",
-      "Dota 2"
-    ],
-
-    distance:720,
-
-    activity:"offline",
-
-    completeness:60,
-
-    ageDays:6
-  },
-
-
-  {
-    id:7,
-
-    name:"Ева",
-    age:21,
-    gender:"female",
-    city:"Москва",
-
-    interests:[
-      "Готовка",
-      "ПК игры",
-      "Кошки"
-    ],
-
-    games:[
-      "Minecraft",
-      "Valorant"
-    ],
-
-    distance:2,
-
-    activity:"online",
-
-    completeness:65,
-
-    ageDays:3
   }
 
 ];
 
 
-/* ======================================================
-   ФИЛЬТР
-====================================================== */
+/* =====================================================
+   STATE
+===================================================== */
 
-function passesFilters(profile){
+let activeProfiles=[...profiles];
 
-  const ageValue =
-    document.getElementById("ageFilter").value;
+let index=0;
+let current=null;
 
-  const genderValue =
-    document.getElementById("genderFilter").value;
+let photoIndex=0;
 
-  const cityValue =
-    document.getElementById("cityFilter").value;
+let expanded=false;
+let locked=false;
 
-  const interestValue =
-    document.getElementById("interestFilter").value;
+let pointer=false;
 
+let startX=0;
+let startY=0;
 
-  /* возраст */
+let dx=0;
+let dy=0;
 
-  if(ageValue !== "all"){
 
-    const parts =
-      ageValue
-        .split("-")
-        .map(Number);
+const area=
+  document.getElementById("cardArea");
 
-    const min = parts[0];
-    const max = parts[1];
 
-    if(
-      profile.age < min ||
-      profile.age > max
-    ){
-      return false;
-    }
-
-  }
-
-
-  /* пол */
-
-  if(
-    genderValue !== "all" &&
-    profile.gender !== genderValue
-  ){
-
-    return false;
-
-  }
-
-
-  /* город */
-
-  if(
-    cityValue !== "all" &&
-    profile.city !== cityValue
-  ){
-
-    return false;
-
-  }
-
-
-  /*
-    Фильтр интереса:
-    наличие хотя бы одного выбранного
-    интереса ИЛИ игры.
-  */
-
-  if(interestValue !== "all"){
-
-    const hasInterest =
-      profile.interests
-        .includes(interestValue);
-
-    const hasGame =
-      profile.games
-        .includes(interestValue);
-
-    if(
-      !hasInterest &&
-      !hasGame
-    ){
-
-      return false;
-
-    }
-
-  }
-
-
-  return true;
-
-}
-
-
-/* ======================================================
-   ИНТЕРЕСЫ
-====================================================== */
-
-function getCommonInterests(profile){
-
-  const commonInterests =
-    me.interests.filter(
-      interest =>
-        profile.interests
-          .includes(interest)
-    );
-
-
-  const commonGames =
-    me.games.filter(
-      game =>
-        profile.games
-          .includes(game)
-    );
-
-
-  return {
-
-    interests:commonInterests,
-
-    games:commonGames,
-
-    total:
-      commonInterests.length +
-      commonGames.length
-
-  };
-
-}
-
-
-/* ======================================================
-   40% — ИНТЕРЕСЫ
-====================================================== */
-
-function interestScore(profile){
-
-  const matches =
-    getCommonInterests(profile);
-
-  /*
-    Максимум 5 совпадений.
-
-    1 = 8%
-    2 = 16%
-    3 = 24%
-    4 = 32%
-    5 = 40%
-  */
-
-  return Math.min(
-    matches.total * 8,
-    40
-  );
-
-}
-
-
-/* ======================================================
-   20% — РАССТОЯНИЕ
-====================================================== */
-
-function distanceScore(profile){
-
-  const d =
-    profile.distance;
-
-
-  if(d <= 2)
-    return 20;
-
-  if(d <= 5)
-    return 18;
-
-  if(d <= 10)
-    return 15;
-
-  if(d <= 25)
-    return 11;
-
-  if(d <= 50)
-    return 7;
-
-  if(d <= 100)
-    return 3;
-
-  return 0;
-
-}
-
-
-/* ======================================================
-   15% — АКТИВНОСТЬ
-====================================================== */
-
-function activityScore(profile){
-
-  switch(profile.activity){
-
-    case "online":
-      return 15;
-
-    case "today":
-      return 12;
-
-    case "twoDays":
-      return 9;
-
-    case "week":
-      return 5;
-
-    default:
-      return 0;
-
-  }
-
-}
-
-
-/* ======================================================
-   15% — ЗАПОЛНЕННОСТЬ
-====================================================== */
-
-function completenessScore(profile){
-
-  const value =
-    profile.completeness;
-
-
-  /*
-    25% — фундамент.
-
-    Дополнительное влияние:
-    25% = 0
-    40% = 3
-    50% = 5
-    60% = 8
-    70% = 10
-    80% = 12
-    90% = 14
-    100% = 15
-  */
-
-  if(value >= 100)
-    return 15;
-
-  if(value >= 90)
-    return 14;
-
-  if(value >= 80)
-    return 12;
-
-  if(value >= 70)
-    return 10;
-
-  if(value >= 60)
-    return 8;
-
-  if(value >= 50)
-    return 5;
-
-  if(value >= 40)
-    return 3;
-
-  return 0;
-
-}
-
-
-/* ======================================================
-   10% — НОВИЗНА
-====================================================== */
-
-function freshnessScore(profile){
-
-  const days =
-    profile.ageDays;
-
-
-  if(days <= 1)
-    return 10;
-
-  if(days <= 3)
-    return 7;
-
-  if(days <= 7)
-    return 4;
-
-  if(days <= 14)
-    return 2;
-
-  return 0;
-
-}
-
-
-/* ======================================================
-   ИТОГОВЫЙ РЕЙТИНГ
-====================================================== */
-
-function calculateScore(profile){
-
-  const interests =
-    interestScore(profile);
-
-  const distance =
-    distanceScore(profile);
-
-  const activity =
-    activityScore(profile);
-
-  const completeness =
-    completenessScore(profile);
-
-  const freshness =
-    freshnessScore(profile);
-
-
-  const total =
-    interests +
-    distance +
-    activity +
-    completeness +
-    freshness;
-
-
-  return {
-
-    interests,
-
-    distance,
-
-    activity,
-
-    completeness,
-
-    freshness,
-
-    total
-
-  };
-
-}
-
-
-/* ======================================================
-   РЕКОМЕНДАЦИИ
-====================================================== */
-
-function getRecommendations(){
-
-  /*
-    Сначала жёсткие фильтры.
-  */
-
-  const filtered =
-    profiles.filter(
-      passesFilters
-    );
-
-
-  /*
-    Потом рейтинг.
-  */
-
-  const ranked =
-    filtered.map(
-      profile =>({
-
-        profile,
-
-        score:
-          calculateScore(profile)
-
-      })
-    );
-
-
-  /*
-    Сортировка:
-    самый высокий рейтинг первым.
-  */
-
-  ranked.sort(
-    (a,b)=>
-      b.score.total -
-      a.score.total
-  );
-
-
-  return ranked;
-
-}
-
-
-/* ======================================================
+/* =====================================================
    RENDER
-====================================================== */
+===================================================== */
 
 function render(){
 
-  const results =
-    document.getElementById("results");
+  area.innerHTML="";
 
-  const resultCount =
-    document.getElementById("resultCount");
+  if(index>=activeProfiles.length){
 
-  const log =
-    document.getElementById("log");
-
-
-  const recommendations =
-    getRecommendations();
-
-
-  resultCount.textContent =
-    `${recommendations.length} анкет`;
-
-
-  if(!recommendations.length){
-
-    results.innerHTML = `
+    area.innerHTML=`
 
       <div class="empty">
 
-        <strong>
-          Подходящих анкет нет
-        </strong>
+        <div>
 
-        Попробуй изменить фильтры.
+          <div style="font-size:48px">
+            ✨
+          </div>
+
+          <div class="empty-title">
+            Анкеты закончились
+          </div>
+
+          <div class="empty-text">
+            Попробуй изменить фильтры —
+            возможно, там есть кто-то ещё.
+          </div>
+
+        </div>
 
       </div>
 
     `;
 
-    log.innerHTML="";
+    current=null;
 
     return;
-
   }
 
 
-  results.innerHTML =
-    recommendations
-      .map(
-        (item,index)=>
-          renderProfile(
-            item,
-            index
-          )
-      )
-      .join("");
+  current=
+    activeProfiles[index];
+
+  photoIndex=0;
+  expanded=false;
+  locked=false;
 
 
-  log.innerHTML =
-    recommendations
-      .map(
-        item=>renderLog(item)
-      )
-      .join("");
+  const card=
+    document.createElement("div");
 
-}
+  card.className="card";
+  card.id="card";
 
 
-/* ======================================================
-   PROFILE CARD
-====================================================== */
+  card.innerHTML=`
 
-function renderProfile(item,index){
+    <div class="photo">
 
-  const p =
-    item.profile;
-
-  const s =
-    item.score;
-
-  const matches =
-    getCommonInterests(p);
+      <div
+        class="photo-bg"
+        id="photoBg">
+      </div>
 
 
-  const matchHTML = [
+      <div class="person">
 
-    ...matches.interests.map(
-      x =>
-        `<span class="match">
-          ${safe(x)}
-        </span>`
-    ),
+        <div class="head"></div>
 
-    ...matches.games.map(
-      x =>
-        `<span class="match">
-          🎮 ${safe(x)}
-        </span>`
-    )
+        <div class="body"></div>
 
-  ].join("");
+      </div>
+
+    </div>
 
 
-  return `
+    <div
+      class="photo-progress"
+      id="progress">
 
-    <article class="profile">
+      ${current.photos.map(
+        (_,i)=>`
 
-      <div class="profile-main">
+          <span
+            class="${i===0?"active":""}">
+          </span>
 
-        <div class="profile-left">
+        `
+      ).join("")}
 
-          <div class="profile-name">
-            ${index+1}. ${safe(p.name)}, ${p.age}
-          </div>
+    </div>
 
-          <div class="profile-meta">
-            📍 ${safe(p.city)}
-            · ${p.distance} км
-          </div>
 
-          <div class="online">
+    <div
+      class="photo-zone left"
+      id="leftPhoto">
+    </div>
 
-            <span
-              class="
-                dot
-                ${p.activity==="offline"
-                  ?"offline"
-                  :""
-                }
-              ">
+
+    <div
+      class="photo-zone right"
+      id="rightPhoto">
+    </div>
+
+
+    <div class="card-top">
+
+      <div class="online">
+
+        <span
+          class="dot"
+          style="
+            opacity:${current.online?1:.3}
+          ">
+        </span>
+
+        ${
+          current.online
+            ? "Сейчас онлайн"
+            : "Был(а) недавно"
+        }
+
+      </div>
+
+
+      <button
+        class="report"
+        id="report">
+        ⚑
+      </button>
+
+    </div>
+
+
+    <div
+      class="swipe-label like-label"
+      id="likeLabel">
+      LIKE
+    </div>
+
+
+    <div
+      class="swipe-label nope-label"
+      id="nopeLabel">
+      NOPE
+    </div>
+
+
+    <div class="profile-info">
+
+      <div class="name-line">
+
+        <div class="name">
+          ${safe(current.name)}
+        </div>
+
+        <div class="age">
+          ${current.age}
+        </div>
+
+      </div>
+
+
+      <div class="city">
+        📍 ${safe(current.city)}
+      </div>
+
+
+      <div class="distance">
+        📍 ${current.distance} км от вас
+      </div>
+
+
+      <div class="bio">
+        ${safe(current.bio)}
+      </div>
+
+
+      <div class="tags">
+
+        ${current.interests.map(
+          x=>`
+
+            <span class="tag">
+              ${safe(x)}
             </span>
 
-            ${activityText(p.activity)}
+          `
+        ).join("")}
 
-          </div>
+      </div>
 
+    </div>
+
+
+    <div class="details">
+
+      <div class="detail-heading">
+        О пользователе
+      </div>
+
+
+      <div class="detail-grid">
+
+        ${detail(
+          "⚖️",
+          "Вес",
+          current.details.weight
+        )}
+
+        ${detail(
+          "💰",
+          "Заработок",
+          current.details.income
+        )}
+
+        ${detail(
+          "🕐",
+          "Обычно в сети",
+          current.details.onlineTime
+        )}
+
+        ${detail(
+          "👶",
+          "Дети",
+          current.details.children
+        )}
+
+        ${detail(
+          "🚬",
+          "Курение",
+          current.details.smoking
+        )}
+
+        ${detail(
+          "🍷",
+          "Алкоголь",
+          current.details.alcohol
+        )}
+
+        ${detail(
+          "🧠",
+          "Тип личности",
+          current.details.personality
+        )}
+
+        ${detail(
+          "💼",
+          "Занятость",
+          current.details.work
+        )}
+
+      </div>
+
+
+      <div class="interests">
+
+        <div class="detail-heading">
+          Интересы
         </div>
 
 
-        <div class="score">
+        <div class="interest-list">
 
-          <div class="score-value">
-            ${s.total}%
-          </div>
+          ${current.interests.map(
+            x=>`
 
-          <div class="score-label">
-            рейтинг
-          </div>
+              <span class="interest">
+                ${safe(x)}
+              </span>
+
+            `
+          ).join("")}
 
         </div>
 
       </div>
 
-
-      <div class="breakdown">
-
-        ${metric(
-          s.interests,
-          "интересы"
-        )}
-
-        ${metric(
-          s.distance,
-          "расстояние"
-        )}
-
-        ${metric(
-          s.activity,
-          "активность"
-        )}
-
-        ${metric(
-          s.completeness,
-          "заполнение"
-        )}
-
-        ${metric(
-          s.freshness,
-          "новизна"
-        )}
-
-      </div>
-
-
-      ${
-        matchHTML
-        ?
-        `<div class="matches">
-          ${matchHTML}
-        </div>`
-        :
-        ""
-      }
-
-    </article>
+    </div>
 
   `;
 
+
+  area.appendChild(card);
+
+  updatePhoto();
+
+  bind(card);
 }
 
 
-/* ======================================================
-   METRIC
-====================================================== */
+/* =====================================================
+   DETAIL
+===================================================== */
 
-function metric(value,label){
+function detail(
+  icon,
+  label,
+  value
+){
 
   return `
 
-    <div class="metric">
+    <div class="detail-item">
 
-      <div class="metric-value">
-        ${value}%
+      <div class="detail-icon">
+        ${icon}
       </div>
 
-      <div class="metric-label">
+      <div class="detail-label">
         ${label}
       </div>
 
-    </div>
-
-  `;
-
-}
-
-
-/* ======================================================
-   LOG
-====================================================== */
-
-function renderLog(item){
-
-  const p =
-    item.profile;
-
-  const s =
-    item.score;
-
-
-  return `
-
-    <div class="log-line">
-
-      <span class="highlight">
-        ${safe(p.name)}
-      </span>
-
-      →
-
-      интересы ${s.interests}% +
-
-      расстояние ${s.distance}% +
-
-      активность ${s.activity}% +
-
-      заполненность ${s.completeness}% +
-
-      новизна ${s.freshness}%
-
-      =
-
-      <span class="highlight">
-        ${s.total}%
-      </span>
+      <div class="detail-value">
+        ${safe(value)}
+      </div>
 
     </div>
 
   `;
-
 }
 
 
-/* ======================================================
-   ACTIVITY TEXT
-====================================================== */
+/* =====================================================
+   PHOTO
+===================================================== */
 
-function activityText(value){
+function updatePhoto(){
 
-  switch(value){
+  if(!current)
+    return;
 
-    case "online":
-      return "Сейчас онлайн";
 
-    case "today":
-      return "Был(а) сегодня";
+  const bg=
+    document.getElementById("photoBg");
 
-    case "twoDays":
-      return "Был(а) недавно";
+  if(!bg)
+    return;
 
-    case "week":
-      return "Был(а) на этой неделе";
 
-    default:
-      return "Давно не заходил(а)";
+  const hue=
+    current.id*53+
+    photoIndex*43;
 
-  }
 
+  bg.style.background=`
+
+    radial-gradient(
+      circle at ${25+photoIndex*12}% 20%,
+      hsla(${hue},75%,65%,.5),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at ${80-photoIndex*9}% 20%,
+      rgba(217,70,239,.38),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      145deg,
+      hsl(${hue},35%,27%),
+      #090a12
+    )
+
+  `;
+
+
+  document
+    .querySelectorAll("#progress span")
+    .forEach(
+      (x,i)=>{
+        x.classList.toggle(
+          "active",
+          i===photoIndex
+        );
+      }
+    );
 }
 
 
-/* ======================================================
-   FILTER BUTTON
-====================================================== */
+function nextPhoto(){
 
-document
-  .getElementById("applyFilters")
-  .addEventListener(
+  if(
+    !current ||
+    photoIndex>=current.photos.length-1
+  )
+    return;
+
+  photoIndex++;
+
+  updatePhoto();
+}
+
+
+function previousPhoto(){
+
+  if(
+    !current ||
+    photoIndex<=0
+  )
+    return;
+
+  photoIndex--;
+
+  updatePhoto();
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+function bind(card){
+
+  const left=
+    document.getElementById("leftPhoto");
+
+  const right=
+    document.getElementById("rightPhoto");
+
+  const report=
+    document.getElementById("report");
+
+
+  left.onclick=e=>{
+    e.stopPropagation();
+
+    if(!pointer)
+      previousPhoto();
+  };
+
+
+  right.onclick=e=>{
+    e.stopPropagation();
+
+    if(!pointer)
+      nextPhoto();
+  };
+
+
+  report.onclick=e=>{
+    e.stopPropagation();
+
+    open("reportOverlay");
+  };
+
+
+  /*
+    Раскрытие только нажатием.
+    Никакого свайпа вверх.
+  */
+
+  card.addEventListener(
     "click",
-    render
+    e=>{
+
+      if(
+        Math.abs(dx)>15 ||
+        Math.abs(dy)>15
+      )
+        return;
+
+
+      if(
+        e.target.closest(".photo-zone") ||
+        e.target.closest(".report")
+      )
+        return;
+
+
+      toggleCard();
+
+    }
   );
 
 
-/* ======================================================
-   SAFE
-====================================================== */
+  /* POINTER */
+
+  card.addEventListener(
+    "pointerdown",
+    e=>{
+
+      if(locked)
+        return;
+
+      pointer=true;
+
+      startX=e.clientX;
+      startY=e.clientY;
+
+      dx=0;
+      dy=0;
+
+      card.style.transition="none";
+
+      card.setPointerCapture(
+        e.pointerId
+      );
+
+    }
+  );
+
+
+  card.addEventListener(
+    "pointermove",
+    e=>{
+
+      if(!pointer || locked)
+        return;
+
+
+      dx=
+        e.clientX-startX;
+
+      dy=
+        e.clientY-startY;
+
+
+      const rotation=
+        dx/18;
+
+
+      card.style.transform=
+        `translateX(${dx}px)
+         rotate(${rotation}deg)`;
+
+
+      document
+        .getElementById("likeLabel")
+        .style.opacity=
+          dx>20
+            ?Math.min(dx/100,1)
+            :0;
+
+
+      document
+        .getElementById("nopeLabel")
+        .style.opacity=
+          dx<-20
+            ?Math.min(
+                Math.abs(dx)/100,
+                1
+              )
+            :0;
+
+    }
+  );
+
+
+  card.addEventListener(
+    "pointerup",
+    ()=>finishSwipe(card)
+  );
+
+
+  card.addEventListener(
+    "pointercancel",
+    ()=>finishSwipe(card)
+  );
+
+}
+
+
+/* =====================================================
+   EXPAND
+===================================================== */
+
+function toggleCard(){
+
+  const card=
+    document.getElementById("card");
+
+  if(!card)
+    return;
+
+
+  expanded=!expanded;
+
+  card.classList.toggle(
+    "expanded",
+    expanded
+  );
+}
+
+
+/* =====================================================
+   SWIPE
+===================================================== */
+
+function finishSwipe(card){
+
+  if(!pointer)
+    return;
+
+
+  pointer=false;
+
+
+  card.style.transition=
+    "transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease";
+
+
+  if(Math.abs(dx)>100){
+
+    if(dx>0)
+      likeProfile();
+
+    else
+      dislikeProfile();
+
+    return;
+  }
+
+
+  card.style.transform=
+    "translateX(0) rotate(0)";
+
+
+  dx=0;
+  dy=0;
+}
+
+
+/* =====================================================
+   REACTIONS
+===================================================== */
+
+function likeProfile(){
+
+  if(locked || !current)
+    return;
+
+
+  locked=true;
+
+
+  const card=
+    document.getElementById("card");
+
+
+  card.style.transform=
+    "translateX(700px) rotate(18deg)";
+
+  card.style.opacity="0";
+
+
+  toast(
+    `Лайк отправлен: ${current.name} ❤️`
+  );
+
+
+  setTimeout(
+    nextProfile,
+    320
+  );
+}
+
+
+function dislikeProfile(){
+
+  if(locked || !current)
+    return;
+
+
+  locked=true;
+
+
+  const card=
+    document.getElementById("card");
+
+
+  card.style.transform=
+    "translateX(-700px) rotate(-18deg)";
+
+  card.style.opacity="0";
+
+
+  toast(
+    "Анкета пропущена"
+  );
+
+
+  setTimeout(
+    nextProfile,
+    320
+  );
+}
+
+
+function nextProfile(){
+
+  index++;
+
+  render();
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+document
+  .getElementById("like")
+  .onclick=likeProfile;
+
+
+document
+  .getElementById("dislike")
+  .onclick=dislikeProfile;
+
+
+document
+  .getElementById("notifications")
+  .onclick=()=>{
+    toast(
+      "Уведомлений пока нет"
+    );
+  };
+
+
+/* =====================================================
+   COMMENT
+===================================================== */
+
+const commentInput=
+  document.getElementById(
+    "commentInput"
+  );
+
+
+commentInput.oninput=()=>{
+
+  document
+    .getElementById("counter")
+    .textContent=
+      `${commentInput.value.length} / 180`;
+
+};
+
+
+document
+  .getElementById("comment")
+  .onclick=()=>{
+
+    if(!current)
+      return;
+
+
+    open("commentOverlay");
+
+
+    setTimeout(
+      ()=>{
+        commentInput.focus();
+      },
+      120
+    );
+
+  };
+
+
+document
+  .getElementById("sendComment")
+  .onclick=()=>{
+
+    const text=
+      commentInput.value.trim();
+
+
+    close("commentOverlay");
+
+
+    commentInput.value="";
+
+
+    document
+      .getElementById("counter")
+      .textContent=
+        "0 / 180";
+
+
+    toast(
+      text
+        ? "Лайк с комментарием отправлен ❤️"
+        : "Лайк отправлен ❤️"
+    );
+
+  };
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+document
+  .getElementById("filterButton")
+  .onclick=()=>{
+    open("filterOverlay");
+  };
+
+
+document
+  .getElementById("applyFilters")
+  .onclick=()=>{
+
+    const age=
+      document.getElementById(
+        "age"
+      ).value;
+
+
+    const gender=
+      document.getElementById(
+        "gender"
+      ).value;
+
+
+    const city=
+      document.getElementById(
+        "city"
+      ).value;
+
+
+    activeProfiles=
+      profiles.filter(
+        p=>{
+
+          let ageOK=true;
+
+
+          if(age!=="all"){
+
+            const [
+              min,
+              max
+            ]=
+              age
+                .split("-")
+                .map(Number);
+
+
+            ageOK=
+              p.age>=min &&
+              p.age<=max;
+
+          }
+
+
+          const genderOK=
+            gender==="all" ||
+            p.gender===gender;
+
+
+          const cityOK=
+            city==="all" ||
+            p.city===city;
+
+
+          return(
+            ageOK &&
+            genderOK &&
+            cityOK
+          );
+
+        }
+      );
+
+
+    index=0;
+
+
+    close(
+      "filterOverlay"
+    );
+
+
+    render();
+
+
+    toast(
+      `Найдено анкет: ${activeProfiles.length}`
+    );
+
+  };
+
+
+/* =====================================================
+   REPORT
+===================================================== */
+
+document
+  .querySelectorAll(
+    "[data-report]"
+  )
+  .forEach(
+    button=>{
+
+      button.onclick=()=>{
+
+        close(
+          "reportOverlay"
+        );
+
+
+        toast(
+          `Жалоба отправлена: ${button.dataset.report}`
+        );
+
+      };
+
+    }
+  );
+
+
+/* =====================================================
+   OVERLAYS
+===================================================== */
+
+function open(id){
+
+  document
+    .getElementById(id)
+    .classList.add("open");
+
+}
+
+
+function close(id){
+
+  document
+    .getElementById(id)
+    .classList.remove("open");
+
+}
+
+
+document
+  .querySelectorAll(
+    "[data-close]"
+  )
+  .forEach(
+    button=>{
+
+      button.onclick=()=>{
+
+        close(
+          button.dataset.close
+        );
+
+      };
+
+    }
+  );
+
+
+document
+  .querySelectorAll(".overlay")
+  .forEach(
+    overlay=>{
+
+      overlay.onclick=e=>{
+
+        if(e.target===overlay)
+          overlay.classList.remove(
+            "open"
+          );
+
+      };
+
+    }
+  );
+
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+/*
+  НА ЭТОМ ЭТАПЕ НАВИГАЦИЯ НЕ ПЕРЕКЛЮЧАЕТ
+  РАЗДЕЛЫ.
+
+  Она только визуально показывает
+  четыре будущих раздела.
+
+  Функционал добавляем по очереди.
+*/
+
+document
+  .querySelectorAll(".nav-item")
+  .forEach(
+    item=>{
+
+      item.onclick=()=>{
+
+        if(
+          item.dataset.section !==
+          "profiles"
+        ){
+
+          toast(
+            "Этот раздел пока в разработке"
+          );
+
+          return;
+        }
+
+
+        document
+          .querySelectorAll(".nav-item")
+          .forEach(
+            x=>{
+              x.classList.remove(
+                "active"
+              );
+            }
+          );
+
+
+        item.classList.add(
+          "active"
+        );
+
+      };
+
+    }
+  );
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function toast(message){
+
+  const el=
+    document.getElementById(
+      "toast"
+    );
+
+
+  el.textContent=message;
+
+
+  el.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer=
+    setTimeout(
+      ()=>{
+        el.classList.remove(
+          "show"
+        );
+      },
+      1900
+    );
+
+}
+
+
+/* =====================================================
+   SAFE HTML
+===================================================== */
 
 function safe(value){
 
@@ -1664,9 +2662,9 @@ function safe(value){
 }
 
 
-/* ======================================================
+/* =====================================================
    START
-====================================================== */
+===================================================== */
 
 render();
 
