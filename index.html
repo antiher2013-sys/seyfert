@@ -1106,25 +1106,61 @@ const area=
 function render(){
   area.innerHTML="";
   if(index>=activeProfiles.length){
-    area.innerHTML=`
+
+  area.innerHTML=`
+
+    <div class="card">
+
+      <div class="card-top">
+
+        <button id="emptyFilter">
+          ⚙
+        </button>
+
+      </div>
+
+
       <div class="empty">
+
         <div>
+
           <div style="font-size:48px">
             ✨
           </div>
+
           <div class="empty-title">
             Анкеты закончились
           </div>
+
           <div class="empty-text">
             Попробуй изменить фильтры —
             возможно, там есть кто-то ещё.
           </div>
+
         </div>
+
       </div>
-    `;
-    current=null;
-    return;
-  }
+
+    </div>
+
+  `;
+
+  current=null;
+
+
+  document
+    .getElementById("emptyFilter")
+    .onclick=e=>{
+
+      e.stopPropagation();
+
+      open("filterOverlay");
+
+    };
+
+
+  return;
+}
   current=
     activeProfiles[index];
   photoIndex=0;
