@@ -868,95 +868,117 @@ button{
    CHATS
 ========================================================= */
 
-.chat-screen{
-  width:100%;
-  height:100%;
+<div class="chat-screen">
+  <!-- Верхняя навигация -->
+  <div class="chat-tabs">
+    <button class="chat-tab active" data-chat-tab="chats">
+      Чаты
+    </button>
+    <button class="chat-tab" data-chat-tab="likes">
+      Мои лайки
+    </button>
+    <button class="chat-tab" data-chat-tab="liked">
+      Кому я нравлюсь
+    </button>
+  </div>
+  <!-- Match'и -->
+  <div class="matches-section">
+    <div class="matches-list">
+      <button class="match-item">
+        <div class="match-avatar">
+          А
+        </div>
+        <span class="match-name">
+          Алина
+        </span>
+      </button>
+      <button class="match-item">
+        <div class="match-avatar">
+          М
+        </div>
+        <span class="match-name">
+          Макс
+        </span>
+      </button>
+      <button class="match-item">
+        <div class="match-avatar">
+          С
+        </div>
+        <span class="match-name">
+          София
+        </span>
+      </button>
+      <button class="match-item">
+        <div class="match-avatar">
+          И
+        </div>
+        <span class="match-name">
+          Ирина
+        </span>
+      </button>
+      <button class="match-item">
+        <div class="match-avatar">
+          Д
+        </div>
+        <span class="match-name">
+          Дарья
+        </span>
+      </button>
+      <button class="match-item">
+        <div class="match-avatar">
+          А
+        </div>
+        <span class="match-name">
+          Аня
+        </span>
+      </button>
+    </div>
+  </div>
+  <!-- Содержимое -->
+  <div class="chat-content">
+    <div class="chat-empty">
+      <div class="chat-empty-content">
+        <div class="chat-icon">
+          <svg
+            width="70"
+            height="70"
+            viewBox="0 0 70 70"
+            fill="none">
+            <path
+              d="M17 53L14 63L25 57C28 58 31 59 35 59C49 59 60 49 60 36C60 23 49 13 35 13C21 13 10 23 10 36C10 43 13 49 17 53Z"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linejoin="round"/>
+            <circle
+              cx="25"
+              cy="36"
+              r="2.5"
+              fill="currentColor"/>
+            <circle
+              cx="35"
+              cy="36"
+              r="2.5"
+              fill="currentColor"/>
+            <circle
+              cx="45"
+              cy="36"
+              r="2.5"
+              fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="chat-empty-title">
+          Пока нет сообщений
+        </div>
+        <div class="chat-empty-text">
+          Здесь появятся твои диалоги
+          с пользователями.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  position:relative;
-
-  border-radius:30px;
-
-  background:
-    radial-gradient(
-      circle at 15% 40%,
-      rgba(139,92,246,.08),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 70%,
-      rgba(217,70,239,.06),
-      transparent 30%
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.10);
-
-  overflow:hidden;
-
-  display:flex;
-  flex-direction:column;
-}
-
-.chat-title{
-  padding:25px 22px 10px;
-
-  font-size:25px;
-  font-weight:900;
-}
-
-.chat-subtitle{
-  padding:0 22px;
-
-  color:#8f899e;
-
-  font-size:13px;
-}
-
-.chat-empty{
-  flex:1;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  padding:25px;
-}
-
-.chat-empty-content{
-  max-width:430px;
-}
-
-.chat-icon{
-  font-size:58px;
-
-  color:#b99aff;
-
-  filter:
-    drop-shadow(
-      0 0 14px
-      rgba(139,92,246,.55)
-    );
-}
-
-.chat-empty-title{
-  margin-top:18px;
-
-  font-size:25px;
-  font-weight:900;
-}
-
-.chat-empty-text{
-  margin-top:9px;
-
-  color:#9e98ae;
-
-  font-size:14px;
-  line-height:1.5;
-}
+  
 
 /* =========================================================
    BOTTOM NAV
