@@ -2,9 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Seyfert</title>
 
 <style>
@@ -32,19 +30,10 @@ html,body{
   height:100%;
   overflow:hidden;
   background:
-    radial-gradient(
-      circle at 50% -15%,
-      rgba(139,92,246,.25),
-      transparent 42%
-    ),
+    radial-gradient(circle at 50% -15%,rgba(139,92,246,.25),transparent 42%),
     var(--bg);
   color:var(--text);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 }
 
 button{
@@ -58,24 +47,19 @@ button{
   max-width:620px;
   height:100%;
   margin:auto;
-
   display:flex;
   flex-direction:column;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* ================= HEADER ================= */
 
 .header{
-  height:68px;
+  height:64px;
   flex-shrink:0;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  padding:12px 17px;
+  padding:10px 16px;
 }
 
 .logo{
@@ -89,60 +73,48 @@ button{
 }
 
 .header-btn{
-  width:43px;
-  height:43px;
-
+  width:42px;
+  height:42px;
   border-radius:14px;
-
   color:#fff;
   background:rgba(255,255,255,.045);
   border:1px solid var(--line);
 }
 
-/* =====================================================
-   MAIN
-===================================================== */
+/* ================= MAIN ================= */
 
 .main{
   flex:1;
   min-height:0;
-
   display:flex;
   flex-direction:column;
-
-  padding:0 15px 8px;
+  padding:0 12px;
 }
 
 .top{
-  height:53px;
+  height:48px;
   flex-shrink:0;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
 .title{
-  font-size:28px;
+  font-size:27px;
   font-weight:900;
 }
 
 .filter{
   padding:9px 12px;
-
   border-radius:13px;
-
   color:#ddd8e8;
   background:rgba(255,255,255,.045);
   border:1px solid var(--line);
-
   font-size:13px;
   font-weight:700;
 }
 
-/* =====================================================
-   CARD AREA
-===================================================== */
+/* ================= CARD AREA ================= */
 
 .card-area{
   flex:1;
@@ -153,11 +125,9 @@ button{
 .card{
   position:absolute;
   inset:0;
-
   overflow:hidden;
 
   border-radius:30px;
-
   background:var(--card);
   border:1px solid rgba(255,255,255,.12);
 
@@ -169,130 +139,88 @@ button{
   user-select:none;
 
   transition:
-    height .48s cubic-bezier(.22,.8,.22,1),
     transform .32s cubic-bezier(.2,.8,.2,1),
     opacity .3s ease;
 }
 
-/* =====================================================
-   PHOTO
-===================================================== */
+/* ================= PHOTO ================= */
 
 .photo{
   position:absolute;
   inset:0;
-
-  height:100%;
-  min-height:330px;
-
-  transition:
-    height .48s cubic-bezier(.22,.8,.22,1);
-}
-
-.card.expanded .photo{
-  height:39%;
 }
 
 .photo-bg{
   position:absolute;
   inset:0;
+  transition:background .25s ease;
 }
 
 .photo-bg::after{
   content:"";
-
   position:absolute;
   inset:0;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,.03) 25%,
-      rgba(0,0,0,.2) 55%,
-      rgba(8,7,17,.94) 100%
+      rgba(0,0,0,.04) 20%,
+      rgba(0,0,0,.1) 45%,
+      rgba(8,7,17,.72) 73%,
+      rgba(8,7,17,.98) 100%
     );
 }
 
-/* Временный персонаж */
+/* временный персонаж */
 
 .person{
   position:absolute;
   z-index:2;
-
   left:50%;
   top:40%;
-
   width:220px;
   height:330px;
-
   transform:translate(-50%,-50%);
 }
 
 .head{
   position:absolute;
-
   top:0;
   left:50%;
-
   width:112px;
   height:132px;
-
   transform:translateX(-50%);
-
   border-radius:52% 52% 48% 48%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #d1afc0,
-      #725b7e
-    );
+  background:linear-gradient(145deg,#d1afc0,#725b7e);
 }
 
 .body{
   position:absolute;
-
   bottom:0;
   left:50%;
-
   width:220px;
   height:215px;
-
   transform:translateX(-50%);
-
   border-radius:120px 120px 20px 20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #30233e,
-      #0c0d15
-    );
+  background:linear-gradient(145deg,#30233e,#0c0d15);
 }
 
-/* =====================================================
-   PHOTO PROGRESS
-===================================================== */
+/* ================= PHOTO PROGRESS ================= */
 
 .photo-progress{
   position:absolute;
-  z-index:20;
-
+  z-index:30;
   top:12px;
   left:17px;
   right:17px;
-
   display:flex;
   gap:4px;
 }
 
 .photo-progress span{
   flex:1;
-
   height:3px;
-
   border-radius:10px;
-
   background:rgba(255,255,255,.3);
 }
 
@@ -300,18 +228,14 @@ button{
   background:#fff;
 }
 
-/* =====================================================
-   PHOTO ZONES
-===================================================== */
+/* ================= PHOTO ZONES ================= */
 
 .photo-zone{
   position:absolute;
-  z-index:18;
-
+  z-index:20;
   top:0;
   bottom:0;
-
-  width:30%;
+  width:27%;
 }
 
 .photo-zone.left{
@@ -322,17 +246,14 @@ button{
   right:0;
 }
 
-/* =====================================================
-   CARD TOP
-===================================================== */
+/* ================= CARD TOP ================= */
 
 .card-top{
   position:absolute;
-  z-index:25;
-
-  top:24px;
-  left:15px;
-  right:15px;
+  z-index:35;
+  top:25px;
+  left:16px;
+  right:16px;
 
   display:flex;
   justify-content:space-between;
@@ -340,7 +261,7 @@ button{
   pointer-events:none;
 }
 
-.online{
+.status{
   display:flex;
   align-items:center;
   gap:7px;
@@ -349,12 +270,12 @@ button{
 
   border-radius:999px;
 
-  color:#e5e1eb;
-
-  background:rgba(7,7,13,.58);
+  background:rgba(7,7,13,.55);
   border:1px solid rgba(255,255,255,.1);
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
+
+  color:#e5e1eb;
 
   font-size:11px;
   font-weight:700;
@@ -363,13 +284,15 @@ button{
 .dot{
   width:7px;
   height:7px;
-
   border-radius:50%;
-
   background:var(--green);
+  box-shadow:0 0 9px rgba(105,230,167,.7);
+}
 
-  box-shadow:
-    0 0 9px rgba(105,230,167,.7);
+.dot.recent{
+  background:#aaa4b3;
+  box-shadow:none;
+  opacity:.7;
 }
 
 .report{
@@ -379,36 +302,24 @@ button{
   border-radius:13px;
 
   color:#ddd9e4;
+  background:rgba(7,7,13,.55);
 
-  background:rgba(7,7,13,.58);
   border:1px solid rgba(255,255,255,.1);
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
 
   pointer-events:auto;
 }
 
-/* =====================================================
-   PROFILE INFO
-===================================================== */
+/* ================= PROFILE INFO ================= */
 
 .profile-info{
   position:absolute;
-  z-index:22;
+  z-index:25;
 
   left:20px;
   right:20px;
-  bottom:20px;
-
-  transition:
-    bottom .48s cubic-bezier(.22,.8,.22,1);
-}
-
-.card.expanded .profile-info{
-  bottom:auto;
-  top:calc(39% - 2px);
-
-  padding-top:17px;
+  bottom:105px;
 }
 
 .name-line{
@@ -418,7 +329,7 @@ button{
 }
 
 .name{
-  font-size:30px;
+  font-size:31px;
   font-weight:900;
 }
 
@@ -429,46 +340,41 @@ button{
 
 .city{
   margin-top:3px;
-
   color:#c2bccd;
-
   font-size:13px;
 }
 
-.distance{
-  margin-top:5px;
+.meta-line{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:6px;
+}
 
-  color:#bda8f3;
-
+.distance,
+.last-seen{
+  color:#c2b3ed;
   font-size:12px;
   font-weight:700;
 }
 
-.bio{
-  margin-top:10px;
-
-  max-width:500px;
-
-  color:#ddd9e5;
-
-  font-size:14px;
-  line-height:1.4;
+.last-seen{
+  color:#b9b2c5;
 }
 
-.card.expanded .bio{
-  max-height:0;
-  opacity:0;
-  overflow:hidden;
+.bio{
+  margin-top:10px;
+  max-width:520px;
 
-  margin:0;
+  color:#ddd9e5;
+  font-size:14px;
+  line-height:1.4;
 }
 
 .tags{
   display:flex;
   flex-wrap:wrap;
-
   gap:6px;
-
   margin-top:10px;
 }
 
@@ -478,7 +384,6 @@ button{
   border-radius:999px;
 
   color:#cbb9ff;
-
   background:rgba(139,92,246,.13);
   border:1px solid rgba(139,92,246,.22);
 
@@ -486,147 +391,101 @@ button{
   font-weight:700;
 }
 
-/* =====================================================
-   DETAILS
-===================================================== */
+/* ================= BOTTOM BLUR ================= */
 
-.details{
+.card-bottom{
   position:absolute;
-  z-index:21;
+  z-index:40;
 
-  left:20px;
-  right:20px;
+  left:0;
+  right:0;
+  bottom:0;
 
-  top:calc(39% + 128px);
-  bottom:20px;
-
-  overflow-y:auto;
-
-  padding-bottom:10px;
-
-  opacity:0;
-  transform:translateY(18px);
+  height:190px;
 
   pointer-events:none;
 
-  transition:
-    opacity .28s ease .12s,
-    transform .42s cubic-bezier(.22,.8,.22,1) .08s;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8,7,17,0),
+      rgba(8,7,17,.72) 42%,
+      rgba(8,7,17,.96) 72%,
+      rgba(8,7,17,1)
+    );
 }
 
-.card.expanded .details{
-  opacity:1;
-  transform:translateY(0);
+/* ================= ACTIONS INSIDE CARD ================= */
 
-  pointer-events:auto;
-}
+.card-actions{
+  position:absolute;
+  z-index:60;
 
-.detail-heading{
-  margin-bottom:11px;
+  left:18px;
+  right:18px;
+  bottom:17px;
 
-  color:#8f899e;
-
-  font-size:11px;
-  font-weight:700;
-
-  text-transform:uppercase;
-  letter-spacing:.7px;
-}
-
-.detail-grid{
-  display:grid;
-
-  grid-template-columns:repeat(2,1fr);
-
-  gap:8px;
-}
-
-.detail-item{
-  min-height:58px;
-
-  padding:10px 11px;
-
-  border-radius:15px;
-
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.07);
-
-  opacity:0;
-  transform:translateY(9px);
-
-  transition:
-    opacity .3s ease,
-    transform .3s ease;
-}
-
-.card.expanded .detail-item{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.card.expanded .detail-item:nth-child(1){transition-delay:.10s}
-.card.expanded .detail-item:nth-child(2){transition-delay:.14s}
-.card.expanded .detail-item:nth-child(3){transition-delay:.18s}
-.card.expanded .detail-item:nth-child(4){transition-delay:.22s}
-.card.expanded .detail-item:nth-child(5){transition-delay:.26s}
-.card.expanded .detail-item:nth-child(6){transition-delay:.30s}
-.card.expanded .detail-item:nth-child(7){transition-delay:.34s}
-.card.expanded .detail-item:nth-child(8){transition-delay:.38s}
-
-.detail-icon{
-  font-size:16px;
-}
-
-.detail-label{
-  margin-top:4px;
-
-  color:#817b8f;
-
-  font-size:9px;
-}
-
-.detail-value{
-  margin-top:2px;
-
-  color:#eeeaf3;
-
-  font-size:12px;
-  font-weight:700;
-}
-
-.interests{
-  margin-top:17px;
-}
-
-.interest-list{
   display:flex;
-  flex-wrap:wrap;
-
-  gap:6px;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
 }
 
-.interest{
-  padding:7px 10px;
+.action{
+  width:55px;
+  height:55px;
 
-  border-radius:10px;
+  border-radius:50%;
 
-  background:rgba(139,92,246,.12);
+  color:#fff;
 
-  color:#c8b7f7;
+  background:rgba(20,17,31,.82);
+  border:1px solid rgba(255,255,255,.13);
 
-  border:1px solid rgba(139,92,246,.2);
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.35);
 
-  font-size:10px;
-  font-weight:700;
+  backdrop-filter:blur(15px);
+
+  transition:
+    transform .12s ease,
+    background .2s ease;
 }
 
-/* =====================================================
-   SWIPE LABELS
-===================================================== */
+.action:active{
+  transform:scale(.88);
+}
+
+.action.dislike{
+  color:var(--red);
+}
+
+.action.like{
+  color:#ff6f95;
+}
+
+.action.comment{
+  width:63px;
+  height:63px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--purple),
+      var(--pink)
+    );
+
+  box-shadow:
+    0 12px 35px rgba(139,92,246,.4);
+}
+
+/* ================= SWIPE LABELS ================= */
 
 .swipe-label{
   position:absolute;
-  z-index:50;
+  z-index:70;
 
   top:42%;
 
@@ -643,154 +502,162 @@ button{
 
 .like-label{
   left:22px;
-
   color:var(--green);
   border:2px solid var(--green);
-
   transform:rotate(-12deg);
 }
 
 .nope-label{
   right:22px;
-
   color:var(--red);
   border:2px solid var(--red);
-
   transform:rotate(12deg);
 }
 
-/* =====================================================
-   ACTIONS
-===================================================== */
+/* ================= DETAILS POPUP ================= */
 
-.actions{
-  height:84px;
-  flex-shrink:0;
+.details-popup{
+  position:absolute;
+  z-index:100;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  left:0;
+  right:0;
+  bottom:0;
 
-  gap:18px;
-}
+  height:76%;
 
-.action{
-  width:58px;
-  height:58px;
+  padding:20px;
 
-  border-radius:50%;
-
-  color:#fff;
-
-  background:#14111f;
-
-  border:1px solid var(--line);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.3);
-
-  transition:
-    transform .12s ease;
-}
-
-.action:active{
-  transform:scale(.88);
-}
-
-.action.dislike{
-  color:var(--red);
-}
-
-.action.comment{
-  width:65px;
-  height:65px;
-
-  color:#fff;
+  border-radius:28px 28px 0 0;
 
   background:
     linear-gradient(
       145deg,
-      var(--purple),
-      var(--pink)
+      rgba(24,20,38,.98),
+      rgba(12,11,20,.99)
     );
 
+  border:1px solid rgba(255,255,255,.1);
+
   box-shadow:
-    0 12px 35px rgba(139,92,246,.4);
-}
+    0 -20px 70px rgba(0,0,0,.55);
 
-.action.like{
-  color:#ff6f95;
-}
-
-/* =====================================================
-   BOTTOM NAVIGATION
-===================================================== */
-
-.bottom-nav{
-  height:76px;
-  flex-shrink:0;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-
-  align-items:center;
-
-  padding:6px 10px 9px;
-
-  border-top:1px solid rgba(255,255,255,.07);
-
-  background:
-    rgba(8,7,17,.92);
-
-  backdrop-filter:blur(20px);
-}
-
-.nav-item{
-  height:58px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  gap:4px;
-
-  border-radius:17px;
-
-  color:#777184;
-
-  background:transparent;
+  transform:translateY(105%);
 
   transition:
-    color .2s ease,
-    background .2s ease;
+    transform .48s cubic-bezier(.22,.8,.22,1);
 }
 
-/*
-  Пока активен только внешний вид.
-  Остальные разделы намеренно ничего не открывают.
-*/
-
-.nav-item.active{
-  color:#fff;
-
-  background:
-    rgba(139,92,246,.12);
+.card.details-open .details-popup{
+  transform:translateY(0);
 }
 
-.nav-icon{
-  font-size:19px;
-  line-height:1;
+.details-handle{
+  width:42px;
+  height:4px;
+
+  margin:0 auto 17px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.22);
 }
 
-.nav-label{
+.details-title{
+  font-size:20px;
+  font-weight:900;
+}
+
+.details-subtitle{
+  margin-top:4px;
+  color:#8f899e;
+  font-size:11px;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+
+  margin-top:16px;
+}
+
+.detail-item{
+  min-height:62px;
+  padding:10px 11px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.detail-icon{
+  font-size:16px;
+}
+
+.detail-label{
+  margin-top:4px;
+  color:#817b8f;
   font-size:9px;
-  font-weight:800;
 }
 
-/* =====================================================
-   EMPTY
-===================================================== */
+.detail-value{
+  margin-top:2px;
+  color:#eeeaf3;
+  font-size:12px;
+  font-weight:700;
+}
+
+.details-interests{
+  margin-top:18px;
+}
+
+.section-label{
+  color:#8f899e;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.interest-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:9px;
+}
+
+.interest{
+  padding:7px 10px;
+  border-radius:10px;
+
+  background:rgba(139,92,246,.12);
+  color:#c8b7f7;
+
+  border:1px solid rgba(139,92,246,.2);
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.details-close{
+  position:absolute;
+  right:17px;
+  top:17px;
+
+  width:37px;
+  height:37px;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+
+  color:#eee;
+}
+
+/* ================= EMPTY ================= */
 
 .empty{
   position:absolute;
@@ -802,11 +669,10 @@ button{
   border:1px solid var(--line);
 
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
 
   text-align:center;
-
   padding:30px;
 }
 
@@ -817,23 +683,59 @@ button{
 
 .empty-text{
   margin-top:9px;
-
   color:var(--muted);
-
   line-height:1.5;
-
   font-size:14px;
 }
 
-/* =====================================================
-   SHEETS
-===================================================== */
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+  height:76px;
+  flex-shrink:0;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  align-items:center;
+
+  padding:7px 5px 9px;
+}
+
+.nav-item{
+  height:58px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:4px;
+
+  border-radius:17px;
+
+  color:#817b8f;
+  background:transparent;
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.nav-item.active{
+  color:#cdbbff;
+  background:rgba(139,92,246,.08);
+}
+
+.nav-icon{
+  font-size:20px;
+}
+
+/* ================= SHEETS ================= */
 
 .overlay{
   position:fixed;
   inset:0;
 
-  z-index:100;
+  z-index:200;
 
   display:none;
   align-items:flex-end;
@@ -869,8 +771,8 @@ button{
 
 .sheet-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
 .sheet-title{
@@ -885,55 +787,194 @@ button{
   border-radius:13px;
 
   background:rgba(255,255,255,.05);
-
-  color:#fff;
+  color:white;
 
   border:1px solid var(--line);
 }
 
+/* ================= FILTER ================= */
+
 .field{
-  margin-top:15px;
+  margin-top:17px;
 }
 
 .field-label{
   color:var(--muted);
   font-size:12px;
+  font-weight:700;
 }
 
-select,
-textarea{
+.range-values{
+  display:flex;
+  justify-content:space-between;
+
+  margin-top:8px;
+
+  color:#eeeaf3;
+  font-size:14px;
+  font-weight:800;
+}
+
+input[type="range"]{
+  width:100%;
+  margin-top:9px;
+  accent-color:var(--purple);
+}
+
+.gender-options{
+  display:flex;
+  gap:7px;
+  margin-top:8px;
+}
+
+.gender-option{
+  flex:1;
+
+  padding:11px 7px;
+
+  border-radius:13px;
+
+  color:#aaa4b3;
+  background:rgba(255,255,255,.04);
+
+  border:1px solid var(--line);
+
+  font-size:11px;
+  font-weight:700;
+}
+
+.gender-option.selected{
+  color:#fff;
+
+  background:rgba(139,92,246,.16);
+  border-color:rgba(139,92,246,.4);
+}
+
+.city-select{
   width:100%;
 
-  margin-top:7px;
-
+  margin-top:8px;
   padding:13px;
 
-  color:#fff;
+  color:white;
 
   background:#191526;
 
   border:1px solid var(--line);
-
   border-radius:14px;
 
   outline:none;
 }
 
-textarea{
-  height:110px;
-  resize:none;
+.interest-filter{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+
+  margin-top:9px;
+}
+
+.interest-filter button{
+  padding:8px 10px;
+
+  border-radius:11px;
+
+  color:#aaa4b3;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid var(--line);
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.interest-filter button.selected{
+  color:#fff;
+
+  background:rgba(139,92,246,.18);
+
+  border-color:rgba(139,92,246,.45);
+}
+
+.filter-actions{
+  display:flex;
+  gap:8px;
+  margin-top:19px;
 }
 
 .primary{
-  width:100%;
-
-  margin-top:18px;
+  flex:1;
 
   padding:14px;
 
   border-radius:15px;
 
-  color:#fff;
+  color:white;
+
+  font-weight:800;
+
+  background:
+    linear-gradient(
+      100deg,
+      var(--purple),
+      var(--pink)
+    );
+}
+
+.reset{
+  padding:14px 17px;
+
+  border-radius:15px;
+
+  color:#d1cbd9;
+
+  background:rgba(255,255,255,.05);
+
+  border:1px solid var(--line);
+
+  font-weight:800;
+}
+
+/* ================= COMMENT / REPORT ================= */
+
+textarea{
+  width:100%;
+
+  margin-top:7px;
+  padding:13px;
+
+  color:white;
+
+  background:#191526;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  outline:none;
+
+  height:110px;
+  resize:none;
+}
+
+.counter{
+  margin-top:5px;
+
+  color:#716b7d;
+
+  text-align:right;
+
+  font-size:10px;
+}
+
+.comment-send{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+
+  border-radius:15px;
+
+  color:white;
 
   font-weight:800;
 
@@ -949,40 +990,28 @@ textarea{
   width:100%;
 
   margin-top:8px;
-
   padding:14px;
 
   text-align:left;
 
   border-radius:14px;
 
-  color:#fff;
+  color:white;
 
   background:rgba(255,255,255,.035);
 
   border:1px solid var(--line);
 }
 
-.counter{
-  margin-top:5px;
-
-  color:#716b7d;
-
-  text-align:right;
-
-  font-size:10px;
-}
-
-/* =====================================================
-   TOAST
-===================================================== */
+/* ================= TOAST ================= */
 
 .toast{
   position:fixed;
-  z-index:300;
+
+  z-index:500;
 
   left:50%;
-  bottom:95px;
+  bottom:25px;
 
   transform:translateX(-50%);
 
@@ -991,7 +1020,6 @@ textarea{
   border-radius:999px;
 
   background:#f4f3f7;
-
   color:#15131b;
 
   font-size:12px;
@@ -1000,8 +1028,7 @@ textarea{
   opacity:0;
   pointer-events:none;
 
-  transition:
-    opacity .2s ease;
+  transition:opacity .2s ease;
 }
 
 .toast.show{
@@ -1020,9 +1047,7 @@ textarea{
     SEY<span>F</span>ERT
   </div>
 
-  <button
-    class="header-btn"
-    id="notifications">
+  <button class="header-btn" id="notifications">
     🔔
   </button>
 
@@ -1037,123 +1062,48 @@ textarea{
       Анкеты
     </div>
 
-    <button
-      class="filter"
-      id="filterButton">
+    <button class="filter" id="filterButton">
       ⚙ Фильтр
     </button>
 
   </div>
 
 
-  <div
-    class="card-area"
-    id="cardArea">
-  </div>
+  <div class="card-area" id="cardArea"></div>
 
 
-  <div class="actions">
+  <nav class="bottom-nav">
 
-    <button
-      class="action dislike"
-      id="dislike">
-      ✕
+    <button class="nav-item active">
+      <div class="nav-icon">👤</div>
+      Анкеты
     </button>
 
-    <button
-      class="action comment"
-      id="comment">
-      💬
+    <button class="nav-item">
+      <div class="nav-icon">💬</div>
+      Чаты
     </button>
 
-    <button
-      class="action like"
-      id="like">
-      ♥
+    <button class="nav-item">
+      <div class="nav-icon">🌐</div>
+      Глобал
     </button>
 
-  </div>
+    <button class="nav-item">
+      <div class="nav-icon">◉</div>
+      Профиль
+    </button>
+
+  </nav>
 
 </main>
-
-
-<!-- =================================================
-     BOTTOM NAVIGATION
-================================================== -->
-
-<nav class="bottom-nav">
-
-  <button
-    class="nav-item active"
-    data-section="profiles">
-
-    <span class="nav-icon">
-      ♡
-    </span>
-
-    <span class="nav-label">
-      Анкеты
-    </span>
-
-  </button>
-
-
-  <button
-    class="nav-item"
-    data-section="chats">
-
-    <span class="nav-icon">
-      ◌
-    </span>
-
-    <span class="nav-label">
-      Чаты
-    </span>
-
-  </button>
-
-
-  <button
-    class="nav-item"
-    data-section="global">
-
-    <span class="nav-icon">
-      ◎
-    </span>
-
-    <span class="nav-label">
-      Глобал
-    </span>
-
-  </button>
-
-
-  <button
-    class="nav-item"
-    data-section="profile">
-
-    <span class="nav-icon">
-      ◯
-    </span>
-
-    <span class="nav-label">
-      Профиль
-    </span>
-
-  </button>
-
-</nav>
 
 </div>
 
 
-<!-- =================================================
-     FILTER
-================================================== -->
+<!-- FILTER -->
 
-<div
-  class="overlay"
-  id="filterOverlay">
+<div class="overlay" id="filterOverlay">
 
   <div class="sheet">
 
@@ -1163,9 +1113,7 @@ textarea{
         Фильтры
       </div>
 
-      <button
-        class="close"
-        data-close="filterOverlay">
+      <button class="close" data-close="filterOverlay">
         ✕
       </button>
 
@@ -1178,25 +1126,31 @@ textarea{
         Возраст
       </div>
 
-      <select id="age">
+      <div class="range-values">
 
-        <option value="all">
-          Без ограничения
-        </option>
+        <span id="minAgeValue">18</span>
 
-        <option value="18-25">
-          18–25
-        </option>
+        <span>до</span>
 
-        <option value="18-30">
-          18–30
-        </option>
+        <span id="maxAgeValue">60</span>
 
-        <option value="18-35">
-          18–35
-        </option>
+      </div>
 
-      </select>
+      <input
+        type="range"
+        id="minAge"
+        min="18"
+        max="60"
+        value="18"
+      >
+
+      <input
+        type="range"
+        id="maxAge"
+        min="18"
+        max="60"
+        value="60"
+      >
 
     </div>
 
@@ -1207,21 +1161,21 @@ textarea{
         Пол
       </div>
 
-      <select id="gender">
+      <div class="gender-options">
 
-        <option value="all">
+        <button class="gender-option selected" data-gender="all">
           Все
-        </option>
+        </button>
 
-        <option value="female">
+        <button class="gender-option" data-gender="female">
           Девушки
-        </option>
+        </button>
 
-        <option value="male">
+        <button class="gender-option" data-gender="male">
           Парни
-        </option>
+        </button>
 
-      </select>
+      </div>
 
     </div>
 
@@ -1232,7 +1186,7 @@ textarea{
         Город
       </div>
 
-      <select id="city">
+      <select class="city-select" id="city">
 
         <option value="all">
           Любой город
@@ -1259,24 +1213,79 @@ textarea{
     </div>
 
 
-    <button
-      class="primary"
-      id="applyFilters">
-      Применить
-    </button>
+    <div class="field">
+
+      <div class="field-label">
+        Интересы
+      </div>
+
+      <div class="interest-filter" id="interestFilter">
+
+        <button data-interest="Музыка">
+          Музыка
+        </button>
+
+        <button data-interest="Игры">
+          Игры
+        </button>
+
+        <button data-interest="ПК">
+          ПК
+        </button>
+
+        <button data-interest="Кино">
+          Кино
+        </button>
+
+        <button data-interest="Спорт">
+          Спорт
+        </button>
+
+        <button data-interest="Путешествия">
+          Путешествия
+        </button>
+
+        <button data-interest="Кошки">
+          Кошки
+        </button>
+
+        <button data-interest="Готовка">
+          Готовка
+        </button>
+
+        <button data-interest="Фото">
+          Фото
+        </button>
+
+        <button data-interest="Технологии">
+          Технологии
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="filter-actions">
+
+      <button class="reset" id="resetFilters">
+        Сбросить
+      </button>
+
+      <button class="primary" id="applyFilters">
+        Применить
+      </button>
+
+    </div>
 
   </div>
 
 </div>
 
 
-<!-- =================================================
-     COMMENT
-================================================== -->
+<!-- COMMENT -->
 
-<div
-  class="overlay"
-  id="commentOverlay">
+<div class="overlay" id="commentOverlay">
 
   <div class="sheet">
 
@@ -1286,9 +1295,7 @@ textarea{
         Лайк с комментарием
       </div>
 
-      <button
-        class="close"
-        data-close="commentOverlay">
+      <button class="close" data-close="commentOverlay">
         ✕
       </button>
 
@@ -1304,20 +1311,17 @@ textarea{
       <textarea
         id="commentInput"
         maxlength="180"
-        placeholder="Например: «Тоже люблю такую музыку»"></textarea>
+        placeholder="Например: «Тоже люблю такую музыку»">
+      </textarea>
 
-      <div
-        class="counter"
-        id="counter">
+      <div class="counter" id="counter">
         0 / 180
       </div>
 
     </div>
 
 
-    <button
-      class="primary"
-      id="sendComment">
+    <button class="comment-send" id="sendComment">
       Отправить лайк ❤️
     </button>
 
@@ -1326,13 +1330,9 @@ textarea{
 </div>
 
 
-<!-- =================================================
-     REPORT
-================================================== -->
+<!-- REPORT -->
 
-<div
-  class="overlay"
-  id="reportOverlay">
+<div class="overlay" id="reportOverlay">
 
   <div class="sheet">
 
@@ -1342,42 +1342,29 @@ textarea{
         Пожаловаться
       </div>
 
-      <button
-        class="close"
-        data-close="reportOverlay">
+      <button class="close" data-close="reportOverlay">
         ✕
       </button>
 
     </div>
 
-
-    <button
-      class="report-option"
-      data-report="Спам">
+    <button class="report-option" data-report="Спам">
       🚫 Спам
     </button>
 
-    <button
-      class="report-option"
-      data-report="Оскорбление">
+    <button class="report-option" data-report="Оскорбление">
       ⚠️ Оскорбление
     </button>
 
-    <button
-      class="report-option"
-      data-report="Неприемлемый контент">
+    <button class="report-option" data-report="Неприемлемый контент">
       🔞 Неприемлемый контент
     </button>
 
-    <button
-      class="report-option"
-      data-report="Фейковый профиль">
+    <button class="report-option" data-report="Фейковый профиль">
       👤 Фейковый профиль
     </button>
 
-    <button
-      class="report-option"
-      data-report="Другое">
+    <button class="report-option" data-report="Другое">
       ••• Другое
     </button>
 
@@ -1386,37 +1373,34 @@ textarea{
 </div>
 
 
-<div
-  class="toast"
-  id="toast">
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-/* =====================================================
+/* =========================================================
    TEST PROFILES
-===================================================== */
+========================================================= */
 
-const profiles = [
+const profiles=[
 
   {
     id:1,
-
     name:"Алина",
     age:21,
     gender:"female",
-
     city:"Санкт-Петербург",
 
     distance:3,
 
     online:true,
+    lastSeen:"Сейчас онлайн",
 
     photos:[
       "photo1",
       "photo2",
-      "photo3"
+      "photo3",
+      "photo4"
     ],
 
     bio:
@@ -1425,7 +1409,7 @@ const profiles = [
     interests:[
       "Музыка",
       "Кино",
-      "Dota 2"
+      "Игры"
     ],
 
     details:{
@@ -1438,26 +1422,25 @@ const profiles = [
       personality:"INFJ",
       work:"Дизайн"
     }
-
   },
 
 
   {
     id:2,
-
     name:"Макс",
     age:24,
     gender:"male",
-
     city:"Москва",
 
     distance:5,
 
-    online:true,
+    online:false,
+    lastSeen:"Был недавно",
 
     photos:[
       "photo1",
-      "photo2"
+      "photo2",
+      "photo3"
     ],
 
     bio:
@@ -1479,28 +1462,27 @@ const profiles = [
       personality:"ENTP",
       work:"IT"
     }
-
   },
 
 
   {
     id:3,
-
     name:"София",
     age:22,
     gender:"female",
-
     city:"Казань",
 
     distance:8,
 
     online:false,
+    lastSeen:"Была недавно",
 
     photos:[
       "photo1",
       "photo2",
       "photo3",
-      "photo4"
+      "photo4",
+      "photo5"
     ],
 
     bio:
@@ -1522,15 +1504,14 @@ const profiles = [
       personality:"ENFP",
       work:"Маркетинг"
     }
-
   }
 
 ];
 
 
-/* =====================================================
+/* =========================================================
    STATE
-===================================================== */
+========================================================= */
 
 let activeProfiles=[...profiles];
 
@@ -1539,7 +1520,7 @@ let current=null;
 
 let photoIndex=0;
 
-let expanded=false;
+let detailsOpen=false;
 let locked=false;
 
 let pointer=false;
@@ -1550,14 +1531,17 @@ let startY=0;
 let dx=0;
 let dy=0;
 
+let selectedGender="all";
+let selectedInterests=new Set();
+
 
 const area=
   document.getElementById("cardArea");
 
 
-/* =====================================================
+/* =========================================================
    RENDER
-===================================================== */
+========================================================= */
 
 function render(){
 
@@ -1596,11 +1580,12 @@ function render(){
   }
 
 
-  current=
-    activeProfiles[index];
+  current=activeProfiles[index];
 
   photoIndex=0;
-  expanded=false;
+
+  detailsOpen=false;
+
   locked=false;
 
 
@@ -1608,6 +1593,7 @@ function render(){
     document.createElement("div");
 
   card.className="card";
+
   card.id="card";
 
 
@@ -1663,20 +1649,13 @@ function render(){
 
     <div class="card-top">
 
-      <div class="online">
+      <div class="status">
 
         <span
-          class="dot"
-          style="
-            opacity:${current.online?1:.3}
-          ">
+          class="dot ${current.online?"":"recent"}">
         </span>
 
-        ${
-          current.online
-            ? "Сейчас онлайн"
-            : "Был(а) недавно"
-        }
+        ${safe(current.lastSeen)}
 
       </div>
 
@@ -1693,14 +1672,18 @@ function render(){
     <div
       class="swipe-label like-label"
       id="likeLabel">
+
       LIKE
+
     </div>
 
 
     <div
       class="swipe-label nope-label"
       id="nopeLabel">
+
       NOPE
+
     </div>
 
 
@@ -1724,8 +1707,16 @@ function render(){
       </div>
 
 
-      <div class="distance">
-        📍 ${current.distance} км от вас
+      <div class="meta-line">
+
+        <div class="distance">
+          📍 ${current.distance} км от вас
+        </div>
+
+        <div class="last-seen">
+          • ${safe(current.lastSeen)}
+        </div>
+
       </div>
 
 
@@ -1751,10 +1742,61 @@ function render(){
     </div>
 
 
-    <div class="details">
+    <div class="card-bottom"></div>
 
-      <div class="detail-heading">
-        О пользователе
+
+    <div class="card-actions">
+
+      <button
+        class="action dislike"
+        id="dislike">
+
+        ✕
+
+      </button>
+
+
+      <button
+        class="action comment"
+        id="comment">
+
+        💬
+
+      </button>
+
+
+      <button
+        class="action like"
+        id="like">
+
+        ♥
+
+      </button>
+
+    </div>
+
+
+    <div class="details-popup">
+
+      <div class="details-handle"></div>
+
+
+      <button
+        class="details-close"
+        id="detailsClose">
+
+        ↓
+
+      </button>
+
+
+      <div class="details-title">
+        О ${safe(current.name)}
+      </div>
+
+
+      <div class="details-subtitle">
+        Подробная информация анкеты
       </div>
 
 
@@ -1811,9 +1853,9 @@ function render(){
       </div>
 
 
-      <div class="interests">
+      <div class="details-interests">
 
-        <div class="detail-heading">
+        <div class="section-label">
           Интересы
         </div>
 
@@ -1841,21 +1883,18 @@ function render(){
 
   area.appendChild(card);
 
+
   updatePhoto();
 
-  bind(card);
+  bindCard(card);
 }
 
 
-/* =====================================================
+/* =========================================================
    DETAIL
-===================================================== */
+========================================================= */
 
-function detail(
-  icon,
-  label,
-  value
-){
+function detail(icon,label,value){
 
   return `
 
@@ -1879,9 +1918,9 @@ function detail(
 }
 
 
-/* =====================================================
+/* =========================================================
    PHOTO
-===================================================== */
+========================================================= */
 
 function updatePhoto(){
 
@@ -1927,11 +1966,13 @@ function updatePhoto(){
   document
     .querySelectorAll("#progress span")
     .forEach(
-      (x,i)=>{
-        x.classList.toggle(
+      (el,i)=>{
+
+        el.classList.toggle(
           "active",
           i===photoIndex
         );
+
       }
     );
 }
@@ -1965,11 +2006,11 @@ function previousPhoto(){
 }
 
 
-/* =====================================================
-   CARD
-===================================================== */
+/* =========================================================
+   CARD BIND
+========================================================= */
 
-function bind(card){
+function bindCard(card){
 
   const left=
     document.getElementById("leftPhoto");
@@ -1980,33 +2021,84 @@ function bind(card){
   const report=
     document.getElementById("report");
 
+  const detailsClose=
+    document.getElementById("detailsClose");
+
 
   left.onclick=e=>{
+
     e.stopPropagation();
 
     if(!pointer)
       previousPhoto();
+
   };
 
 
   right.onclick=e=>{
+
     e.stopPropagation();
 
     if(!pointer)
       nextPhoto();
+
   };
 
 
   report.onclick=e=>{
+
     e.stopPropagation();
 
     open("reportOverlay");
+
   };
 
 
+  detailsClose.onclick=e=>{
+
+    e.stopPropagation();
+
+    closeDetails();
+
+  };
+
+
+  document
+    .getElementById("like")
+    .onclick=e=>{
+
+      e.stopPropagation();
+
+      likeProfile();
+
+    };
+
+
+  document
+    .getElementById("dislike")
+    .onclick=e=>{
+
+      e.stopPropagation();
+
+      dislikeProfile();
+
+    };
+
+
+  document
+    .getElementById("comment")
+    .onclick=e=>{
+
+      e.stopPropagation();
+
+      openComment();
+
+    };
+
+
   /*
-    Раскрытие только нажатием.
-    Никакого свайпа вверх.
+    Центральная часть карточки —
+    открытие подробной информации.
   */
 
   card.addEventListener(
@@ -2022,25 +2114,28 @@ function bind(card){
 
       if(
         e.target.closest(".photo-zone") ||
-        e.target.closest(".report")
+        e.target.closest(".report") ||
+        e.target.closest(".card-actions") ||
+        e.target.closest(".details-popup")
       )
         return;
 
 
-      toggleCard();
+      openDetails();
 
     }
   );
 
 
-  /* POINTER */
+  /* ================= POINTER ================= */
 
   card.addEventListener(
     "pointerdown",
     e=>{
 
-      if(locked)
+      if(locked || detailsOpen)
         return;
+
 
       pointer=true;
 
@@ -2064,15 +2159,16 @@ function bind(card){
     "pointermove",
     e=>{
 
-      if(!pointer || locked)
+      if(
+        !pointer ||
+        locked ||
+        detailsOpen
+      )
         return;
 
 
-      dx=
-        e.clientX-startX;
-
-      dy=
-        e.clientY-startY;
+      dx=e.clientX-startX;
+      dy=e.clientY-startY;
 
 
       const rotation=
@@ -2080,27 +2176,26 @@ function bind(card){
 
 
       card.style.transform=
-        `translateX(${dx}px)
-         rotate(${rotation}deg)`;
+        `translateX(${dx}px) rotate(${rotation}deg)`;
 
 
-      document
-        .getElementById("likeLabel")
-        .style.opacity=
-          dx>20
-            ?Math.min(dx/100,1)
-            :0;
+      const likeLabel=
+        document.getElementById("likeLabel");
+
+      const nopeLabel=
+        document.getElementById("nopeLabel");
 
 
-      document
-        .getElementById("nopeLabel")
-        .style.opacity=
-          dx<-20
-            ?Math.min(
-                Math.abs(dx)/100,
-                1
-              )
-            :0;
+      likeLabel.style.opacity=
+        dx>20
+        ?Math.min(dx/100,1)
+        :0;
+
+
+      nopeLabel.style.opacity=
+        dx<-20
+        ?Math.min(Math.abs(dx)/100,1)
+        :0;
 
     }
   );
@@ -2120,11 +2215,29 @@ function bind(card){
 }
 
 
-/* =====================================================
-   EXPAND
-===================================================== */
+/* =========================================================
+   DETAILS POPUP
+========================================================= */
 
-function toggleCard(){
+function openDetails(){
+
+  const card=
+    document.getElementById("card");
+
+  if(!card || locked)
+    return;
+
+
+  detailsOpen=true;
+
+  card.classList.add(
+    "details-open"
+  );
+
+}
+
+
+function closeDetails(){
 
   const card=
     document.getElementById("card");
@@ -2133,18 +2246,18 @@ function toggleCard(){
     return;
 
 
-  expanded=!expanded;
+  detailsOpen=false;
 
-  card.classList.toggle(
-    "expanded",
-    expanded
+  card.classList.remove(
+    "details-open"
   );
+
 }
 
 
-/* =====================================================
+/* =========================================================
    SWIPE
-===================================================== */
+========================================================= */
 
 function finishSwipe(card){
 
@@ -2177,16 +2290,20 @@ function finishSwipe(card){
 
   dx=0;
   dy=0;
+
 }
 
 
-/* =====================================================
-   REACTIONS
-===================================================== */
+/* =========================================================
+   LIKE / DISLIKE
+========================================================= */
 
 function likeProfile(){
 
-  if(locked || !current)
+  if(
+    locked ||
+    !current
+  )
     return;
 
 
@@ -2212,12 +2329,16 @@ function likeProfile(){
     nextProfile,
     320
   );
+
 }
 
 
 function dislikeProfile(){
 
-  if(locked || !current)
+  if(
+    locked ||
+    !current
+  )
     return;
 
 
@@ -2243,6 +2364,7 @@ function dislikeProfile(){
     nextProfile,
     320
   );
+
 }
 
 
@@ -2251,71 +2373,42 @@ function nextProfile(){
   index++;
 
   render();
+
 }
 
 
-/* =====================================================
-   ACTION BUTTONS
-===================================================== */
-
-document
-  .getElementById("like")
-  .onclick=likeProfile;
-
-
-document
-  .getElementById("dislike")
-  .onclick=dislikeProfile;
-
-
-document
-  .getElementById("notifications")
-  .onclick=()=>{
-    toast(
-      "Уведомлений пока нет"
-    );
-  };
-
-
-/* =====================================================
+/* =========================================================
    COMMENT
-===================================================== */
+========================================================= */
 
 const commentInput=
-  document.getElementById(
-    "commentInput"
-  );
+  document.getElementById("commentInput");
 
 
 commentInput.oninput=()=>{
 
-  document
-    .getElementById("counter")
+  document.getElementById("counter")
     .textContent=
       `${commentInput.value.length} / 180`;
 
 };
 
 
-document
-  .getElementById("comment")
-  .onclick=()=>{
+function openComment(){
 
-    if(!current)
-      return;
+  if(!current)
+    return;
 
 
-    open("commentOverlay");
+  open("commentOverlay");
 
 
-    setTimeout(
-      ()=>{
-        commentInput.focus();
-      },
-      120
-    );
+  setTimeout(
+    ()=>commentInput.focus(),
+    120
+  );
 
-  };
+}
 
 
 document
@@ -2332,93 +2425,196 @@ document
     commentInput.value="";
 
 
-    document
-      .getElementById("counter")
-      .textContent=
-        "0 / 180";
+    document.getElementById("counter")
+      .textContent="0 / 180";
 
 
     toast(
       text
-        ? "Лайк с комментарием отправлен ❤️"
-        : "Лайк отправлен ❤️"
+      ?"Лайк с комментарием отправлен ❤️"
+      :"Лайк отправлен ❤️"
     );
 
   };
 
 
-/* =====================================================
-   FILTER
-===================================================== */
+/* =========================================================
+   FILTER UI
+========================================================= */
+
+const minAge=
+  document.getElementById("minAge");
+
+const maxAge=
+  document.getElementById("maxAge");
+
+
+function updateAgeLabels(){
+
+  let min=
+    Number(minAge.value);
+
+  let max=
+    Number(maxAge.value);
+
+
+  if(min>max-1){
+
+    min=max-1;
+
+    if(min<18)
+      min=18;
+
+    minAge.value=min;
+
+  }
+
+
+  if(max<min+1){
+
+    max=min+1;
+
+    if(max>60)
+      max=60;
+
+    maxAge.value=max;
+
+  }
+
+
+  document.getElementById("minAgeValue")
+    .textContent=min;
+
+
+  document.getElementById("maxAgeValue")
+    .textContent=max;
+
+}
+
+
+minAge.oninput=updateAgeLabels;
+
+maxAge.oninput=updateAgeLabels;
+
 
 document
-  .getElementById("filterButton")
-  .onclick=()=>{
-    open("filterOverlay");
-  };
+  .querySelectorAll(".gender-option")
+  .forEach(
+    button=>{
 
+      button.onclick=()=>{
+
+        selectedGender=
+          button.dataset.gender;
+
+
+        document
+          .querySelectorAll(".gender-option")
+          .forEach(
+            x=>
+              x.classList.toggle(
+                "selected",
+                x===button
+              )
+          );
+
+      };
+
+    }
+  );
+
+
+document
+  .querySelectorAll("[data-interest]")
+  .forEach(
+    button=>{
+
+      button.onclick=()=>{
+
+        const value=
+          button.dataset.interest;
+
+
+        if(
+          selectedInterests.has(value)
+        ){
+
+          selectedInterests.delete(value);
+
+          button.classList.remove(
+            "selected"
+          );
+
+        }else{
+
+          selectedInterests.add(value);
+
+          button.classList.add(
+            "selected"
+          );
+
+        }
+
+      };
+
+    }
+  );
+
+
+/* =========================================================
+   APPLY FILTERS
+========================================================= */
 
 document
   .getElementById("applyFilters")
   .onclick=()=>{
 
-    const age=
-      document.getElementById(
-        "age"
-      ).value;
+    const min=
+      Number(minAge.value);
 
-
-    const gender=
-      document.getElementById(
-        "gender"
-      ).value;
+    const max=
+      Number(maxAge.value);
 
 
     const city=
-      document.getElementById(
-        "city"
-      ).value;
+      document.getElementById("city")
+        .value;
 
 
     activeProfiles=
       profiles.filter(
-        p=>{
+        profile=>{
 
-          let ageOK=true;
-
-
-          if(age!=="all"){
-
-            const [
-              min,
-              max
-            ]=
-              age
-                .split("-")
-                .map(Number);
-
-
-            ageOK=
-              p.age>=min &&
-              p.age<=max;
-
-          }
+          const ageOK=
+            profile.age>=min &&
+            profile.age<=max;
 
 
           const genderOK=
-            gender==="all" ||
-            p.gender===gender;
+            selectedGender==="all" ||
+            profile.gender===selectedGender;
 
 
           const cityOK=
             city==="all" ||
-            p.city===city;
+            profile.city===city;
+
+
+          const interestsOK=
+            selectedInterests.size===0 ||
+            [...selectedInterests]
+              .some(
+                interest=>
+                  profile.interests
+                    .includes(interest)
+              );
 
 
           return(
             ageOK &&
             genderOK &&
-            cityOK
+            cityOK &&
+            interestsOK
           );
 
         }
@@ -2428,9 +2624,7 @@ document
     index=0;
 
 
-    close(
-      "filterOverlay"
-    );
+    close("filterOverlay");
 
 
     render();
@@ -2443,22 +2637,111 @@ document
   };
 
 
-/* =====================================================
-   REPORT
-===================================================== */
+/* =========================================================
+   RESET FILTERS
+========================================================= */
 
 document
-  .querySelectorAll(
-    "[data-report]"
-  )
+  .getElementById("resetFilters")
+  .onclick=()=>{
+
+    minAge.value=18;
+    maxAge.value=60;
+
+    updateAgeLabels();
+
+
+    selectedGender="all";
+
+
+    document
+      .querySelectorAll(".gender-option")
+      .forEach(
+        button=>{
+          button.classList.toggle(
+            "selected",
+            button.dataset.gender==="all"
+          );
+        }
+      );
+
+
+    document
+      .getElementById("city")
+      .value="all";
+
+
+    selectedInterests.clear();
+
+
+    document
+      .querySelectorAll("[data-interest]")
+      .forEach(
+        button=>
+          button.classList.remove(
+            "selected"
+          )
+      );
+
+
+    activeProfiles=[
+      ...profiles
+    ];
+
+    index=0;
+
+
+    render();
+
+
+    close("filterOverlay");
+
+
+    toast("Фильтры сброшены");
+
+  };
+
+
+/* =========================================================
+   FILTER OPEN
+========================================================= */
+
+document
+  .getElementById("filterButton")
+  .onclick=()=>{
+
+    open("filterOverlay");
+
+  };
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+document
+  .getElementById("notifications")
+  .onclick=()=>{
+
+    toast(
+      "Уведомлений пока нет"
+    );
+
+  };
+
+
+/* =========================================================
+   REPORTS
+========================================================= */
+
+document
+  .querySelectorAll("[data-report]")
   .forEach(
     button=>{
 
       button.onclick=()=>{
 
-        close(
-          "reportOverlay"
-        );
+        close("reportOverlay");
 
 
         toast(
@@ -2471,9 +2754,9 @@ document
   );
 
 
-/* =====================================================
+/* =========================================================
    OVERLAYS
-===================================================== */
+========================================================= */
 
 function open(id){
 
@@ -2494,9 +2777,7 @@ function close(id){
 
 
 document
-  .querySelectorAll(
-    "[data-close]"
-  )
+  .querySelectorAll("[data-close]")
   .forEach(
     button=>{
 
@@ -2530,64 +2811,9 @@ document
   );
 
 
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
-
-/*
-  НА ЭТОМ ЭТАПЕ НАВИГАЦИЯ НЕ ПЕРЕКЛЮЧАЕТ
-  РАЗДЕЛЫ.
-
-  Она только визуально показывает
-  четыре будущих раздела.
-
-  Функционал добавляем по очереди.
-*/
-
-document
-  .querySelectorAll(".nav-item")
-  .forEach(
-    item=>{
-
-      item.onclick=()=>{
-
-        if(
-          item.dataset.section !==
-          "profiles"
-        ){
-
-          toast(
-            "Этот раздел пока в разработке"
-          );
-
-          return;
-        }
-
-
-        document
-          .querySelectorAll(".nav-item")
-          .forEach(
-            x=>{
-              x.classList.remove(
-                "active"
-              );
-            }
-          );
-
-
-        item.classList.add(
-          "active"
-        );
-
-      };
-
-    }
-  );
-
-
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 let toastTimer;
 
@@ -2595,22 +2821,16 @@ let toastTimer;
 function toast(message){
 
   const el=
-    document.getElementById(
-      "toast"
-    );
+    document.getElementById("toast");
 
 
   el.textContent=message;
 
 
-  el.classList.add(
-    "show"
-  );
+  el.classList.add("show");
 
 
-  clearTimeout(
-    toastTimer
-  );
+  clearTimeout(toastTimer);
 
 
   toastTimer=
@@ -2626,45 +2846,27 @@ function toast(message){
 }
 
 
-/* =====================================================
-   SAFE HTML
-===================================================== */
+/* =========================================================
+   SAFE
+========================================================= */
 
 function safe(value){
 
   return String(value)
-
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
+
+updateAgeLabels();
 
 render();
 
