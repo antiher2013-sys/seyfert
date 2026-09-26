@@ -4,13 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Seyfert</title>
-
 <style>
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
-
 :root{
   --bg:#080711;
   --card:#151320;
@@ -22,7 +20,6 @@
   --red:#ff6683;
   --line:rgba(255,255,255,.1);
 }
-
 html,body{
   margin:0;
   width:100%;
@@ -34,13 +31,11 @@ html,body{
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 }
-
 button{
   font:inherit;
   border:0;
   cursor:pointer;
 }
-
 .app{
   width:100%;
   max-width:620px;
@@ -49,9 +44,7 @@ button{
   display:flex;
   flex-direction:column;
 }
-
 /* ================= HEADER ================= */
-
 .header{
   height:58px;
   flex-shrink:0;
@@ -60,11 +53,9 @@ button{
   justify-content:flex-end;
   padding:8px 15px;
 }
-
 .logo{
   display:none;
 }
-
 .header-btn{
   width:43px;
   height:43px;
@@ -73,9 +64,34 @@ button{
   background:rgba(255,255,255,.045);
   border:1px solid var(--line);
 }
-
+/* ================= SEYFERT BRAND ================= */
+.brand{
+  position:relative;
+  z-index:80;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:0;
+  margin-bottom:5px;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  color:#f8f7ff;
+  pointer-events:none;
+  text-shadow:
+    0 0 5px rgba(255,255,255,.35),
+    0 0 12px rgba(139,92,246,.45),
+    0 0 24px rgba(139,92,246,.25);
+}
+.brand span{
+  color:#9b6cff;
+  text-shadow:
+    0 0 5px rgba(139,92,246,.9),
+    0 0 12px rgba(139,92,246,.8),
+    0 0 25px rgba(139,92,246,.55);
+}
 /* ================= MAIN ================= */
-
 .main{
   flex:1;
   min-height:0;
@@ -83,54 +99,42 @@ button{
   flex-direction:column;
   padding:0 10px 0;
 }
-
 .card-area{
   flex:1;
   min-height:0;
   position:relative;
 }
-
 /* ================= CARD ================= */
-
 .card{
   position:absolute;
   inset:0;
   overflow:hidden;
-
   border-radius:30px;
   background:var(--card);
   border:1px solid rgba(255,255,255,.12);
-
   box-shadow:
     0 30px 80px rgba(0,0,0,.55),
     0 0 55px rgba(139,92,246,.1);
-
   touch-action:none;
   user-select:none;
-
   transition:
     transform .32s cubic-bezier(.2,.8,.2,1),
     opacity .3s ease;
 }
-
 /* ================= PHOTO ================= */
-
 .photo{
   position:absolute;
   inset:0;
 }
-
 .photo-bg{
   position:absolute;
   inset:0;
   transition:background .25s ease;
 }
-
 .photo-bg::after{
   content:"";
   position:absolute;
   inset:0;
-
   background:
     linear-gradient(
       to bottom,
@@ -140,9 +144,7 @@ button{
       rgba(8,7,17,.93) 100%
     );
 }
-
 /* Временный персонаж */
-
 .person{
   position:absolute;
   z-index:2;
@@ -152,7 +154,6 @@ button{
   height:330px;
   transform:translate(-50%,-50%);
 }
-
 .head{
   position:absolute;
   top:0;
@@ -163,7 +164,6 @@ button{
   border-radius:52% 52% 48% 48%;
   background:linear-gradient(145deg,#d1afc0,#725b7e);
 }
-
 .body{
   position:absolute;
   bottom:0;
@@ -174,59 +174,46 @@ button{
   border-radius:120px 120px 20px 20px;
   background:linear-gradient(145deg,#30233e,#0c0d15);
 }
-
 /* ================= TOP BUTTONS ================= */
-
 .card-top{
   position:absolute;
   z-index:30;
   top:15px;
   left:15px;
   right:15px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-
 .card-top button{
   width:43px;
   height:43px;
   border-radius:14px;
-
   color:#fff;
   background:rgba(7,7,13,.55);
   border:1px solid rgba(255,255,255,.12);
-
   backdrop-filter:blur(14px);
 }
-
 /* ================= PHOTO PROGRESS ================= */
-
 .photo-progress{
   position:absolute;
   z-index:25;
   top:9px;
   left:72px;
   right:72px;
-
   display:flex;
   gap:4px;
 }
-
 .photo-progress span{
   flex:1;
   height:3px;
   border-radius:10px;
   background:rgba(255,255,255,.28);
 }
-
 .photo-progress span.active{
   background:#fff;
 }
-
 /* ================= PHOTO ZONES ================= */
-
 .photo-zone{
   position:absolute;
   z-index:20;
@@ -234,80 +221,59 @@ button{
   bottom:0;
   width:25%;
 }
-
 .photo-zone.left{
   left:0;
 }
-
 .photo-zone.right{
   right:0;
 }
-
 /* ================= PROFILE INFORMATION ================= */
-
 .profile-info{
   position:absolute;
   z-index:31;
-
   left:22px;
   right:22px;
-
-  /*
-    Поднимаем блок выше,
-    чтобы нижняя часть могла
-    спокойно растворяться в blur.
-  */
   bottom:116px;
-
   pointer-events:none;
 }
-
 .name-line{
   display:flex;
   align-items:baseline;
   gap:8px;
 }
-
 .name{
   font-size:30px;
   font-weight:900;
   letter-spacing:-.4px;
 }
-
 .age{
   font-size:19px;
   color:#d0cad9;
 }
-
 .city{
   margin-top:3px;
   color:#c2bccd;
   font-size:13px;
 }
-
 .distance-row{
   display:flex;
   align-items:center;
   gap:9px;
   margin-top:6px;
 }
-
 .distance{
   color:#bda8f3;
   font-size:12px;
   font-weight:700;
 }
-
 .status{
   display:flex;
   align-items:center;
   gap:5px;
-
   color:#d5d0dc;
   font-size:11px;
   font-weight:700;
 }
-
 .status-dot{
   width:6px;
   height:6px;
@@ -315,55 +281,41 @@ button{
   background:var(--green);
   box-shadow:0 0 8px rgba(105,230,167,.65);
 }
-
 .status-dot.offline{
   background:#89838f;
   box-shadow:none;
 }
-
 .bio{
   margin-top:9px;
-
   color:#ddd9e5;
   font-size:14px;
   line-height:1.4;
-
   max-width:520px;
 }
-
 .tags{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
   margin-top:9px;
 }
-
 .tag{
   padding:6px 9px;
   border-radius:999px;
-
   color:#cbb9ff;
   background:rgba(139,92,246,.13);
   border:1px solid rgba(139,92,246,.22);
-
   font-size:10px;
   font-weight:700;
 }
-
 /* ================= BLURRED BOTTOM ================= */
-
 .bottom-blur{
   position:absolute;
   z-index:27;
-
   left:0;
   right:0;
   bottom:0;
-
   height:235px;
-
   pointer-events:none;
-
   background:
     linear-gradient(
       to bottom,
@@ -373,497 +325,356 @@ button{
       rgba(8,7,17,.92) 75%,
       rgba(8,7,17,1) 100%
     );
-
   backdrop-filter:blur(1px);
 }
-
 /* ================= ACTIONS INSIDE CARD ================= */
-
 .card-actions{
   position:absolute;
   z-index:40;
-
   left:18px;
   right:18px;
   bottom:17px;
-
   display:flex;
   justify-content:center;
   align-items:center;
   gap:18px;
 }
-
 .action{
   width:56px;
   height:56px;
-
   border-radius:50%;
-
   color:#fff;
   background:rgba(20,17,31,.88);
-
   border:1px solid rgba(255,255,255,.12);
-
   box-shadow:
     0 10px 30px rgba(0,0,0,.35);
-
   backdrop-filter:blur(14px);
-
   transition:transform .12s ease;
 }
-
 .action:active{
   transform:scale(.88);
 }
-
 .action.dislike{
   color:var(--red);
 }
-
 .action.comment{
   width:64px;
   height:64px;
-
   background:
     linear-gradient(
       145deg,
       var(--purple),
       var(--pink)
     );
-
   box-shadow:
     0 12px 35px rgba(139,92,246,.42);
 }
-
 .action.like{
   color:#ff6f95;
 }
-
 /* ================= SWIPE LABELS ================= */
-
 .swipe-label{
   position:absolute;
   z-index:50;
   top:42%;
-
   padding:9px 14px;
-
   border-radius:12px;
   font-weight:900;
   letter-spacing:1px;
-
   opacity:0;
   pointer-events:none;
 }
-
 .like-label{
   left:22px;
   color:var(--green);
   border:2px solid var(--green);
   transform:rotate(-12deg);
 }
-
 .nope-label{
   right:22px;
   color:var(--red);
   border:2px solid var(--red);
   transform:rotate(12deg);
 }
-
 /* ================= DETAILS ================= */
-
 .details{
   position:absolute;
   z-index:80;
-
   left:0;
   right:0;
   top:0;
   bottom:0;
-
   overflow-y:auto;
-
   padding:
     30px
     22px
     35px;
-
   background:
     linear-gradient(
       180deg,
       rgba(17,15,28,.98),
       rgba(11,10,18,.99)
     );
-
   opacity:0;
   transform:translateY(100%);
-
   pointer-events:none;
-
   transition:
     transform .48s cubic-bezier(.22,.8,.22,1),
     opacity .25s ease;
 }
-
 .card.expanded .details{
   opacity:1;
   transform:translateY(0);
   pointer-events:auto;
 }
-
 .details-close{
   position:absolute;
   top:16px;
   right:17px;
-
   width:40px;
   height:40px;
-
   border-radius:13px;
-
   color:#fff;
   background:rgba(255,255,255,.06);
   border:1px solid var(--line);
 }
-
 .detail-heading{
   margin-top:45px;
   margin-bottom:12px;
-
   color:#8f899e;
   font-size:11px;
   font-weight:700;
-
   text-transform:uppercase;
   letter-spacing:.7px;
 }
-
 .detail-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:8px;
 }
-
 .detail-item{
   min-height:64px;
-
   padding:10px 11px;
-
   border-radius:15px;
-
   background:rgba(255,255,255,.045);
   border:1px solid rgba(255,255,255,.07);
 }
-
 .detail-icon{
   font-size:16px;
 }
-
 .detail-label{
   margin-top:4px;
   color:#817b8f;
   font-size:9px;
 }
-
 .detail-value{
   margin-top:2px;
   color:#eeeaf3;
   font-size:12px;
   font-weight:700;
 }
-
 .detail-section{
   margin-top:20px;
 }
-
 .interest-list{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
 }
-
 .interest{
   padding:8px 10px;
-
   border-radius:10px;
-
   background:rgba(139,92,246,.12);
   color:#c8b7f7;
-
   border:1px solid rgba(139,92,246,.2);
-
   font-size:10px;
   font-weight:700;
 }
-
 /* ================= EMPTY ================= */
-
 .empty{
   position:absolute;
   inset:0;
-
   border-radius:30px;
-
   background:#11101b;
   border:1px solid var(--line);
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   text-align:center;
   padding:30px;
 }
-
 .empty-title{
   font-size:24px;
   font-weight:900;
 }
-
 .empty-text{
   margin-top:9px;
   color:var(--muted);
   line-height:1.5;
   font-size:14px;
 }
-
 /* ================= BOTTOM NAV ================= */
-
 .bottom-nav{
   height:72px;
   flex-shrink:0;
-
   display:grid;
   grid-template-columns:repeat(4,1fr);
-
   align-items:center;
-
   padding:5px 8px 7px;
-
   background:
     linear-gradient(
       to top,
       rgba(8,7,17,1),
       rgba(8,7,17,.94)
     );
-
   border-top:1px solid rgba(255,255,255,.06);
 }
-
 .nav-item{
   height:58px;
-
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:3px;
-
   color:#817b8f;
-
   background:transparent;
-
   border-radius:15px;
-
   font-size:10px;
   font-weight:700;
 }
-
 .nav-icon{
   font-size:20px;
 }
-
 .nav-item.active{
   color:#bda8f3;
 }
-
 /* ================= SHEETS ================= */
-
 .overlay{
   position:fixed;
   inset:0;
   z-index:100;
-
   display:none;
   align-items:flex-end;
-
   background:rgba(0,0,0,.72);
   backdrop-filter:blur(12px);
 }
-
 .overlay.open{
   display:flex;
 }
-
 .sheet{
   width:min(620px,100%);
   max-height:90%;
-
   overflow-y:auto;
-
   padding:21px;
-
   border-radius:28px 28px 0 0;
-
   background:
     linear-gradient(
       145deg,
       #171326,
       #0f1019
     );
-
   border:1px solid var(--line);
 }
-
 .sheet-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-
 .sheet-title{
   font-size:23px;
   font-weight:900;
 }
-
 .close{
   width:40px;
   height:40px;
-
   border-radius:13px;
-
   background:rgba(255,255,255,.05);
   color:white;
-
   border:1px solid var(--line);
 }
-
 /* ================= FILTER ================= */
-
 .field{
   margin-top:17px;
 }
-
 .field-label{
   color:var(--muted);
   font-size:12px;
 }
-
 select{
   width:100%;
-
   margin-top:7px;
   padding:13px;
-
   color:white;
   background:#191526;
-
   border:1px solid var(--line);
   border-radius:14px;
-
   outline:none;
 }
-
-/* AGE SLIDER */
-
 .age-values{
   display:flex;
   justify-content:space-between;
-
   margin-top:10px;
-
   color:#d9d4e2;
   font-size:13px;
   font-weight:800;
 }
-
 .age-range{
   width:100%;
   margin-top:13px;
-
   appearance:none;
-
   height:5px;
-
   border-radius:10px;
-
   background:#302b3d;
-
   outline:none;
 }
-
 .age-range::-webkit-slider-thumb{
   appearance:none;
-
   width:22px;
   height:22px;
-
   border-radius:50%;
-
   background:#a78bfa;
-
   border:3px solid #fff;
-
   box-shadow:
     0 0 0 4px rgba(139,92,246,.2);
 }
-
 .age-range::-moz-range-thumb{
   width:22px;
   height:22px;
-
   border-radius:50%;
-
   background:#a78bfa;
-
   border:3px solid #fff;
 }
-
 .interest-filter{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
-
   margin-top:8px;
 }
-
 .interest-filter button{
   padding:8px 10px;
-
   border-radius:10px;
-
   color:#aaa3b4;
-
   background:rgba(255,255,255,.04);
-
   border:1px solid var(--line);
-
   font-size:10px;
   font-weight:700;
 }
-
 .interest-filter button.selected{
   color:white;
   background:rgba(139,92,246,.25);
   border-color:rgba(139,92,246,.55);
 }
-
 .filter-actions{
   display:flex;
   gap:9px;
   margin-top:19px;
 }
-
 .primary{
   flex:1;
-
   padding:14px;
-
   border-radius:15px;
-
   color:white;
   font-weight:800;
-
   background:
     linear-gradient(
       100deg,
@@ -871,472 +682,318 @@ select{
       var(--pink)
     );
 }
-
 .reset{
   padding:14px 16px;
-
   border-radius:15px;
-
   color:#c9c3d2;
-
   background:rgba(255,255,255,.05);
-
   border:1px solid var(--line);
-
   font-weight:800;
 }
-
 /* ================= COMMENT ================= */
-
 textarea{
   width:100%;
-
   margin-top:7px;
-
   height:110px;
   resize:none;
-
   padding:13px;
-
   color:white;
   background:#191526;
-
   border:1px solid var(--line);
   border-radius:14px;
-
   outline:none;
 }
-
 .counter{
   margin-top:5px;
-
   color:#716b7d;
-
   text-align:right;
   font-size:10px;
 }
-
 .report-option{
   width:100%;
-
   margin-top:8px;
   padding:14px;
-
   text-align:left;
-
   border-radius:14px;
-
   color:white;
   background:rgba(255,255,255,.035);
-
   border:1px solid var(--line);
 }
-
 /* ================= TOAST ================= */
-
 .toast{
   position:fixed;
   z-index:300;
-
   left:50%;
   bottom:84px;
-
   transform:translateX(-50%);
-
   padding:11px 16px;
-
   border-radius:999px;
-
   background:#f4f3f7;
   color:#15131b;
-
   font-size:12px;
   font-weight:800;
-
   opacity:0;
   pointer-events:none;
-
   transition:opacity .2s ease;
 }
-
 .toast.show{
   opacity:1;
 }
 </style>
 </head>
-
 <body>
-
 <div class="app">
-
   <header class="header">
-
-    <button
-      class="header-btn"
-      id="notifications">
-      🔔
-    </button>
-
+<button
+  class="header-btn"
+  id="notifications">
+  🔔
+</button>
   </header>
-
-
+  <!-- ================= SEYFERT BRAND ================= -->
+  <div class="brand">
+    SEY<span>F</span>ERT
+  </div>
   <main class="main">
-
-    <div class="card-area" id="cardArea"></div>
-
+<div class="card-area" id="cardArea"></div>
   </main>
-
-
   <nav class="bottom-nav">
-
-    <button class="nav-item active">
-      <span class="nav-icon">♡</span>
-      Анкеты
-    </button>
-
-    <button class="nav-item">
-      <span class="nav-icon">💬</span>
-      Чаты
-    </button>
-
-    <button class="nav-item">
-      <span class="nav-icon">◎</span>
-      Глобал
-    </button>
-
-    <button class="nav-item">
-      <span class="nav-icon">◯</span>
-      Профиль
-    </button>
-
+<button class="nav-item active">
+  <span class="nav-icon">♡</span>
+  Анкеты
+</button>
+<button class="nav-item">
+  <span class="nav-icon">💬</span>
+  Чаты
+</button>
+<button class="nav-item">
+  <span class="nav-icon">◎</span>
+  Глобал
+</button>
+<button class="nav-item">
+  <span class="nav-icon">◯</span>
+  Профиль
+</button>
   </nav>
-
 </div>
-
-
 <!-- ================= FILTER ================= -->
-
 <div class="overlay" id="filterOverlay">
-
   <div class="sheet">
-
-    <div class="sheet-head">
-
-      <div class="sheet-title">
-        Фильтры
-      </div>
-
-      <button
-        class="close"
-        data-close="filterOverlay">
-        ✕
-      </button>
-
-    </div>
-
-
-    <div class="field">
-
-      <div class="field-label">
-        Возраст
-      </div>
-
-      <div class="age-values">
-        <span id="ageMinValue">18</span>
-        <span id="ageMaxValue">60</span>
-      </div>
-
-      <input
-        class="age-range"
-        id="ageMin"
-        type="range"
-        min="18"
-        max="60"
-        value="18">
-
-      <input
-        class="age-range"
-        id="ageMax"
-        type="range"
-        min="18"
-        max="60"
-        value="60">
-
-    </div>
-
-
-    <div class="field">
-
-      <div class="field-label">
-        Пол
-      </div>
-
-      <select id="gender">
-
-        <option value="all">
-          Все
-        </option>
-
-        <option value="female">
-          Девушки
-        </option>
-
-        <option value="male">
-          Парни
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="field">
-
-      <div class="field-label">
-        Город
-      </div>
-
-      <select id="city">
-
-        <option value="all">
-          Любой город
-        </option>
-
-        <option value="Москва">
-          Москва
-        </option>
-
-        <option value="Санкт-Петербург">
-          Санкт-Петербург
-        </option>
-
-        <option value="Казань">
-          Казань
-        </option>
-
-        <option value="Екатеринбург">
-          Екатеринбург
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="field">
-
-      <div class="field-label">
-        Интересы
-      </div>
-
-      <div
-        class="interest-filter"
-        id="interestFilter">
-
-        <button data-interest="Музыка">
-          Музыка
-        </button>
-
-        <button data-interest="Игры">
-          Игры
-        </button>
-
-        <button data-interest="Кино">
-          Кино
-        </button>
-
-        <button data-interest="Спорт">
-          Спорт
-        </button>
-
-        <button data-interest="Путешествия">
-          Путешествия
-        </button>
-
-        <button data-interest="Фото">
-          Фото
-        </button>
-
-        <button data-interest="Кошки">
-          Кошки
-        </button>
-
-        <button data-interest="Технологии">
-          Технологии
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="filter-actions">
-
-      <button
-        class="reset"
-        id="resetFilters">
-        Сбросить
-      </button>
-
-      <button
-        class="primary"
-        id="applyFilters">
-        Применить
-      </button>
-
-    </div>
-
+<div class="sheet-head">
+  <div class="sheet-title">
+    Фильтры
   </div>
-
+  <button
+    class="close"
+    data-close="filterOverlay">
+    ✕
+  </button>
 </div>
-
-
+<div class="field">
+  <div class="field-label">
+    Возраст
+  </div>
+  <div class="age-values">
+    <span id="ageMinValue">18</span>
+    <span id="ageMaxValue">60</span>
+  </div>
+  <input
+    class="age-range"
+    id="ageMin"
+    type="range"
+    min="18"
+    max="60"
+    value="18">
+  <input
+    class="age-range"
+    id="ageMax"
+    type="range"
+    min="18"
+    max="60"
+    value="60">
+</div>
+<div class="field">
+  <div class="field-label">
+    Пол
+  </div>
+  <select id="gender">
+    <option value="all">Все</option>
+    <option value="female">Девушки</option>
+    <option value="male">Парни</option>
+  </select>
+</div>
+<div class="field">
+  <div class="field-label">
+    Город
+  </div>
+  <select id="city">
+    <option value="all">
+      Любой город
+    </option>
+    <option value="Москва">
+      Москва
+    </option>
+    <option value="Санкт-Петербург">
+      Санкт-Петербург
+    </option>
+    <option value="Казань">
+      Казань
+    </option>
+    <option value="Екатеринбург">
+      Екатеринбург
+    </option>
+  </select>
+</div>
+<div class="field">
+  <div class="field-label">
+    Интересы
+  </div>
+  <div
+    class="interest-filter"
+    id="interestFilter">
+    <button data-interest="Музыка">
+      Музыка
+    </button>
+    <button data-interest="Игры">
+      Игры
+    </button>
+    <button data-interest="Кино">
+      Кино
+    </button>
+    <button data-interest="Спорт">
+      Спорт
+    </button>
+    <button data-interest="Путешествия">
+      Путешествия
+    </button>
+    <button data-interest="Фото">
+      Фото
+    </button>
+    <button data-interest="Кошки">
+      Кошки
+    </button>
+    <button data-interest="Технологии">
+      Технологии
+    </button>
+  </div>
+</div>
+<div class="filter-actions">
+  <button
+    class="reset"
+    id="resetFilters">
+    Сбросить
+  </button>
+  <button
+    class="primary"
+    id="applyFilters">
+    Применить
+  </button>
+</div>
+  </div>
+</div>
 <!-- ================= COMMENT ================= -->
-
 <div class="overlay" id="commentOverlay">
-
   <div class="sheet">
-
-    <div class="sheet-head">
-
-      <div class="sheet-title">
-        Лайк с комментарием
-      </div>
-
-      <button
-        class="close"
-        data-close="commentOverlay">
-        ✕
-      </button>
-
-    </div>
-
-    <div class="field">
-
-      <div class="field-label">
-        Сообщение
-      </div>
-
-      <textarea
-        id="commentInput"
-        maxlength="180"
-        placeholder="Например: «Тоже люблю такую музыку»"></textarea>
-
-      <div
-        class="counter"
-        id="counter">
-        0 / 180
-      </div>
-
-    </div>
-
-    <button
-      class="primary"
-      id="sendComment">
-      Отправить лайк ❤️
-    </button>
-
+<div class="sheet-head">
+  <div class="sheet-title">
+    Лайк с комментарием
   </div>
-
+  <button
+    class="close"
+    data-close="commentOverlay">
+    ✕
+  </button>
 </div>
-
-
+<div class="field">
+  <div class="field-label">
+    Сообщение
+  </div>
+  <textarea
+    id="commentInput"
+    maxlength="180"
+    placeholder="Например: «Тоже люблю такую музыку»"></textarea>
+  <div
+    class="counter"
+    id="counter">
+    0 / 180
+  </div>
+</div>
+<button
+  class="primary"
+  id="sendComment">
+  Отправить лайк ❤️
+</button>
+  </div>
+</div>
 <!-- ================= REPORT ================= -->
-
 <div class="overlay" id="reportOverlay">
-
   <div class="sheet">
-
-    <div class="sheet-head">
-
-      <div class="sheet-title">
-        Пожаловаться
-      </div>
-
-      <button
-        class="close"
-        data-close="reportOverlay">
-        ✕
-      </button>
-
-    </div>
-
-    <button
-      class="report-option"
-      data-report="Спам">
-      🚫 Спам
-    </button>
-
-    <button
-      class="report-option"
-      data-report="Оскорбление">
-      ⚠️ Оскорбление
-    </button>
-
-    <button
-      class="report-option"
-      data-report="Неприемлемый контент">
-      🔞 Неприемлемый контент
-    </button>
-
-    <button
-      class="report-option"
-      data-report="Фейковый профиль">
-      👤 Фейковый профиль
-    </button>
-
-    <button
-      class="report-option"
-      data-report="Другое">
-      ••• Другое
-    </button>
-
+<div class="sheet-head">
+  <div class="sheet-title">
+    Пожаловаться
   </div>
-
+  <button
+    class="close"
+    data-close="reportOverlay">
+    ✕
+  </button>
 </div>
-
-
+<button
+  class="report-option"
+  data-report="Спам">
+  🚫 Спам
+</button>
+<button
+  class="report-option"
+  data-report="Оскорбление">
+  ⚠️ Оскорбление
+</button>
+<button
+  class="report-option"
+  data-report="Неприемлемый контент">
+  🔞 Неприемлемый контент
+</button>
+<button
+  class="report-option"
+  data-report="Фейковый профиль">
+  👤 Фейковый профиль
+</button>
+<button
+  class="report-option"
+  data-report="Другое">
+  ••• Другое
+</button>
+  </div>
+</div>
 <div
   class="toast"
   id="toast">
 </div>
-
-
 <script>
-
 /* =========================================================
    TEST PROFILES
 ========================================================= */
-
 const profiles = [
-
   {
     id:1,
-
     name:"Алина",
     age:21,
     gender:"female",
-
     city:"Санкт-Петербург",
     distance:3,
-
     online:true,
-
     photos:[
       "photo1",
       "photo2",
       "photo3"
     ],
-
     bio:
       "Люблю музыку, прогулки по ночному городу и разговоры до утра.",
-
     interests:[
       "Музыка",
       "Кино",
       "Игры"
     ],
-
     details:{
       weight:"54 кг",
       income:"100–150 тыс. ₽",
@@ -1347,36 +1004,26 @@ const profiles = [
       personality:"INFJ",
       work:"Дизайн"
     }
-
   },
-
-
   {
     id:2,
-
     name:"Макс",
     age:24,
     gender:"male",
-
     city:"Москва",
     distance:5,
-
     online:true,
-
     photos:[
       "photo1",
       "photo2"
     ],
-
     bio:
       "Игры, спорт, техника и вечные попытки найти хороший фильм.",
-
     interests:[
       "Игры",
       "Спорт",
       "Технологии"
     ],
-
     details:{
       weight:"78 кг",
       income:"150–200 тыс. ₽",
@@ -1387,38 +1034,28 @@ const profiles = [
       personality:"ENTP",
       work:"IT"
     }
-
   },
-
-
   {
     id:3,
-
     name:"София",
     age:22,
     gender:"female",
-
     city:"Казань",
     distance:8,
-
     online:false,
-
     photos:[
       "photo1",
       "photo2",
       "photo3",
       "photo4"
     ],
-
     bio:
       "Фотография, путешествия и кофе.",
-
     interests:[
       "Фото",
       "Путешествия",
       "Музыка"
     ],
-
     details:{
       weight:"58 кг",
       income:"Не указано",
@@ -1429,225 +1066,138 @@ const profiles = [
       personality:"ENFP",
       work:"Маркетинг"
     }
-
   }
-
 ];
-
-
 /* =========================================================
    STATE
 ========================================================= */
-
 let activeProfiles=[...profiles];
-
 let index=0;
 let current=null;
-
 let photoIndex=0;
 let expanded=false;
 let locked=false;
-
 let pointer=false;
-
 let startX=0;
 let startY=0;
-
 let dx=0;
 let dy=0;
-
 let selectedInterests=[];
-
-
 /* =========================================================
    ELEMENTS
 ========================================================= */
-
 const area=
   document.getElementById("cardArea");
-
-
 /* =========================================================
    RENDER
 ========================================================= */
-
 function render(){
-
   area.innerHTML="";
-
   if(index>=activeProfiles.length){
-
     area.innerHTML=`
-
       <div class="empty">
-
         <div>
-
           <div style="font-size:48px">
             ✨
           </div>
-
           <div class="empty-title">
             Анкеты закончились
           </div>
-
           <div class="empty-text">
             Попробуй изменить фильтры —
             возможно, там есть кто-то ещё.
           </div>
-
         </div>
-
       </div>
-
     `;
-
     current=null;
-
     return;
   }
-
-
   current=
     activeProfiles[index];
-
   photoIndex=0;
   expanded=false;
   locked=false;
-
-
   const card=
     document.createElement("div");
-
   card.className="card";
   card.id="card";
-
-
   card.innerHTML=`
-
     <div class="photo">
-
       <div
         class="photo-bg"
         id="photoBg">
       </div>
-
       <div class="person">
-
         <div class="head"></div>
-
         <div class="body"></div>
-
       </div>
-
     </div>
-
-
     <div
       class="photo-progress"
       id="progress">
-
       ${current.photos.map(
         (_,i)=>
         `<span class="${i===0?"active":""}"></span>`
       ).join("")}
-
     </div>
-
-
     <div
       class="photo-zone left"
       id="leftPhoto">
     </div>
-
     <div
       class="photo-zone right"
       id="rightPhoto">
     </div>
-
-
-    <!-- TOP CONTROLS -->
-
     <div class="card-top">
-
       <button
         id="cardFilter">
         ⚙
       </button>
-
       <button
         id="report">
         ⚑
       </button>
-
     </div>
-
-
-    <!-- SWIPE LABELS -->
-
     <div
       class="swipe-label like-label"
       id="likeLabel">
       LIKE
     </div>
-
     <div
       class="swipe-label nope-label"
       id="nopeLabel">
       NOPE
     </div>
-
-
-    <!-- PROFILE INFO -->
-
     <div class="profile-info">
-
       <div class="name-line">
-
         <div class="name">
           ${safe(current.name)}
         </div>
-
         <div class="age">
           ${current.age}
         </div>
-
       </div>
-
-
       <div class="city">
         📍 ${safe(current.city)}
       </div>
-
-
       <div class="distance-row">
-
         <div class="distance">
           ${current.distance} км от вас
         </div>
-
         <div class="status">
-
           <span
             class="status-dot ${current.online?"":"offline"}">
           </span>
-
           ${current.online
             ?"Онлайн"
             :"Был(а) недавно"}
-
         </div>
-
       </div>
-
-
       <div class="bio">
         ${safe(current.bio)}
       </div>
-
-
       <div class="tags">
-
         ${current.interests.map(
           x=>`
             <span class="tag">
@@ -1655,132 +1205,58 @@ function render(){
             </span>
           `
         ).join("")}
-
       </div>
-
     </div>
-
-
-    <!-- BLUR -->
-
     <div class="bottom-blur"></div>
-
-
-    <!-- ACTIONS -->
-
     <div class="card-actions">
-
       <button
         class="action dislike"
         id="dislike">
         ✕
       </button>
-
       <button
         class="action comment"
         id="comment">
         💬
       </button>
-
       <button
         class="action like"
         id="like">
         ♥
       </button>
-
     </div>
-
-
-    <!-- DETAILS -->
-
     <div class="details">
-
       <button
         class="details-close"
         id="detailsClose">
         ↓
       </button>
-
-
       <div class="detail-heading">
         О пользователе
       </div>
-
-
       <div class="detail-grid">
-
-        ${detail(
-          "⚖️",
-          "Вес",
-          current.details.weight
-        )}
-
-        ${detail(
-          "💰",
-          "Заработок",
-          current.details.income
-        )}
-
-        ${detail(
-          "🕐",
-          "Обычно в сети",
-          current.details.onlineTime
-        )}
-
-        ${detail(
-          "👶",
-          "Дети",
-          current.details.children
-        )}
-
-        ${detail(
-          "🚬",
-          "Курение",
-          current.details.smoking
-        )}
-
-        ${detail(
-          "🍷",
-          "Алкоголь",
-          current.details.alcohol
-        )}
-
-        ${detail(
-          "🧠",
-          "Тип личности",
-          current.details.personality
-        )}
-
-        ${detail(
-          "💼",
-          "Занятость",
-          current.details.work
-        )}
-
+        ${detail("⚖️","Вес",current.details.weight)}
+        ${detail("💰","Заработок",current.details.income)}
+        ${detail("🕐","Обычно в сети",current.details.onlineTime)}
+        ${detail("👶","Дети",current.details.children)}
+        ${detail("🚬","Курение",current.details.smoking)}
+        ${detail("🍷","Алкоголь",current.details.alcohol)}
+        ${detail("🧠","Тип личности",current.details.personality)}
+        ${detail("💼","Занятость",current.details.work)}
       </div>
-
-
       <div class="detail-section">
-
         <div class="detail-heading">
           Биография
         </div>
-
         <div class="bio">
           ${safe(current.bio)}
         </div>
-
       </div>
-
-
       <div class="detail-section">
-
         <div class="detail-heading">
           Интересы
         </div>
-
         <div class="interest-list">
-
           ${current.interests.map(
             x=>`
               <span class="interest">
@@ -1788,96 +1264,62 @@ function render(){
               </span>
             `
           ).join("")}
-
         </div>
-
       </div>
-
     </div>
-
   `;
-
-
   area.appendChild(card);
-
   updatePhoto();
-
   bindCard(card);
 }
-
-
 /* =========================================================
    DETAIL
 ========================================================= */
-
 function detail(icon,label,value){
-
   return `
-
     <div class="detail-item">
-
       <div class="detail-icon">
         ${icon}
       </div>
-
       <div class="detail-label">
         ${label}
       </div>
-
       <div class="detail-value">
         ${safe(value)}
       </div>
-
     </div>
-
   `;
 }
-
-
 /* =========================================================
    PHOTO
 ========================================================= */
-
 function updatePhoto(){
-
   if(!current)
     return;
-
   const bg=
     document.getElementById("photoBg");
-
   if(!bg)
     return;
-
-
   const hue=
     current.id*53+
     photoIndex*43;
-
-
   bg.style.background=`
-
     radial-gradient(
       circle at ${25+photoIndex*12}% 20%,
       hsla(${hue},75%,65%,.5),
       transparent 30%
     ),
-
     radial-gradient(
       circle at ${80-photoIndex*9}% 20%,
       rgba(217,70,239,.38),
       transparent 30%
     ),
-
     linear-gradient(
       145deg,
       hsl(${hue},35%,27%),
       #090a12
     )
-
   `;
-
-
   document
     .querySelectorAll("#progress span")
     .forEach(
@@ -1889,121 +1331,79 @@ function updatePhoto(){
       }
     );
 }
-
-
 function nextPhoto(){
-
   if(
     !current ||
     photoIndex>=current.photos.length-1
   )
     return;
-
   photoIndex++;
-
   updatePhoto();
 }
-
-
 function previousPhoto(){
-
   if(
     !current ||
     photoIndex<=0
   )
     return;
-
   photoIndex--;
-
   updatePhoto();
 }
-
-
 /* =========================================================
    CARD BIND
 ========================================================= */
-
 function bindCard(card){
-
   const left=
     document.getElementById("leftPhoto");
-
   const right=
     document.getElementById("rightPhoto");
-
   const report=
     document.getElementById("report");
-
   const filter=
     document.getElementById("cardFilter");
-
   const detailsClose=
     document.getElementById("detailsClose");
-
-
   left.onclick=e=>{
     e.stopPropagation();
-
     if(!pointer)
       previousPhoto();
   };
-
-
   right.onclick=e=>{
     e.stopPropagation();
-
     if(!pointer)
       nextPhoto();
   };
-
-
   report.onclick=e=>{
     e.stopPropagation();
-
     open("reportOverlay");
   };
-
-
   filter.onclick=e=>{
     e.stopPropagation();
-
     open("filterOverlay");
   };
-
-
   detailsClose.onclick=e=>{
     e.stopPropagation();
-
     collapseCard();
   };
-
-
   document
     .getElementById("like")
     .onclick=e=>{
       e.stopPropagation();
       likeProfile();
     };
-
-
   document
     .getElementById("dislike")
     .onclick=e=>{
       e.stopPropagation();
       dislikeProfile();
     };
-
-
   document
     .getElementById("comment")
     .onclick=e=>{
       e.stopPropagation();
-
       if(!current)
         return;
-
       open("commentOverlay");
-
       setTimeout(
         ()=>{
           document
@@ -2013,24 +1413,14 @@ function bindCard(card){
         120
       );
     };
-
-
-  /*
-    Центральная часть карточки
-    открывает подробную информацию.
-  */
-
   card.addEventListener(
     "click",
     e=>{
-
       if(
         Math.abs(dx)>15 ||
         Math.abs(dy)>15
       )
         return;
-
-
       if(
         e.target.closest(".photo-zone") ||
         e.target.closest(".card-top") ||
@@ -2038,438 +1428,274 @@ function bindCard(card){
         e.target.closest(".details")
       )
         return;
-
-
       toggleCard();
-
     }
   );
-
-
-  /* POINTER */
-
   card.addEventListener(
     "pointerdown",
     e=>{
-
       if(locked || expanded)
         return;
-
       pointer=true;
-
       startX=e.clientX;
       startY=e.clientY;
-
       dx=0;
       dy=0;
-
       card.style.transition="none";
-
       card.setPointerCapture(
         e.pointerId
       );
-
     }
   );
-
-
   card.addEventListener(
     "pointermove",
     e=>{
-
       if(
         !pointer ||
         locked ||
         expanded
       )
         return;
-
-
       dx=
         e.clientX-startX;
-
       dy=
         e.clientY-startY;
-
-
       const rotation=
         dx/18;
-
-
       card.style.transform=
         `translateX(${dx}px) rotate(${rotation}deg)`;
-
-
       document
         .getElementById("likeLabel")
         .style.opacity=
           dx>20
           ?Math.min(dx/100,1)
           :0;
-
-
       document
         .getElementById("nopeLabel")
         .style.opacity=
           dx<-20
           ?Math.min(Math.abs(dx)/100,1)
           :0;
-
     }
   );
-
-
   card.addEventListener(
     "pointerup",
     ()=>finishSwipe(card)
   );
-
-
   card.addEventListener(
     "pointercancel",
     ()=>finishSwipe(card)
   );
-
 }
-
-
 /* =========================================================
    DETAILS
 ========================================================= */
-
 function toggleCard(){
-
   const card=
     document.getElementById("card");
-
   if(!card)
     return;
-
   expanded=!expanded;
-
   card.classList.toggle(
     "expanded",
     expanded
   );
 }
-
-
 function collapseCard(){
-
   const card=
     document.getElementById("card");
-
   if(!card)
     return;
-
   expanded=false;
-
   card.classList.remove(
     "expanded"
   );
 }
-
-
 /* =========================================================
    SWIPE
 ========================================================= */
-
 function finishSwipe(card){
-
   if(!pointer)
     return;
-
   pointer=false;
-
   card.style.transition=
     "transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease";
-
-
   if(Math.abs(dx)>100){
-
     if(dx>0)
       likeProfile();
-
     else
       dislikeProfile();
-
     return;
   }
-
-
   card.style.transform=
     "translateX(0) rotate(0)";
-
   dx=0;
   dy=0;
 }
-
-
 /* =========================================================
    REACTIONS
 ========================================================= */
-
 function likeProfile(){
-
   if(locked || !current)
     return;
-
   locked=true;
-
   const card=
     document.getElementById("card");
-
-
   card.style.transform=
     "translateX(700px) rotate(18deg)";
-
   card.style.opacity="0";
-
-
   toast(
     `Лайк отправлен: ${current.name} ❤️`
   );
-
-
   setTimeout(
     nextProfile,
     320
   );
 }
-
-
 function dislikeProfile(){
-
   if(locked || !current)
     return;
-
   locked=true;
-
   const card=
     document.getElementById("card");
-
-
   card.style.transform=
     "translateX(-700px) rotate(-18deg)";
-
   card.style.opacity="0";
-
-
   toast(
     "Анкета пропущена"
   );
-
-
   setTimeout(
     nextProfile,
     320
   );
 }
-
-
 function nextProfile(){
-
   index++;
-
   render();
 }
-
-
 /* =========================================================
    FILTER
 ========================================================= */
-
 const ageMin=
   document.getElementById("ageMin");
-
 const ageMax=
   document.getElementById("ageMax");
-
-
 function updateAgeLabels(){
-
   let min=
     Number(ageMin.value);
-
   let max=
     Number(ageMax.value);
-
-
   if(min>max-1){
-
     if(
       document.activeElement===ageMin
     ){
       min=max-1;
       ageMin.value=min;
     }
-
     else{
       max=min+1;
       ageMax.value=max;
     }
-
   }
-
-
   document
     .getElementById("ageMinValue")
     .textContent=min;
-
   document
     .getElementById("ageMaxValue")
     .textContent=max;
 }
-
-
 ageMin.oninput=
   updateAgeLabels;
-
 ageMax.oninput=
   updateAgeLabels;
-
-
 document
   .querySelectorAll("[data-interest]")
   .forEach(
     button=>{
-
       button.onclick=()=>{
-
         const value=
           button.dataset.interest;
-
-
         if(
           selectedInterests.includes(value)
         ){
-
           selectedInterests=
             selectedInterests.filter(
               x=>x!==value
             );
-
           button.classList.remove(
             "selected"
           );
-
         }
-
         else{
-
           selectedInterests.push(value);
-
           button.classList.add(
             "selected"
           );
-
         }
-
       };
-
     }
   );
-
-
 document
   .getElementById("applyFilters")
   .onclick=()=>{
-
     const min=
       Number(ageMin.value);
-
     const max=
       Number(ageMax.value);
-
-
     const gender=
       document.getElementById("gender")
         .value;
-
-
     const city=
       document.getElementById("city")
         .value;
-
-
     activeProfiles=
       profiles.filter(
         p=>{
-
           const ageOK=
             p.age>=min &&
             p.age<=max;
-
-
           const genderOK=
             gender==="all" ||
             p.gender===gender;
-
-
           const cityOK=
             city==="all" ||
             p.city===city;
-
-
           const interestOK=
             selectedInterests.length===0 ||
             selectedInterests.some(
               x=>p.interests.includes(x)
             );
-
-
           return(
             ageOK &&
             genderOK &&
             cityOK &&
             interestOK
           );
-
         }
       );
-
-
     index=0;
-
     close("filterOverlay");
-
     render();
-
-
     toast(
       `Найдено анкет: ${activeProfiles.length}`
     );
-
   };
-
-
 /* =========================================================
    RESET FILTERS
 ========================================================= */
-
 document
   .getElementById("resetFilters")
   .onclick=()=>{
-
     ageMin.value=18;
     ageMax.value=60;
-
     updateAgeLabels();
-
-
     document
       .getElementById("gender")
       .value="all";
-
-
     document
       .getElementById("city")
       .value="all";
-
-
     selectedInterests=[];
-
-
     document
       .querySelectorAll("[data-interest]")
       .forEach(
@@ -2479,187 +1705,114 @@ document
           );
         }
       );
-
-
     activeProfiles=
       [...profiles];
-
     index=0;
-
     close("filterOverlay");
-
     render();
-
     toast(
       "Фильтры сброшены"
     );
-
   };
-
-
 /* =========================================================
    COMMENT
 ========================================================= */
-
 const commentInput=
   document.getElementById(
     "commentInput"
   );
-
-
 commentInput.oninput=()=>{
-
   document
     .getElementById("counter")
     .textContent=
       `${commentInput.value.length} / 180`;
-
 };
-
-
 document
   .getElementById("sendComment")
   .onclick=()=>{
-
     const text=
       commentInput.value.trim();
-
-
     close("commentOverlay");
-
-
     commentInput.value="";
-
-
     document
       .getElementById("counter")
       .textContent=
         "0 / 180";
-
-
     toast(
       text
       ? "Лайк с комментарием отправлен ❤️"
       : "Лайк отправлен ❤️"
     );
-
   };
-
-
 /* =========================================================
    REPORT
 ========================================================= */
-
 document
   .querySelectorAll("[data-report]")
   .forEach(
     button=>{
-
       button.onclick=()=>{
-
         close("reportOverlay");
-
         toast(
           `Жалоба отправлена: ${button.dataset.report}`
         );
-
       };
-
     }
   );
-
-
 /* =========================================================
    NOTIFICATIONS
 ========================================================= */
-
 document
   .getElementById("notifications")
   .onclick=()=>{
-
     toast(
       "Уведомлений пока нет"
     );
-
   };
-
-
 /* =========================================================
    OVERLAYS
 ========================================================= */
-
 function open(id){
-
   document
     .getElementById(id)
     .classList.add("open");
-
 }
-
-
 function close(id){
-
   document
     .getElementById(id)
     .classList.remove("open");
-
 }
-
-
 document
   .querySelectorAll("[data-close]")
   .forEach(
     button=>{
-
       button.onclick=()=>{
-
         close(
           button.dataset.close
         );
-
       };
-
     }
   );
-
-
 document
   .querySelectorAll(".overlay")
   .forEach(
     overlay=>{
-
       overlay.onclick=e=>{
-
         if(e.target===overlay)
           overlay.classList.remove("open");
-
       };
-
     }
   );
-
-
 /* =========================================================
    TOAST
 ========================================================= */
-
 let toastTimer;
-
-
 function toast(message){
-
   const el=
     document.getElementById("toast");
-
-
   el.textContent=message;
-
   el.classList.add("show");
-
-
   clearTimeout(toastTimer);
-
-
   toastTimer=
     setTimeout(
       ()=>{
@@ -2667,35 +1820,23 @@ function toast(message){
       },
       1900
     );
-
 }
-
-
 /* =========================================================
    SAFE
 ========================================================= */
-
 function safe(value){
-
   return String(value)
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
-
 }
-
-
 /* =========================================================
    START
 ========================================================= */
-
 updateAgeLabels();
-
 render();
-
 </script>
-
 </body>
 </html>
