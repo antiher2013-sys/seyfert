@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Seyfert</title>
 
 <style>
@@ -24,20 +24,36 @@
   --line:rgba(255,255,255,.1);
 }
 
-html,body{
+html,
+body{
   margin:0;
   width:100%;
   height:100%;
   overflow:hidden;
   background:
-    radial-gradient(circle at 50% -15%,rgba(139,92,246,.25),transparent 42%),
+    radial-gradient(
+      circle at 50% -15%,
+      rgba(139,92,246,.25),
+      transparent 42%
+    ),
     var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+select,
+input,
+textarea{
+  font:inherit;
 }
 
 button{
-  font:inherit;
   border:0;
   cursor:pointer;
 }
@@ -50,6 +66,8 @@ button{
   display:flex;
   flex-direction:column;
 }
+
+/* ================= HEADER ================= */
 
 .header{
   height:68px;
@@ -78,6 +96,8 @@ button{
   background:rgba(255,255,255,.045);
   border:1px solid var(--line);
 }
+
+/* ================= MAIN ================= */
 
 .main{
   flex:1;
@@ -116,13 +136,17 @@ button{
   position:relative;
 }
 
+/* ================= CARD ================= */
+
 .card{
   position:absolute;
   inset:0;
   overflow:hidden;
   border-radius:30px;
+
   background:var(--card);
   border:1px solid rgba(255,255,255,.12);
+
   box-shadow:
     0 30px 80px rgba(0,0,0,.55),
     0 0 55px rgba(139,92,246,.1);
@@ -131,21 +155,15 @@ button{
   user-select:none;
 
   transition:
-    height .48s cubic-bezier(.22,.8,.22,1),
     transform .32s cubic-bezier(.2,.8,.2,1),
     opacity .3s ease;
 }
 
-/* ---------------- FOTO ---------------- */
+/* ================= PHOTO ================= */
 
 .photo{
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:100%;
-  min-height:330px;
-
+  inset:0;
   transition:
     height .48s cubic-bezier(.22,.8,.22,1);
 }
@@ -157,63 +175,94 @@ button{
 .photo-bg{
   position:absolute;
   inset:0;
-  transition:background .2s ease;
+
+  transition:
+    background .25s ease;
 }
 
 .photo-bg::after{
   content:"";
   position:absolute;
   inset:0;
+
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,.03) 25%,
-      rgba(0,0,0,.2) 55%,
-      rgba(8,7,17,.94) 100%
+      rgba(0,0,0,.03) 20%,
+      rgba(0,0,0,.18) 50%,
+      rgba(8,7,17,.95) 100%
     );
 }
 
-/* временный визуальный персонаж */
+/* Временный визуальный персонаж */
+
 .person{
   position:absolute;
   z-index:2;
+
   left:50%;
   top:40%;
+
   width:220px;
   height:330px;
+
   transform:translate(-50%,-50%);
 }
 
 .head{
   position:absolute;
+
   top:0;
   left:50%;
+
   width:112px;
   height:132px;
+
   transform:translateX(-50%);
+
   border-radius:52% 52% 48% 48%;
-  background:linear-gradient(145deg,#d1afc0,#725b7e);
+
+  background:
+    linear-gradient(
+      145deg,
+      #d1afc0,
+      #725b7e
+    );
 }
 
 .body{
   position:absolute;
+
   bottom:0;
   left:50%;
+
   width:220px;
   height:215px;
+
   transform:translateX(-50%);
-  border-radius:120px 120px 20px 20px;
-  background:linear-gradient(145deg,#30233e,#0c0d15);
+
+  border-radius:
+    120px 120px
+    20px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #30233e,
+      #0c0d15
+    );
 }
 
-/* ---------------- ФОТО ИНДИКАТОР ---------------- */
+/* ================= PHOTO PROGRESS ================= */
 
 .photo-progress{
   position:absolute;
-  z-index:20;
+  z-index:30;
+
   top:12px;
   left:17px;
   right:17px;
+
   display:flex;
   gap:4px;
 }
@@ -221,20 +270,29 @@ button{
 .photo-progress span{
   flex:1;
   height:3px;
+
   border-radius:10px;
-  background:rgba(255,255,255,.3);
+
+  background:
+    rgba(255,255,255,.3);
+
+  transition:
+    background .2s ease;
 }
 
 .photo-progress span.active{
   background:#fff;
 }
 
-/* зоны фотографий */
+/* ================= PHOTO ZONES ================= */
+
 .photo-zone{
   position:absolute;
   z-index:18;
+
   top:0;
   bottom:0;
+
   width:30%;
 }
 
@@ -246,16 +304,19 @@ button{
   right:0;
 }
 
-/* ---------------- TOP ---------------- */
+/* ================= CARD TOP ================= */
 
 .card-top{
   position:absolute;
-  z-index:25;
+  z-index:35;
+
   top:24px;
   left:15px;
   right:15px;
+
   display:flex;
   justify-content:space-between;
+
   pointer-events:none;
 }
 
@@ -263,12 +324,21 @@ button{
   display:flex;
   align-items:center;
   gap:7px;
+
   padding:7px 10px;
+
   border-radius:999px;
+
   color:#e5e1eb;
-  background:rgba(7,7,13,.58);
-  border:1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(7,7,13,.58);
+
+  border:
+    1px solid rgba(255,255,255,.1);
+
   backdrop-filter:blur(12px);
+
   font-size:11px;
   font-weight:700;
 }
@@ -276,27 +346,40 @@ button{
 .dot{
   width:7px;
   height:7px;
+
   border-radius:50%;
+
   background:var(--green);
-  box-shadow:0 0 9px rgba(105,230,167,.7);
+
+  box-shadow:
+    0 0 9px rgba(105,230,167,.7);
 }
 
 .report{
   width:39px;
   height:39px;
+
   border-radius:13px;
+
   color:#ddd9e4;
-  background:rgba(7,7,13,.58);
-  border:1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(7,7,13,.58);
+
+  border:
+    1px solid rgba(255,255,255,.1);
+
   backdrop-filter:blur(12px);
+
   pointer-events:auto;
 }
 
-/* ---------------- ОСНОВНАЯ ИНФОРМАЦИЯ ---------------- */
+/* ================= PROFILE INFO ================= */
 
 .profile-info{
   position:absolute;
   z-index:22;
+
   left:20px;
   right:20px;
   bottom:20px;
@@ -342,8 +425,11 @@ button{
 
 .bio{
   margin-top:10px;
+
   max-width:500px;
+
   color:#ddd9e5;
+
   font-size:14px;
   line-height:1.4;
 
@@ -363,30 +449,41 @@ button{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
+
   margin-top:10px;
 }
 
 .tag{
   padding:6px 9px;
+
   border-radius:999px;
+
   color:#cbb9ff;
-  background:rgba(139,92,246,.13);
-  border:1px solid rgba(139,92,246,.22);
+
+  background:
+    rgba(139,92,246,.13);
+
+  border:
+    1px solid rgba(139,92,246,.22);
+
   font-size:10px;
   font-weight:700;
 }
 
-/* ---------------- РАСШИРЕННАЯ ЧАСТЬ ---------------- */
+/* ================= DETAILS ================= */
 
 .details{
   position:absolute;
   z-index:21;
+
   left:20px;
   right:20px;
+
   top:calc(39% + 128px);
   bottom:20px;
 
   overflow-y:auto;
+
   padding-bottom:10px;
 
   opacity:0;
@@ -407,25 +504,36 @@ button{
 
 .detail-heading{
   margin-bottom:11px;
+
   color:#8f899e;
+
   font-size:11px;
   font-weight:700;
+
   text-transform:uppercase;
   letter-spacing:.7px;
 }
 
 .detail-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:8px;
 }
 
 .detail-item{
   min-height:58px;
+
   padding:10px 11px;
+
   border-radius:15px;
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.07);
+
+  background:
+    rgba(255,255,255,.045);
+
+  border:
+    1px solid rgba(255,255,255,.07);
 
   opacity:0;
   transform:translateY(9px);
@@ -440,14 +548,45 @@ button{
   transform:translateY(0);
 }
 
-.card.expanded .detail-item:nth-child(1){transition-delay:.10s}
-.card.expanded .detail-item:nth-child(2){transition-delay:.14s}
-.card.expanded .detail-item:nth-child(3){transition-delay:.18s}
-.card.expanded .detail-item:nth-child(4){transition-delay:.22s}
-.card.expanded .detail-item:nth-child(5){transition-delay:.26s}
-.card.expanded .detail-item:nth-child(6){transition-delay:.30s}
-.card.expanded .detail-item:nth-child(7){transition-delay:.34s}
-.card.expanded .detail-item:nth-child(8){transition-delay:.38s}
+.card.expanded
+.detail-item:nth-child(1){
+  transition-delay:.10s;
+}
+
+.card.expanded
+.detail-item:nth-child(2){
+  transition-delay:.14s;
+}
+
+.card.expanded
+.detail-item:nth-child(3){
+  transition-delay:.18s;
+}
+
+.card.expanded
+.detail-item:nth-child(4){
+  transition-delay:.22s;
+}
+
+.card.expanded
+.detail-item:nth-child(5){
+  transition-delay:.26s;
+}
+
+.card.expanded
+.detail-item:nth-child(6){
+  transition-delay:.30s;
+}
+
+.card.expanded
+.detail-item:nth-child(7){
+  transition-delay:.34s;
+}
+
+.card.expanded
+.detail-item:nth-child(8){
+  transition-delay:.38s;
+}
 
 .detail-icon{
   font-size:16px;
@@ -455,13 +594,17 @@ button{
 
 .detail-label{
   margin-top:4px;
+
   color:#817b8f;
+
   font-size:9px;
 }
 
 .detail-value{
   margin-top:2px;
+
   color:#eeeaf3;
+
   font-size:12px;
   font-weight:700;
 }
@@ -478,28 +621,41 @@ button{
 
 .interest{
   padding:7px 10px;
+
   border-radius:10px;
-  background:rgba(139,92,246,.12);
+
+  background:
+    rgba(139,92,246,.12);
+
   color:#c8b7f7;
-  border:1px solid rgba(139,92,246,.2);
+
+  border:
+    1px solid rgba(139,92,246,.2);
+
   font-size:10px;
   font-weight:700;
 }
 
-/* ---------------- КНОПКА СВЕРНУТЬ ---------------- */
+/* ================= COLLAPSE ================= */
 
 .collapse{
   position:absolute;
   z-index:40;
+
   right:17px;
   top:calc(39% + 12px);
 
   width:35px;
   height:35px;
+
   border-radius:12px;
 
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--line);
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid var(--line);
+
   color:#eee;
 
   opacity:0;
@@ -515,54 +671,78 @@ button{
   pointer-events:auto;
 }
 
-/* ---------------- SWIPE ---------------- */
+/* ================= SWIPE ================= */
 
 .swipe-label{
   position:absolute;
   z-index:50;
+
   top:42%;
+
   padding:9px 14px;
+
   border-radius:12px;
+
   font-weight:900;
   letter-spacing:1px;
+
   opacity:0;
   pointer-events:none;
 }
 
 .like-label{
   left:22px;
+
   color:var(--green);
-  border:2px solid var(--green);
+
+  border:
+    2px solid var(--green);
+
   transform:rotate(-12deg);
 }
 
 .nope-label{
   right:22px;
+
   color:var(--red);
-  border:2px solid var(--red);
+
+  border:
+    2px solid var(--red);
+
   transform:rotate(12deg);
 }
 
-/* ---------------- ACTIONS ---------------- */
+/* ================= ACTIONS ================= */
 
 .actions{
   height:84px;
   flex-shrink:0;
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   gap:18px;
 }
 
 .action{
   width:58px;
   height:58px;
+
   border-radius:50%;
+
   color:#fff;
+
   background:#14111f;
-  border:1px solid var(--line);
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-  transition:transform .12s ease;
+
+  border:
+    1px solid var(--line);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.3);
+
+  transition:
+    transform .12s ease;
 }
 
 .action:active{
@@ -576,27 +756,44 @@ button{
 .action.comment{
   width:65px;
   height:65px;
+
   color:white;
-  background:linear-gradient(145deg,var(--purple),var(--pink));
-  box-shadow:0 12px 35px rgba(139,92,246,.4);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--purple),
+      var(--pink)
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(139,92,246,.4);
 }
 
 .action.like{
   color:#ff6f95;
 }
 
-/* ---------------- EMPTY ---------------- */
+/* ================= EMPTY ================= */
 
 .empty{
   position:absolute;
   inset:0;
+
   border-radius:30px;
+
   background:#11101b;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   text-align:center;
+
   padding:30px;
 }
 
@@ -607,20 +804,28 @@ button{
 
 .empty-text{
   margin-top:9px;
+
   color:var(--muted);
+
   line-height:1.5;
+
   font-size:14px;
 }
 
-/* ---------------- SHEETS ---------------- */
+/* ================= OVERLAY ================= */
 
 .overlay{
   position:fixed;
   inset:0;
   z-index:100;
+
   display:none;
+
   align-items:flex-end;
-  background:rgba(0,0,0,.72);
+
+  background:
+    rgba(0,0,0,.72);
+
   backdrop-filter:blur(12px);
 }
 
@@ -631,11 +836,23 @@ button{
 .sheet{
   width:min(620px,100%);
   max-height:90%;
+
   overflow-y:auto;
+
   padding:21px;
-  border-radius:28px 28px 0 0;
-  background:linear-gradient(145deg,#171326,#0f1019);
-  border:1px solid var(--line);
+
+  border-radius:
+    28px 28px 0 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #171326,
+      #0f1019
+    );
+
+  border:
+    1px solid var(--line);
 }
 
 .sheet-head{
@@ -652,86 +869,320 @@ button{
 .close{
   width:40px;
   height:40px;
+
   border-radius:13px;
-  background:rgba(255,255,255,.05);
+
+  background:
+    rgba(255,255,255,.05);
+
   color:white;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
 }
 
+/* ================= FILTER ================= */
+
 .field{
-  margin-top:15px;
+  margin-top:18px;
 }
 
 .field-label{
   color:var(--muted);
   font-size:12px;
+  font-weight:700;
 }
 
-select,textarea{
-  width:100%;
+.filter-value{
   margin-top:7px;
+
+  color:#eeeaf3;
+
+  font-size:14px;
+  font-weight:800;
+}
+
+/* ================= AGE RANGE ================= */
+
+.range-box{
+  margin-top:13px;
+}
+
+.range-track{
+  position:relative;
+
+  height:5px;
+
+  border-radius:10px;
+
+  background:
+    rgba(255,255,255,.12);
+}
+
+.range-selected{
+  position:absolute;
+
+  height:5px;
+
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--purple),
+      var(--pink)
+    );
+}
+
+.range-input{
+  position:absolute;
+
+  left:0;
+  top:-7px;
+
+  width:100%;
+  height:19px;
+
+  margin:0;
+
+  appearance:none;
+
+  background:transparent;
+
+  pointer-events:none;
+}
+
+.range-input::-webkit-slider-thumb{
+  appearance:none;
+
+  width:20px;
+  height:20px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  border:
+    3px solid var(--purple);
+
+  box-shadow:
+    0 0 12px rgba(139,92,246,.5);
+
+  pointer-events:auto;
+}
+
+.range-input::-moz-range-thumb{
+  width:20px;
+  height:20px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  border:
+    3px solid var(--purple);
+
+  pointer-events:auto;
+}
+
+.age-values{
+  display:flex;
+  justify-content:space-between;
+
+  margin-top:12px;
+
+  color:#dcd7e5;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+/* ================= SELECT ================= */
+
+select,
+textarea{
+  width:100%;
+
+  margin-top:7px;
+
   padding:13px;
+
   color:white;
+
   background:#191526;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:14px;
+
   outline:none;
 }
+
+/* ================= HOBBIES ================= */
+
+.hobby-list{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:10px;
+}
+
+.hobby{
+  padding:9px 11px;
+
+  border-radius:12px;
+
+  color:#bbb4c9;
+
+  background:
+    rgba(255,255,255,.045);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  font-size:11px;
+  font-weight:700;
+
+  transition:
+    background .15s ease,
+    color .15s ease,
+    border .15s ease,
+    transform .12s ease;
+}
+
+.hobby:active{
+  transform:scale(.95);
+}
+
+.hobby.active{
+  color:#fff;
+
+  background:
+    rgba(139,92,246,.2);
+
+  border:
+    1px solid rgba(139,92,246,.5);
+
+  box-shadow:
+    0 0 18px rgba(139,92,246,.12);
+}
+
+/* ================= BUTTON ================= */
+
+.primary{
+  width:100%;
+
+  margin-top:21px;
+
+  padding:14px;
+
+  border-radius:15px;
+
+  color:white;
+
+  font-weight:800;
+
+  background:
+    linear-gradient(
+      100deg,
+      var(--purple),
+      var(--pink)
+    );
+}
+
+/* ================= COMMENT ================= */
 
 textarea{
   height:110px;
   resize:none;
 }
 
-.primary{
-  width:100%;
-  margin-top:18px;
-  padding:14px;
-  border-radius:15px;
-  color:white;
-  font-weight:800;
-  background:linear-gradient(100deg,var(--purple),var(--pink));
-}
-
-.report-option{
-  width:100%;
-  margin-top:8px;
-  padding:14px;
-  text-align:left;
-  border-radius:14px;
-  color:white;
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--line);
-}
-
 .counter{
   margin-top:5px;
+
   color:#716b7d;
+
   text-align:right;
+
   font-size:10px;
 }
 
-/* ---------------- TOAST ---------------- */
+/* ================= REPORT ================= */
+
+.report-option{
+  width:100%;
+
+  margin-top:8px;
+
+  padding:14px;
+
+  text-align:left;
+
+  border-radius:14px;
+
+  color:white;
+
+  background:
+    rgba(255,255,255,.035);
+
+  border:
+    1px solid var(--line);
+}
+
+/* ================= TOAST ================= */
 
 .toast{
   position:fixed;
   z-index:300;
+
   left:50%;
   bottom:24px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   padding:11px 16px;
+
   border-radius:999px;
+
   background:#f4f3f7;
+
   color:#15131b;
+
   font-size:12px;
   font-weight:800;
+
   opacity:0;
+
   pointer-events:none;
-  transition:opacity .2s ease;
+
+  transition:
+    opacity .2s ease;
 }
 
 .toast.show{
   opacity:1;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:420px){
+
+  .name{
+    font-size:28px;
+  }
+
+  .detail-grid{
+    gap:7px;
+  }
+
+  .detail-item{
+    padding:9px;
+  }
+
 }
 </style>
 </head>
@@ -746,7 +1197,9 @@ textarea{
     SEY<span>F</span>ERT
   </div>
 
-  <button class="header-btn" id="notifications">
+  <button
+    class="header-btn"
+    id="notifications">
     🔔
   </button>
 
@@ -761,27 +1214,38 @@ textarea{
       Анкеты
     </div>
 
-    <button class="filter" id="filterButton">
+    <button
+      class="filter"
+      id="filterButton">
       ⚙ Фильтр
     </button>
 
   </div>
 
 
-  <div class="card-area" id="cardArea"></div>
+  <div
+    class="card-area"
+    id="cardArea">
+  </div>
 
 
   <div class="actions">
 
-    <button class="action dislike" id="dislike">
+    <button
+      class="action dislike"
+      id="dislike">
       ✕
     </button>
 
-    <button class="action comment" id="comment">
+    <button
+      class="action comment"
+      id="comment">
       💬
     </button>
 
-    <button class="action like" id="like">
+    <button
+      class="action like"
+      id="like">
       ♥
     </button>
 
@@ -792,9 +1256,11 @@ textarea{
 </div>
 
 
-<!-- FILTER -->
+<!-- ================= FILTER ================= -->
 
-<div class="overlay" id="filterOverlay">
+<div
+  class="overlay"
+  id="filterOverlay">
 
   <div class="sheet">
 
@@ -804,12 +1270,16 @@ textarea{
         Фильтры
       </div>
 
-      <button class="close" data-close="filterOverlay">
+      <button
+        class="close"
+        data-close="filterOverlay">
         ✕
       </button>
 
     </div>
 
+
+    <!-- AGE -->
 
     <div class="field">
 
@@ -817,15 +1287,57 @@ textarea{
         Возраст
       </div>
 
-      <select id="age">
-        <option value="all">Без ограничения</option>
-        <option value="18-25">18–25</option>
-        <option value="18-30">18–30</option>
-        <option value="18-35">18–35</option>
-      </select>
+      <div
+        class="filter-value"
+        id="ageValue">
+        18–60 лет
+      </div>
+
+      <div class="range-box">
+
+        <div class="range-track">
+
+          <div
+            class="range-selected"
+            id="rangeSelected">
+          </div>
+
+          <input
+            class="range-input"
+            id="ageMin"
+            type="range"
+            min="18"
+            max="60"
+            value="18">
+
+          <input
+            class="range-input"
+            id="ageMax"
+            type="range"
+            min="18"
+            max="60"
+            value="60">
+
+        </div>
+
+        <div class="age-values">
+
+          <span id="ageMinText">
+            18
+          </span>
+
+          <span id="ageMaxText">
+            60
+          </span>
+
+        </div>
+
+      </div>
 
     </div>
 
+
+    <!-- GENDER -->
 
     <div class="field">
 
@@ -834,13 +1346,25 @@ textarea{
       </div>
 
       <select id="gender">
-        <option value="all">Все</option>
-        <option value="female">Девушки</option>
-        <option value="male">Парни</option>
+
+        <option value="all">
+          Все
+        </option>
+
+        <option value="female">
+          Девушки
+        </option>
+
+        <option value="male">
+          Парни
+        </option>
+
       </select>
 
     </div>
 
+
+    <!-- CITY -->
 
     <div class="field">
 
@@ -849,17 +1373,52 @@ textarea{
       </div>
 
       <select id="city">
-        <option value="all">Любой город</option>
-        <option value="Москва">Москва</option>
-        <option value="Санкт-Петербург">Санкт-Петербург</option>
-        <option value="Казань">Казань</option>
-        <option value="Екатеринбург">Екатеринбург</option>
+
+        <option value="all">
+          Любой город
+        </option>
+
+        <option value="Москва">
+          Москва
+        </option>
+
+        <option value="Санкт-Петербург">
+          Санкт-Петербург
+        </option>
+
+        <option value="Казань">
+          Казань
+        </option>
+
+        <option value="Екатеринбург">
+          Екатеринбург
+        </option>
+
       </select>
 
     </div>
 
 
-    <button class="primary" id="applyFilters">
+    <!-- HOBBIES -->
+
+    <div class="field">
+
+      <div class="field-label">
+        Увлечения
+      </div>
+
+      <div
+        class="hobby-list"
+        id="hobbyList">
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary"
+      id="applyFilters">
       Применить
     </button>
 
@@ -868,9 +1427,11 @@ textarea{
 </div>
 
 
-<!-- COMMENT -->
+<!-- ================= COMMENT ================= -->
 
-<div class="overlay" id="commentOverlay">
+<div
+  class="overlay"
+  id="commentOverlay">
 
   <div class="sheet">
 
@@ -880,11 +1441,14 @@ textarea{
         Лайк с комментарием
       </div>
 
-      <button class="close" data-close="commentOverlay">
+      <button
+        class="close"
+        data-close="commentOverlay">
         ✕
       </button>
 
     </div>
+
 
     <div class="field">
 
@@ -898,13 +1462,18 @@ textarea{
         placeholder="Например: «Тоже люблю такую музыку»">
       </textarea>
 
-      <div class="counter" id="counter">
+      <div
+        class="counter"
+        id="counter">
         0 / 180
       </div>
 
     </div>
 
-    <button class="primary" id="sendComment">
+
+    <button
+      class="primary"
+      id="sendComment">
       Отправить лайк ❤️
     </button>
 
@@ -913,9 +1482,11 @@ textarea{
 </div>
 
 
-<!-- REPORT -->
+<!-- ================= REPORT ================= -->
 
-<div class="overlay" id="reportOverlay">
+<div
+  class="overlay"
+  id="reportOverlay">
 
   <div class="sheet">
 
@@ -925,29 +1496,42 @@ textarea{
         Пожаловаться
       </div>
 
-      <button class="close" data-close="reportOverlay">
+      <button
+        class="close"
+        data-close="reportOverlay">
         ✕
       </button>
 
     </div>
 
-    <button class="report-option" data-report="Спам">
+
+    <button
+      class="report-option"
+      data-report="Спам">
       🚫 Спам
     </button>
 
-    <button class="report-option" data-report="Оскорбление">
+    <button
+      class="report-option"
+      data-report="Оскорбление">
       ⚠️ Оскорбление
     </button>
 
-    <button class="report-option" data-report="Неприемлемый контент">
+    <button
+      class="report-option"
+      data-report="Неприемлемый контент">
       🔞 Неприемлемый контент
     </button>
 
-    <button class="report-option" data-report="Фейковый профиль">
+    <button
+      class="report-option"
+      data-report="Фейковый профиль">
       👤 Фейковый профиль
     </button>
 
-    <button class="report-option" data-report="Другое">
+    <button
+      class="report-option"
+      data-report="Другое">
       ••• Другое
     </button>
 
@@ -956,20 +1540,30 @@ textarea{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast">
+</div>
 
 
 <script>
+
+/* =========================================================
+   ДАННЫЕ
+========================================================= */
 
 const profiles = [
 
   {
     id:1,
+
     name:"Алина",
     age:21,
     gender:"female",
+
     city:"Санкт-Петербург",
     distance:3,
+
     online:true,
 
     photos:[
@@ -978,12 +1572,13 @@ const profiles = [
       "photo3"
     ],
 
-    bio:"Люблю музыку, прогулки по ночному городу и разговоры до утра.",
+    bio:
+      "Люблю музыку, прогулки по ночному городу и разговоры до утра.",
 
     interests:[
       "Музыка",
       "Кино",
-      "Dota 2"
+      "Игры"
     ],
 
     details:{
@@ -1001,11 +1596,14 @@ const profiles = [
 
   {
     id:2,
+
     name:"Макс",
     age:24,
     gender:"male",
+
     city:"Москва",
     distance:5,
+
     online:true,
 
     photos:[
@@ -1013,7 +1611,8 @@ const profiles = [
       "photo2"
     ],
 
-    bio:"Игры, спорт, техника и вечные попытки найти хороший фильм.",
+    bio:
+      "Игры, спорт, техника и вечные попытки найти хороший фильм.",
 
     interests:[
       "Игры",
@@ -1036,11 +1635,14 @@ const profiles = [
 
   {
     id:3,
+
     name:"София",
     age:22,
     gender:"female",
+
     city:"Казань",
     distance:8,
+
     online:false,
 
     photos:[
@@ -1050,7 +1652,8 @@ const profiles = [
       "photo4"
     ],
 
-    bio:"Фотография, путешествия и кофе.",
+    bio:
+      "Фотография, путешествия и кофе.",
 
     interests:[
       "Фото",
@@ -1073,34 +1676,243 @@ const profiles = [
 ];
 
 
-let activeProfiles=[...profiles];
+/* =========================================================
+   ДОСТУПНЫЕ УВЛЕЧЕНИЯ
+========================================================= */
 
-let index=0;
-let current=null;
-let photoIndex=0;
+const hobbies = [
 
-let expanded=false;
-let locked=false;
+  "Музыка",
+  "Кино",
+  "Игры",
+  "Спорт",
+  "Путешествия",
+  "Фото",
+  "Технологии",
+  "Автомобили",
+  "Книги",
+  "Искусство",
+  "Танцы",
+  "Программирование"
 
-let pointer=false;
-let startX=0;
-let startY=0;
-let dx=0;
-let dy=0;
+];
 
 
-const area=document.getElementById("cardArea");
+/* =========================================================
+   STATE
+========================================================= */
+
+let activeProfiles = [...profiles];
+
+let index = 0;
+
+let current = null;
+
+let photoIndex = 0;
+
+let expanded = false;
+
+let locked = false;
+
+let pointer = false;
+
+let startX = 0;
+
+let startY = 0;
+
+let dx = 0;
+
+let dy = 0;
+
+let selectedHobbies = new Set();
 
 
-/* ---------------- RENDER ---------------- */
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const area =
+  document.getElementById("cardArea");
+
+
+const ageMin =
+  document.getElementById("ageMin");
+
+
+const ageMax =
+  document.getElementById("ageMax");
+
+
+const ageValue =
+  document.getElementById("ageValue");
+
+
+const ageMinText =
+  document.getElementById("ageMinText");
+
+
+const ageMaxText =
+  document.getElementById("ageMaxText");
+
+
+const rangeSelected =
+  document.getElementById("rangeSelected");
+
+
+const hobbyList =
+  document.getElementById("hobbyList");
+
+
+/* =========================================================
+   HOBBIES
+========================================================= */
+
+function renderHobbies(){
+
+  hobbyList.innerHTML = "";
+
+  hobbies.forEach(
+    hobby => {
+
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+
+      button.className =
+        "hobby";
+
+      button.textContent =
+        hobby;
+
+      button.dataset.hobby =
+        hobby;
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          if(
+            selectedHobbies.has(hobby)
+          ){
+
+            selectedHobbies.delete(hobby);
+
+            button.classList.remove(
+              "active"
+            );
+
+          }else{
+
+            selectedHobbies.add(hobby);
+
+            button.classList.add(
+              "active"
+            );
+
+          }
+
+        }
+      );
+
+      hobbyList.appendChild(button);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   AGE RANGE
+========================================================= */
+
+function updateAgeRange(){
+
+  let min =
+    Number(ageMin.value);
+
+  let max =
+    Number(ageMax.value);
+
+
+  if(min > max){
+
+    if(
+      document.activeElement === ageMin
+    ){
+
+      max = min;
+
+      ageMax.value = max;
+
+    }else{
+
+      min = max;
+
+      ageMin.value = min;
+
+    }
+
+  }
+
+
+  const percentMin =
+    ((min - 18) / (60 - 18)) * 100;
+
+
+  const percentMax =
+    ((max - 18) / (60 - 18)) * 100;
+
+
+  rangeSelected.style.left =
+    `${percentMin}%`;
+
+
+  rangeSelected.style.width =
+    `${percentMax - percentMin}%`;
+
+
+  ageMinText.textContent =
+    min;
+
+
+  ageMaxText.textContent =
+    max;
+
+
+  ageValue.textContent =
+    `${min}–${max} лет`;
+
+}
+
+
+ageMin.addEventListener(
+  "input",
+  updateAgeRange
+);
+
+
+ageMax.addEventListener(
+  "input",
+  updateAgeRange
+);
+
+
+/* =========================================================
+   RENDER CARD
+========================================================= */
 
 function render(){
 
-  area.innerHTML="";
+  area.innerHTML = "";
 
-  if(index>=activeProfiles.length){
+  if(
+    index >= activeProfiles.length
+  ){
 
-    area.innerHTML=`
+    area.innerHTML = `
+
       <div class="empty">
 
         <div>
@@ -1121,28 +1933,39 @@ function render(){
         </div>
 
       </div>
+
     `;
 
-    current=null;
+    current = null;
 
     return;
   }
 
 
-  current=activeProfiles[index];
-
-  photoIndex=0;
-  expanded=false;
-  locked=false;
+  current =
+    activeProfiles[index];
 
 
-  const card=document.createElement("div");
+  photoIndex = 0;
 
-  card.className="card";
-  card.id="card";
+  expanded = false;
+
+  locked = false;
 
 
-  card.innerHTML=`
+  const card =
+    document.createElement("div");
+
+
+  card.className =
+    "card";
+
+
+  card.id =
+    "card";
+
+
+  card.innerHTML = `
 
     <div class="photo">
 
@@ -1154,6 +1977,7 @@ function render(){
       <div class="person">
 
         <div class="head"></div>
+
         <div class="body"></div>
 
       </div>
@@ -1166,31 +1990,46 @@ function render(){
       id="progress">
 
       ${current.photos.map(
-        (_,i)=>
-        `<span class="${i===0?"active":""}"></span>`
+        (_,i) => `
+
+          <span
+            class="${i === 0 ? "active" : ""}">
+          </span>
+
+        `
       ).join("")}
 
     </div>
 
 
-    <div class="photo-zone left" id="leftPhoto"></div>
+    <div
+      class="photo-zone left"
+      id="leftPhoto">
+    </div>
 
-    <div class="photo-zone right" id="rightPhoto"></div>
+
+    <div
+      class="photo-zone right"
+      id="rightPhoto">
+    </div>
 
 
     <div class="card-top">
 
       <div class="online">
 
-        <span class="dot"
+        <span
+          class="dot"
           style="
-            opacity:${current.online?1:.3}
+            opacity:${current.online ? 1 : .3}
           ">
         </span>
 
-        ${current.online
-          ?"Сейчас онлайн"
-          :"Был(а) недавно"}
+        ${
+          current.online
+          ? "Сейчас онлайн"
+          : "Был(а) недавно"
+        }
 
       </div>
 
@@ -1204,11 +2043,16 @@ function render(){
     </div>
 
 
-    <div class="swipe-label like-label" id="likeLabel">
+    <div
+      class="swipe-label like-label"
+      id="likeLabel">
       LIKE
     </div>
 
-    <div class="swipe-label nope-label" id="nopeLabel">
+
+    <div
+      class="swipe-label nope-label"
+      id="nopeLabel">
       NOPE
     </div>
 
@@ -1246,10 +2090,12 @@ function render(){
       <div class="tags">
 
         ${current.interests.map(
-          x=>`
+          interest => `
+
             <span class="tag">
-              ${safe(x)}
+              ${safe(interest)}
             </span>
+
           `
         ).join("")}
 
@@ -1331,13 +2177,16 @@ function render(){
           Интересы
         </div>
 
+
         <div class="interest-list">
 
           ${current.interests.map(
-            x=>`
+            interest => `
+
               <span class="interest">
-                ${safe(x)}
+                ${safe(interest)}
               </span>
+
             `
           ).join("")}
 
@@ -1346,6 +2195,7 @@ function render(){
       </div>
 
     </div>
+
   `;
 
 
@@ -1353,13 +2203,20 @@ function render(){
 
   updatePhoto();
 
-  bind(card);
+  bindCard(card);
+
 }
 
 
-/* ---------------- DETAIL ITEM ---------------- */
+/* =========================================================
+   DETAIL
+========================================================= */
 
-function detail(icon,label,value){
+function detail(
+  icon,
+  label,
+  value
+){
 
   return `
 
@@ -1380,10 +2237,13 @@ function detail(icon,label,value){
     </div>
 
   `;
+
 }
 
 
-/* ---------------- PHOTO ---------------- */
+/* =========================================================
+   PHOTO
+========================================================= */
 
 function updatePhoto(){
 
@@ -1391,27 +2251,36 @@ function updatePhoto(){
     return;
 
 
-  const bg=document.getElementById("photoBg");
+  const bg =
+    document.getElementById("photoBg");
+
 
   if(!bg)
     return;
 
 
-  const hue=
-    current.id*53+
-    photoIndex*43;
+  const hue =
+    current.id * 53 +
+    photoIndex * 43;
 
 
-  bg.style.background=`
+  bg.style.background = `
 
     radial-gradient(
-      circle at ${25+photoIndex*12}% 20%,
-      hsla(${hue},75%,65%,.5),
+      circle at
+      ${25 + photoIndex * 12}% 20%,
+      hsla(
+        ${hue},
+        75%,
+        65%,
+        .5
+      ),
       transparent 30%
     ),
 
     radial-gradient(
-      circle at ${80-photoIndex*9}% 20%,
+      circle at
+      ${80 - photoIndex * 9}% 20%,
       rgba(217,70,239,.38),
       transparent 30%
     ),
@@ -1426,15 +2295,20 @@ function updatePhoto(){
 
 
   document
-    .querySelectorAll("#progress span")
+    .querySelectorAll(
+      "#progress span"
+    )
     .forEach(
-      (x,i)=>{
-        x.classList.toggle(
+      (item,i) => {
+
+        item.classList.toggle(
           "active",
-          i===photoIndex
+          i === photoIndex
         );
+
       }
     );
+
 }
 
 
@@ -1442,13 +2316,16 @@ function nextPhoto(){
 
   if(
     !current ||
-    photoIndex>=current.photos.length-1
+    photoIndex >=
+    current.photos.length - 1
   )
     return;
+
 
   photoIndex++;
 
   updatePhoto();
+
 }
 
 
@@ -1456,83 +2333,112 @@ function previousPhoto(){
 
   if(
     !current ||
-    photoIndex<=0
+    photoIndex <= 0
   )
     return;
+
 
   photoIndex--;
 
   updatePhoto();
+
 }
 
 
-/* ---------------- CARD EVENTS ---------------- */
+/* =========================================================
+   CARD EVENTS
+========================================================= */
 
-function bind(card){
+function bindCard(card){
 
-  const left=
-    document.getElementById("leftPhoto");
-
-  const right=
-    document.getElementById("rightPhoto");
-
-  const report=
-    document.getElementById("report");
-
-  const collapse=
-    document.getElementById("collapse");
+  const left =
+    document.getElementById(
+      "leftPhoto"
+    );
 
 
-  left.onclick=e=>{
-    e.stopPropagation();
+  const right =
+    document.getElementById(
+      "rightPhoto"
+    );
+
+
+  const report =
+    document.getElementById(
+      "report"
+    );
+
+
+  const collapse =
+    document.getElementById(
+      "collapse"
+    );
+
+
+  left.onclick = event => {
+
+    event.stopPropagation();
 
     if(!pointer)
       previousPhoto();
+
   };
 
 
-  right.onclick=e=>{
-    e.stopPropagation();
+  right.onclick = event => {
+
+    event.stopPropagation();
 
     if(!pointer)
       nextPhoto();
+
   };
 
 
-  report.onclick=e=>{
-    e.stopPropagation();
+  report.onclick = event => {
+
+    event.stopPropagation();
 
     open("reportOverlay");
+
   };
 
 
-  collapse.onclick=e=>{
-    e.stopPropagation();
+  collapse.onclick = event => {
+
+    event.stopPropagation();
 
     collapseCard();
+
   };
 
 
   /*
-    Центральная/нижняя часть —
-    раскрытие карточки.
+    Открытие подробной информации:
+    центральная / нижняя часть карточки.
   */
 
   card.addEventListener(
     "click",
-    e=>{
+    event => {
 
       if(
-        Math.abs(dx)>15 ||
-        Math.abs(dy)>15
+        Math.abs(dx) > 15 ||
+        Math.abs(dy) > 15
       )
         return;
 
 
       if(
-        e.target.closest(".photo-zone") ||
-        e.target.closest(".report") ||
-        e.target.closest(".collapse")
+        event.target.closest(
+          ".photo-zone"
+        ) ||
+        event.target.closest(
+          ".report"
+        ) ||
+        event.target.closest(
+          ".collapse"
+        )
       )
         return;
 
@@ -1543,69 +2449,107 @@ function bind(card){
   );
 
 
-  /* pointer */
+  /* POINTER DOWN */
 
   card.addEventListener(
     "pointerdown",
-    e=>{
+    event => {
 
       if(locked)
         return;
 
-      pointer=true;
 
-      startX=e.clientX;
-      startY=e.clientY;
+      pointer = true;
 
-      dx=0;
-      dy=0;
+      startX =
+        event.clientX;
 
-      card.style.transition="none";
+      startY =
+        event.clientY;
+
+      dx = 0;
+
+      dy = 0;
+
+
+      card.style.transition =
+        "none";
+
 
       card.setPointerCapture(
-        e.pointerId
+        event.pointerId
       );
 
     }
   );
 
 
+  /* POINTER MOVE */
+
   card.addEventListener(
     "pointermove",
-    e=>{
+    event => {
 
-      if(!pointer || locked)
+      if(
+        !pointer ||
+        locked
+      )
         return;
 
 
-      dx=e.clientX-startX;
-      dy=e.clientY-startY;
+      dx =
+        event.clientX -
+        startX;
+
+
+      dy =
+        event.clientY -
+        startY;
 
 
       /*
         ВАЖНО:
-        вертикальное движение теперь
-        не раскрывает карточку.
+        вертикальный свайп больше
+        НЕ открывает информацию.
+
+        Свайп работает только
+        горизонтально.
       */
 
-      const rotation=dx/18;
-
-      card.style.transform=
-        `translateX(${dx}px) rotate(${rotation}deg)`;
+      const rotation =
+        dx / 18;
 
 
-      document.getElementById("likeLabel")
-        .style.opacity=
-        dx>20
-        ?Math.min(dx/100,1)
-        :0;
+      card.style.transform =
+        `translateX(${dx}px)
+         rotate(${rotation}deg)`;
 
 
-      document.getElementById("nopeLabel")
-        .style.opacity=
-        dx<-20
-        ?Math.min(Math.abs(dx)/100,1)
-        :0;
+      const likeLabel =
+        document.getElementById(
+          "likeLabel"
+        );
+
+
+      const nopeLabel =
+        document.getElementById(
+          "nopeLabel"
+        );
+
+
+      likeLabel.style.opacity =
+        dx > 20
+        ? Math.min(dx / 100, 1)
+        : 0;
+
+
+      nopeLabel.style.opacity =
+        dx < -20
+        ? Math.min(
+            Math.abs(dx) / 100,
+            1
+          )
+        : 0;
 
     }
   );
@@ -1613,30 +2557,37 @@ function bind(card){
 
   card.addEventListener(
     "pointerup",
-    ()=>finishSwipe(card)
+    () => finishSwipe(card)
   );
 
 
   card.addEventListener(
     "pointercancel",
-    ()=>finishSwipe(card)
+    () => finishSwipe(card)
   );
 
 }
 
 
-/* ---------------- EXPAND ---------------- */
+/* =========================================================
+   EXPAND
+========================================================= */
 
 function toggleCard(){
 
-  const card=
-    document.getElementById("card");
+  const card =
+    document.getElementById(
+      "card"
+    );
+
 
   if(!card)
     return;
 
 
-  expanded=!expanded;
+  expanded =
+    !expanded;
+
 
   card.classList.toggle(
     "expanded",
@@ -1648,14 +2599,18 @@ function toggleCard(){
 
 function collapseCard(){
 
-  const card=
-    document.getElementById("card");
+  const card =
+    document.getElementById(
+      "card"
+    );
+
 
   if(!card)
     return;
 
 
-  expanded=false;
+  expanded = false;
+
 
   card.classList.remove(
     "expanded"
@@ -1664,7 +2619,9 @@ function collapseCard(){
 }
 
 
-/* ---------------- SWIPE ---------------- */
+/* =========================================================
+   SWIPE
+========================================================= */
 
 function finishSwipe(card){
 
@@ -1672,86 +2629,122 @@ function finishSwipe(card){
     return;
 
 
-  pointer=false;
+  pointer = false;
 
 
-  card.style.transition=
-    "transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease";
+  card.style.transition =
+    "transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s ease";
 
 
-  if(Math.abs(dx)>100){
+  if(
+    Math.abs(dx) > 100
+  ){
 
-    if(dx>0)
+    if(dx > 0){
+
       likeProfile();
 
-    else
+    }else{
+
       dislikeProfile();
 
+    }
+
     return;
+
   }
 
 
-  card.style.transform=
+  card.style.transform =
     "translateX(0) rotate(0)";
 
 
-  dx=0;
-  dy=0;
+  dx = 0;
+
+  dy = 0;
 
 }
 
 
-/* ---------------- LIKE / DISLIKE ---------------- */
+/* =========================================================
+   LIKE / DISLIKE
+========================================================= */
 
 function likeProfile(){
 
-  if(locked || !current)
+  if(
+    locked ||
+    !current
+  )
     return;
 
-  locked=true;
 
-  const card=
-    document.getElementById("card");
+  locked = true;
 
-  card.style.transform=
+
+  const card =
+    document.getElementById(
+      "card"
+    );
+
+
+  card.style.transform =
     "translateX(700px) rotate(18deg)";
 
-  card.style.opacity="0";
+
+  card.style.opacity =
+    "0";
+
 
   toast(
     `Лайк отправлен: ${current.name} ❤️`
   );
 
+
   setTimeout(
     nextProfile,
     320
   );
+
 }
 
 
 function dislikeProfile(){
 
-  if(locked || !current)
+  if(
+    locked ||
+    !current
+  )
     return;
 
-  locked=true;
 
-  const card=
-    document.getElementById("card");
+  locked = true;
 
-  card.style.transform=
+
+  const card =
+    document.getElementById(
+      "card"
+    );
+
+
+  card.style.transform =
     "translateX(-700px) rotate(-18deg)";
 
-  card.style.opacity="0";
+
+  card.style.opacity =
+    "0";
+
 
   toast(
     "Анкета пропущена"
   );
 
+
   setTimeout(
     nextProfile,
     320
   );
+
 }
 
 
@@ -1764,170 +2757,248 @@ function nextProfile(){
 }
 
 
-/* ---------------- BUTTONS ---------------- */
+/* =========================================================
+   BOTTOM BUTTONS
+========================================================= */
 
-document.getElementById("like")
-  .onclick=likeProfile;
-
-document.getElementById("dislike")
-  .onclick=dislikeProfile;
-
-
-document.getElementById("notifications")
-  .onclick=()=>{
-    toast("Уведомлений пока нет");
-  };
+document
+  .getElementById("like")
+  .onclick =
+    likeProfile;
 
 
-/* ---------------- COMMENT ---------------- */
-
-const commentInput=
-  document.getElementById("commentInput");
-
-commentInput.oninput=()=>{
-  document.getElementById("counter")
-    .textContent=
-    `${commentInput.value.length} / 180`;
-};
+document
+  .getElementById("dislike")
+  .onclick =
+    dislikeProfile;
 
 
-document.getElementById("comment")
-  .onclick=()=>{
+document
+  .getElementById("notifications")
+  .onclick =
+    () => {
 
-    if(!current)
-      return;
+      toast(
+        "Уведомлений пока нет"
+      );
 
-    open("commentOverlay");
-
-    setTimeout(
-      ()=>commentInput.focus(),
-      120
-    );
-
-  };
+    };
 
 
-document.getElementById("sendComment")
-  .onclick=()=>{
+/* =========================================================
+   COMMENT
+========================================================= */
 
-    const text=
-      commentInput.value.trim();
+const commentInput =
+  document.getElementById(
+    "commentInput"
+  );
 
-    close("commentOverlay");
 
-    commentInput.value="";
+commentInput.oninput =
+  () => {
 
-    document.getElementById("counter")
-      .textContent="0 / 180";
-
-    toast(
-      text
-      ?`Лайк с комментарием отправлен ❤️`
-      :`Лайк отправлен ❤️`
-    );
+    document
+      .getElementById("counter")
+      .textContent =
+        `${commentInput.value.length} / 180`;
 
   };
 
 
-/* ---------------- FILTER ---------------- */
+document
+  .getElementById("comment")
+  .onclick =
+    () => {
 
-document.getElementById("filterButton")
-  .onclick=()=>{
-    open("filterOverlay");
-  };
-
-
-document.getElementById("applyFilters")
-  .onclick=()=>{
-
-    const age=
-      document.getElementById("age").value;
-
-    const gender=
-      document.getElementById("gender").value;
-
-    const city=
-      document.getElementById("city").value;
+      if(!current)
+        return;
 
 
-    activeProfiles=
-      profiles.filter(
-        p=>{
-
-          let ageOK=true;
-
-          if(age!=="all"){
-
-            const [min,max]=
-              age.split("-").map(Number);
-
-            ageOK=
-              p.age>=min &&
-              p.age<=max;
-          }
-
-
-          const genderOK=
-            gender==="all" ||
-            p.gender===gender;
-
-
-          const cityOK=
-            city==="all" ||
-            p.city===city;
-
-
-          return(
-            ageOK &&
-            genderOK &&
-            cityOK
-          );
-
-        }
+      open(
+        "commentOverlay"
       );
 
 
-    index=0;
+      setTimeout(
+        () => commentInput.focus(),
+        120
+      );
 
-    close("filterOverlay");
+    };
 
-    render();
-
-    toast(
-      `Найдено анкет: ${activeProfiles.length}`
-    );
-
-  };
-
-
-/* ---------------- REPORT ---------------- */
 
 document
-  .querySelectorAll("[data-report]")
-  .forEach(
-    button=>{
+  .getElementById("sendComment")
+  .onclick =
+    () => {
 
-      button.onclick=()=>{
+      const text =
+        commentInput.value.trim();
 
-        close("reportOverlay");
 
-        toast(
-          `Жалоба отправлена: ${button.dataset.report}`
+      close(
+        "commentOverlay"
+      );
+
+
+      commentInput.value = "";
+
+
+      document
+        .getElementById("counter")
+        .textContent =
+          "0 / 180";
+
+
+      toast(
+        text
+        ? "Лайк с комментарием отправлен ❤️"
+        : "Лайк отправлен ❤️"
+      );
+
+    };
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+document
+  .getElementById("filterButton")
+  .onclick =
+    () => {
+
+      open(
+        "filterOverlay"
+      );
+
+    };
+
+
+document
+  .getElementById("applyFilters")
+  .onclick =
+    () => {
+
+      const minAge =
+        Number(ageMin.value);
+
+
+      const maxAge =
+        Number(ageMax.value);
+
+
+      const gender =
+        document.getElementById(
+          "gender"
+        ).value;
+
+
+      const city =
+        document.getElementById(
+          "city"
+        ).value;
+
+
+      activeProfiles =
+        profiles.filter(
+          profile => {
+
+            const ageOK =
+              profile.age >= minAge &&
+              profile.age <= maxAge;
+
+
+            const genderOK =
+              gender === "all" ||
+              profile.gender === gender;
+
+
+            const cityOK =
+              city === "all" ||
+              profile.city === city;
+
+
+            const hobbyOK =
+              selectedHobbies.size === 0 ||
+              profile.interests.some(
+                interest =>
+                  selectedHobbies.has(
+                    interest
+                  )
+              );
+
+
+            return (
+              ageOK &&
+              genderOK &&
+              cityOK &&
+              hobbyOK
+            );
+
+          }
         );
 
-      };
+
+      index = 0;
+
+
+      close(
+        "filterOverlay"
+      );
+
+
+      render();
+
+
+      toast(
+        `Найдено анкет: ${activeProfiles.length}`
+      );
+
+    };
+
+
+/* =========================================================
+   REPORT
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-report]"
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () => {
+
+          close(
+            "reportOverlay"
+          );
+
+
+          toast(
+            `Жалоба отправлена: ${button.dataset.report}`
+          );
+
+        };
 
     }
   );
 
 
-/* ---------------- OVERLAYS ---------------- */
+/* =========================================================
+   OVERLAYS
+========================================================= */
 
 function open(id){
 
   document
     .getElementById(id)
-    .classList.add("open");
+    .classList.add(
+      "open"
+    );
 
 }
 
@@ -1936,61 +3007,96 @@ function close(id){
 
   document
     .getElementById(id)
-    .classList.remove("open");
+    .classList.remove(
+      "open"
+    );
 
 }
 
 
 document
-  .querySelectorAll("[data-close]")
+  .querySelectorAll(
+    "[data-close]"
+  )
   .forEach(
-    button=>{
+    button => {
 
-      button.onclick=()=>{
-        close(
-          button.dataset.close
-        );
-      };
+      button.onclick =
+        () => {
+
+          close(
+            button.dataset.close
+          );
+
+        };
 
     }
   );
 
 
 document
-  .querySelectorAll(".overlay")
+  .querySelectorAll(
+    ".overlay"
+  )
   .forEach(
-    overlay=>{
+    overlay => {
 
-      overlay.onclick=e=>{
+      overlay.onclick =
+        event => {
 
-        if(e.target===overlay)
-          overlay.classList.remove("open");
+          if(
+            event.target === overlay
+          ){
 
-      };
+            overlay.classList.remove(
+              "open"
+            );
+
+          }
+
+        };
 
     }
   );
 
 
-/* ---------------- TOAST ---------------- */
+/* =========================================================
+   TOAST
+========================================================= */
 
 let toastTimer;
 
+
 function toast(message){
 
-  const el=
-    document.getElementById("toast");
+  const element =
+    document.getElementById(
+      "toast"
+    );
 
-  el.textContent=message;
 
-  el.classList.add("show");
+  element.textContent =
+    message;
 
-  clearTimeout(toastTimer);
 
-  toastTimer=
+  element.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
     setTimeout(
-      ()=>{
-        el.classList.remove("show");
+      () => {
+
+        element.classList.remove(
+          "show"
+        );
+
       },
       1900
     );
@@ -1998,23 +3104,46 @@ function toast(message){
 }
 
 
-/* ---------------- SAFE HTML ---------------- */
+/* =========================================================
+   SAFE HTML
+========================================================= */
 
 function safe(value){
 
   return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
 
-/* ---------------- START ---------------- */
+/* =========================================================
+   START
+========================================================= */
 
 render();
+
+renderHobbies();
+
+updateAgeRange();
 
 </script>
 
