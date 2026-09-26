@@ -121,8 +121,6 @@ button{
     min-height:0;
 }
 
-/* CARD */
-
 .card{
     position:absolute;
     inset:0;
@@ -140,9 +138,12 @@ button{
         opacity .3s ease;
 }
 
+/* ФОТО */
+
 .photo{
     position:absolute;
     inset:0;
+    transition:opacity .18s ease;
 }
 
 .photo::after{
@@ -158,6 +159,11 @@ button{
             rgba(0,0,0,.98) 100%
         );
 }
+
+/*
+    Здесь вместо градиента позже подключим реальные
+    фотографии пользователя.
+*/
 
 .person{
     position:absolute;
@@ -190,16 +196,58 @@ button{
     background:linear-gradient(145deg,#30233f,#0c0d17);
 }
 
-/* TOP */
+/* ИНДИКАТОРЫ ФОТО */
+
+.photo-progress{
+    position:absolute;
+    z-index:12;
+    top:12px;
+    left:17px;
+    right:17px;
+    display:flex;
+    gap:4px;
+}
+
+.photo-progress span{
+    flex:1;
+    height:3px;
+    border-radius:10px;
+    background:rgba(255,255,255,.28);
+}
+
+.photo-progress span.active{
+    background:#fff;
+}
+
+/* ЗОНЫ ПЕРЕКЛЮЧЕНИЯ ФОТО */
+
+.photo-zone{
+    position:absolute;
+    z-index:7;
+    top:0;
+    bottom:0;
+    width:34%;
+}
+
+.photo-zone.left{
+    left:0;
+}
+
+.photo-zone.right{
+    right:0;
+}
+
+/* Верх */
 
 .card-top{
     position:absolute;
-    z-index:5;
-    top:15px;
+    z-index:15;
+    top:25px;
     left:15px;
     right:15px;
     display:flex;
     justify-content:space-between;
+    pointer-events:none;
 }
 
 .online{
@@ -231,9 +279,10 @@ button{
     background:rgba(7,7,13,.58);
     color:#d8d4df;
     backdrop-filter:blur(12px);
+    pointer-events:auto;
 }
 
-/* INDICATORS */
+/* СВАЙП */
 
 .swipe-indicator{
     position:absolute;
@@ -262,21 +311,15 @@ button{
     transform:rotate(12deg);
 }
 
-.up-indicator{
-    left:50%;
-    color:#b48aff;
-    border:2px solid #b48aff;
-    transform:translateX(-50%);
-}
-
-/* INFO */
+/* ИНФОРМАЦИЯ */
 
 .profile-info{
     position:absolute;
-    z-index:5;
+    z-index:15;
     left:20px;
     right:20px;
     bottom:19px;
+    pointer-events:none;
 }
 
 .name-line{
@@ -299,6 +342,13 @@ button{
     margin-top:3px;
     color:#c1bccb;
     font-size:13px;
+}
+
+.distance{
+    margin-top:5px;
+    color:#bca9e9;
+    font-size:12px;
+    font-weight:700;
 }
 
 .bio{
@@ -326,7 +376,7 @@ button{
     font-weight:700;
 }
 
-/* ACTIONS */
+/* Кнопки */
 
 .actions{
     height:84px;
@@ -417,7 +467,7 @@ button{
     font-weight:800;
 }
 
-/* OVERLAY */
+/* ОКНА */
 
 .overlay{
     position:fixed;
@@ -519,7 +569,7 @@ textarea{
     font-size:10px;
 }
 
-/* DETAILS */
+/* Детальная информация */
 
 .details-photo{
     height:210px;
@@ -578,7 +628,7 @@ textarea{
     line-height:1.5;
 }
 
-/* REPORT */
+/* Жалоба */
 
 .report-option{
     width:100%;
@@ -591,7 +641,7 @@ textarea{
     color:white;
 }
 
-/* TOAST */
+/* Toast */
 
 .toast{
     position:fixed;
@@ -634,7 +684,6 @@ textarea{
 
 </header>
 
-
 <main class="main">
 
     <div class="top">
@@ -651,13 +700,10 @@ textarea{
 
     </div>
 
-
-    <div class="card-wrap" id="cardWrap">
-
-        <!-- карточка создаётся JavaScript -->
-
+    <div
+        class="card-wrap"
+        id="cardWrap">
     </div>
-
 
     <div class="actions">
 
@@ -686,7 +732,7 @@ textarea{
 </div>
 
 
-<!-- FILTER -->
+<!-- ФИЛЬТР -->
 
 <div class="overlay" id="filterOverlay">
 
@@ -713,12 +759,10 @@ data-close="filterOverlay">
 </div>
 
 <select id="ageFilter">
-
 <option value="18-25">18–25</option>
 <option value="18-30">18–30</option>
 <option value="18-35">18–35</option>
 <option value="all">Без ограничения</option>
-
 </select>
 
 </div>
@@ -730,11 +774,9 @@ data-close="filterOverlay">
 </div>
 
 <select id="genderFilter">
-
 <option value="all">Все</option>
 <option value="female">Девушки</option>
 <option value="male">Парни</option>
-
 </select>
 
 </div>
@@ -746,13 +788,11 @@ data-close="filterOverlay">
 </div>
 
 <select id="cityFilter">
-
 <option value="all">Любой город</option>
 <option value="Санкт-Петербург">Санкт-Петербург</option>
 <option value="Москва">Москва</option>
 <option value="Казань">Казань</option>
 <option value="Екатеринбург">Екатеринбург</option>
-
 </select>
 
 </div>
@@ -764,11 +804,10 @@ id="applyFilters">
 </button>
 
 </div>
-
 </div>
 
 
-<!-- COMMENT -->
+<!-- КОММЕНТАРИЙ -->
 
 <div class="overlay" id="commentOverlay">
 
@@ -798,7 +837,9 @@ maxlength="180"
 placeholder="Например: «Тоже люблю такую музыку»">
 </textarea>
 
-<div class="counter" id="counter">
+<div
+class="counter"
+id="counter">
 0 / 180
 </div>
 
@@ -809,11 +850,10 @@ id="sendComment">
 </button>
 
 </div>
-
 </div>
 
 
-<!-- DETAILS -->
+<!-- ПОДРОБНАЯ ИНФОРМАЦИЯ -->
 
 <div class="overlay" id="detailsOverlay">
 
@@ -836,11 +876,10 @@ data-close="detailsOverlay">
 <div id="detailsContent"></div>
 
 </div>
-
 </div>
 
 
-<!-- REPORT -->
+<!-- ЖАЛОБА -->
 
 <div class="overlay" id="reportOverlay">
 
@@ -885,17 +924,23 @@ data-close="reportOverlay">
 </button>
 
 </div>
-
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+class="toast"
+id="toast">
+</div>
 
 
 <script>
 
 /* =====================================================
-   ДАННЫЕ АНКЕТ
+   ПРОФИЛИ
+
+   photos:
+   1 обязательная фотография
+   + до 5 дополнительных
 ===================================================== */
 
 const profiles = [
@@ -906,10 +951,25 @@ const profiles = [
     age:21,
     gender:"female",
     city:"Санкт-Петербург",
+    distance:3,
     online:true,
+
+    photos:[
+        "photo-1-1",
+        "photo-1-2",
+        "photo-1-3"
+    ],
+
     bio:"Люблю музыку, прогулки по ночному городу и разговоры до утра.",
-    interests:["Музыка","Кино","Dota 2"],
-    details:"Ценю открытых людей и хорошие разговоры без формальностей."
+
+    interests:[
+        "Музыка",
+        "Кино",
+        "Dota 2"
+    ],
+
+    details:
+        "Ценю открытых людей и хорошие разговоры без формальностей."
 },
 
 {
@@ -918,10 +978,24 @@ const profiles = [
     age:24,
     gender:"male",
     city:"Москва",
+    distance:5,
     online:true,
+
+    photos:[
+        "photo-2-1",
+        "photo-2-2"
+    ],
+
     bio:"Игры, спорт, техника и вечные попытки найти хороший фильм.",
-    interests:["Игры","Спорт","Технологии"],
-    details:"Могу часами обсуждать железо, игры и совершенно случайные темы."
+
+    interests:[
+        "Игры",
+        "Спорт",
+        "Технологии"
+    ],
+
+    details:
+        "Могу часами обсуждать железо, игры и совершенно случайные темы."
 },
 
 {
@@ -930,10 +1004,26 @@ const profiles = [
     age:22,
     gender:"female",
     city:"Казань",
+    distance:8,
     online:false,
+
+    photos:[
+        "photo-3-1",
+        "photo-3-2",
+        "photo-3-3",
+        "photo-3-4"
+    ],
+
     bio:"Фотография, путешествия и кофе. Иногда всё это одновременно.",
-    interests:["Фото","Путешествия","Музыка"],
-    details:"Люблю спонтанные поездки и людей, с которыми можно быть собой."
+
+    interests:[
+        "Фото",
+        "Путешествия",
+        "Музыка"
+    ],
+
+    details:
+        "Люблю спонтанные поездки и людей, с которыми можно быть собой."
 },
 
 {
@@ -942,10 +1032,25 @@ const profiles = [
     age:27,
     gender:"male",
     city:"Екатеринбург",
+    distance:12,
     online:true,
+
+    photos:[
+        "photo-4-1",
+        "photo-4-2",
+        "photo-4-3"
+    ],
+
     bio:"Музыка, компьютерные игры и долгие ночные разговоры.",
-    interests:["Рок","Игры","Фильмы"],
-    details:"Ищу людей для общения, игр и нормальных разговоров без напряжения."
+
+    interests:[
+        "Рок",
+        "Игры",
+        "Фильмы"
+    ],
+
+    details:
+        "Ищу людей для общения, игр и нормальных разговоров без напряжения."
 },
 
 {
@@ -954,10 +1059,24 @@ const profiles = [
     age:25,
     gender:"female",
     city:"Москва",
+    distance:7,
     online:true,
+
+    photos:[
+        "photo-5-1",
+        "photo-5-2"
+    ],
+
     bio:"Кино, книги и прогулки. Люблю уютные места и интересных людей.",
-    interests:["Кино","Книги","Прогулки"],
-    details:"Всегда рада новым знакомствам и необычным историям."
+
+    interests:[
+        "Кино",
+        "Книги",
+        "Прогулки"
+    ],
+
+    details:
+        "Всегда рада новым знакомствам и необычным историям."
 }
 
 ];
@@ -972,6 +1091,8 @@ let activeProfiles = [...profiles];
 let currentIndex = 0;
 
 let currentProfile = null;
+
+let currentPhotoIndex = 0;
 
 let pointerActive = false;
 
@@ -1011,7 +1132,7 @@ const counter =
 
 
 /* =====================================================
-   RENDER CARD
+   РЕНДЕР
 ===================================================== */
 
 function renderCard(){
@@ -1023,11 +1144,13 @@ function renderCard(){
         renderEmpty();
 
         return;
-
     }
+
 
     currentProfile =
         activeProfiles[currentIndex];
+
+    currentPhotoIndex = 0;
 
 
     const card =
@@ -1041,10 +1164,12 @@ function renderCard(){
     const hue =
         currentProfile.id * 53;
 
+
     card.innerHTML = `
 
         <div
             class="photo"
+            id="photo"
             style="
                 background:
                 radial-gradient(
@@ -1068,6 +1193,7 @@ function renderCard(){
             <div class="person">
 
                 <div class="head"></div>
+
                 <div class="body"></div>
 
             </div>
@@ -1075,13 +1201,49 @@ function renderCard(){
         </div>
 
 
+        <div
+            class="photo-progress"
+            id="photoProgress">
+
+            ${currentProfile.photos
+                .map(
+                    (_,i) =>
+                    `<span class="${
+                        i === 0
+                        ? "active"
+                        : ""
+                    }"></span>`
+                )
+                .join("")
+            }
+
+        </div>
+
+
+        <div
+            class="photo-zone left"
+            id="photoLeft">
+        </div>
+
+
+        <div
+            class="photo-zone right"
+            id="photoRight">
+        </div>
+
+
         <div class="card-top">
 
             <div class="online">
 
-                <span class="online-dot"
+                <span
+                    class="online-dot"
                     style="
-                    opacity:${currentProfile.online ? 1 : .35};
+                    opacity:${
+                        currentProfile.online
+                        ? 1
+                        : .35
+                    };
                     ">
                 </span>
 
@@ -1092,6 +1254,7 @@ function renderCard(){
                 }
 
             </div>
+
 
             <button
                 class="report"
@@ -1116,19 +1279,14 @@ function renderCard(){
         </div>
 
 
-        <div
-            class="swipe-indicator up-indicator"
-            id="upIndicator">
-            ПОДРОБНЕЕ
-        </div>
-
-
         <div class="profile-info">
 
             <div class="name-line">
 
                 <div class="name">
-                    ${escapeHTML(currentProfile.name)}
+                    ${escapeHTML(
+                        currentProfile.name
+                    )}
                 </div>
 
                 <div class="age">
@@ -1137,13 +1295,25 @@ function renderCard(){
 
             </div>
 
+
             <div class="city">
-                📍 ${escapeHTML(currentProfile.city)}
+                📍 ${escapeHTML(
+                    currentProfile.city
+                )}
             </div>
 
-            <div class="bio">
-                ${escapeHTML(currentProfile.bio)}
+
+            <div class="distance">
+                📍 ${currentProfile.distance} км от вас
             </div>
+
+
+            <div class="bio">
+                ${escapeHTML(
+                    currentProfile.bio
+                )}
+            </div>
+
 
             <div class="tags">
 
@@ -1171,96 +1341,172 @@ function renderCard(){
 
 
 /* =====================================================
-   EMPTY
+   ПЕРЕКЛЮЧЕНИЕ ФОТО
 ===================================================== */
 
-function renderEmpty(){
+function nextPhoto(){
 
-    currentProfile = null;
-
-    cardWrap.innerHTML = `
-
-        <div class="empty-state">
-
-            <div class="empty-content">
-
-                <div class="empty-icon">
-                    ✨
-                </div>
-
-                <div class="empty-title">
-                    Новых анкет пока нет
-                </div>
-
-                <div class="empty-text">
-                    Мы показали все анкеты,
-                    которые подходят под твои
-                    текущие фильтры.
-                </div>
-
-                <button
-                    class="reset-filters"
-                    id="resetFilters">
-                    Сбросить фильтры
-                </button>
-
-            </div>
-
-        </div>
-    `;
+    if(!currentProfile)
+        return;
 
 
-    document
-        .getElementById("resetFilters")
-        .addEventListener(
-            "click",
-            function(){
+    if(
+        currentPhotoIndex <
+        currentProfile.photos.length - 1
+    ){
 
-                activeProfiles = [...profiles];
+        currentPhotoIndex++;
 
-                currentIndex = 0;
+        updatePhoto();
 
-                document
-                    .getElementById("ageFilter")
-                    .value = "18-25";
+    }
 
-                document
-                    .getElementById("genderFilter")
-                    .value = "all";
+}
 
-                document
-                    .getElementById("cityFilter")
-                    .value = "all";
 
-                renderCard();
+function previousPhoto(){
 
-                showToast(
-                    "Фильтры сброшены"
-                );
+    if(!currentProfile)
+        return;
 
-            }
-        );
+
+    if(currentPhotoIndex > 0){
+
+        currentPhotoIndex--;
+
+        updatePhoto();
+
+    }
+
+}
+
+
+function updatePhoto(){
+
+    const photo =
+        document.getElementById("photo");
+
+    if(!photo)
+        return;
+
+
+    /*
+       Сейчас используются визуальные
+       демо-заглушки.
+
+       Позже здесь будет:
+       photo.style.backgroundImage =
+       `url(${currentProfile.photos[currentPhotoIndex]})`;
+    */
+
+
+    const hue =
+        currentProfile.id * 53 +
+        currentPhotoIndex * 47;
+
+
+    photo.style.background =
+        `
+        radial-gradient(
+            circle at
+            ${25 + currentPhotoIndex * 13}%
+            20%,
+            hsla(
+                ${hue},
+                75%,
+                65%,
+                .5
+            ),
+            transparent 29%
+        ),
+
+        radial-gradient(
+            circle at
+            ${80 - currentPhotoIndex * 10}%
+            20%,
+            rgba(217,70,239,.38),
+            transparent 29%
+        ),
+
+        linear-gradient(
+            145deg,
+            hsl(${hue},35%,27%),
+            #090a12
+        )
+        `;
+
+
+    const indicators =
+        document
+            .querySelectorAll(
+                "#photoProgress span"
+            );
+
+
+    indicators.forEach(
+        (indicator,index) => {
+
+            indicator.classList.toggle(
+                "active",
+                index === currentPhotoIndex
+            );
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   BIND CARD
+   CARD EVENTS
 ===================================================== */
 
 function bindCard(card){
 
-    const likeIndicator =
-        card.querySelector(".like-indicator");
+    const leftZone =
+        card.querySelector("#photoLeft");
 
-    const nopeIndicator =
-        card.querySelector(".nope-indicator");
-
-    const upIndicator =
-        card.querySelector(".up-indicator");
+    const rightZone =
+        card.querySelector("#photoRight");
 
     const reportButton =
         card.querySelector("#reportButton");
+
+    const likeIndicator =
+        card.querySelector("#likeIndicator");
+
+    const nopeIndicator =
+        card.querySelector("#nopeIndicator");
+
+
+    /*
+       Фото по краям.
+       Они работают только когда нет
+       активного горизонтального свайпа.
+    */
+
+    leftZone.addEventListener(
+        "click",
+        function(event){
+
+            event.stopPropagation();
+
+            previousPhoto();
+
+        }
+    );
+
+
+    rightZone.addEventListener(
+        "click",
+        function(event){
+
+            event.stopPropagation();
+
+            nextPhoto();
+
+        }
+    );
 
 
     reportButton.addEventListener(
@@ -1277,6 +1523,47 @@ function bindCard(card){
     );
 
 
+    /*
+       Тап по центральной / нижней части
+       открывает подробную информацию.
+    */
+
+    card.addEventListener(
+        "click",
+        function(event){
+
+            if(
+                Math.abs(deltaX) > 15 ||
+                Math.abs(deltaY) > 15
+            )
+                return;
+
+
+            /*
+               Не открываем детали, если
+               пользователь нажал по зоне фото
+               или кнопке жалобы.
+            */
+
+            if(
+                event.target.closest(
+                    ".photo-zone"
+                ) ||
+                event.target.closest(
+                    ".report"
+                )
+            )
+                return;
+
+
+            openDetails();
+
+        }
+    );
+
+
+    /* Свайпы */
+
     card.addEventListener(
         "pointerdown",
         function(event){
@@ -1284,16 +1571,22 @@ function bindCard(card){
             if(cardLocked)
                 return;
 
+
             pointerActive = true;
 
-            startX = event.clientX;
-            startY = event.clientY;
+            startX =
+                event.clientX;
+
+            startY =
+                event.clientY;
 
             deltaX = 0;
             deltaY = 0;
 
+
             card.style.transition =
                 "none";
+
 
             card.setPointerCapture(
                 event.pointerId
@@ -1315,10 +1608,24 @@ function bindCard(card){
 
 
             deltaX =
-                event.clientX - startX;
+                event.clientX -
+                startX;
+
 
             deltaY =
-                event.clientY - startY;
+                event.clientY -
+                startY;
+
+
+            /*
+               Вертикальное движение теперь
+               НЕ имеет отдельного действия.
+               Карточка реагирует только
+               на горизонтальный свайп.
+            */
+
+            const horizontal =
+                Math.abs(deltaX);
 
 
             const rotation =
@@ -1327,34 +1634,26 @@ function bindCard(card){
 
             card.style.transform =
                 `
-                translate(${deltaX}px,${deltaY}px)
+                translate(${deltaX}px,0)
                 rotate(${rotation}deg)
                 `;
 
 
             likeIndicator.style.opacity =
                 deltaX > 20
-                ? Math.min(deltaX / 100,1)
+                ? Math.min(
+                    deltaX / 100,
+                    1
+                )
                 : 0;
 
 
             nopeIndicator.style.opacity =
                 deltaX < -20
                 ? Math.min(
-                    Math.abs(deltaX)/100,
+                    Math.abs(deltaX) / 100,
                     1
-                  )
-                : 0;
-
-
-            upIndicator.style.opacity =
-                deltaY < -20 &&
-                Math.abs(deltaY) >
-                Math.abs(deltaX)
-                ? Math.min(
-                    Math.abs(deltaY)/110,
-                    1
-                  )
+                )
                 : 0;
 
         }
@@ -1365,9 +1664,7 @@ function bindCard(card){
         "pointerup",
         function(){
 
-            finishSwipe(
-                card
-            );
+            finishSwipe(card);
 
         }
     );
@@ -1377,9 +1674,7 @@ function bindCard(card){
         "pointercancel",
         function(){
 
-            finishSwipe(
-                card
-            );
+            finishSwipe(card);
 
         }
     );
@@ -1388,13 +1683,14 @@ function bindCard(card){
 
 
 /* =====================================================
-   FINISH SWIPE
+   SWIPE
 ===================================================== */
 
 function finishSwipe(card){
 
     if(!pointerActive)
         return;
+
 
     pointerActive = false;
 
@@ -1406,14 +1702,12 @@ function finishSwipe(card){
     const horizontal =
         Math.abs(deltaX);
 
-    const vertical =
-        Math.abs(deltaY);
 
+    /*
+       Только горизонтальный свайп.
+    */
 
-    if(
-        horizontal > 100 &&
-        horizontal > vertical
-    ){
+    if(horizontal > 100){
 
         if(deltaX > 0)
             performLike();
@@ -1425,24 +1719,7 @@ function finishSwipe(card){
     }
 
 
-    if(
-        deltaY < -100 &&
-        vertical > horizontal
-    ){
-
-        openDetails();
-
-        resetCardPosition(
-            card
-        );
-
-        return;
-    }
-
-
-    resetCardPosition(
-        card
-    );
+    resetCardPosition(card);
 
 }
 
@@ -1453,6 +1730,7 @@ function resetCardPosition(card){
         "translate(0,0) rotate(0deg)";
 
     deltaX = 0;
+
     deltaY = 0;
 
 }
@@ -1470,10 +1748,13 @@ function performLike(){
     )
         return;
 
+
     cardLocked = true;
+
 
     const card =
         document.getElementById("card");
+
 
     if(!card)
         return;
@@ -1482,14 +1763,18 @@ function performLike(){
     card.style.transition =
         "transform .3s ease,opacity .3s ease";
 
+
     card.style.transform =
-        "translate(700px,-20px) rotate(18deg)";
+        "translate(700px,0) rotate(18deg)";
+
 
     card.style.opacity = "0";
 
 
     showToast(
-        `Лайк отправлен: ${currentProfile.name} ❤️`
+        `Лайк отправлен: ${
+            currentProfile.name
+        } ❤️`
     );
 
 
@@ -1513,10 +1798,13 @@ function performDislike(){
     )
         return;
 
+
     cardLocked = true;
+
 
     const card =
         document.getElementById("card");
+
 
     if(!card)
         return;
@@ -1525,14 +1813,16 @@ function performDislike(){
     card.style.transition =
         "transform .3s ease,opacity .3s ease";
 
+
     card.style.transform =
-        "translate(-700px,-20px) rotate(-18deg)";
+        "translate(-700px,0) rotate(-18deg)";
+
 
     card.style.opacity = "0";
 
 
     showToast(
-        `Анкета пропущена`
+        "Анкета пропущена"
     );
 
 
@@ -1545,7 +1835,7 @@ function performDislike(){
 
 
 /* =====================================================
-   NEXT
+   NEXT PROFILE
 ===================================================== */
 
 function nextProfile(){
@@ -1576,6 +1866,7 @@ function openDetails(){
             <div class="details-person">
 
                 <div class="details-head"></div>
+
                 <div class="details-body"></div>
 
             </div>
@@ -1589,14 +1880,29 @@ function openDetails(){
                 font-size:25px;
                 font-weight:900;
             ">
-                ${escapeHTML(currentProfile.name)},
+
+                ${escapeHTML(
+                    currentProfile.name
+                )},
+
                 ${currentProfile.age}
+
             </div>
+
 
             <div
                 class="details-value"
                 style="color:#aaa5b8;">
-                📍 ${escapeHTML(currentProfile.city)}
+
+                📍 ${escapeHTML(
+                    currentProfile.city
+                )}
+
+                ·
+
+                ${currentProfile.distance}
+                км от вас
+
             </div>
 
         </div>
@@ -1609,7 +1915,9 @@ function openDetails(){
             </div>
 
             <div class="details-value">
-                ${escapeHTML(currentProfile.bio)}
+                ${escapeHTML(
+                    currentProfile.bio
+                )}
             </div>
 
         </div>
@@ -1645,10 +1953,13 @@ function openDetails(){
             </div>
 
             <div class="details-value">
-                ${escapeHTML(currentProfile.details)}
+                ${escapeHTML(
+                    currentProfile.details
+                )}
             </div>
 
         </div>
+
     `;
 
 
@@ -1670,9 +1981,11 @@ commentButton.addEventListener(
         if(!currentProfile)
             return;
 
+
         openOverlay(
             "commentOverlay"
         );
+
 
         setTimeout(
             function(){
@@ -1711,6 +2024,7 @@ document
             const name =
                 currentProfile.name;
 
+
             const comment =
                 commentInput.value.trim();
 
@@ -1739,12 +2053,6 @@ document
                 );
 
             }
-
-
-            /*
-                В реальном приложении здесь
-                позже появится API-запрос.
-            */
 
         }
     );
@@ -1799,10 +2107,12 @@ function applyFilters(){
             .getElementById("ageFilter")
             .value;
 
+
     const gender =
         document
             .getElementById("genderFilter")
             .value;
+
 
     const city =
         document
@@ -1814,9 +2124,8 @@ function applyFilters(){
         profiles.filter(
             profile => {
 
-                /* AGE */
-
                 let ageOK = true;
+
 
                 if(age !== "all"){
 
@@ -1829,6 +2138,7 @@ function applyFilters(){
                     const max =
                         Number(parts[1]);
 
+
                     ageOK =
                         profile.age >= min &&
                         profile.age <= max;
@@ -1836,14 +2146,10 @@ function applyFilters(){
                 }
 
 
-                /* GENDER */
-
                 const genderOK =
                     gender === "all" ||
                     profile.gender === gender;
 
-
-                /* CITY */
 
                 const cityOK =
                     city === "all" ||
@@ -1864,15 +2170,19 @@ function applyFilters(){
 
     cardLocked = false;
 
+
     closeOverlay(
         "filterOverlay"
     );
+
 
     renderCard();
 
 
     showToast(
-        `Найдено анкет: ${activeProfiles.length}`
+        `Найдено анкет: ${
+            activeProfiles.length
+        }`
     );
 
 }
@@ -2007,6 +2317,7 @@ document
 
 let toastTimer;
 
+
 function showToast(message){
 
     const toast =
@@ -2043,7 +2354,7 @@ function showToast(message){
 
 
 /* =====================================================
-   SECURITY
+   ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
