@@ -2165,91 +2165,7 @@ textarea{
 
     </div>
 
-  <div class="notifications-list">
-
-  <div class="notification-item warning">
-
-    <div class="notification-icon">
-      ⚠️
-    </div>
-
-    <div class="notification-content">
-
-      <div class="notification-text">
-        Жалоба принята ⚠️
-      </div>
-
-      <div class="notification-time">
-        Только что
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="notification-item danger">
-
-    <div class="notification-icon">
-      ❌
-    </div>
-
-    <div class="notification-content">
-
-      <div class="notification-text">
-        Вам временно ограничен доступ к аккаунту ❌
-      </div>
-
-      <div class="notification-time">
-        Сегодня, 18:42
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="notification-item blocked">
-
-    <div class="notification-icon">
-      ⛔️
-    </div>
-
-    <div class="notification-content">
-
-      <div class="notification-text">
-        Ваш аккаунт изменён в связи с правилами сайта ⛔️
-      </div>
-
-      <div class="notification-time">
-        Вчера, 21:17
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="notification-item premium">
-
-    <div class="notification-icon">
-      🔔
-    </div>
-
-    <div class="notification-content">
-
-      <div class="notification-text">
-        Подписка на Premium оформлена 🔔
-      </div>
-
-      <div class="notification-time">
-        2 дня назад
-      </div>
-
-    </div>
-
-  </div>
-
+<div class="notifications-list" id="notificationsList">
 </div>
 
 
@@ -3570,7 +3486,7 @@ document
     }
   );
 
-/*=========================================================
+/* =========================================================
    NOTIFICATIONS
 ========================================================= */
 
@@ -3583,23 +3499,313 @@ const notificationsOverlay =
 const notificationsClose =
   document.getElementById("notificationsClose");
 
+const notificationsList =
+  document.getElementById("notificationsList");
 
-/* Открыть уведомления */
+
+const NOTIFICATION_LIFETIME =
+  7 * 24 * 60 * 60 * 1000;
+
+
+/* =========================================================
+   NOTIFICATION TYPES
+========================================================= */
+
+const notificationTypes = {
+
+  report_accepted:{
+    icon:"⚠️",
+    className:"warning",
+    text:"Жалоба принята ⚠️"
+  },
+
+  account_restricted:{
+    icon:"❌",
+    className:"danger",
+    text:"Вам временно ограничен доступ к аккаунту ❌"
+  },
+
+  account_changed:{
+    icon:"⛔️",
+    className:"blocked",
+    text:"Ваш аккаунт изменён в связи с правилами сайта ⛔️"
+  },
+
+  premium_activated:{
+    icon:"🔔",
+    className:"premium",
+    text:"Подписка на Premium оформлена 🔔"
+  }
+
+};
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function getNotifications(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "seyfert_notifications"
+      ) || "[]"
+    );
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+function saveNotifications(notifications){
+
+  localStorage.setItem(
+    "seyfert_notifications",
+    JSON.stringify(notifications)
+  );
+
+}
+
+
+/* =========================================================
+   REMOVE EXPIRED
+========================================================= */
+
+function removeExpiredNotifications(){
+
+  const now =
+    Date.now();
+
+  const notifications =
+    getNotifications();
+
+  const active =
+    notifications.filter(
+      notification =>
+        now - notification.createdAt
+        < NOTIFICATION_LIFETIME
+    );
+
+  saveNotifications(active);
+
+  return active;
+
+}
+
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatNotificationTime(timestamp){
+
+  const diff =
+    Date.now() - timestamp;
+
+
+  const minute =
+    60 * 1000;
+
+  const hour =
+    60 * minute;
+
+  const day =
+    24 * hour;
+
+
+  if(diff < minute)
+    return "Только что";
+
+
+  if(diff < hour){
+
+    const value =
+      Math.floor(diff / minute);
+
+    return `${value} мин. назад`;
+
+  }
+
+
+  if(diff < day){
+
+    const value =
+      Math.floor(diff / hour);
+
+    return `${value} ч. назад`;
+
+  }
+
+
+  const value =
+    Math.floor(diff / day);
+
+
+  if(value === 1)
+    return "Вчера";
+
+
+  return `${value} дн. назад`;
+
+}
+
+
+/* =========================================================
+   RENDER NOTIFICATIONS
+========================================================= */
+
+function renderNotifications(){
+
+  const notifications =
+    removeExpiredNotifications();
+
+
+  notificationsList.innerHTML="";
+
+
+  if(notifications.length===0){
+
+    notificationsList.innerHTML=`
+
+      <div
+        style="
+          padding:45px 20px;
+          text-align:center;
+          color:#777181;
+          font-size:13px;
+        ">
+
+        Уведомлений пока нет
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  notifications.forEach(
+    notification=>{
+
+      const type =
+        notificationTypes[
+          notification.type
+        ];
+
+      if(!type)
+        return;
+
+
+      const item =
+        document.createElement("div");
+
+
+      item.className=
+        `notification-item ${type.className}`;
+
+
+      item.innerHTML=`
+
+        <div class="notification-icon">
+          ${type.icon}
+        </div>
+
+        <div class="notification-content">
+
+          <div class="notification-text">
+            ${type.text}
+          </div>
+
+          <div class="notification-time">
+            ${formatNotificationTime(
+              notification.createdAt
+            )}
+          </div>
+
+        </div>
+
+      `;
+
+
+      notificationsList.appendChild(item);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CREATE NOTIFICATION
+========================================================= */
+
+function addNotification(type){
+
+  if(!notificationTypes[type])
+    return;
+
+
+  const notifications =
+    removeExpiredNotifications();
+
+
+  notifications.unshift({
+
+    id:
+      Date.now() +
+      Math.random(),
+
+    type:type,
+
+    createdAt:
+      Date.now()
+
+  });
+
+
+  saveNotifications(
+    notifications
+  );
+
+
+  renderNotifications();
+
+}
+
+
+/* =========================================================
+   OPEN
+========================================================= */
 
 notificationsButton.onclick=()=>{
+
+  renderNotifications();
 
   notificationsOverlay.classList.add("open");
 
 };
 
 
-/* Закрыть уведомления */
+/* =========================================================
+   CLOSE
+========================================================= */
 
 notificationsClose.onclick=()=>{
 
   notificationsOverlay.classList.remove("open");
 
 };
+
+addNotification("report_accepted");
+addNotification("premium_activated");
 
 
 /* =========================================================
