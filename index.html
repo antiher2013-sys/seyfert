@@ -995,7 +995,345 @@ button{
   line-height:1.5;
 
 }
+/* =========================================================
+   CHAT VISUAL
+========================================================= */
 
+.chat-screen{
+  width:100%;
+  height:100%;
+
+  padding:26px 12px 12px;
+
+  border-radius:30px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(139,92,246,.07),
+      transparent 38%
+    ),
+    #0d0b17;
+
+  border:1px solid rgba(255,255,255,.10);
+
+  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+}
+
+/* TABS */
+
+.chat-tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:4px;
+
+  padding:4px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.035);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  flex-shrink:0;
+}
+
+.chat-tab{
+  min-height:38px;
+
+  padding:0 5px;
+
+  border-radius:11px;
+
+  color:#817b8f;
+
+  background:transparent;
+
+  font-size:10px;
+  font-weight:800;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.chat-tab.active{
+  color:#eee9f8;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,92,246,.28),
+      rgba(217,70,239,.16)
+    );
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(139,92,246,.18);
+}
+
+/* MATCHES */
+
+.matches-section{
+  flex-shrink:0;
+
+  margin-top:17px;
+
+  overflow:hidden;
+}
+
+.matches-list{
+  display:flex;
+
+  gap:15px;
+
+  overflow-x:auto;
+
+  padding:
+    2px
+    3px
+    10px;
+
+  scrollbar-width:none;
+}
+
+.matches-list::-webkit-scrollbar{
+  display:none;
+}
+
+.match-item{
+  flex:0 0 54px;
+
+  padding:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  gap:6px;
+
+  color:#bcb5c8;
+
+  background:transparent;
+}
+
+.match-avatar{
+  width:52px;
+  height:52px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#eeeaf7;
+
+  font-size:17px;
+  font-weight:900;
+
+  background:
+    linear-gradient(
+      145deg,
+      #352653,
+      #171421
+    );
+
+  border:
+    2px solid
+    rgba(139,92,246,.75);
+
+  box-shadow:
+    0 0 16px
+    rgba(139,92,246,.13);
+}
+
+.match-name{
+  max-width:54px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+
+  font-size:9px;
+  font-weight:700;
+}
+
+/* DIALOGS */
+
+.chat-content{
+  flex:1;
+  min-height:0;
+
+  margin-top:4px;
+
+  overflow-y:auto;
+
+  scrollbar-width:none;
+}
+
+.chat-content::-webkit-scrollbar{
+  display:none;
+}
+
+.chat-section-title{
+  padding:
+    12px
+    5px
+    8px;
+
+  color:#777181;
+
+  font-size:10px;
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:.7px;
+}
+
+.chat-dialog{
+  width:100%;
+
+  min-height:68px;
+
+  padding:
+    9px
+    5px;
+
+  display:flex;
+  align-items:center;
+
+  gap:11px;
+
+  color:#fff;
+
+  background:transparent;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.055);
+
+  text-align:left;
+}
+
+.chat-dialog:active{
+  background:
+    rgba(255,255,255,.045);
+}
+
+.chat-avatar{
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#eeeaf7;
+
+  background:
+    linear-gradient(
+      145deg,
+      #302544,
+      #171421
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.09);
+
+  font-size:16px;
+  font-weight:900;
+}
+
+.chat-dialog-main{
+  min-width:0;
+
+  flex:1;
+}
+
+.chat-dialog-top{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:8px;
+}
+
+.chat-dialog-name{
+  min-width:0;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+
+  color:#eeeaf3;
+
+  font-size:13px;
+  font-weight:850;
+}
+
+.chat-dialog-time{
+  flex-shrink:0;
+
+  color:#716b7d;
+
+  font-size:9px;
+}
+
+.chat-dialog-message{
+  margin-top:4px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+
+  color:#858090;
+
+  font-size:11px;
+}
+
+.chat-unread{
+  width:19px;
+  height:19px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink)
+    );
+
+  font-size:9px;
+  font-weight:900;
+}
 /* =========================================================
    BOTTOM NAV
 ========================================================= */
@@ -1681,68 +2019,199 @@ textarea{
       class="view hidden"
       id="chatsView">
 
-      <div class="chat-screen">
+<div class="chat-screen">
 
-        <div class="chat-title">
-          Чаты
-        </div>
+  <div class="chat-tabs">
 
-        <div class="chat-subtitle">
-          Общайся. Знакомься. Создавай связи.
-        </div>
+    <button
+      class="chat-tab active"
+      data-chat-tab="chats">
+      Чаты
+    </button>
 
-        <div class="chat-empty">
+    <button
+      class="chat-tab"
+      data-chat-tab="likes">
+      Мои лайки
+    </button>
 
-          <div class="chat-empty-content">
+    <button
+      class="chat-tab"
+      data-chat-tab="liked">
+      Кому я нравлюсь
+    </button>
 
-            <div class="chat-icon">
-              <svg
-                width="70"
-                height="70"
-                viewBox="0 0 70 70"
-                fill="none">
+  </div>
 
-                <path
-                  d="M17 53L14 63L25 57C28 58 31 59 35 59C49 59 60 49 60 36C60 23 49 13 35 13C21 13 10 23 10 36C10 43 13 49 17 53Z"
-                  stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linejoin="round"/>
 
-                <circle
-                  cx="25"
-                  cy="36"
-                  r="2.5"
-                  fill="currentColor"/>
+  <div class="matches-section">
 
-                <circle
-                  cx="35"
-                  cy="36"
-                  r="2.5"
-                  fill="currentColor"/>
+    <div class="matches-list">
 
-                <circle
-                  cx="45"
-                  cy="36"
-                  r="2.5"
-                  fill="currentColor"/>
+      <button class="match-item">
+        <div class="match-avatar">А</div>
+        <span class="match-name">Алина</span>
+      </button>
 
-              </svg>
-            </div>
+      <button class="match-item">
+        <div class="match-avatar">М</div>
+        <span class="match-name">Макс</span>
+      </button>
 
-            <div class="chat-empty-title">
-              Чаты ещё не готовы
-            </div>
+      <button class="match-item">
+        <div class="match-avatar">С</div>
+        <span class="match-name">София</span>
+      </button>
 
-            <div class="chat-empty-text">
-              Скоро здесь появятся твои диалоги,
-              матчи и новые знакомства.
-            </div>
+      <button class="match-item">
+        <div class="match-avatar">И</div>
+        <span class="match-name">Ирина</span>
+      </button>
 
+      <button class="match-item">
+        <div class="match-avatar">Д</div>
+        <span class="match-name">Дарья</span>
+      </button>
+
+      <button class="match-item">
+        <div class="match-avatar">А</div>
+        <span class="match-name">Аня</span>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="chat-content">
+
+    <div class="chat-section-title">
+      Последние сообщения
+    </div>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
+        А
+      </div>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            Алина
+          </div>
+
+          <div class="chat-dialog-time">
+            18:42
           </div>
 
         </div>
 
+        <div class="chat-dialog-message">
+          Привет, как твои дела?
+        </div>
+
       </div>
+
+    </button>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
+        М
+      </div>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            Макс
+          </div>
+
+          <div class="chat-dialog-time">
+            17:15
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Давай вечером сыграем?
+        </div>
+
+      </div>
+
+    </button>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
+        С
+      </div>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            София
+          </div>
+
+          <div class="chat-dialog-time">
+            16:03
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Ты где пропал?
+        </div>
+
+      </div>
+
+      <div class="chat-unread">
+        2
+      </div>
+
+    </button>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
+        И
+      </div>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            Ирина
+          </div>
+
+          <div class="chat-dialog-time">
+            Вчера
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Было приятно познакомиться 😊
+        </div>
+
+      </div>
+
+    </button>
+
+  </div>
+
+</div>
 
     </section>
 
