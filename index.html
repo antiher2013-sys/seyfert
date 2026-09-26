@@ -962,86 +962,6 @@ textarea{
 .toast.show{
   opacity:1;
 }
-  .logo{
-  position:relative;
-  display:inline-block;
-
-  font-size:21px;
-  font-weight:900;
-  letter-spacing:1px;
-
-  color:#f8f7ff;
-
-  text-shadow:
-    0 0 5px rgba(255,255,255,.35),
-    0 0 12px rgba(139,92,246,.45),
-    0 0 24px rgba(139,92,246,.25);
-
-  overflow:hidden;
-}
-
-.logo span{
-  color:#9b6cff;
-
-  text-shadow:
-    0 0 5px #8b5cf6,
-    0 0 10px #8b5cf6,
-    0 0 20px rgba(139,92,246,.9),
-    0 0 35px rgba(139,92,246,.65);
-}
-
-.logo::after{
-  content:"";
-
-  position:absolute;
-  top:-30%;
-  left:-45%;
-
-  width:28%;
-  height:160%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.9),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  animation:
-    logoShine 4s ease-in-out infinite;
-
-  pointer-events:none;
-}
-
-@keyframes logoShine{
-
-  0%{
-    left:-45%;
-    opacity:0;
-  }
-
-  12%{
-    opacity:0;
-  }
-
-  20%{
-    opacity:.8;
-  }
-
-  30%{
-    left:120%;
-    opacity:0;
-  }
-
-  100%{
-    left:120%;
-    opacity:0;
-  }
-
-}
 </style>
 </head>
 
@@ -1050,9 +970,7 @@ textarea{
 <div class="app">
 
   <header class="header">
-<div class="logo">
-  SEY<span>F</span>ERT
-</div>
+
     <button
       class="header-btn"
       id="notifications">
