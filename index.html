@@ -112,18 +112,25 @@ button{
 }
 
 .header-btn{
-  width:58px;
-  height:58px;
+  width:32px;
+  height:32px;
 
-  border-radius:17px;
+  padding:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   color:#fff;
 
-  background:rgba(255,255,255,.045);
+  background:transparent;
+  border:0;
+}
 
-  border:1px solid var(--line);
-
-  font-size:25px;
+.bell-icon{
+  width:18px;
+  height:18px;
+  display:block;
 }
 
 /* =========================================================
@@ -1399,10 +1406,19 @@ textarea{
   <header class="header">
 
     <button
-      class="header-btn"
-      id="notifications">
-      🔔
-    </button>
+  class="header-btn"
+  id="notifications">
+
+  <svg viewBox="0 0 24 24" class="bell-icon">
+    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+  </svg>
+
+</button>
 
   </header>
 
