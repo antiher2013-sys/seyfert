@@ -301,22 +301,11 @@ button{
   justify-content:space-between;
 }
 
-.card-top button{
-  width:43px;
-  height:43px;
-
-  border-radius:14px;
-
-  color:#fff;
-
-  background:
-    rgba(7,7,13,.55);
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  backdrop-filter:blur(14px);
+.filter-icon{
+  width:21px;
+  height:21px;
+  display:block;
+  margin:auto;
 }
 
 /* =========================================================
@@ -2269,15 +2258,37 @@ function render(){
 
     <div class="card-top">
 
-      <button
-        id="cardFilter">
-        ⚙
-      </button>
+      <button id="cardFilter">
+  <svg viewBox="0 0 24 24" class="filter-icon">
+    <path
+      d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z
+         M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 1.7-.06-.06
+         A1.7 1.7 0 0 0 16.16 19l-.09.22h-2.4l-.09-.22
+         A1.7 1.7 0 0 0 11.7 18.58l-.06.06-1.7-1.7.06-.06
+         A1.7 1.7 0 0 0 10.34 15l-.22-.09v-2.4l.22-.09
+         A1.7 1.7 0 0 0 10 10.54l-.06-.06 1.7-1.7.06.06
+         A1.7 1.7 0 0 0 13.58 9l.09-.22h2.4l.09.22
+         A1.7 1.7 0 0 0 17.46 8.84l.06-.06 1.7 1.7-.06.06
+         A1.7 1.7 0 0 0 18.82 13l.22.09v2.4Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linejoin="round"/>
+  </svg>
+</button>
 
-      <button
-        id="report">
-        ⚑
-      </button>
+      <button id="report">
+  <svg viewBox="0 0 24 24" class="report-icon">
+    <path
+      d="M6 21V4
+         M6 5h11l-2.5 4L17 13H6"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+  </svg>
+</button>
 
     </div>
 
