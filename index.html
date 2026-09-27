@@ -3714,12 +3714,6 @@ function likeProfile(){
 
   card.style.opacity="0";
 
-
-  toast(
-    `Лайк отправлен: ${current.name} ❤️`
-  );
-
-
   setTimeout(
     nextProfile,
     320
@@ -3742,12 +3736,6 @@ function dislikeProfile(){
     "translateX(-700px) rotate(-18deg)";
 
   card.style.opacity="0";
-
-
-  toast(
-    "Анкета пропущена"
-  );
-
 
   setTimeout(
     nextProfile,
@@ -3987,7 +3975,6 @@ document
 
   };
 
-
 /* =========================================================
    COMMENT
 ========================================================= */
@@ -4026,13 +4013,6 @@ document
       .getElementById("counter")
       .textContent=
         "0 / 180";
-
-
-    toast(
-      text
-        ? "Лайк с комментарием отправлен ❤️"
-        : "Лайк отправлен ❤️"
-    );
 
   };
 
