@@ -298,6 +298,83 @@ button{
   font-size:12px;
   font-weight:700;
 }
+.profile-about{
+  width:100%;
+
+  margin-top:22px;
+
+  padding:14px;
+
+  box-sizing:border-box;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.025);
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+}
+
+.profile-about-header{
+  width:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:8px;
+}
+
+.profile-about-title{
+  color:#817b8f;
+
+  font-size:10px;
+  font-weight:800;
+
+  text-transform:lowercase;
+}
+
+.profile-about-counter{
+  color:#817b8f;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.profile-about-input{
+  width:100%;
+
+  min-height:90px;
+
+  padding:0;
+
+  box-sizing:border-box;
+
+  resize:none;
+
+  border:0;
+  outline:none;
+
+  background:transparent;
+
+  color:#eeeaf3;
+
+  font-family:inherit;
+
+  font-size:13px;
+  font-weight:500;
+
+  line-height:1.5;
+}
+
+.profile-about-input::placeholder{
+  color:#5f5969;
+}
+
+.profile-about-input:focus{
+  outline:none;
+}
 
 /* =========================================================
    CARD AREA
@@ -2391,6 +2468,31 @@ textarea{
     <div class="profile-city">
       Санкт-Петербург
     </div>
+    
+    <div class="profile-about">
+
+  <div class="profile-about-header">
+
+    <span class="profile-about-title">
+      о себе
+    </span>
+
+    <span
+      class="profile-about-counter"
+      id="aboutCounter">
+      0/300
+    </span>
+
+  </div>
+
+  <textarea
+    id="aboutInput"
+    class="profile-about-input"
+    maxlength="300"
+    placeholder="Расскажи немного о себе..."
+    spellcheck="true"></textarea>
+
+</div>
 
     </div>
 
@@ -4613,6 +4715,40 @@ function safe(value){
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
+
+}
+
+// =========================================================
+// PROFILE — ABOUT
+// =========================================================
+
+const aboutInput =
+  document.getElementById("aboutInput");
+
+const aboutCounter =
+  document.getElementById("aboutCounter");
+
+
+if(aboutInput && aboutCounter){
+
+  const updateAboutCounter = ()=>{
+
+    const length =
+      aboutInput.value.length;
+
+    aboutCounter.textContent =
+      `${length}/300`;
+
+  };
+
+
+  aboutInput.addEventListener(
+    "input",
+    updateAboutCounter
+  );
+
+
+  updateAboutCounter();
 
 }
 
