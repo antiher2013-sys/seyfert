@@ -2861,6 +2861,48 @@ const navItems=
   profilesView.classList.remove("hidden");
 chatsView.classList.add("hidden");
 
+/* =========================================================
+   CHAT TABS
+========================================================= */
+
+const chatTabs =
+  document.querySelectorAll(".chat-tab");
+
+chatTabs.forEach(tab => {
+
+  tab.onclick = () => {
+
+    chatTabs.forEach(
+      x => x.classList.remove("active")
+    );
+
+    tab.classList.add("active");
+
+    const type =
+      tab.dataset.chatTab;
+
+    if(type === "chats"){
+
+      toast("Чаты");
+
+    }
+
+    else if(type === "likes"){
+
+      toast("Мои лайки");
+
+    }
+
+    else if(type === "liked"){
+
+      toast("Кому я нравлюсь");
+
+    }
+
+  };
+
+});
+
 
 /* =========================================================
    NAVIGATION
