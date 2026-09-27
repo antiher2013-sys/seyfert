@@ -2242,6 +2242,46 @@ textarea{
 .toast.show{
   opacity:1;
 }
+
+/* =========================================================
+   MOBILE KEYBOARD — PROFILE
+========================================================= */
+
+html,
+body{
+  height:100%;
+  overflow:hidden;
+}
+
+.app{
+  height:100%;
+  min-height:0;
+}
+
+.main{
+  min-height:0;
+}
+
+.profile-scroll{
+  height:100%;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  overscroll-behavior:contain;
+
+  -webkit-overflow-scrolling:touch;
+}
+
+.profile-about{
+  scroll-margin-top:20px;
+  scroll-margin-bottom:30px;
+}
+
+.profile-about-input{
+  -webkit-appearance:none;
+}
+
 </style>
 </head>
 
@@ -4728,8 +4768,19 @@ const aboutInput =
 const aboutCounter =
   document.getElementById("aboutCounter");
 
+const aboutBox =
+  document.querySelector(".profile-about");
 
-if(aboutInput && aboutCounter){
+const profileScroll =
+  document.querySelector(".profile-scroll");
+
+
+if(
+  aboutInput &&
+  aboutCounter &&
+  aboutBox &&
+  profileScroll
+){
 
   const updateAboutCounter = ()=>{
 
@@ -4748,7 +4799,41 @@ if(aboutInput && aboutCounter){
   );
 
 
+  aboutInput.addEventListener(
+    "focus",
+    ()=>{
+
+      setTimeout(()=>{
+
+        aboutBox.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+      },120);
+
+    }
+  );
+
+
   updateAboutCounter();
+
+
+  profileScroll.addEventListener(
+    "pointerdown",
+    event=>{
+
+      if(
+        event.target !== aboutInput &&
+        !aboutInput.contains(event.target)
+      ){
+
+        aboutInput.blur();
+
+      }
+
+    }
+  );
 
 }
 
