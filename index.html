@@ -1315,6 +1315,63 @@ button{
   font-size:9px;
   font-weight:900;
 }
+.chat-avatar{
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+  overflow:visible;
+
+  color:#eeeaf7;
+
+  background:
+    linear-gradient(
+      145deg,
+      #302544,
+      #171421
+    );
+
+  border:1px solid rgba(255,255,255,.09);
+
+  font-size:16px;
+  font-weight:900;
+}
+
+.chat-avatar img{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+  border-radius:50%;
+}
+
+.chat-online-status{
+  position:absolute;
+
+  left:-2px;
+  bottom:-2px;
+
+  width:11px;
+  height:11px;
+
+  border-radius:50%;
+
+  background:#35d06f;
+
+  border:2px solid #0d0b17;
+
+  box-shadow:
+    0 0 7px rgba(53,208,111,.35);
+}
 
 /* =========================================================
    BOTTOM NAV
@@ -2075,8 +2132,9 @@ textarea{
     <button class="chat-dialog">
 
       <div class="chat-avatar">
-        А
-      </div>
+  <img src="images/alina.jpg" alt="Алина">
+  <span class="chat-online-status"></span>
+</div>
 
       <div class="chat-dialog-main">
 
