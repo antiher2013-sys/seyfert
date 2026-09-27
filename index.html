@@ -2944,6 +2944,7 @@ navItems.forEach(item=>{
 
       profilesView.classList.remove("hidden");
       chatsView.classList.add("hidden");
+      profileView.classList.add("hidden");
 
     }
 
@@ -2952,17 +2953,23 @@ navItems.forEach(item=>{
 
       profilesView.classList.add("hidden");
       chatsView.classList.remove("hidden");
+      profileView.classList.add("hidden");
+
+    }
+
+
+    else if(view==="profile"){
+
+      profilesView.classList.add("hidden");
+      chatsView.classList.add("hidden");
+      profileView.classList.remove("hidden");
 
     }
 
 
     else{
 
-      toast(
-        view==="global"
-          ? "Глобал ещё не готов"
-          : "Профиль ещё не готов"
-      );
+      toast("Глобал ещё не готов");
 
     }
 
