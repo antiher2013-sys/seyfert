@@ -1089,9 +1089,13 @@ button{
 .matches-list{
   display:flex;
 
+  flex-direction:row;
+  flex-wrap:nowrap;
+
   gap:15px;
 
   overflow-x:auto;
+  overflow-y:hidden;
 
   padding:
     2px
@@ -1099,6 +1103,8 @@ button{
     10px;
 
   scrollbar-width:none;
+
+  -webkit-overflow-scrolling:touch;
 }
 
 .matches-list::-webkit-scrollbar{
@@ -1107,6 +1113,9 @@ button{
 
 .match-item{
   flex:0 0 54px;
+
+  width:54px;
+  min-width:54px;
 
   padding:0;
 
