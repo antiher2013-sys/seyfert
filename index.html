@@ -1235,22 +1235,18 @@ button{
 
   flex:1;
 
-  /* Оставляем место под время и unread */
-  padding-right:30px;
+  /* Оставляем место для правой колонки */
+  padding-right:42px;
 }
 
 .chat-dialog-top{
   display:block;
-
-  position:relative;
 
   min-width:0;
 }
 
 .chat-dialog-name{
   min-width:0;
-
-  padding-right:45px;
 
   overflow:hidden;
 
@@ -1267,22 +1263,19 @@ button{
 .chat-dialog-time{
   position:absolute;
 
-  top:0;
-  right:0;
-
-  flex-shrink:0;
+  top:12px;
+  right:9px;
 
   color:#716b7d;
 
   font-size:9px;
+  line-height:1;
 
   white-space:nowrap;
 }
 
 .chat-dialog-message{
   margin-top:4px;
-
-  padding-right:0;
 
   overflow:hidden;
 
@@ -1301,10 +1294,8 @@ button{
 
   position:absolute;
 
+  top:31px;
   right:5px;
-  top:50%;
-
-  transform:translateY(-50%);
 
   display:flex;
   align-items:center;
