@@ -2913,35 +2913,50 @@ chatsView.classList.add("hidden");
    CHAT TABS
 ========================================================= */
 
-const chatTabs =
+const chatTabs=
   document.querySelectorAll(".chat-tab");
 
-chatTabs.forEach(tab => {
+chatTabs.forEach(tab=>{
 
-  tab.onclick = () => {
+  tab.onclick=()=>{
 
     chatTabs.forEach(
-      x => x.classList.remove("active")
+      x=>x.classList.remove("active")
     );
 
     tab.classList.add("active");
 
-    const type =
+    const type=
       tab.dataset.chatTab;
 
-    if(type === "chats"){
+    if(type==="chats"){
+
+      chatsView.classList.remove("hidden");
+
+      likesView.classList.add("hidden");
+      likedView.classList.add("hidden");
 
       toast("Чаты");
 
     }
 
-    else if(type === "likes"){
+    else if(type==="likes"){
+
+      chatsView.classList.add("hidden");
+
+      likesView.classList.remove("hidden");
+      likedView.classList.add("hidden");
 
       toast("Мои лайки");
 
     }
 
-    else if(type === "liked"){
+    else if(type==="liked"){
+
+      chatsView.classList.add("hidden");
+
+      likesView.classList.add("hidden");
+      likedView.classList.remove("hidden");
 
       toast("Кому я нравлюсь");
 
