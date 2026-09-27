@@ -2247,21 +2247,6 @@ textarea{
    MOBILE KEYBOARD — PROFILE
 ========================================================= */
 
-html,
-body{
-  height:100%;
-  overflow:hidden;
-}
-
-.app{
-  height:100%;
-  min-height:0;
-}
-
-.main{
-  min-height:0;
-}
-
 .profile-scroll{
   height:100%;
 
@@ -2271,15 +2256,21 @@ body{
   overscroll-behavior:contain;
 
   -webkit-overflow-scrolling:touch;
+
+  padding-bottom:40px;
 }
 
 .profile-about{
   scroll-margin-top:20px;
-  scroll-margin-bottom:30px;
+  scroll-margin-bottom:24px;
 }
 
 .profile-about-input{
   -webkit-appearance:none;
+
+  width:100%;
+
+  box-sizing:border-box;
 }
 
 </style>
@@ -4784,11 +4775,8 @@ if(
 
   const updateAboutCounter = ()=>{
 
-    const length =
-      aboutInput.value.length;
-
     aboutCounter.textContent =
-      `${length}/300`;
+      `${aboutInput.value.length}/300`;
 
   };
 
@@ -4805,12 +4793,38 @@ if(
 
       setTimeout(()=>{
 
-        aboutBox.scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
+        const boxRect =
+          aboutBox.getBoundingClientRect();
 
-      },120);
+        const viewport =
+          window.visualViewport;
+
+        const keyboardTop =
+          viewport
+            ? viewport.height
+            : window.innerHeight;
+
+        const safeSpace =
+          20;
+
+        const targetBottom =
+          keyboardTop - safeSpace;
+
+        if(
+          boxRect.bottom >
+          targetBottom
+        ){
+
+          profileScroll.scrollBy({
+            top:
+              boxRect.bottom -
+              targetBottom,
+            behavior:"smooth"
+          });
+
+        }
+
+      },150);
 
     }
   );
@@ -4824,7 +4838,6 @@ if(
     event=>{
 
       if(
-        event.target !== aboutInput &&
         !aboutInput.contains(event.target)
       ){
 
@@ -4836,7 +4849,6 @@ if(
   );
 
 }
-
 
 /* =========================================================
    START
