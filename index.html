@@ -1212,6 +1212,8 @@ button{
 
   gap:11px;
 
+  position:relative;
+
   color:#fff;
 
   background:transparent;
@@ -1228,53 +1230,27 @@ button{
     rgba(255,255,255,.045);
 }
 
-.chat-avatar{
-  width:48px;
-  height:48px;
-
-  flex-shrink:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  color:#eeeaf7;
-
-  background:
-    linear-gradient(
-      145deg,
-      #302544,
-      #171421
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
-
-  font-size:16px;
-  font-weight:900;
-}
-
 .chat-dialog-main{
   min-width:0;
 
   flex:1;
+
+  /* Оставляем место под время и unread */
+  padding-right:30px;
 }
 
 .chat-dialog-top{
-  display:flex;
+  display:block;
 
-  align-items:center;
+  position:relative;
 
-  justify-content:space-between;
-
-  gap:8px;
+  min-width:0;
 }
 
 .chat-dialog-name{
   min-width:0;
+
+  padding-right:45px;
 
   overflow:hidden;
 
@@ -1289,15 +1265,24 @@ button{
 }
 
 .chat-dialog-time{
+  position:absolute;
+
+  top:0;
+  right:0;
+
   flex-shrink:0;
 
   color:#716b7d;
 
   font-size:9px;
+
+  white-space:nowrap;
 }
 
 .chat-dialog-message{
   margin-top:4px;
+
+  padding-right:0;
 
   overflow:hidden;
 
@@ -1314,7 +1299,12 @@ button{
   width:19px;
   height:19px;
 
-  flex-shrink:0;
+  position:absolute;
+
+  right:5px;
+  top:50%;
+
+  transform:translateY(-50%);
 
   display:flex;
   align-items:center;
@@ -1334,6 +1324,7 @@ button{
   font-size:9px;
   font-weight:900;
 }
+
 /* =========================================================
    BOTTOM NAV
 ========================================================= */
