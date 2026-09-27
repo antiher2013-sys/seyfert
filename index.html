@@ -188,6 +188,86 @@ button{
 .chat-page.hidden{
   display:none;
 }
+.profile-header{
+  width:100%;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:18px;
+}
+
+.profile-avatar{
+  width:64px;
+  height:64px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#eeeaf7;
+
+  background:
+    linear-gradient(
+      145deg,
+      #352653,
+      #171421
+    );
+
+  border:
+    2px solid
+    rgba(139,92,246,.75);
+
+  box-shadow:
+    0 0 16px
+    rgba(139,92,246,.13);
+
+  font-size:21px;
+  font-weight:900;
+}
+
+.profile-main-info{
+  min-width:0;
+  flex:1;
+}
+
+.profile-name{
+  color:#eeeaf3;
+
+  font-size:17px;
+  font-weight:850;
+}
+
+.profile-status{
+  margin-top:4px;
+
+  color:#35d06f;
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.profile-edit{
+  flex-shrink:0;
+
+  padding:9px 12px;
+
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+
+  color:#bda8f3;
+
+  background:rgba(255,255,255,.04);
+
+  font-size:10px;
+  font-weight:800;
+}
 
 /* =========================================================
    CARD AREA
