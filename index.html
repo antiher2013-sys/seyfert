@@ -190,82 +190,6 @@ button{
     0 30px 80px rgba(0,0,0,.55),
     0 0 55px rgba(139,92,246,.1);
 }
-/* =========================================================
-   PROFILE TOP
-========================================================= */
-
-.profile-top{
-  width:100%;
-
-  display:flex;
-  align-items:center;
-
-  gap:14px;
-
-  padding:20px;
-}
-
-.profile-avatar{
-  width:72px;
-  height:72px;
-
-  flex-shrink:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #352653,
-      #171421
-    );
-
-  border:
-    2px solid
-    rgba(139,92,246,.65);
-
-  box-shadow:
-    0 0 20px
-    rgba(139,92,246,.15);
-}
-
-.profile-avatar img{
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-
-  display:block;
-}
-
-.profile-info{
-  min-width:0;
-  flex:1;
-}
-
-.profile-name{
-  color:#eeeaf3;
-
-  font-size:19px;
-  font-weight:850;
-
-  line-height:1.2;
-}
-
-.profile-location{
-  margin-top:5px;
-
-  color:#817b8f;
-
-  font-size:11px;
-  font-weight:700;
-}
 
 /* =========================================================
    CARD AREA
@@ -2320,33 +2244,19 @@ textarea{
   class="view hidden"
   id="profileView">
 
-<div class="profile-card">
+  <div
 
-  <div class="profile-top">
+    class="profile-area"
 
-    <div class="profile-avatar">
+    id="profileArea">
 
-      <img
-        src=""
-        alt="Аватар профиля">
-
-    </div>
-
-    <div class="profile-info">
-
-      <div class="profile-name">
-        Дима
-      </div>
-
-      <div class="profile-location">
-        Санкт-Петербург
-      </div>
+    <div class="profile-card">
 
     </div>
 
   </div>
 
-</div>
+</section>
 
 <!-- ================= NAVIGATION ================= -->
 
