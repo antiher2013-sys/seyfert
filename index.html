@@ -2241,6 +2241,35 @@ textarea{
 
 </section>
 
+<!-- ================= LIKES ================= -->
+
+<section
+  class="view hidden"
+  id="likesView">
+
+  <div class="chat-screen">
+
+    <!-- Здесь позже будет содержимое «Мои лайки» -->
+
+  </div>
+
+</section>
+
+
+<!-- ================= LIKED ================= -->
+
+<section
+  class="view hidden"
+  id="likedView">
+
+  <div class="chat-screen">
+
+    <!-- Здесь позже будет содержимое «Кому я нравлюсь» -->
+
+  </div>
+
+</section>
+
   <!-- ================= NAVIGATION ================= -->
 
   <nav class="bottom-nav">
@@ -2854,6 +2883,12 @@ const profilesView=
 
 const chatsView=
   document.getElementById("chatsView");
+  
+  const likesView=
+  document.getElementById("likesView");
+
+const likedView=
+  document.getElementById("likedView");
 
 const navItems=
   document.querySelectorAll(".nav-item");
