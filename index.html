@@ -2066,203 +2066,197 @@ textarea{
   class="view"
   id="chatsView">
 
-  <div class="chats-screen">
+  <div class="chat-screen">
 
   <div class="chat-tabs">
 
-    <button class="chat-tab active">
-      Все
+    <button
+      class="chat-tab active"
+      data-chat-tab="chats">
+      Чаты
     </button>
 
-    <button class="chat-tab">
-      Знакомства
+    <button
+      class="chat-tab"
+      data-chat-tab="likes">
+      Мои лайки
     </button>
 
-    <button class="chat-tab">
-      Игроки
+    <button
+      class="chat-tab"
+      data-chat-tab="liked">
+      Кому я нравлюсь
     </button>
 
   </div>
-  
+
+
   <div class="matches-section">
 
-  <div class="matches-list">
+    <div class="matches-list">
 
-    <button class="match-item">
-      <div class="match-avatar">
-        <img src="images/sofia.jpg" alt="София">
-      </div>
-      <span class="match-name">София</span>
-    </button>
+      <button class="match-item">
+        <div class="match-avatar">А</div>
+        <span class="match-name">Алина</span>
+      </button>
 
-    <button class="match-item">
-      <div class="match-avatar">
-        М
-      </div>
-      <span class="match-name">Макс</span>
-    </button>
+      <button class="match-item">
+        <div class="match-avatar">М</div>
+        <span class="match-name">Макс</span>
+      </button>
 
-    <button class="match-item">
-      <div class="match-avatar">
+      <button class="match-item">
+        <div class="match-avatar">С</div>
+        <span class="match-name">София</span>
+      </button>
+
+      <button class="match-item">
+        <div class="match-avatar">И</div>
+        <span class="match-name">Ирина</span>
+      </button>
+
+      <button class="match-item">
+        <div class="match-avatar">Д</div>
+        <span class="match-name">Дарья</span>
+      </button>
+
+      <button class="match-item">
+        <div class="match-avatar">А</div>
+        <span class="match-name">Аня</span>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="chat-content">
+
+    <div class="chat-section-title">
+      Последние сообщения
+    </div>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
         А
       </div>
-      <span class="match-name">Алина</span>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            Алина
+          </div>
+
+          <div class="chat-dialog-time">
+            18:42
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Привет, как твои дела?
+        </div>
+
+      </div>
+
     </button>
 
-    <button class="match-item">
-      <div class="match-avatar">
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
+        М
+      </div>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            Макс
+          </div>
+
+          <div class="chat-dialog-time">
+            17:15
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Давай вечером сыграем?
+        </div>
+
+      </div>
+
+    </button>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
+        С
+      </div>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            София
+          </div>
+
+          <div class="chat-dialog-time">
+            16:03
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Ты где пропал?
+        </div>
+
+      </div>
+
+      <div class="chat-unread">
+        2
+      </div>
+
+    </button>
+
+
+    <button class="chat-dialog">
+
+      <div class="chat-avatar">
         И
       </div>
-      <span class="match-name">Ирина</span>
+
+      <div class="chat-dialog-main">
+
+        <div class="chat-dialog-top">
+
+          <div class="chat-dialog-name">
+            Ирина
+          </div>
+
+          <div class="chat-dialog-time">
+            Вчера
+          </div>
+
+        </div>
+
+        <div class="chat-dialog-message">
+          Было приятно познакомиться 😊
+        </div>
+
+      </div>
+
     </button>
 
   </div>
-
-</div>
-
-</div>
-
-<!-- ================= DIALOGS ================= -->
-
-<div class="chat-content">
-
-  <div class="chat-section-title">
-    Сообщения
-  </div>
-
-  <!-- Алина -->
-
-  <button class="chat-dialog">
-
-    <div class="chat-avatar">
-      <div class="chat-avatar-placeholder">А</div>
-    </div>
-
-    <div class="chat-dialog-main">
-
-      <div class="chat-dialog-top">
-
-        <div class="chat-dialog-name">
-          Алина
-        </div>
-
-      </div>
-
-      <div class="chat-dialog-message">
-        Привет, как твои дела?
-      </div>
-
-    </div>
-
-    <div class="chat-dialog-time">
-      18:42
-    </div>
-
-  </button>
-
-
-  <!-- Макс -->
-
-  <button class="chat-dialog">
-
-    <div class="chat-avatar">
-      <div class="chat-avatar-placeholder">М</div>
-    </div>
-
-    <div class="chat-dialog-main">
-
-      <div class="chat-dialog-top">
-
-        <div class="chat-dialog-name">
-          Макс
-        </div>
-
-      </div>
-
-      <div class="chat-dialog-message">
-        Давай вечером сыграем?
-      </div>
-
-    </div>
-
-    <div class="chat-dialog-time">
-      17:15
-    </div>
-
-  </button>
-
-
-  <!-- София -->
-
-  <button class="chat-dialog">
-
-    <div class="chat-avatar">
-
-      <img
-        src="images/sofia.jpg"
-        alt="София"
-      >
-
-      <span class="chat-online-status"></span>
-
-    </div>
-
-    <div class="chat-dialog-main">
-
-      <div class="chat-dialog-top">
-
-        <div class="chat-dialog-name">
-          София
-        </div>
-
-      </div>
-
-      <div class="chat-dialog-message">
-        Ты где пропал?
-      </div>
-
-    </div>
-
-    <div class="chat-dialog-time">
-      16:03
-    </div>
-
-    <div class="chat-unread">
-      2
-    </div>
-
-  </button>
-
-
-  <!-- Ирина -->
-
-  <button class="chat-dialog">
-
-    <div class="chat-avatar">
-      <div class="chat-avatar-placeholder">И</div>
-    </div>
-
-    <div class="chat-dialog-main">
-
-      <div class="chat-dialog-top">
-
-        <div class="chat-dialog-name">
-          Ирина
-        </div>
-
-      </div>
-
-      <div class="chat-dialog-message">
-        Было приятно познакомиться 😊
-      </div>
-
-    </div>
-
-    <div class="chat-dialog-time">
-      Вчера
-    </div>
-
-  </button>
 
 </div>
 
