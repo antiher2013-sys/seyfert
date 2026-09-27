@@ -2902,11 +2902,8 @@ const likedView=
 const navItems=
   document.querySelectorAll(".nav-item");
   
-   
-
-/* =========================================================
-   CHAT TABS
-========================================================= */
+profilesView.classList.remove("hidden");
+chatsView.classList.add("hidden");
 
 /* =========================================================
    CHAT TABS
@@ -2914,13 +2911,6 @@ const navItems=
 
 const chatTabs =
   document.querySelectorAll(".chat-tab");
-
-const likesView =
-  document.getElementById("likesView");
-
-const likedView =
-  document.getElementById("likedView");
-
 
 chatTabs.forEach(tab => {
 
@@ -2935,39 +2925,21 @@ chatTabs.forEach(tab => {
     const type =
       tab.dataset.chatTab;
 
-
-    /* ================= CHATS ================= */
-
     if(type === "chats"){
 
-      chatsView.classList.remove("hidden");
-
-      likesView.classList.add("hidden");
-      likedView.classList.add("hidden");
+      toast("Чаты");
 
     }
-
-
-    /* ================= LIKES ================= */
 
     else if(type === "likes"){
 
-      chatsView.classList.add("hidden");
-
-      likesView.classList.remove("hidden");
-      likedView.classList.add("hidden");
+      toast("Мои лайки");
 
     }
 
-
-    /* ================= LIKED ================= */
-
     else if(type === "liked"){
 
-      chatsView.classList.add("hidden");
-
-      likesView.classList.add("hidden");
-      likedView.classList.remove("hidden");
+      toast("Кому я нравлюсь");
 
     }
 
