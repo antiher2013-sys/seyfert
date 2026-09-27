@@ -2839,6 +2839,16 @@ chatsView.classList.add("hidden");
 const chatTabs=
   document.querySelectorAll(".chat-tab");
 
+const chatsPage=
+  document.getElementById("chatsPage");
+
+const likesPage=
+  document.getElementById("likesPage");
+
+const likedPage=
+  document.getElementById("likedPage");
+
+
 chatTabs.forEach(tab=>{
 
   tab.onclick=()=>{
@@ -2852,34 +2862,37 @@ chatTabs.forEach(tab=>{
     const type=
       tab.dataset.chatTab;
 
+
     if(type==="chats"){
 
-      chatsView.classList.remove("hidden");
+      chatsPage.classList.remove("hidden");
 
-      likesView.classList.add("hidden");
-      likedView.classList.add("hidden");
+      likesPage.classList.add("hidden");
+      likedPage.classList.add("hidden");
 
       toast("Чаты");
 
     }
 
+
     else if(type==="likes"){
 
-      chatsView.classList.add("hidden");
+      chatsPage.classList.add("hidden");
 
-      likesView.classList.remove("hidden");
-      likedView.classList.add("hidden");
+      likesPage.classList.remove("hidden");
+      likedPage.classList.add("hidden");
 
       toast("Мои лайки");
 
     }
 
+
     else if(type==="liked"){
 
-      chatsView.classList.add("hidden");
+      chatsPage.classList.add("hidden");
 
-      likesView.classList.add("hidden");
-      likedView.classList.remove("hidden");
+      likesPage.classList.add("hidden");
+      likedPage.classList.remove("hidden");
 
       toast("Кому я нравлюсь");
 
