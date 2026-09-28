@@ -261,7 +261,7 @@ button{
   background:rgba(255,255,255,.10);
 }
 .profile-identity{
-  margin-top:10px;
+  margin-top:8px;
 
   text-align:center;
 
@@ -286,17 +286,8 @@ button{
   color:#bdb7c9;
 }
 
-.profile-gender{
-  margin-top:3px;
-
-  color:#817b8f;
-
-  font-size:10px;
-  font-weight:700;
-}
-
 .profile-city{
-  margin-top:8px;
+  margin-top:3px;
 
   text-align:center;
 
@@ -308,19 +299,22 @@ button{
 .profile-about{
   width:100%;
 
-  margin-top:22px;
+  margin-top:12px;
 
-  padding:14px;
+  padding:10px 12px;
 
   box-sizing:border-box;
 
-  border-radius:18px;
+  border-radius:14px;
 
   background:rgba(255,255,255,.025);
 
   border:
     1px solid
     rgba(255,255,255,.10);
+
+  transition:
+    height .15s ease;
 }
 
 .profile-about-header{
@@ -330,13 +324,13 @@ button{
   align-items:center;
   justify-content:space-between;
 
-  margin-bottom:8px;
+  margin-bottom:5px;
 }
 
 .profile-about-title{
   color:#817b8f;
 
-  font-size:10px;
+  font-size:9px;
   font-weight:800;
 
   text-transform:lowercase;
@@ -345,20 +339,23 @@ button{
 .profile-about-counter{
   color:#817b8f;
 
-  font-size:10px;
+  font-size:9px;
   font-weight:800;
 }
 
 .profile-about-input{
   width:100%;
 
-  min-height:90px;
+  min-height:22px;
+  height:22px;
 
   padding:0;
 
   box-sizing:border-box;
 
   resize:none;
+
+  overflow:hidden;
 
   border:0;
   outline:none;
@@ -369,10 +366,10 @@ button{
 
   font-family:inherit;
 
-  font-size:13px;
+  font-size:12px;
   font-weight:500;
 
-  line-height:1.5;
+  line-height:1.45;
 }
 
 .profile-about-input::placeholder{
@@ -4784,13 +4781,17 @@ if(
      COUNTER
   ======================================================= */
 
-  const updateAboutCounter = ()=>{
+const updateAboutCounter = ()=>{
 
-    aboutCounter.textContent =
-      `${aboutInput.value.length}/300`;
+  aboutCounter.textContent =
+    `${aboutInput.value.length}/300`;
 
-  };
+  aboutInput.style.height = "22px";
 
+  aboutInput.style.height =
+    `${aboutInput.scrollHeight}px`;
+
+};
 
   aboutInput.addEventListener(
     "input",
