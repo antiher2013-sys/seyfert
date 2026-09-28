@@ -4778,6 +4778,10 @@ if(
   profileScroll
 ){
 
+  /* =========================
+     COUNTER
+  ========================= */
+
   const updateAboutCounter = ()=>{
 
     aboutCounter.textContent =
@@ -4792,57 +4796,91 @@ if(
   );
 
 
+  updateAboutCounter();
+
+
+  /* =========================
+     KEYBOARD
+  ========================= */
+
+  const moveAboutIntoView = ()=>{
+
+    const viewport =
+      window.visualViewport;
+
+    if(!viewport) return;
+
+
+    const box =
+      aboutBox.getBoundingClientRect();
+
+    const keyboardTop =
+      viewport.offsetTop +
+      viewport.height;
+
+
+    const margin =
+      16;
+
+
+    if(
+      box.bottom >
+      keyboardTop - margin
+    ){
+
+      profileScroll.scrollTop +=
+        box.bottom -
+        (keyboardTop - margin);
+
+    }
+
+  };
+
+
   aboutInput.addEventListener(
     "focus",
     ()=>{
 
-      setTimeout(()=>{
-
-        const boxRect =
-          aboutBox.getBoundingClientRect();
-
-        const viewport =
-          window.visualViewport;
-
-        const keyboardTop =
-          viewport
-            ? viewport.height
-            : window.innerHeight;
-
-        const safeSpace =
-          20;
-
-        const targetBottom =
-          keyboardTop - safeSpace;
-
-        if(
-          boxRect.bottom >
-          targetBottom
-        ){
-
-          profileScroll.scrollBy({
-            top:
-              boxRect.bottom -
-              targetBottom,
-            behavior:"smooth"
-          });
-
-        }
-
-      },150);
+      setTimeout(
+        moveAboutIntoView,
+        250
+      );
 
     }
   );
 
 
-  updateAboutCounter();
+  if(window.visualViewport){
 
+    window.visualViewport.addEventListener(
+      "resize",
+      ()=>{
+
+        if(
+          document.activeElement ===
+          aboutInput
+        ){
+
+          moveAboutIntoView();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* =========================
+     CLOSE KEYBOARD
+  ========================= */
 
   profileScroll.addEventListener(
     "pointerdown",
     event=>{
 
       if(
+        event.target !== aboutInput &&
         !aboutInput.contains(event.target)
       ){
 
