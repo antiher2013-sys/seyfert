@@ -4771,23 +4771,23 @@ const aboutInput =
 const aboutCounter =
   document.getElementById("aboutCounter");
 
-const aboutBox =
-  document.querySelector(".profile-about");
-
 const profileScroll =
   document.querySelector(".profile-scroll");
+
+const aboutBox =
+  document.querySelector(".profile-about");
 
 
 if(
   aboutInput &&
   aboutCounter &&
-  aboutBox &&
-  profileScroll
+  profileScroll &&
+  aboutBox
 ){
 
-  /* =========================
+  /* =======================================================
      COUNTER
-  ========================= */
+  ======================================================= */
 
   const updateAboutCounter = ()=>{
 
@@ -4806,40 +4806,91 @@ if(
   updateAboutCounter();
 
 
-  /* =========================
-     KEYBOARD
-  ========================= */
+  /* =======================================================
+     KEYBOARD / PROFILE SCROLL
+  ======================================================= */
 
-  const moveAboutIntoView = ()=>{
-
-    const viewport =
-      window.visualViewport;
-
-    if(!viewport) return;
+  let keyboardOpen = false;
 
 
-    const box =
-      aboutBox.getBoundingClientRect();
+  const isKeyboardOpen = ()=>{
 
-    const keyboardTop =
-      viewport.offsetTop +
-      viewport.height;
+    if(!window.visualViewport){
+      return false;
+    }
+
+    return (
+      window.innerHeight -
+      window.visualViewport.height
+    ) > 120;
+
+  };
 
 
-    const margin =
-      16;
-
+  const focusAbout = ()=>{
 
     if(
-      box.bottom >
-      keyboardTop - margin
+      document.activeElement !==
+      aboutInput
     ){
-
-      profileScroll.scrollTop +=
-        box.bottom -
-        (keyboardTop - margin);
-
+      return;
     }
+
+
+    keyboardOpen = isKeyboardOpen();
+
+
+    /*
+      Даём iOS закончить открытие клавиатуры.
+    */
+
+    requestAnimationFrame(()=>{
+
+      requestAnimationFrame(()=>{
+
+        if(
+          document.activeElement !==
+          aboutInput
+        ){
+          return;
+        }
+
+
+        /*
+          Самое важное:
+          прокручиваем именно внутренний
+          контейнер профиля.
+        */
+
+        aboutBox.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+
+        /*
+          После scrollIntoView возвращаем
+          фокус в поле.
+        */
+
+        setTimeout(()=>{
+
+          if(
+            document.activeElement ===
+            aboutInput
+          ){
+
+            aboutInput.focus({
+              preventScroll:true
+            });
+
+          }
+
+        },350);
+
+      });
+
+    });
 
   };
 
@@ -4848,14 +4899,30 @@ if(
     "focus",
     ()=>{
 
+      keyboardOpen = false;
+
       setTimeout(
-        moveAboutIntoView,
-        250
+        focusAbout,
+        150
+      );
+
+      setTimeout(
+        focusAbout,
+        400
+      );
+
+      setTimeout(
+        focusAbout,
+        700
       );
 
     }
   );
 
+
+  /* =======================================================
+     VISUAL VIEWPORT
+  ======================================================= */
 
   if(window.visualViewport){
 
@@ -4868,7 +4935,38 @@ if(
           aboutInput
         ){
 
-          moveAboutIntoView();
+          keyboardOpen =
+            isKeyboardOpen();
+
+          if(keyboardOpen){
+
+            setTimeout(
+              focusAbout,
+              50
+            );
+
+          }
+
+        }
+
+      }
+    );
+
+
+    window.visualViewport.addEventListener(
+      "scroll",
+      ()=>{
+
+        if(
+          document.activeElement ===
+          aboutInput &&
+          isKeyboardOpen()
+        ){
+
+          setTimeout(
+            focusAbout,
+            50
+          );
 
         }
 
@@ -4878,24 +4976,34 @@ if(
   }
 
 
-  /* =========================
+  /* =======================================================
      CLOSE KEYBOARD
-  ========================= */
+  ======================================================= */
 
-  profileScroll.addEventListener(
+  document.addEventListener(
     "pointerdown",
     event=>{
 
       if(
-        event.target !== aboutInput &&
-        !aboutInput.contains(event.target)
+        document.activeElement !==
+        aboutInput
       ){
-
-        aboutInput.blur();
-
+        return;
       }
 
-    }
+
+      if(
+        event.target === aboutInput ||
+        aboutInput.contains(event.target)
+      ){
+        return;
+      }
+
+
+      aboutInput.blur();
+
+    },
+    true
   );
 
 }
